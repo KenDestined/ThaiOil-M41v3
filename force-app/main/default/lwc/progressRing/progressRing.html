@@ -1,0 +1,21 @@
+<template>
+	<!-- <template if:true={isCurrent}> -->
+
+	<!-- Lightning progress ring. -->
+	<div class="slds-path__action">
+		<lightning-progress-ring value={progress} direction="fill" size="large"> </lightning-progress-ring>
+		<template if:true={showPercentage}>
+			<div class="percentage_fix">{progress}%</div>
+		</template>
+	</div>
+
+	<!-- End of Lightning progress ring. -->
+
+	<!-- </template> -->
+	<!--template if:false={isCurrent}>
+        <div class="slds-path__action" style="margin-right: 30px; margin-left: 30px">
+            <lightning-progress-ring variant="active-step" value="100" direction="fill" size="large">
+            </lightning-progress-ring>
+        </div>
+    </!--template-->
+</template>

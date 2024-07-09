@@ -1,0 +1,770 @@
+<template>
+    <div data-id="formBegin"> 
+        <c-step-page-header 
+            num-steps="1" 
+            current-step="1" 
+            percentage={percentage} 
+            is-current={isCurrent} 
+            record-id={recordId} >
+        </c-step-page-header> 
+        <c-lwc-modal 
+            title={modalTitle} 
+            is-visible={modalVisible} 
+            confirm-text={modalConfirmButton} 
+            cancel-text={modalCancelButton} 
+            name={modalName} 
+            message={modalMessage} 
+            onselected={handleModalSelection} >
+        </c-lwc-modal>
+        <!-- Form Question = 20 -->  
+        <div class="slds-text-heading_medium text-center">ENEM-QFR-9036-GNR</div>
+                <div class="slds-text-heading_medium text-center">การตรวจสอบ HEATER CONTROL PANEL ทุกหกเดือน</div>
+        
+                <section class="section slds-accordion__section">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col">
+                            <label class="slds-form-element__label" for="tank-no">Notification</label>
+                            <div class="f-c">
+                                <input
+                                    type="text"
+                                    data-id="notification"
+                                    class="slds-input avoidPercentageInput"
+                                    value={notification}
+                                    disabled
+                                />
+                            </div>
+                            <label class="slds-form-element__label" for="tank-no">Order</label>
+                            <div class="f-c">
+                                <input
+                                    type="text"
+                                    data-id="order"
+                                    class="slds-input avoidPercentageInput"
+                                    value={order}
+                                    disabled
+                                />
+                            </div>
+                        </div>
+                        <div class="slds-col">
+                            <label class="slds-form-element__label" for="tank-no">FL.</label>
+                            <div class="f-c">
+                                <input
+                                    type="text"
+                                    data-id="fl"
+                                    class="slds-input avoidPercentageInput"
+                                    value={functionalLocation}
+                                    disabled
+                                />
+                            </div>
+                            <label class="slds-form-element__label" for="tank-no">Status</label>
+                            <div class="f-c">
+                                <input
+                                    type="text"
+                                    data-id="status"
+                                    class="slds-input avoidPercentageInput"
+                                    value={formStatus}
+                                    disabled
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        <div class="bs-example"></div>
+    </div>
+<!-- Dropdown section 0 = -->
+
+<div class="bs-example">
+    <ul class="slds-accordion">  
+        <li class="slds-accordion__list-item"> 
+        <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+            <div class="card-header" data-id="headingZero">
+                <h2 class="slds-accordion__summary-heading card-header"> 
+                    <button 
+                        type="button" 
+                        aria-controls="collapseZero" 
+                        aria-expanded="true" 
+                        class="btn btn-link" 
+                        data-parent="sectionZero" 
+                        onclick={expandSection} > 
+                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" >    
+                    </lightning-icon> 
+                    <span 
+                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" 
+                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small" >0
+                    </span >
+                    <span class="slds-accordion__summary-content">Header Information</span> 
+                    </button>
+                </h2>
+            </div>
+            <div data-id="collapseZero" class="slds-accordion__content">
+                <div class="card-body">
+                    <div class="table-responsive" style="margin: 0rem;">
+                        <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                            <tbody> 
+                                <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">วันที่: </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                            <input onchange={onIEH} type="date" data-id="0-input-3" class="slds-input avoidPercentageInput" />
+                                            </div>
+                                    </td><td></td>  
+                                    <td>
+                                        <span class="slds-form-element__label">เวลา: </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-2" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">Equipment Tag </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false" > 
+                                        <input onchange={onIEH} type="text" data-id="0-input-1" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td><td></td>  
+                                    <td>
+                                       
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control"> 
+                                        
+                                        </div>
+                                    </td>
+                                 </tr>
+                                 
+                            </tbody>
+                        </table>
+                    </div>
+                </div>  
+            </div>    
+        </section>
+    </li>
+
+<!-- Dropdown section 1  = -->
+<li class="slds-accordion__list-item">
+    <section class="slds-accordion__section" data-id="sectionOne">
+        <div class="slds-accordion__summary" data-id="headingOne">
+            <h2 class="slds-accordion__summary-heading card-header">
+                <button
+                    type="button"
+                    aria-controls="collapseOne"
+                    aria-expanded="true"
+                    class="btn btn-link"
+                    data-parent="sectionOne"
+                    onclick={expandSection}
+                >
+                    <lightning-icon
+                        icon-name="utility:switch"
+                        alternative-text="button icon"
+                        size="x-small"
+                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                    ></lightning-icon>
+                    <span
+                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                    >
+                        1</span
+                    ><span class="slds-accordion__summary-content"> ผลการตรวจสอบ</span>
+                </button>
+                <div class="slds-col">
+                    <div class="slds-checkbox obj-right">
+                        <input
+                            onchange={disableSection}
+                            type="checkbox"
+                            name="options"
+                            id="checkbox-unique-id-1"
+                            data-id="checkbox-unique-id-1"
+                            data-remark="checkbox-unique-id-1"
+                            value="checkbox-unique-id-1"
+                            data-parent="sectionOne"
+                        />
+                        <label class="slds-checkbox__label" for="checkbox-unique-id-1">
+                            <span class="slds-checkbox_faux"></span>
+                            <span class="slds-form-element__label">N/A</span>
+                        </label>
+                    </div>
+                </div>
+            </h2>
+        </div>
+        <div
+            class="slds-grid slds-gutters hide-remark"
+            id="sectionOne-remark"
+            data-id="sectionOne-remark"
+        >
+            <div class="slds-col">
+                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                <div class="slds-form-element__control">
+                    <textarea
+                        data-id="sectionOne-inputRemark"
+                        onchange={onIEH}
+                        id="sectionOne-inputRemark"
+                        class="slds-textarea"
+                    ></textarea>
+                </div>
+            </div>
+        </div>
+<div data-id="collapseOne" class="slds-accordion__content">
+    <div class="card-body">
+                <div class="table-responsive" style="margin: 0rem;">
+                    <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                        <colgroup>
+                            <col span="1" style="width: 30%;"><col span="1" style="width: 10%;"> 
+                            <col span="1" style="width: 10%;"><col span="1" style="width: 30%;">
+                        </colgroup> 
+                        <tbody>
+                            <tr>
+                                <td ><span class="slds-form-element__label">ตรวจสอบตามรายการต่อไปนี้</span></td>      
+                                <td ><span class="slds-form-element__label">ปกติ</span></td>
+                                <td ><span class="slds-form-element__label">ต้องแก้ไข</span></td>
+                                <td class="text-center"><span class="slds-form-element__label">หมายเหตุ</span></td>
+         
+                            </tr>
+                            <tr data-answered="false" >
+                                <td><span class="slds-form-element__label">1. Tag ของตู้ Control panel และ Feeder supply มองเห็นชัด สีไม่ซีด ไม่หลุดร่วง</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-1-radio" 
+                                        data-id="1-1-radio-1" 
+                                        id="1-1-radio-1"
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-1-radio" 
+                                        data-id="1-1-radio-2" 
+                                        id="1-1-radio-2"
+                                        value="Not Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="1-1-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>                                
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">2. สภาพของตู้โดยทั่วไปไม่ชำรุด เป็นสนิม หรือมีไอน้ำเกาะภายในตู้</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="2-1-radio" 
+                                        data-id="2-1-radio-1" 
+                                        id="2-1-radio-1"
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="2-1-radio" 
+                                        data-id="2-1-radio-2" 
+                                        id="2-1-radio-2" 
+                                        value="Not Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="remark2" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">3. ไม่มี Alarm ค้างอยู่ที่ Control panel หรือ Annunciator</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="3-1-radio" 
+                                        data-id="3-1-radio-1" 
+                                        id="3-1-radio-1"
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="3-1-radio" 
+                                        data-id="3-1-radio-2" 
+                                        id="3-1-radio-2" 
+                                        value="No Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="3-1-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">4. ตรวจสอบการทำงานของโวลท์มิเตอร์และแอมป์มิเตอร์</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="4-1-radio" 
+                                        data-id="4-1-radio-1" 
+                                        id="4-1-radio-1"
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="4-1-radio" 
+                                        data-id="4-1-radio-2" 
+                                        id="4-1-radio-2"
+                                        value=" Not Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="4-1-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">5. ตรวจสอบการทำงานของ Indicating lamps</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="5-1-radio" 
+                                        data-id="5-1-radio-1" 
+                                        id="5-1-radio-1"
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="5-1-radio" 
+                                        data-id="5-1-radio-2" 
+                                        id="5-1-radio-2"
+                                        value="Not Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="5-1-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">6. พัดลมระบายความร้อนทำงานและไม่มีเสียงผิดปกติ</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="6-0-radio" 
+                                        data-id="6-0-radio-1" 
+                                        id="6-0-radio-1"
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="6-0-radio" 
+                                        data-id="6-0-radio-2" 
+                                        id="6-0-radio-2"
+                                        value=" Not Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="6-0-remark6" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label"> -Cooling Fan no. 1-3</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="6-1-radio" 
+                                        data-id="6-1-radio-1" 
+                                        id="6-1-radio-1" 
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="6-1-radio" 
+                                        data-id="6-1-radio-2" 
+                                        id="6-1-radio-2"
+                                        value=" Not Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="6-remark-1" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr><tr data-answered="false">
+                                <td><span class="slds-form-element__label"> -Section A: Cooling Fan no. 4-6</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="6-2-radio" 
+                                        data-id="6-2-radio-1" 
+                                        id="6-2-radio-1"
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="6-2-radio" 
+                                        data-id="6-2-radio-2" 
+                                        id="6-2-radio-2"
+                                        value=" Not Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="6-2-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr><tr data-answered="false">
+                                <td><span class="slds-form-element__label"> -Section A: Cooling Fan no. 7-9</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="6-3-radio" 
+                                        data-id="6-3-radio-1" 
+                                        id="6-3-radio-1"
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="6-3-radio" 
+                                        data-id="6-3-radio-2" 
+                                        id="6-3-radio-2"
+                                        value=" Not Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="6-3-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label"> -Section B: Cooling Fan no. 10-12</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="6-4-radio" 
+                                        data-id="6-4-radio-1" 
+                                        id="6-4-radio-1"
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="6-4-radio" 
+                                        data-id="6-4-radio-2" 
+                                        id="6-4-radio-2"
+                                        value=" Not Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="6-4-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label"> -Section B: Cooling Fan no. 13-15</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="6-5-radio" 
+                                        data-id="6-5-radio-1" 
+                                        id="6-5-radio-1"
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="6-5-radio" 
+                                        data-id="6-5-radio-2" 
+                                        id="6-5-radio-2"
+                                        value=" Not Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="6-5-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">7. Contactor ไม่มีเสียงดังผิดปกติหรือร่องรอยของการเกิดความร้อนผิดปกติ</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="7-1-radio" 
+                                        data-id="7-1-radio-1" 
+                                        id="7-1-radio-1"
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="7-1-radio" 
+                                        data-id="7-1-radio-2" 
+                                        id="7-1-radio-2"
+                                        value=" Not Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="7-1-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">8. Fuse/ Fuse base สภาพปกติและไม่มีร่องรอยของการเกิดความร้อนผิดปกติ</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="8-1-radio" 
+                                        data-id="8-1-radio-1" 
+                                        id="8-1-radio-1"
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="8-1-radio" 
+                                        data-id="8-1-radio-2" 
+                                        id="8-1-radio-2"
+                                        value=" Not Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="8-1-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">9. Earth connection ของตู้ไม่หลุดหลวม</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="9-1-radio" 
+                                        data-id="9-1-radio-1" 
+                                        id="9-1-radio-1"
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="9-1-radio" 
+                                        data-id="9-1-radio-2" 
+                                        id="9-1-radio-2"
+                                        value=" Not Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="9-1-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">10. ประตูอยู่ในสภาพสมบูรณ์ ปิดสนิท และสามารถเปิด-ปิดได้ง่าย</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="10-1-radio" 
+                                        data-id="10-1-radio-1" 
+                                        id="10-1-radio-1"
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="10-1-radio" 
+                                        data-id="10-1-radio-2" 
+                                        id="10-1-radio-2"
+                                        value=" Not Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="10-1-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">11. ความสะอาดและความเรียบร้อยภายนอกและภายในตู้</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="11-1-radio" 
+                                        data-id="11-1-radio-1" 
+                                        id="11-1-radio-1"
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="11-1-radio" 
+                                        data-id="11-1-radio-2" 
+                                        id="11-1-radio-2"
+                                        value=" Not Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="11-1-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">12. ตรวจสอบสภาพและความสะอาดของ Air filter</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="12-1-radio" 
+                                        data-id="12-1-radio-1" 
+                                        id="12-1-radio-1"
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="12-1-radio" 
+                                        data-id="12-1-radio-2" 
+                                        id="12-1-radio-2"
+                                        value=" Not Pass">
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="12-1-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>                           
+                    </table>  
+                    <table>
+                        <tbody>
+                            <tr >
+                                <td style="width:150px">
+                                    <span class="slds-form-element__label">Remark</span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <textarea
+                                            onchange={onIEH}
+                                            data-id="remark"
+                                            class="slds-textarea"
+                                            placeholder=""
+                                            rows="2"
+                                        ></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>       
+                </div>                 
+            </div>
+        </div>
+        </section>
+        </li>
+    </ul>    
+</div>
+ <!-- Remark part  = -->
+
+<br>
+<br>
+<p> Note:  Yes = Pass&emsp;No = Not Pass </p>
+
+
+        <!-- save submit reject= -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSubmitModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand" onclick={openRejectModal}>
+                    Reject
+                </button>
+            </div>
+        </section>
+    
+</template>

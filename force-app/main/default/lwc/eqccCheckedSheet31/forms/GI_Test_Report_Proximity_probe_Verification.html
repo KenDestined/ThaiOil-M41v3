@@ -1,0 +1,994 @@
+<template>
+    <div data-id="formBegin">
+        <!-- PAGE STEP COUNTER HEADER
+        Params that need changed are the num-steps and the current-step.
+        Num-steps is how many TOTAL steps there are in the form.
+        Current-step is the step that the html currently is. ie. if a file's name is
+        formStep1.html then the current-step is 1, formStep2.html would be 2 etc.-->
+        <c-step-page-header
+            num-steps="1"
+            current-step="1"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+
+        <!-- Modal placeholder -->
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+        <!-- END Modal Placeholder -->
+
+            <!-- ENIM-QFR-060 /Form Question = xx -->
+
+        <!--
+            Title area for form. Put form title here
+        -->
+        <div class="slds-text-heading_medium text-center">PROXIMITY PROBE VERIFICATION</div>
+        <!-- END Title area -->
+
+        <!-- Section for Notification, Order, FL. and Status fields -->
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                        <svg
+                            class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                            aria-hidden="true"
+                        >
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                        </svg>
+                        <input
+                            type="text"
+                            data-id="notification"
+                            class="slds-input avoidPercentageInput"
+                            value={notification}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no ">FL.</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN SECTION -->
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <!-- 0 -->
+                <!-- HEADER INFORMATION (USUALLY DOES NOT HAVE N/A SECTION) -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section slds-is-open" data-id="sectionOne">
+                        <div class="slds-accordion__summary" data-id="headingOne">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseOne"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionOne"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        0</span
+                                    ><span class="slds-accordion__summary-content">Header Information</span>
+                                </button>
+                            </h2>
+                        </div>
+                        <div data-id="collapseOne" class="slds-accordion__content">
+                            <div class="card-body">
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col">
+                                        <label class="slds-form-element__label" for="tank-no">Machine</label>
+                                        <div class="slds-form-element__control" data-answered="false">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="Machine"
+                                                class="slds-input"
+                                            />
+                                        </div>
+                                        <label class="slds-form-element__label" for="tank-no">Shaft Material</label>
+                                        <div class="slds-form-element__control" data-answered="false">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="Shaft-Material"
+                                                class="slds-input"
+                                            />
+                                        </div>
+
+                                    </div>
+                                    <div class="slds-col">
+                                        <label class="slds-form-element__label" for="tank-no">Service</label>
+                                        <div class="slds-form-element__control" data-answered="false">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="tag-service"
+                                                class="slds-input"
+                                            />
+                                        </div>
+                                        <label class="slds-form-element__label" for="tank-no">PEFS No.</label>
+                                        <div class="slds-form-element__control" data-answered="false">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="Pefs"
+                                                class="slds-input"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <!-- 1 -->
+                <!-- BEGINNING OF SECOND SECTION WITH N/A-->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionTwo">
+                        <div class="slds-accordion__summary" data-id="headingTwo">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseTwo"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionTwo"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse"
+                                    >
+                                        1</span
+                                    ><span class="slds-accordion__summary-content" title="Accordion summary"
+                                        >Test Record</span
+                                    >
+                                </button>
+                            </h2>
+                        </div>
+                        <div data-id="collapseTwo" class="slds-accordion__content">
+                            <div class="card-body">
+                                <label class="slds-form-element__label" for="hatch"
+                                ><b>Probe:</b></label>
+                                <div class="slds-grid slds-gutters" data-answered="false">
+                                    <div class="slds-col">
+                                        <div class="slds-form-element">
+                                            <label
+                                                class="slds-form-element__label"
+                                                for="first-reading"
+                                                >Part Number</label>
+                                            <div
+                                                class="slds-form-element__control slds-input-has-fixed-addon">
+                                                <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="Probe-Part-Number"
+                                                class="slds-input"
+                                            />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col">
+                                        <div class="slds-form-element">
+                                            <label
+                                                class="slds-form-element__label"
+                                                for="reading-after"
+                                                >Serial Number</label>
+                                            <div
+                                                class="slds-form-element__control slds-input-has-fixed-addon">
+                                                <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="Probe-Serial-Number"
+                                                class="slds-input"
+                                            />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label class="slds-form-element__label" for="hatch"
+                                ><b>Extension Cable:</b></label>
+                                <div class="slds-grid slds-gutters" data-answered="false">
+                                    <div class="slds-col">
+                                        <div class="slds-form-element">
+                                            <label
+                                                class="slds-form-element__label"
+                                                for="first-reading"
+                                                >Part Number</label>
+                                            <div
+                                                class="slds-form-element__control slds-input-has-fixed-addon">
+                                                <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="Cable-Part-Numbe"
+                                                class="slds-input"
+                                            />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col">
+                                        <div class="slds-form-element">
+                                            <label
+                                                class="slds-form-element__label"
+                                                for="reading-after"
+                                                >Serial Number</label>
+                                            <div
+                                                class="slds-form-element__control slds-input-has-fixed-addon">
+                                                <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="Cable-Serial-Number"
+                                                class="slds-input"
+                                            />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <label class="slds-form-element__label" for="hatch"
+                                ><b>Proximitor:</b></label>
+                                <div class="slds-grid slds-gutters" data-answered="false">
+                                    <div class="slds-col">
+                                        <div class="slds-form-element">
+                                            <label
+                                                class="slds-form-element__label"
+                                                for="first-reading"
+                                                >Part Number</label>
+                                            <div
+                                                class="slds-form-element__control slds-input-has-fixed-addon">
+                                                <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="Prox-Part-Number"
+                                                class="slds-input"
+                                            />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col">
+                                        <div class="slds-form-element">
+                                            <label
+                                                class="slds-form-element__label"
+                                                for="reading-after"
+                                                >Serial Number</label>
+                                            <div
+                                                class="slds-form-element__control slds-input-has-fixed-addon">
+                                                <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="Prox-Serial-Number"
+                                                class="slds-input"
+                                            />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <label class="slds-form-element__label" for="hatch"
+                                ><b>Monitoring Module:</b></label>
+                                <div class="slds-grid slds-gutters" data-answered="false">
+                                    <div class="slds-col">
+                                        <div class="slds-form-element">
+                                            <label
+                                                class="slds-form-element__label"
+                                                for="first-reading"
+                                                >Type</label>
+                                            <div
+                                                class="slds-form-element__control slds-input-has-fixed-addon">
+                                                <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="Module-Type"
+                                                class="slds-input"
+                                            />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col">
+                                        <div class="slds-form-element">
+                                            <label
+                                                class="slds-form-element__label"
+                                                for="reading-after"
+                                                >Channel </label>
+                                            <div
+                                                class="slds-form-element__control slds-input-has-fixed-addon">
+                                                <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="Module-Channel"
+                                                class="slds-input"
+                                            />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <label class="slds-form-element__label" for="hatch"
+                                ><b>Resistance:</b></label>
+                                <div class="slds-grid slds-gutters" data-answered="false">
+                                    <div class="slds-col">
+                                        <div class="slds-form-element">
+                                            <label
+                                                class="slds-form-element__label"
+                                                for="first-reading"
+                                                >Probe (Ω)</label><br>
+                                            <div
+                                                class="slds-form-element__control slds-input-has-fixed-addon">
+                                                <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="Resistance-Probe"
+                                                class="slds-input"
+                                            />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col">
+                                        <div class="slds-form-element">
+                                            <label
+                                                class="slds-form-element__label"
+                                                for="reading-after"
+                                                >Probe and Cable (Ω) </label>
+                                            <div
+                                                class="slds-form-element__control slds-input-has-fixed-addon">
+                                                <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="Resistance-Probe-Cable"
+                                                class="slds-input"
+                                            />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <label class="slds-form-element__label" for="hatch"
+                                ><b>Test and Record Output Voltage:</b></label>
+
+                                <div class="table">
+                                    <table data-id="example" class="stripe row-border order-column" style="width: 100%;">
+                                        <thead>
+                                                <th rowspan="2" class="text-center">
+                                                    <span class="e-label">Gab (mm)</span>
+                                                </th>
+                                                <th colspan="2" class="text-center">
+                                                    <span class="e-label">Output (-Volt)</span>
+                                                </th>
+                                                <th rowspan="2" class="text-center">
+                                                    <span class="e-label">ISF (V/mm)</span>
+                                                </th>
+                                                <th rowspan="2" class="text-center">
+                                                    <span class="e-label">ISF Deviation (%)</span>
+                                                </th>                                                                   
+                                        </thead>
+                                        <tbody class="rowsBodySectionE" data-answered="false">
+                                            <tr data-dynamicrow="true">
+                                                <!-- Col 1-->
+                                                <td class="text-center middle">
+                                                    <div class="f-c"> 
+                                                        <input  
+                                                        data-affects="W" 
+                                                        data-cell="W" 
+                                                        type="number" 
+                                                        value=0.00
+                                                        onkeypress={onKeyPress} 
+                                                        data-id="e-8-input-1" 
+                                                        class="slds-input" />
+                                                     
+                                                    </div>
+                                                </td>
+                                                <!-- Col 2-->
+                                                <td class="text-center middle">
+                                                    <div class="f-c"> 
+                                                        <input data-cell="Y" 
+                                                        data-affects="Y" 
+                                                        onchange={handleAffectedCellsEI060} 
+                                                        type="number" 
+                                                        min="0" 
+                                                        step="0.1" 
+                                                        onkeypress={onKeyPress} 
+                                                        data-id="e-8-input-2" 
+                                                        class="slds-input" />
+                                                    </div>
+                                                </td>
+                                                <!-- Col 3-->
+                                                <td class="text-center middle">
+                                                    <div class="f-c"> 
+                                                        <input data-affects="Q" 
+                                                        onchange={onIEH} 
+                                                        data-cell="Z" 
+                                                        data-disabled="true" 
+                                                        disabled type="text" 
+                                                        data-id="e-8-input-3" 
+                                                        class="slds-input" />
+                                                    </div>
+                                                </td>
+                                                <!-- Col 4-->
+                                                <td class="text-center middle">
+                                                    <div class="f-c"> 
+                                                        <input data-affects="Q" 
+                                                        onchange={onIEH} 
+                                                        data-cell="M" 
+                                                        data-disabled="true" 
+                                                        disabled type="text" 
+                                                        data-id="e-8-input-4" 
+                                                        class="slds-input" />
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                            <tr data-dynamicrow="true">
+
+                                                <td class="text-center middle">
+                                                    <div class="f-c"> 
+                                                        <input  
+                                                        data-affects="W" 
+                                                        data-cell="W" 
+                                                        type="number" 
+                                                        value=0.25
+                                                        onkeypress={onKeyPress} 
+                                                        data-id="e-9-input-1" 
+                                                        class="slds-input" />
+                                                    </div>
+                                                </td>
+                                                <td class="text-center middle">
+                                                    <div class="f-c"> 
+                                                        <input data-cell="Y" 
+                                                        data-affects="Y" 
+                                                        onchange={handleAffectedCellsEI060} 
+                                                        type="number" 
+                                                        min="0" 
+                                                        step="0.1" 
+                                                        onkeypress={onKeyPress} 
+                                                        data-id="e-9-input-2" 
+                                                        class="slds-input" />
+                                                    </div>
+                                                </td>
+                                                <td class="text-center middle">
+                                                        <div class="f-c"> 
+                                                            <input data-affects="Q" 
+                                                            onchange={onIEH} 
+                                                            data-cell="Z" 
+                                                            data-disabled="true" 
+                                                            disabled type="text" 
+                                                            data-id="e-9-input-3" 
+                                                            class="slds-input" />
+                                                        </div>
+                                                </td>
+                                                <td class="text-center middle">
+                                                        <div class="f-c">
+                                                            <input data-affects="Q" 
+                                                            onchange={onIEH} 
+                                                            data-cell="M" 
+                                                            data-disabled="true" 
+                                                            disabled type="text" 
+                                                            data-id="e-9-input-4" 
+                                                            class="slds-input" />
+                                                            </div>
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div style="text-align: right;">
+                                            <span class="slds-button slds-button_destructive" onclick={removeRow}>-</span>
+                                            <span class="slds-button slds-button_brand" onclick={addRow}>+</span>
+                                    </div>
+                                        <br/>
+                                </div> 
+
+
+
+
+
+
+                                       <!-- To add <div>
+                                       -->
+
+
+                            </div>
+                        </div>
+                    </section>
+                </li>
+
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionFive">
+                        <div class="card-header" data-id="headingFive">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button type="button" aria-controls="collapseFive" aria-expanded="true" class="btn btn-link" data-parent="sectionFive" onclick={expandSection}> 
+                                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small">
+                                    </lightning-icon> 
+                                    <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" class="slds-badge slds-badge_inverse slds-var-p-right_x-small"> E</span>
+                                    <span class="slds-accordion__summary-content">ตรวจสอบระดับ DC Bus Voltage ในตู้ Charger หรือ Distribution (24 VDC)</span> 
+                                </button>
+                                    <div class="slds-col">
+                                        <div class="slds-checkbox obj-right">
+                                            <input onchange={disableSection} name="options" type="checkbox" id="header-na-5" data-id="header-na-5" data-remark="5-remark" value="header-na-5"/>
+                                            <label class="slds-checkbox__label" for="header-na-5">
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="e-label">N/A</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                            </h2>
+                        </div>
+                        <div data-id="collapseFive" class="slds-accordion__content" style="max-height: 2000px !important">
+                            <div class="card-body">
+                                <div class="slds-m-around_small" style="margin: 0rem;">
+                                    <div class="slds-section">
+                                        <section data-id="E" class="section-tb dynamicRows">
+                                            <div class="table">
+                                                <table data-id="example" class="stripe row-border order-column" style="width: 100%;">
+                                                    <thead>
+                                                            <th rowspan="2" class="text-center">
+                                                                <span class="e-label">Tag No.</span>
+                                                            </th>
+                                                            <th rowspan="2" class="text-center">
+                                                                <span class="e-label">Distribution Board No.</span>
+                                                            </th>
+                                                            <th rowspan="2" class="text-center">
+                                                                <span class="e-label">System Voltage</span>
+                                                            </th>
+                                                            <th colspan="4" class="text-center">
+                                                                <span class="e-label">Bus Voltage เทียบกับ GND</span>
+                                                            </th>
+                                                            <th rowspan="2" class="text-center">
+                                                                <span class="e-label">Error Range</span>
+                                                            </th>
+                                                            <tr>
+                                                                <td class="text-center" style="width: 7%;">
+                                                                    <span class="e-label">ขั้วบวก</span>
+                                                                </td>
+                                                                <td class="text-center middle">
+                                                                    <span class="e-label">% E</span>
+                                                                </td>
+                                                                <td class="text-center" style="width: 7%;">
+                                                                    <span class="e-label">ขั้วลบ</span></td>
+                                                                <td class="text-center middle">
+                                                                    <span class="e-label">% E</span>
+                                                                </td>
+                                                            </tr>
+                                                    </thead>
+                                                    <tbody class="rowsBodySectionE" data-answered="false">
+                                                        <tr data-dynamicrow="true">
+
+                                                            <!-- Col 1-->
+                                                            <td class="text-center middle">
+                                                                <div class="f-c"> 
+                                                                    <input onchange={onIEH} type="text" data-id="e-1-input-1" class="slds-input" />
+                                                                </div>
+                                                            </td>
+                                                            <!-- Col 2-->
+                                                            <td class="text-center middle">
+                                                                <div class="f-c"> 
+                                                                    <input onchange={onIEH} type="text" data-id="e-1-input-2" class="slds-input" />
+                                                                </div>
+                                                            </td>
+                                                            <!-- Col 3-->
+                                                            <td class="text-center middle">
+                                                                <div class="f-c"> 
+                                                                    <input onchange={handleAffectedCells} 
+                                                                    data-affects="A" 
+                                                                    data-cell="A" 
+                                                                    type="number" 
+                                                                    min="0" 
+                                                                    step="1" 
+                                                                    onkeypress={onKeyPress} 
+                                                                    data-id="e-1-input-3" 
+                                                                    class="slds-input" />
+                                                                </div>
+                                                            </td>
+                                                            <!-- Col 4-->
+                                                            <td class="text-center middle">
+                                                                <div class="f-c"> 
+                                                                    <input data-cell="B" 
+                                                                    data-affects="C" 
+                                                                    onchange={handleAffectedCells} 
+                                                                    type="number" 
+                                                                    min="0" 
+                                                                    step="1" 
+                                                                    onkeypress={onKeyPress} 
+                                                                    data-id="e-1-input-4" 
+                                                                    class="slds-input" />
+                                                                </div>
+                                                            </td>
+                                                            <!-- Col 5-->
+                                                            <td class="text-center middle">
+                                                                <div class="f-c"> 
+                                                                    <input data-affects="F" 
+                                                                    onchange={onIEH} 
+                                                                    data-cell="C" 
+                                                                    data-disabled="true" 
+                                                                    disabled type="text" 
+                                                                    data-id="e-1-input-5" 
+                                                                    class="slds-input" />
+                                                                </div>
+                                                            </td>
+                                                            <!-- Col 6-->
+                                                            <td class="text-center middle">
+                                                                <div class="f-c"> 
+                                                                    <input onchange={handleAffectedCells} 
+                                                                    data-affects="E" 
+                                                                    data-cell="D" 
+                                                                    type="number" 
+                                                                    step="1" 
+                                                                    onkeypress={onKeyPress} 
+                                                                    data-id="e-1-input-6" 
+                                                                    class="slds-input" />
+                                                                </div>
+                                                            </td>
+                                                            <!-- Col 7-->
+                                                            <td class="text-center middle">
+                                                                <div class="f-c"> 
+                                                                    <input onchange={onIEH} 
+                                                                    data-affects="F" 
+                                                                    data-cell="E" 
+                                                                    data-disabled="true" 
+                                                                    type="text" 
+                                                                    disabled data-id="e-1-input-7" 
+                                                                    class="slds-input" />
+                                                                </div>
+                                                            </td>
+                                                            <!-- Col 8-->
+                                                            <td class="text-center middle">
+                                                                <div class="f-c"> 
+                                                                    <input onchange={onIEH} 
+                                                                    data-cell="F" 
+                                                                    data-disabled="true" 
+                                                                    type="text" 
+                                                                    disabled data-id="e-1-input-8" 
+                                                                    class="slds-input" />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-dynamicrow="true">
+                                                            <td class="text-center middle">
+                                                                <div class="f-c"> 
+                                                                    <input onchange={onIEH} 
+                                                                    type="text" 
+                                                                    data-id="e-2-input-1" 
+                                                                    class="slds-input" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center middle">
+                                                                <div class="f-c"> 
+                                                                    <input onchange={onIEH} 
+                                                                    type="text" 
+                                                                    data-id="e-2-input-2" 
+                                                                    class="slds-input" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center middle">
+                                                                <div class="f-c"> 
+                                                                    <input onchange={handleAffectedCells} 
+                                                                    data-affects="A" 
+                                                                    data-cell="A" 
+                                                                    type="number" 
+                                                                    min="0" 
+                                                                    step="1" 
+                                                                    onkeypress={onKeyPress} 
+                                                                    data-id="e-2-input-3" 
+                                                                    class="slds-input" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center middle">
+                                                                <div class="f-c"> 
+                                                                    <input data-cell="B" 
+                                                                    data-affects="C" 
+                                                                    onchange={handleAffectedCells} 
+                                                                    type="number" 
+                                                                    min="0" 
+                                                                    step="1" 
+                                                                    onkeypress={onKeyPress} 
+                                                                    data-id="e-2-input-3" 
+                                                                    class="slds-input" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center middle">
+                                                                    <div class="f-c"> 
+                                                                        <input data-affects="F" 
+                                                                        onchange={onIEH} 
+                                                                        data-cell="C" 
+                                                                        data-disabled="true" 
+                                                                        disabled type="text" 
+                                                                        data-id="e-2-input-4" 
+                                                                        class="slds-input" />
+                                                                    </div>
+                                                            </td>
+                                                            <td class="text-center middle">
+                                                                    <div class="f-c">
+                                                                            <input onchange={handleAffectedCells} 
+                                                                            data-affects="E" 
+                                                                            data-cell="D" 
+                                                                            type="number" 
+                                                                            step="1" 
+                                                                            onkeypress={onKeyPress} 
+                                                                            data-id="e-2-input-5" 
+                                                                            class="slds-input" />
+                                                                        </div>
+                                                            </td>
+                                                            <td class="text-center middle">
+                                                                        <div class="f-c">
+                                                                            <input onchange={onIEH} 
+                                                                            data-affects="F" 
+                                                                            data-cell="E" 
+                                                                            data-disabled="true" 
+                                                                            type="text" 
+                                                                            disabled data-id="e-2-input-6" 
+                                                                            class="slds-input" />
+                                                                        </div>
+                                                            </td>
+                                                            <td class="text-center middle">
+                                                                        <div class="f-c"> 
+                                                                            <input onchange={onIEH} 
+                                                                            data-cell="F" 
+                                                                            data-disabled="true" 
+                                                                            type="text" 
+                                                                            disabled data-id="e-2-input-7" 
+                                                                            class="slds-input" />
+                                                                        </div>
+                                                            </td>
+                                                            <td class="text-center middle">
+                                                                        <div class="f-c">
+                                                                            
+                                                                        <textarea style="resize: none;" 
+                                                                        rows="2" 
+                                                                        onchange={onIEH} 
+                                                                        data-id="e-2-input-8" 
+                                                                        class="slds-input">
+                                                                        </textarea>
+                                                                    </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div style="text-align: right;">
+                                                        <span class="slds-button slds-button_destructive" onclick={removeRow}>-</span>
+                                                        <span class="slds-button slds-button_brand" onclick={addRow}>+</span>
+                                                </div>
+                                                    <br/>
+                                            </div> 
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </section>                                  
+                </li>
+                <!-- 2 -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionTwo">
+                        <div class="card-header" data-id="headingTwo">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseTwo"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionTwo"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        2</span
+                                    ><span class="slds-accordion__summary-content"> Test Result (Fault Code)</span>
+                                </button>
+                                <div class="slds-col">
+                                    <div class="slds-checkbox obj-right">
+                                        <input
+                                            onchange={disableSection}
+                                            name="options"
+                                            type="checkbox"
+                                            id="header-na-2"
+                                            data-id="header-na-2"
+                                            data-remark="2-remark"
+                                            value="header-na-2"
+                                        />
+                                        <!-- NOTE: 'for' value must match the id value above -->
+                                        <label class="slds-checkbox__label" for="header-na-2"
+                                            ><span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">N/A</span></label
+                                        >
+                                    </div>
+                                </div>
+                            </h2>
+                        </div>
+                        <div
+                            class="slds-grid slds-gutters hide-remark"
+                            id="sectionTwo-remark"
+                            data-id="sectionTwo-remark"
+                        >
+                            <div class="slds-col">
+                                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                <div class="slds-form-element__control">
+                                    <textarea
+                                        data-id="sectionTwo-inputRemark"
+                                        onchange={onIEH}
+                                        id="sectionTwo-inputRemark"
+                                        class="slds-textarea"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!--
+                            END REMARK SECTION
+                        -->
+                        <!-- NOTE: data-id for section is 'collapseX' where x is the section number-->
+                        <div data-id="collapseTwo" class="slds-accordion__content">
+                            <!-- drop 1st section card-body div -->
+                            <div class="card-body">
+                                <div class="slds-m-around_small" style="margin: 0rem;">
+                                    <fieldset
+                                        class="slds-form-element pd-l-1-3"
+                                        style="padding-left: 40px;"
+
+                                    >
+                                        <div class="slds-form-element__control" data-answered="false">
+                                            <div class="slds-radio">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="radio"
+                                                    name="2-radio-1"
+                                                    id="2-radio-1"
+                                                    data-id="2-radio-1"
+                                                    value="Safeguarding Normal (I-NF)"
+                                                />
+                                                <label class="slds-radio__label" for="2-radio-1">
+                                                    <span class="slds-radio_faux"></span>
+                                                    <span class="slds-form-element__label"
+                                                        >No Fault/No Error Found (I-NF)</span
+                                                    >
+                                                </label>
+                                            </div>
+                                            <div class="slds-radio">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="radio"
+                                                    name="2-radio-1"
+                                                    id="2-radio-2"
+                                                    data-id="2-radio-2"
+                                                    value="Safeguarding Un-revealed/ Dangerous failure (I-FE)"
+                                                />
+                                                <label class="slds-radio__label" for="2-radio-2">
+                                                    <span class="slds-radio_faux"></span>
+                                                    <span class="slds-form-element__label"
+                                                        >Fault/Error Found (I-FE)</span
+                                                    >
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <br />
+                                    <div class="pd-l-1-3">
+                                        <span class="slds-form-element__label"
+                                            ><b>Work Summary (Not required if I-NF)</b></span
+                                        >
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label">Problem:</label>
+                                            <div class="slds-form-element__control">
+                                                <textarea data-id="2-input-1" onchange={onIEH} class="slds-textarea avoidPercentageInput" rows="6"></textarea>
+                                            </div>
+                                            <label class="slds-form-element__label">Action:</label>
+                                            <div class="slds-form-element__control">
+                                                <textarea data-id="2-input-2" onchange={onIEH} class="slds-textarea avoidPercentageInput" rows="6"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+
+
+
+
+                <!-- Copy and paste <li> and it's contents to add sections.
+                    Replace body content and make sure ALL data-id's and id's are unique
+                -->
+            </ul>
+        </div>
+
+        <!-- Button Section for Every Form -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openRejectModal}>
+                    Reject
+                </button>
+                <button data-id="recallEQCCStep" class="slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                    Recall
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Submit</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-lookup object-api-name="user" icon-name="standard:user" onrecordselection={onUserSelection}></c-lookup>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submit} title="Submit">Submit</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

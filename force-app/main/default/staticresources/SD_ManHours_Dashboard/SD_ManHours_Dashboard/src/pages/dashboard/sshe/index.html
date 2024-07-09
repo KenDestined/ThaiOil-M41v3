@@ -1,0 +1,63 @@
+<apex:page
+  controller="ICR_DashboardController"
+  standardStylesheets="true"
+  lightningStylesheets="true"
+  sidebar="false"
+  showHeader="false"
+  applyHtmlTag="true"
+  applyBodyTag="false"
+  docType="html-5.0"
+  language="th"
+>
+  <apex:form>
+    <apex:actionFunction
+      name="TestCal"
+      action="{!TestFunction}"
+      reRender="rawDataPanel"
+      oncomplete="window.getData();"
+    />
+  </apex:form>
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="/favicon.ico"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>SSHE Dashboard</title>
+    <script type="module" crossorigin src="/assets/sshe.js"></script>
+    <link rel="modulepreload" href="/assets/vendor.js">
+    <link rel="modulepreload" href="/assets/BaseDropdown.js">
+    <link rel="modulepreload" href="/assets/FilterButtons.js">
+    <link rel="modulepreload" href="/assets/formatter.js">
+    <link rel="stylesheet" href="/assets/BaseDropdown.css">
+    <link rel="stylesheet" href="/assets/FilterButtons.css">
+    <link rel="stylesheet" href="/assets/sshe.css">
+  </head>
+
+  <body>
+    <apex:outputPanel id="rawDataPanel">
+      <div id="rawData" style="display: none">
+        {
+          "tableData":[{"no":"1","date":"2022-01-09T09:37:47Z","incidentName":"Gasoline seeping at CCG Unit","incidentType":"MTC(1),RWC(1)","hpi":"HPI"},{"no":"2","date":"2022-01-11T09:37:47Z","incidentName":"Small bitumen leaked at TLB","incidentType":"MTC(1)","hpi":""}],
+          "graphData":{"personal":{"level1":{"fatality":0,"hpi":0},"level2":{"majorIncident":5,"hpi":1},"level3":{"firstAid":5,"hpi":1},"level4":{"nearMiss":0,"hpi":0},"level5":{"unsafeAct":1935,"unsafeConditional":1000}},"process":{"level1":{"pse":0,"hpi":0},"level2":{"pse":2,"fireCase":0,"hpi":2},"level3":{"pse":14,"smallFire":7,"hpi":1},"level4":{"nearMiss":0,"hpi":0},"level5":{"processSafetyChallenge":0,"hpi":0}}},
+          "companyOptions":[{"id":"1","name":"TOP Group"},{"id":"2","name":"TOP"}]
+        }
+      </div>
+      <!-- filter data -->
+      <!-- {"company":"1","month":1,"year":2022} -->
+    </apex:outputPanel>
+    <div id="app"></div>
+    
+  </body>
+
+  </html>
+</apex:page>

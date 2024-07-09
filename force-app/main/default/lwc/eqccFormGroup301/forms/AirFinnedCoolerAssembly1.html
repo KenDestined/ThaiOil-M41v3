@@ -1,0 +1,1409 @@
+<template>
+	<div data-id="formBegin">
+		<c-step-page-header num-steps="1" current-step="1" percentage={percentage} is-current={isCurrent} record-id={recordId}></c-step-page-header>
+		<c-lwc-modal title={modalTitle} is-visible={modalVisible} confirm-text={modalConfirmButton} cancel-text={modalCancelButton} name={modalName} message={modalMessage} onselected={handleModalSelection}></c-lwc-modal>
+		<div class="slds-text-heading_medium text-center">เอกสารควบคุมการประกอบ เครื่องแลกเปลี่ยนความร้อนกับอากาศแบบ Cover Plate</div>
+		<section class="section slds-accordion__section">
+			<div class="slds-grid slds-gutters">
+				<div class="slds-col">
+					<label class="slds-form-element__label" for="tank-no">Notification</label>
+					<div class="slds-form-element__control">
+						<input type="text" data-id="notification" class="slds-input avoidPercentageInput" value={notification} disabled />
+					</div>
+					<label class="slds-form-element__label" for="tank-no">Order</label>
+					<div class="slds-form-element__control">
+						<input type="text" data-id="order" class="slds-input avoidPercentageInput" value={order} disabled />
+					</div>
+				</div>
+				<div class="slds-col">
+					<label class="slds-form-element__label" for="tank-no">FL.</label>
+					<div class="slds-form-element__control">
+						<input type="text" data-id="fl" class="slds-input avoidPercentageInput" value={functionalLocation} disabled />
+					</div>
+					<label class="slds-form-element__label" for="tank-no">Status</label>
+					<div class="slds-form-element__control">
+						<input type="text" data-id="status" class="slds-input avoidPercentageInput" value={formStatus} disabled />
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="bs-example">
+			<ul class="slds-accordion">
+				<li class="slds-accordion__list-item">
+					<section class="slds-accordion__section slds-is-open" data-id="sectionZeroOne">
+						<div class="card-header" data-id="headingZeroOne">
+							<h2 class="slds-accordion__summary-heading card-header"> <button type="button" aria-controls="collapseZeroOne" aria-expanded="true" class="btn btn-link" data-parent="sectionZeroOne" onclick={expandSection} > <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" ></lightning-icon> <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210))" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" > 0</span ><span class="slds-accordion__summary-content">Header Information</span> </button></h2>
+						</div>
+						<div data-id="collapseZeroOne" class="slds-accordion__content">
+							<div class="card-body">
+								<div class="slds-section">
+									<div class="slds-grid slds-gutters">
+										<div class="slds-col">
+											<label class="slds-form-element__label">วันที่ (Date) :</label>
+											<div class="slds-form-element__control">
+												<input onchange={onIEH} type="date" data-id="date" class="slds-input avoidPercentageInput" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</li>
+				<li class="slds-accordion__list-item">
+					<section class="slds-accordion__section" data-id="sectionOneOne">
+						<div class="card-header" data-id="headingOneOne">
+							<h2 class="slds-accordion__summary-heading card-header">
+                                <button type="button" aria-controls="collapseOneOne" aria-expanded="true" class="btn btn-link" data-parent="sectionOneOne" onclick={expandSection} >
+                                     <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" ></lightning-icon>
+                                     <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210))" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" > 1</span >
+                                        <span class="slds-accordion__summary-content">ตรวจสอบลักษณะหน้าแปลน</span>
+                                    </button><div class="slds-col"><div class="slds-checkbox obj-right">
+                                         <input onchange={disableSection} name="options" type="checkbox" id="header-na-3" data-id="header-na-3" data-remark="3-remark" value="header-na-3" />
+                                         <label class="slds-checkbox__label" for="header-na-3" ><span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">input N/A</span></label ></div></div></h2>
+						</div>
+						<div class="slds-grid slds-gutters hide-remark" id="sectionOneOne-remark" data-id="sectionOneOne-remark">
+							<div class="slds-col">
+								<label class="slds-form-element__label" for="tank-no">Remark</label>
+								<div class="slds-form-element__control">
+									<textarea data-id="sectionOneOne-inputRemark" onchange={onIEH} id="sectionOneOne-inputRemark" class="slds-textarea"></textarea>
+								</div>
+							</div>
+						</div>
+						<div data-id="collapseOneOne" class="slds-accordion__content">
+							<div class="card-body">
+								<div class="slds-section">
+                                    <img alt="image1" src="https://thaioil--c.documentforce.com/servlet/servlet.ImageServer?id=0152v00000I2iMw&oid=00D2v000003OMdM&lastMod=1608129127000"/>
+									<div>
+										<section data-id="1" class="slds-section section-tb"> <span class="slds-form-element__label"><b>1. ตรวจสอบลักษณะหน้าแปลน</b></span>
+											<div class="slds-form-element">
+												<p>ประเภท (Type) : Cover Plate</p>
+												<p>ตำแหน่ง (Location)</p>
+												<p>1. Inlet/Outlet Header &amp; Cover Plate</p>
+												<p>2. Return Header &amp; Cover Plate</p>
+											</div>
+										</section>
+										<table class="table">
+											<thead>
+												<tr>
+													<td class="text-center"><b><span class="slds-form-element__label">หน้ำแปลนที่ (Flange no.)</span></b>
+													</td>
+													<td class="text-center"><span class="slds-form-element__label"></span>1</td>
+													<td class="text-center"><span class="slds-form-element__label"></span>2</td>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td> <span class="slds-form-element__label">ขนาดของหน้าแปลน (Flange size), นิ้ว (inch)</span>
+													</td>
+													<td class="text-center" data-answered="false">
+														<div class="slds-form-element__control">
+															<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="1-1-input-1" class="slds-input" />
+														</div>
+													</td>
+													<td class="text-center" data-answered="false">
+														<div class="slds-form-element__control">
+															<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="1-1-input-2" class="slds-input" />
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td> <span class="slds-form-element__label">ขนาดของสลักเกลียว (Stud bolt size), นิ้ว (inch)</span>
+													</td>
+													<td class="text-center" data-answered="false">
+														<div class="slds-form-element__control">
+															<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="1-2-input-1" class="slds-input" />
+														</div>
+													</td>
+													<td class="text-center" data-answered="false">
+														<div class="slds-form-element__control">
+															<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="1-2-input-2" class="slds-input" />
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td> <span class="slds-form-element__label">ความยาวของสลักเกลียว (Stud bolt length), มม. (mm)</span>
+													</td>
+													<td class="text-center" data-answered="false">
+														<div class="slds-form-element__control">
+															<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="1-3-input-1" class="slds-input" />
+														</div>
+													</td>
+													<td class="text-center" data-answered="false">
+														<div class="slds-form-element__control">
+															<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="1-3-input-2" class="slds-input" />
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td> <span class="slds-form-element__label">จำนวนของสลักเกลียว (Number of bolts)</span>
+													</td>
+													<td class="text-center" data-answered="false">
+														<div class="slds-form-element__control">
+															<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="1-4-input-1" class="slds-input" />
+														</div>
+													</td>
+													<td class="text-center" data-answered="false">
+														<div class="slds-form-element__control">
+															<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="1-4-input-2" class="slds-input" />
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td> <span class="slds-form-element__label">ค่าขันทอร์ก (Torque value), ปอนด์-ฟุต (lb-ft/ Nm) </span>
+													</td>
+													<td class="text-center" data-answered="false">
+														<div class="slds-form-element__control">
+															<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="1-5-input-1" class="slds-input" />
+														</div>
+													</td>
+													<td class="text-center">
+														<div class="slds-form-element__control" data-answered="false">
+															<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="1-5-input-2" class="slds-input" />
+														</div>
+													</td>
+												
+												
+												</tr>
+												<tr>
+													<td> <span class="slds-form-element__label">ขนาดของหน้าร้าน</span>
+													</td>
+													<td class="text-center" data-answered="false">
+														<div class="slds-form-element__control">
+															<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="1-1-input-1" class="slds-input" />
+														</div>
+													</td>
+													<td class="text-center" data-answered="false">
+														<div class="slds-form-element__control">
+															<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="1-1-input-2" class="slds-input" />
+														</div>
+													</td>
+												</tr>												<tr>
+													<td> <span class="slds-form-element__label">ขนาดของหน้าตาราง (Flange size), นิ้ว (inch)</span>
+													</td>
+													<td class="text-center" data-answered="false">
+														<div class="slds-form-element__control">
+															<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="1-1-input-1" class="slds-input" />
+														</div>
+													</td>
+													<td class="text-center" data-answered="false">
+														<div class="slds-form-element__control">
+															<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="1-1-input-2" class="slds-input" />
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</li>
+				<li class="slds-accordion__list-item">
+					<section class="slds-accordion__section" data-id="sectionTwoOne">
+						<div class="card-header" data-id="headingOne">
+							<h2 class="slds-accordion__summary-heading card-header">
+                                <button type="button" aria-controls="collapseTwoOne" aria-expanded="true" class="btn btn-link" data-parent="sectionTwoOne" onclick={expandSection} >
+                                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" ></lightning-icon>
+                                     <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210))" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" > 2</span >
+                                        <span class="slds-accordion__summary-content">รายการตรวจสอบ</span>
+                                    </button><div class="slds-col">
+                                        <div class="slds-checkbox obj-right">
+                                            <input onchange={disableSection} name="options" type="checkbox" id="header-na-4" data-id="header-na-4" data-remark="4-remark" value="header-na-4" />
+                                            <label class="slds-checkbox__label" for="header-na-4" ><span class="slds-checkbox_faux"></span> <span class="slds-form-element__label">input N/A</span></label ></div></div></h2>
+						</div>
+						<div class="slds-grid slds-gutters hide-remark" id="sectionTwoOne-remark" data-id="sectionTwoOne-remark">
+							<div class="slds-col">
+								<label class="slds-form-element__label" for="tank-no">Remark</label>
+								<div class="slds-form-element__control">
+									<textarea data-id="sectionTwoOne-inputRemark" onchange={onIEH} id="sectionTwoOne-inputRemark" class="slds-textarea"></textarea>
+								</div>
+							</div>
+						</div>
+						<div data-id="collapseTwoOne" class="slds-accordion__content">
+							<div class="card-body">
+								<div class="slds-section">
+									<table class="table">
+										<thead>
+											<td rowspan="2"><span class="slds-form-element__label"><b>รายการที่ต้องการตรวจสอบ</b></span>
+											</td>
+											<td class="text-center"><span class="slds-form-element__label"><b>ผ่าน</b></span>
+											</td>
+											<td class="text-center"><span class="slds-form-element__label"><b>ไม่ระบุ</b></span>
+											</td>
+											<td class="text-center w-50">
+												<label class="slds-form-element__label"><b>หมายเหตุ(Comments)</b>
+												</label>
+											</td>
+										</thead>
+										<tbody>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>1. ตรวจสอบความสะอาดของหน้าแปลนและฝาครอบ (Cover Plate)</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-1-1-radio-1" id="2-1-1-radio-1" name="2-1-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-1-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-1-1-radio-2" id="2-1-1-radio-2" name="2-1-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-1-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-1-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-1-2-radio-1" id="2-1-2-radio-1" name="2-1-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-1-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-1-2-radio-2" id="2-1-2-radio-2" name="2-1-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-1-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-1-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>2. ตรวจสอบสภาพของหน้าแปลนและฝาครอบ (Cover Plate) (ความเรียบและความเสียหาย)</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-2-1-radio-1" id="2-2-1-radio-1" name="2-2-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-2-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-2-1-radio-2" id="2-2-1-radio-2" name="2-2-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-2-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-2-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-2-2-radio-1" id="2-2-2-radio-1" name="2-2-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-2-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-2-2-radio-2" id="2-2-2-radio-2" name="2-2-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-2-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-2-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>3. ตรวจสอบความถูกต้องของปะเก็น (ชนิด, ขนาด, วัสดุ)</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-3-1-radio-1" id="2-3-1-radio-1" name="2-3-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-3-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-3-1-radio-2" id="2-3-1-radio-2" name="2-3-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-3-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-3-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-3-2-radio-1" id="2-3-2-radio-1" name="2-3-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-3-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-3-2-radio-2" id="2-3-2-radio-2" name="2-3-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-3-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-3-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>4. ขนาดและความยาวของสลักเกลียว (stud bolt) ถูกต้อง</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-4-1-radio-1" id="2-4-1-radio-1" name="2-4-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-4-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-4-1-radio-2" id="2-4-1-radio-2" name="2-4-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-4-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-4-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-4-2-radio-1" id="2-4-2-radio-1" name="2-4-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-4-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-4-2-radio-2" id="2-4-2-radio-2" name="2-4-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-4-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-4-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>5. สภาพสลักเกลียว (stud bolt) และแป้นเกลียว (nut)</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-5-1-radio-1" id="2-5-1-radio-1" name="2-5-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-5-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-5-1-radio-2" id="2-5-1-radio-2" name="2-5-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-5-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-5-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-5-2-radio-1" id="2-5-2-radio-1" name="2-5-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-5-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-5-2-radio-2" id="2-5-2-radio-2" name="2-5-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-5-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-5-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>6. การติดตั้งปะเก็นถูกต้อง</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-6-1-radio-1" id="2-6-1-radio-1" name="2-6-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-6-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-6-1-radio-2" id="2-6-1-radio-2" name="2-6-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-6-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-6-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-6-2-radio-1" id="2-6-2-radio-1" name="2-6-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-6-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-6-2-radio-2" id="2-6-2-radio-2" name="2-6-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-6-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-6-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>7. ใช้สารหล่อลื่น (anti-sieze) ที่เหมาะสม บนสลักเกลียว (stud bolt) และแป้นเกลียว (nut)</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-7-1-radio-1" id="2-7-1-radio-1" name="2-7-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-7-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-7-1-radio-2" id="2-7-1-radio-2" name="2-7-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-7-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-7-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-7-2-radio-1" id="2-7-2-radio-1" name="2-7-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-7-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-7-2-radio-2" id="2-7-2-radio-2" name="2-7-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-7-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-7-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>8. การประกอบสลักเกลียว (stud bolt) ให้เกลียวโผล่พ้นแป้นเกลียว (nut) เหมาะสม</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-8-1-radio-1" id="2-8-1-radio-1" name="2-8-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-8-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-8-1-radio-2" id="2-8-1-radio-2" name="2-8-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-8-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-8-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-8-2-radio-1" id="2-8-2-radio-1" name="2-8-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-8-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-8-2-radio-2" id="2-8-2-radio-2" name="2-8-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-8-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-8-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>9. ขันแน่นตามลาดับถูกต้อง (แบบก้นหอย - วนในออกนอก)</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-9-1-radio-1" id="2-9-1-radio-1" name="2-9-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-9-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-9-1-radio-2" id="2-9-1-radio-2" name="2-9-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-9-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-9-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-9-2-radio-1" id="2-9-2-radio-1" name="2-9-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-9-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-9-2-radio-2" id="2-9-2-radio-2" name="2-9-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-9-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-9-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label"><b>9.1) ค่าขันแน่นที่ 30%</b></span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="2-9-3-input-1" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-9-3-radio-1" id="2-9-3-radio-1" name="2-9-3-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-9-3-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-9-3-radio-2" id="2-9-3-radio-2" name="2-9-3-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-9-3-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-9-3-input-2" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-9-4-radio-1" id="2-9-4-radio-1" name="2-9-4-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-9-4-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-9-4-radio-2" id="2-9-4-radio-2" name="2-9-4-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-9-4-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-9-4-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label"><b>9.2) ค่าขันแน่นที่ 70% </b></span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="2-9-5-input-1" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-9-5-radio-1" id="2-9-5-radio-1" name="2-9-5-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-9-5-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-9-5-radio-2" id="2-9-5-radio-2" name="2-9-5-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-9-5-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-9-5-input-2" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-9-6-radio-1" id="2-9-6-radio-1" name="2-9-6-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-9-6-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-9-6-radio-2" id="2-9-6-radio-2" name="2-9-6-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-9-6-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-9-6-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label"><b>9.3) ค่าขันแน่นที่ 100% </b></span>
+													<p>(ตามด้วยการขันกวดอย่างน้อย 1-2 รอบ ตามเข็ม/ทวนเข็ม)</p>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="2-9-7-input-1" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-9-7-radio-1" id="2-9-7-radio-1" name="2-9-7-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-9-7-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-9-7-radio-2" id="2-9-7-radio-2" name="2-9-7-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-9-7-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-9-7-input-2" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-9-8-radio-1" id="2-9-8-radio-1" name="2-9-8-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-9-8-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-9-8-radio-2" id="2-9-8-radio-2" name="2-9-8-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-9-8-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-9-8-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>10. ตรวจสอบการขันแน่นที่ 90% ของค่าขันแน่นสูงสุด</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-10-1-radio-1" id="2-10-1-radio-1" name="2-10-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-10-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-10-1-radio-2" id="2-10-1-radio-2" name="2-10-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-10-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-10-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-10-2-radio-1" id="2-10-2-radio-1" name="2-10-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="2-10-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="2-10-2-radio-2" id="2-10-2-radio-2" name="2-10-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="2-10-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="2-10-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="slds-grid slds-gutters">
+										<div class="slds-col pd-l-2-5">
+											<label class="slds-form-element__label">บันทึกการแก้ไข (ถ้ามี) :</label>
+											<div class="slds-form-element__control">
+												<textarea onchange={onIEH} data-id="2-10-input" class="slds-textarea"></textarea>
+											</div>
+											<label class="slds-form-element__label">(ขันแน่นเพื่อแก้ไขเพิ่มเติมได้อีกไม่เกิน 50% ของค่าขันแน่นสูงสุด)</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</li>
+			</ul>
+		</div>
+		<div class="slds-text-heading_medium text-center">เอกสารควบคุมการประกอบ เครื่องแลกเปลี่ยนความร้อนกับอากาศแบบ Plug Type</div>
+		<div class="bs-example">
+			<ul class="slds-accordion">
+				<li class="slds-accordion__list-item">
+					<section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+						<div class="card-header" data-id="headingZero">
+							<h2 class="slds-accordion__summary-heading card-header"> <button type="button" aria-controls="collapseZero" aria-expanded="true" class="btn btn-link" data-parent="sectionZero" onclick={expandSection} > <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" ></lightning-icon> <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210))" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" > 0</span ><span class="slds-accordion__summary-content">Header Information</span> </button></h2>
+						</div>
+						<div data-id="collapseZero" class="slds-accordion__content">
+							<div class="card-body">
+								<div class="slds-section">
+									<div class="slds-grid slds-gutters">
+										<div class="slds-col">
+											<label class="slds-form-element__label">วันที่ (Date) :</label>
+											<div class="slds-form-element__control">
+												<input onchange={onIEH} type="date" data-id="s2-date" class="slds-input avoidPercentageInput" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</li>
+				<li class="slds-accordion__list-item">
+					<section class="slds-accordion__section" data-id="sectionOne">
+						<div class="card-header" data-id="headingOne">
+							<h2 class="slds-accordion__summary-heading card-header">
+                                 <button type="button" aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-parent="sectionOne" onclick={expandSection} >
+                                 <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" ></lightning-icon>
+                                  <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210))" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" > 1</span >
+                                    <span class="slds-accordion__summary-content">ตรวจสอบลักษณะหน้าแปลน</span> </button>
+                                    <div class="slds-col"><div class="slds-checkbox obj-right"> <input onchange={disableSection} name="options" type="checkbox" id="header-na-1" data-id="header-na-1" data-remark="1-remark" value="header-na-1" />
+                                         <label class="slds-checkbox__label" for="header-na-1" ><span class="slds-checkbox_faux"></span>
+                                             <span class="slds-form-element__label">input N/A</span></label ></div></div></h2>
+						</div>
+						<div class="slds-grid slds-gutters hide-remark" id="sectionOne-remark" data-id="sectionOne-remark">
+							<div class="slds-col">
+								<label class="slds-form-element__label" for="tank-no">Remark</label>
+								<div class="slds-form-element__control">
+									<textarea data-id="sectionOne-inputRemark" onchange={onIEH} id="sectionOne-inputRemark" class="slds-textarea"></textarea>
+								</div>
+							</div>
+						</div>
+						<div data-id="collapseOne" class="slds-accordion__content">
+							<div class="card-body">
+								<div class="slds-section">
+                                    <img alt="image2" src="https://thaioil--c.documentforce.com/servlet/servlet.ImageServer?id=0152v00000I2iN1&oid=00D2v000003OMdM&lastMod=1608129157000"/>
+									<section data-id="s2-1" class="slds-section section-tb"> <span class="slds-form-element__label"><b>1. ตรวจสอบลักษณะหน้าแปลน</b></span>
+										<div class="slds-form-element">
+											<p>ประเภท (Type) : Plug Type</p>
+											<p>ตำแหน่ง (Location)</p>
+											<p>1. Inlet/Outlet Header &amp; Cover Plate</p>
+											<p>2. Return Header &amp; Cover Plate</p>
+										</div>
+									</section>
+									<table class="table">
+										<thead>
+											<tr>
+												<td class="text-center"><span class="slds-form-element__label"><b>หน้ำแปลนที่ (Flange no.)</b></span>
+												</td>
+												<td class="text-center"><span class="slds-form-element__label"></span>1</td>
+												<td class="text-center"><span class="slds-form-element__label"></span>2</td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td> <span class="slds-form-element__label">ขนาดของหน้าแปลน (Flange size), นิ้ว (inch)</span>
+												</td>
+												<td class="text-center" data-answered="false">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="s2-1-1-input-1" class="slds-input" />
+													</div>
+												</td>
+												<td class="text-center" data-answered="false">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="s2-1-1-input-2" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label">ขนาดของสลักเกลียว (Stud bolt size), นิ้ว (inch)</span>
+												</td>
+												<td class="text-center" data-answered="false">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="s2-1-2-input-1" class="slds-input" />
+													</div>
+												</td>
+												<td class="text-center" data-answered="false">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="s2-1-2-input-2" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label">ความยาวของสลักเกลียว (Stud bolt length), มม. (mm)</span>
+												</td>
+												<td class="text-center" data-answered="false">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="s2-1-3-input-1" class="slds-input" />
+													</div>
+												</td>
+												<td class="text-center" data-answered="false">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="s2-1-3-input-2" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label">จำนวนของสลักเกลียว (Number of bolts)</span>
+												</td>
+												<td class="text-center" data-answered="false">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="s2-1-4-input-1" class="slds-input" />
+													</div>
+												</td>
+												<td class="text-center" data-answered="false">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="s2-1-4-input-2" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label">ค่าขันทอร์ก (Torque value), ปอนด์-ฟุต (lb-ft/ Nm) </span>
+												</td>
+												<td class="text-center" data-answered="false">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="s2-1-5-input-1" class="slds-input" />
+													</div>
+												</td>
+												<td class="text-center" data-answered="false">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="s2-1-5-input-2" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</section>
+				</li>
+				<li class="slds-accordion__list-item">
+					<section class="slds-accordion__section" data-id="sectionTwo">
+						<div class="card-header" data-id="headingTwo">
+							<h2 class="slds-accordion__summary-heading card-header">
+                                <button type="button" aria-controls="collapseTwo" aria-expanded="true" class="btn btn-link" data-parent="sectionTwo" onclick={expandSection} >
+                                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" ></lightning-icon>
+                                     <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210))" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" > 2</span >
+                                        <span class="slds-accordion__summary-content">รายการตรวจสอบ</span>
+                                     </button>
+                                     <div class="slds-col">
+                                         <div class="slds-checkbox obj-right">
+                                             <input onchange={disableSection} name="options" type="checkbox" id="header-na-2" data-id="header-na-2" data-remark="2-remark" value="header-na-2" />
+                                             <label class="slds-checkbox__label" for="header-na-2" ><span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">input N/A</span></label ></div></div></h2>
+						</div>
+						<div class="slds-grid slds-gutters hide-remark" id="sectionTwo-remark" data-id="sectionTwo-remark">
+							<div class="slds-col">
+								<label class="slds-form-element__label" for="tank-no">Remark</label>
+								<div class="slds-form-element__control">
+									<textarea data-id="sectionTwo-inputRemark" onchange={onIEH} id="sectionTwo-inputRemark" class="slds-textarea"></textarea>
+								</div>
+							</div>
+						</div>
+						<div data-id="collapseTwo" class="slds-accordion__content">
+							<div class="card-body">
+								<div class="slds-section">
+									<table class="table">
+										<thead>
+											<td><span class="slds-form-element__label"><b>รายการที่ต้องการตรวจสอบ</b></span>
+											</td>
+											<td class="text-center"><span class="slds-form-element__label"><b>ผ่าน</b></span>
+											</td>
+											<td class="text-center"><span class="slds-form-element__label"><b>ไม่ระบุ</b></span>
+											</td>
+											<td class="text-center">
+												<label class="slds-form-element__label"><b>หมายเหตุ(Comments)</b>
+												</label>
+											</td>
+										</thead>
+										<tbody>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>1. ตรวจสอบความสะอาดของรูเกลียวและบ่านั่งของประเก็นบน Header</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header Plugs</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-1-1-radio-1" id="s2-2-1-1-radio-1" name="s2-2-1-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-1-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-1-1-radio-2" id="s2-2-1-1-radio-2" name="s2-2-1-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-1-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-1-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header Plugs</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-1-2-radio-1" id="s2-2-1-2-radio-1" name="s2-2-1-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-1-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-1-2-radio-2" id="s2-2-1-2-radio-2" name="s2-2-1-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-1-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-1-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>2. ตรวจสอบสภาพของรูเกลียวและบ่านังประเก็นบน Header (ความเรียบและความเสียหาย)</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header Plugs</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-2-1-radio-1" id="s2-2-2-1-radio-1" name="s2-2-2-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-2-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-2-1-radio-2" id="s2-2-2-1-radio-2" name="s2-2-2-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-2-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-2-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header Plugs</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-2-2-radio-1" id="s2-2-2-2-radio-1" name="s2-2-2-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-2-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-2-2-radio-2" id="s2-2-2-2-radio-2" name="s2-2-2-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-2-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-2-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>3. ตรวจสอบความถูกต้องของปะเก็น (ชนิด, ขนาด, วัสดุ)</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header Plugs</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-3-1-radio-1" id="s2-2-3-1-radio-1" name="s2-2-3-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-3-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-3-1-radio-2" id="s2-2-3-1-radio-2" name="s2-2-3-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-3-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-3-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header Plugs</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-3-2-radio-1" id="s2-2-3-2-radio-1" name="s2-2-3-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-3-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-3-2-radio-2" id="s2-2-3-2-radio-2" name="s2-2-3-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-3-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-3-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>4. สภาพสลักเกลียว (stud bolt)</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header Plugs</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-4-1-radio-1" id="s2-2-4-1-radio-1" name="s2-2-4-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-4-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-4-1-radio-2" id="s2-2-4-1-radio-2" name="s2-2-4-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-4-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-4-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header Plugs</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-4-2-radio-1" id="s2-2-4-2-radio-1" name="s2-2-4-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-4-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-4-2-radio-2" id="s2-2-4-2-radio-2" name="s2-2-4-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-4-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-4-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>5. ใช้สารหล่อลื่น (anti-sieze) ที่เหมาะสม กับรูเกลียวบน Header</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header Plugs</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-5-1-radio-1" id="s2-2-5-1-radio-1" name="s2-2-5-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-5-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-5-1-radio-2" id="s2-2-5-1-radio-2" name="s2-2-5-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-5-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-5-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header Plugs</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-5-2-radio-1" id="s2-2-5-2-radio-1" name="s2-2-5-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-5-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-5-2-radio-2" id="s2-2-5-2-radio-2" name="s2-2-5-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-5-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-5-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>6. ทาการขันแน่น</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header Plugs</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-6-1-radio-1" id="s2-2-6-1-radio-1" name="s2-2-6-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-6-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-6-1-radio-2" id="s2-2-6-1-radio-2" name="s2-2-6-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-6-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-6-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header Plugs</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-6-2-radio-1" id="s2-2-6-2-radio-1" name="s2-2-6-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-6-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-6-2-radio-2" id="s2-2-6-2-radio-2" name="s2-2-6-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-6-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-6-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label"><b>6.1) ค่าขันแน่นที่ 30% </b></span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="s2-2-6-3-input-1" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header Plug</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-6-3-radio-1" id="s2-2-6-3-radio-1" name="s2-2-6-3-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-6-3-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-6-3-radio-2" id="s2-2-6-3-radio-2" name="s2-2-6-3-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-6-3-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-6-3-input-2" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header Plug</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-6-4-radio-1" id="s2-2-6-5-radio-1" name="s2-2-6-5-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-6-5-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-6-5-radio-2" id="s2-2-6-5-radio-2" name="s2-2-6-5-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-6-5-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-6-5-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label"><b>6.2) ค่าขันแน่นที่ 70% </b></span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="s2-2-6-6-input-1" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-6-6-radio-1" id="s2-2-6-6-radio-1" name="s2-2-6-6-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-6-6-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-6-6-radio-2" id="s2-2-6-6-radio-2" name="s2-2-6-6-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-6-6-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-6-6-input-2" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header Plug</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-6-7-radio-1" id="s2-2-6-7-radio-1" name="s2-2-6-7-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-6-7-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-6-7-radio-2" id="s2-2-6-7-radio-2" name="s2-2-6-7-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-6-7-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-6-7-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label"><b>6.3) ค่าขันแน่นที่ 100% </b></span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="s2-2-6-8-input-1" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-6-8-radio-1" id="s2-2-6-8-radio-1" name="s2-2-6-8-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-6-8-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-6-8-radio-2" id="s2-2-6-8-radio-2" name="s2-2-6-8-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-6-8-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-6-8-input-2" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header Plug</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-6-9-radio-1" id="s2-2-6-9-radio-1" name="s2-2-6-9-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-6-9-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-6-9-radio-2" id="s2-2-6-9-radio-2" name="s2-2-6-9-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-6-9-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-6-9-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td> <span class="slds-form-element__label"><b>7. ตรวจสอบการขันแน่นที่ 90% ของค่าขันแน่นสูงสุด</b></span>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">1. Inlet/Outlet Header Plug</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-7-1-radio-1" id="s2-2-7-1-radio-1" name="s2-2-7-1-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-7-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-7-1-radio-2" id="s2-2-7-1-radio-2" name="s2-2-7-1-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-7-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-7-1-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+											<tr data-answered="false">
+												<td> <span class="slds-form-element__label">2. Return Header &amp; Cover Plate</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-7-2-radio-1" id="s2-2-7-2-radio-1" name="s2-2-7-2-radio" value="ผ่าน"/> <label class="slds-radio__label" for="s2-2-7-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="s2-2-7-2-radio-2" id="s2-2-7-2-radio-2" name="s2-2-7-2-radio" value="ไม่ระบุ"/> <label class="slds-radio__label" for="s2-2-7-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label"></span>
+													</label>
+													</span>
+												</td>
+												<td class="text-center">
+													<div class="slds-form-element__control">
+														<input onchange={onIEH} type="text" data-id="s2-2-7-2-input" class="slds-input" />
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="slds-grid slds-gutters">
+										<div class="slds-col pd-l-2-5">
+											<label class="slds-form-element__label">บันทึกการแก้ไข (ถ้ามี) :</label>
+											<div class="slds-form-element__control">
+												<textarea onchange={onIEH} data-id="s2-2-10-input" class="slds-textarea"></textarea>
+											</div>
+											<label class="slds-form-element__label">(ขันแน่นเพื่อแก้ไขเพิ่มเติมได้อีกไม่เกิน 50% ของค่าขันแน่นสูงสุด)</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</li>
+			</ul>
+		</div>
+		<section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openRejectModal}>
+                    Reject
+                </button>
+                <button data-id="recallEQCCStep" class="slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                    Recall
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Submit</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-lookup object-api-name="user" icon-name="standard:user" onrecordselection={onUserSelection}></c-lookup>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submit} title="Submit">Submit</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

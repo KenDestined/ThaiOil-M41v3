@@ -1,0 +1,339 @@
+<template>
+    <div data-id="formBegin">
+        <c-step-page-header
+            num-steps="1"
+            current-step="1"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+
+        <!-- Modal placeholder -->
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+        <!-- END Modal Placeholder -->
+
+        <!-- ENIM-QFR-747 /Form Question = 22 -->
+
+        <!--
+            Heading area for form
+        -->
+        <!-- <div class="slds-text-heading_large slds-m-bottom_medium text-center " 
+        style="font-weight: bold; color: var(--lwc-brandAccessible, rgb(0, 112, 210));">
+            Thaioil Group
+        </div> -->
+        <div style="text-align: right;">
+            ENEM-QFR-5106-LTG 
+         </div>
+        <div class="slds-text-heading_medium text-center fontweight">
+            แบบฟอร์มการตรวจนับจำนวนอุปกรณ์ไฟฟ้าชนิดเคลื่อนย้ายได้
+        </div>
+
+
+        <!-- Section for Notification, FL. and Status fields -->
+        <section class="section slds-accordion__section">
+            
+            <div class="slds-form">
+                <div class="slds-form__row">
+                  <div class="slds-form__item" role="listitem">
+                    <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                      <label class="slds-form-element__label" for="place">ชนิดอุปกรณ์ไฟฟ้า</label>
+                      <div class="slds-form-element__control">
+                        <input
+                        type="text"
+                        data-id="type"
+                        class="slds-input avoidPercentageInput"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="slds-form__item" role="listitem">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="text-input-id-47" id="fixed-text-label">Code (ตาม ENEM-QWI-5105-LTG)</label>
+                        <div class="slds-form-element__control slds-input-has-fixed-addon">
+                          <span class="slds-form-element__addon" id="fixed-text-addon-pre">ENEM-</span>
+                          <input type="text" id="input-1" class="slds-input avoidPercentageInput" style="width: 36%;"/>
+                          <span class="slds-form-element__addon" id="-">-</span>
+                          <input type="text" id="input-2"  class="slds-input avoidPercentageInput" style="width: 37%;"/>
+                          <span class="slds-form-element__addon" id="-AAA">- AAA</span>
+                        </div>
+                      </div>
+                  </div>
+             
+                </div>
+
+                <div class="slds-form__row">
+                    <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                          <label class="slds-form-element__label" for="date">Notification No</label>
+                          <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                            <svg
+                                class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                                aria-hidden="true"
+                            >
+                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                            </svg>
+                            <input
+                                type="text"
+                                data-id="notification"
+                                class="slds-input avoidPercentageInput"
+                                value={notification}
+                                disabled
+                            />
+                        </div>
+                        </div>
+                      </div>
+                      <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                          <label class="slds-form-element__label" for="stacked-combobox-id-01" >Order</label>
+                          <div class="slds-form-element__control">
+                            <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                          </div>
+                        </div>
+                      </div>
+                </div>
+
+                <div class="slds-form__row">
+                    <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                            <label class="slds-form-element__label" for="stacked-combobox-id-01">FL.</label>
+                            <div class="slds-form-element__control">
+                              <input
+                              type="text"
+                              data-id="fl"
+                              class="slds-input avoidPercentageInput"
+                              value={functionalLocation}
+                              disabled
+                          />
+                            </div>
+                          </div>
+                      </div>
+                      <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                          <label class="slds-form-element__label" for="stacked-combobox-id-01">Status</label>
+                          <div class="slds-form-element__control">
+                            <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Body section. -->
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <!-- 1 -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionOne">
+                            <div class="card-body">
+                                <section data-id="1.5" class="pd-b-1" >
+                                    <div class="content">
+                                        <div class="button-add-del">
+                                            <button data-id="addRowPart1" class="btn-addRow slds-button slds-button_brand mgr-5" style="width:86px;"
+                                                            onclick={addRow}>
+                                                                Add Row
+                                                            </button>
+                                                            <button data-id="removeRowPart1" class="btn-delRow slds-button slds-button_brand mgr-5" style="width:86px;"
+                                                            nclick={removeRow}>
+                                                                Del Row
+                                            </button>
+                                        </div>
+                                        <div class="slds-grid slds-gutters slds-scrollable_x" >  
+                                            <table class="Customtable slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th rowspan="2" class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2 " scope="col">
+                                                            <div class="slds-form-element__label" title="number" >NUMBER</div>
+                                                            <div class="slds-form-element__label" title="number" >AAA</div>
+                                                        </th>
+                                        
+                                                        <th class="text-center border-bottom-right" colspan="3"
+                                                        style="background-color:#DBE6F2"  scope="col">
+                                                            <div class="slds-form-element__label" title="deviceCondition"  >สภาพของอุปกรณ์</div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right"  colspan="2"
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="place"  >ตำแหน่งจัดเก็บ</div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="install" >ติดตั้งใช้งาน </div>
+                                                        </th>
+                                                     
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2"  scope="col">
+                                                            <div class="slds-form-element__label" title="deviceCondition"  >พร้อมใช้งาน</div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="place"  >ชำรุด</div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="install"  >สูญหาย </div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2"  scope="col">
+                                                            <div class="slds-form-element__label" title="deviceCondition"  >EE-WS Store 1</div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="place"  >EE-WS Store 2</div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="install"  >ENEM-QFR-5108-LTG No.
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                
+                                                </thead>
+                                                <tbody>
+                                                   
+                                                    <tr data-answered="false">
+                                                          <td data-label="input-number text-center">
+                                                            <div class="slds-truncate" title="number">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-number"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-deviceActive text-center">
+                                                            <div class="slds-truncate" title="deviceActive">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-deviceActive"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-broken text-center">
+                                                            <div class="slds-truncate" title="broken">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-broken"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-lost text-center">
+                                                            <div class="slds-truncate" title="lost">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-lost"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-EE-WS-Store-1 text-center">
+                                                            <div class="slds-truncate" title="EE-WS Store 1">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-EE-WS-Store-1"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-EE-WS-Store-2 text-center">
+                                                            <div class="slds-truncate" title="EE-WS-Store-2">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-EE-WS-Store-2"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-ENEM-QFR-5108-LTG text-center">
+                                                            <div class="slds-truncate" title="ENEM-QFR-5108-LTG">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-ENEM-QFR-5108-LTG"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                            
+                                                          </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table> 
+                                        </div>
+                                    </div>
+                                </section>
+                          </div>
+                    </section>
+                </li>
+                <!-- 2 -->
+            </ul>
+        </div>
+
+        <!-- For any N/A button sections, use this template
+        <input onchange={onIEH} onchange={disableSection} name="options" type="checkbox" data-id=... />
+        <label...>Label for checkbox</label>
+        -->
+         <!-- Button Section for Every Form -->
+
+         <section class="section slds-accordion__section">
+            <ul class="slds-button-group obj-right" role="group">
+                <li>
+                    <button data-id="saveEQCCStep" class="btn-save slds-button slds-button_brand mgr-5" 
+                            onclick={openSaveModal}>
+                        Save Draft
+                    </button>
+                </li>
+
+                <li>
+                    <button data-id="submitEQCCStep" class="btn-submit slds-button slds-button_brand mgr-5" 
+                    onclick={openSubmitModal}>
+                        Submit
+                    </button>
+
+                </li>
+
+                <li>
+                    <button data-id="rejectEQCCStep" class="btn-reject slds-button slds-button_brand mgr-5 "
+                    onclick={openRejectModal}>
+                        Reject
+                    </button>
+                </li>
+                <li>
+                    <button data-id="recallEQCCStep" class="btn-recall slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                        Recall
+                    </button>
+                </li>
+            </ul>
+        </section>
+    </div>
+</template>

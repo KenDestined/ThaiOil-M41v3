@@ -1,0 +1,1270 @@
+<template>
+    <div data-id="formBegin"> 
+        <c-step-page-header 
+            num-steps="1" 
+            current-step="1" 
+            percentage={percentage} 
+            is-current={isCurrent} 
+            record-id={recordId} >
+        </c-step-page-header> 
+        <c-lwc-modal 
+            title={modalTitle} 
+            is-visible={modalVisible} 
+            confirm-text={modalConfirmButton} 
+            cancel-text={modalCancelButton} 
+            name={modalName} 
+            message={modalMessage} 
+            onselected={handleModalSelection} >
+        </c-lwc-modal>
+         <!-- Form Question = 27 -->  
+        <div class="slds-text-heading_medium text-center">ENEM-QFR-1014-SWB</div>
+        <div class="slds-text-heading_medium text-center">LV SWITCHBOARD MAJOR INSPECTION (Non MCC)</div>
+         <!-- ชื่อฟอร์ม -->
+         <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="notification"
+                            class="slds-input avoidPercentageInput"
+                            value={notification}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="bs-example"></div>    
+
+<div class="bs-example">
+    <ul class="slds-accordion">
+        <li class="slds-accordion__list-item"> 
+        <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+            <div class="card-header" data-id="headingZero">
+                <h2 class="slds-accordion__summary-heading card-header"> 
+                    <button 
+                        type="button" 
+                        aria-controls="collapseZero" 
+                        aria-expanded="true" 
+                        class="btn btn-link" 
+                        data-parent="sectionZero" 
+                        onclick={expandSection} > 
+                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" >    
+                    </lightning-icon> 
+                    <span 
+                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" 
+                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small" >0
+                    </span >
+                    <span class="slds-accordion__summary-content">Header Information</span> 
+                    </button>
+                </h2>
+            </div>
+            <div data-id="collapseZero" class="slds-accordion__content">
+                <div class="card-body"> 
+                    <div class="table-responsive" style="margin: 0rem;">
+                        <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                            <tbody> 
+                                <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">Area: </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="area" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td><td></td>
+                                    <td>
+                                        <span class="slds-form-element__label">Unit: </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="unit" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">Inspected by. </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="inspector" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td><td></td>
+                                    <td>
+                                        <span class="slds-form-element__label">Date of inspection: </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false">  
+                                        <input onchange={onIEH} type="date" data-id="date" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>    
+                    </div>
+                </div>  
+            </div>    
+        </section>
+        </li>
+
+        <li class="slds-accordion__list-item">
+            <section class="slds-accordion__section" data-id="sectionOne">
+                <div class="slds-accordion__summary" data-id="headingOne">
+                    <h2 class="slds-accordion__summary-heading card-header">
+                        <button
+                            type="button"
+                            aria-controls="collapseOne"
+                            aria-expanded="true"
+                            class="btn btn-link"
+                            data-parent="sectionOne"
+                            onclick={expandSection}
+                        >
+                            <lightning-icon
+                                icon-name="utility:switch"
+                                alternative-text="button icon"
+                                size="x-small"
+                                class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                            ></lightning-icon>
+                            <span
+                                style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                            >
+                                1</span
+                            ><span class="slds-accordion__summary-content"> Inspection Result</span>
+                        </button>
+                        <div class="slds-col">
+                            <div class="slds-checkbox obj-right">
+                                <input
+                                    onchange={disableSection}
+                                    type="checkbox"
+                                    name="options"
+                                    id="checkbox-unique-id-1"
+                                    data-id="checkbox-unique-id-1"
+                                    data-remark="checkbox-unique-id-1"
+                                    value="checkbox-unique-id-1"
+                                    data-parent="sectionOne"
+                                />
+                                <label class="slds-checkbox__label" for="checkbox-unique-id-1">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">N/A</span>
+                                </label>
+                            </div>
+                        </div>
+                    </h2>
+                </div>
+                <div
+                    class="slds-grid slds-gutters hide-remark"
+                    id="sectionOne-remark"
+                    data-id="sectionOne-remark"
+                >
+                    <div class="slds-col">
+                        <label class="slds-form-element__label" for="tank-no">Remark</label>
+                        <div class="slds-form-element__control">
+                            <textarea
+                                data-id="sectionOne-inputRemark"
+                                onchange={onIEH}
+                                id="sectionOne-inputRemark"
+                                class="slds-textarea"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+        <div data-id="collapseOne" class="slds-accordion__content">
+            <div class="card-body">  <!--เนื้อหาผลการทดสอบจะเริ่มหลังจากจุดนี้เป็นต้นไป -->
+                <div class="table-responsive" style="margin: 0rem;">
+                    <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                        <thead>
+                            <td rowspan="2">
+                                <span style="font-weight:bold" class="slds-form-element__label">Major Inspection</span> 
+                            </td>
+                            <td colspan="3" class="text-center">
+                                <span style="font-weight:bold" class="slds-form-element__label">Action</span>
+                            </td>
+                            <td class="text-center"> 
+                                <span style="font-weight:bold" class="slds-form-element__label">Report No./Name</span>
+                            </td>
+                            <tr>
+                                <td>
+                                    <span class="slds-form-element__label">Yes</span> 
+                                </td>
+                                <td>
+                                    <span class="slds-form-element__label">No</span> 
+                                </td>
+                                <td>
+                                    <span class="slds-form-element__label">N/A</span> 
+                                </td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-answered="false">
+                                <td>
+                                    <span class="slds-form-element__label">Cleanliness</span>
+                                </td>
+                                <td>                             
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH}
+                                        type="radio" 
+                                        name="1-1-radio" 
+                                        data-id="1-1-radio-1" 
+                                        id="1-1-radio-1" 
+                                        value="Yes">
+                                    </div>                                    
+                                </td>
+                                <td>                             
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH}
+                                        type="radio" 
+                                        name="1-1-radio" 
+                                        data-id="1-1-radio-2" 
+                                        id="1-1-radio-2" 
+                                        value="No">
+                                    </div>                                    
+                                </td>
+                                <td>                             
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH}
+                                        type="radio" 
+                                        name="1-1-radio" 
+                                        data-id="1-1-radio-3" 
+                                        id="1-1-radio-3" 
+                                        value="N/A">
+                                    </div>                                    
+                                </td>
+                                <td>                             
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH}
+                                            type="text"
+                                            data-id="1-1-report"
+                                            class="slds-input">
+                                    </div>                                    
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td>
+                                    <span class="slds-form-element__label">Mechanical Damage</span>
+                                </td>
+                                <td>                             
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH}
+                                        type="radio" 
+                                        name="1-2-radio" 
+                                        data-id="1-2-radio-1" 
+                                        id="1-2-radio-1" 
+                                        value="Yes">
+                                    </div>                                    
+                                </td>
+                                <td>                             
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH}
+                                        type="radio" 
+                                        name="1-2-radio" 
+                                        data-id="1-2-radio-2" 
+                                        id="1-2-radio-2" 
+                                        value="No">
+                                    </div>                                    
+                                </td>
+                                <td>                             
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH}
+                                        type="radio" 
+                                        name="1-2-radio" 
+                                        data-id="1-2-radio-3" 
+                                        id="1-2-radio-3" 
+                                        value="N/A">
+                                    </div>                                    
+                                </td>
+                                <td>                             
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH}
+                                            type="text"
+                                            data-id="1-2-report"
+                                            class="slds-input">
+                                    </div>                                    
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                    <td>
+                                        <span class="slds-form-element__label">Corrosion</span>
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-3-radio" 
+                                            data-id="1-3-radio-1" 
+                                            id="1-3-radio-1" 
+                                            value="Yes">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-3-radio" 
+                                            data-id="1-3-radio-2" 
+                                            id="1-3-radio-2" 
+                                            value="No">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-3-radio" 
+                                            data-id="1-3-radio-3" 
+                                            id="1-3-radio-3" 
+                                            value="N/A">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                                type="text"
+                                                data-id="1-3-report"
+                                                class="slds-input">
+                                        </div>                                    
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td>
+                                        <span class="slds-form-element__label">Condensation</span>
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-4-radio" 
+                                            data-id="1-4-radio-1" 
+                                            id="1-4-radio-1" 
+                                            value="Yes">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-4-radio" 
+                                            data-id="1-4-radio-2" 
+                                            id="1-4-radio-2" 
+                                            value="No">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-4-radio" 
+                                            data-id="1-4-radio-3" 
+                                            id="1-4-radio-3" 
+                                            value="N/A">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                                type="text"
+                                                data-id="1-4-report"
+                                                class="slds-input">
+                                        </div>                                    
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td>
+                                        <span class="slds-form-element__label">Correctness of metering</span>
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-5-radio" 
+                                            data-id="1-5-radio-1" 
+                                            id="1-5-radio-1" 
+                                            value="Yes">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-5-radio" 
+                                            data-id="1-5-radio-2" 
+                                            id="1-5-radio-2" 
+                                            value="No">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-5-radio" 
+                                            data-id="1-5-radio-3" 
+                                            id="1-5-radio-3" 
+                                            value="N/A">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                                type="text"
+                                                data-id="1-5-report"
+                                                class="slds-input">
+                                        </div>                                    
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td>
+                                        <span class="slds-form-element__label">Indicating Light</span>
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-6-radio" 
+                                            data-id="1-6-radio-1" 
+                                            id="1-6-radio-1" 
+                                            value="Yes">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-6-radio" 
+                                            data-id="1-6-radio-2" 
+                                            id="1-6-radio-2" 
+                                            value="No">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-6-radio" 
+                                            data-id="1-6-radio-3" 
+                                            id="1-6-radio-3" 
+                                            value="N/A">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                                type="text"
+                                                data-id="1-6-report"
+                                                class="slds-input">
+                                        </div>                                    
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td>
+                                        <span class="slds-form-element__label">Cable connection /tighten</span>
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-7-radio" 
+                                            data-id="1-7-radio-1" 
+                                            id="1-7-radio-1" 
+                                            value="Yes">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-7-radio" 
+                                            data-id="1-7-radio-2" 
+                                            id="1-7-radio-2" 
+                                            value="No">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-7-radio" 
+                                            data-id="1-7-radio-3" 
+                                            id="1-7-radio-3" 
+                                            value="N/A">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                                type="text"
+                                                data-id="1-7-report"
+                                                class="slds-input">
+                                        </div>                                    
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td>
+                                        <span class="slds-form-element__label">Space Heater/thermostat setting</span>
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-8-radio" 
+                                            data-id="1-8-radio-1" 
+                                            id="1-8-radio-1" 
+                                            value="Yes">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-8-radio" 
+                                            data-id="1-8-radio-2" 
+                                            id="1-8-radio-2" 
+                                            value="No">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-8-radio" 
+                                            data-id="1-8-radio-3" 
+                                            id="1-8-radio-3" 
+                                            value="N/A">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                                type="text"
+                                                data-id="1-8-report"
+                                                class="slds-input">
+                                        </div>                                    
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td>
+                                        <span class="slds-form-element__label">Earthing connection</span>
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-9-radio" 
+                                            data-id="1-9-radio-1" 
+                                            id="1-9-radio-1" 
+                                            value="Yes">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-9-radio" 
+                                            data-id="1-9-radio-2" 
+                                            id="1-9-radio-2" 
+                                            value="No">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-9-radio" 
+                                            data-id="1-9-radio-3" 
+                                            id="1-9-radio-3" 
+                                            value="N/A">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                                type="text"
+                                                data-id="1-9-report"
+                                                class="slds-input">
+                                        </div>                                    
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td>
+                                        <span class="slds-form-element__label">Internal cover plate condition</span>
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-10-radio" 
+                                            data-id="1-10-radio-1" 
+                                            id="1-10-radio-1" 
+                                            value="Yes">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-10-radio" 
+                                            data-id="1-10-radio-2" 
+                                            id="1-10-radio-2" 
+                                            value="No">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="1-10-radio" 
+                                            data-id="1-10-radio-3" 
+                                            id="1-10-radio-3" 
+                                            value="N/A">
+                                        </div>                                    
+                                    </td>
+                                    <td>                             
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH}
+                                                type="text"
+                                                data-id="1-10-report"
+                                                class="slds-input">
+                                        </div>                                    
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                        <td>
+                                            <span class="slds-form-element__label">Foam sealant</span>
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-11-radio" 
+                                                data-id="1-11-radio-1" 
+                                                id="1-11-radio-1" 
+                                                value="Yes">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-11-radio" 
+                                                data-id="1-11-radio-2" 
+                                                id="1-11-radio-2" 
+                                                value="No">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-11-radio" 
+                                                data-id="1-11-radio-3" 
+                                                id="1-11-radio-3" 
+                                                value="N/A">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-11-report"
+                                                    class="slds-input">
+                                            </div>                                    
+                                        </td>
+                                    </tr>
+                                    <tr data-answered="false">
+                                        <td>
+                                            <span class="slds-form-element__label">Cable tag number</span>
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-12-radio" 
+                                                data-id="1-12-radio-1" 
+                                                id="1-12-radio-1" 
+                                                value="Yes">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-12-radio" 
+                                                data-id="1-12-radio-2" 
+                                                id="1-12-radio-2" 
+                                                value="No">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-12-radio" 
+                                                data-id="1-12-radio-3" 
+                                                id="1-12-radio-3" 
+                                                value="N/A">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-12-report"
+                                                    class="slds-input">
+                                            </div>                                    
+                                        </td>
+                                    </tr>
+                                    <tr data-answered="false">
+                                        <td>
+                                            <span class="slds-form-element__label">Internal cable tag number</span>
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-13-radio" 
+                                                data-id="1-13-radio-1" 
+                                                id="1-13-radio-1" 
+                                                value="Yes">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-13-radio" 
+                                                data-id="1-13-radio-2" 
+                                                id="1-13-radio-2" 
+                                                value="No">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-13-radio" 
+                                                data-id="1-13-radio-3" 
+                                                id="1-13-radio-3" 
+                                                value="N/A">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-13-report"
+                                                    class="slds-input">
+                                            </div>                                    
+                                        </td>
+                                    </tr>
+                                    <tr data-answered="false">
+                                        <td>
+                                            <span class="slds-form-element__label">Door lock</span>
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-14-radio" 
+                                                data-id="1-14-radio-1" 
+                                                id="1-14-radio-1" 
+                                                value="Yes">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-14-radio" 
+                                                data-id="1-14-radio-2" 
+                                                id="1-14-radio-2" 
+                                                value="No">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-14-radio" 
+                                                data-id="1-14-radio-3" 
+                                                id="1-14-radio-3" 
+                                                value="N/A">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-14-report"
+                                                    class="slds-input">
+                                            </div>                                    
+                                        </td>
+                                    </tr>
+                                    <tr data-answered="false">
+                                        <td>
+                                            <span class="slds-form-element__label">Fuse/Switch condition</span>
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-15-radio" 
+                                                data-id="1-15-radio-1" 
+                                                id="1-15-radio-1" 
+                                                value="Yes">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-15-radio" 
+                                                data-id="1-15-radio-2" 
+                                                id="1-15-radio-2" 
+                                                value="No">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-15-radio" 
+                                                data-id="1-15-radio-3" 
+                                                id="1-15-radio-3" 
+                                                value="N/A">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-15-report"
+                                                    class="slds-input">
+                                            </div>                                    
+                                        </td>
+                                    </tr>
+                                    <tr data-answered="false">
+                                        <td>
+                                            <span class="slds-form-element__label">Outgoing feeder earth leakage protection</span>
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-16-radio" 
+                                                data-id="1-16-radio-1" 
+                                                id="1-16-radio-1" 
+                                                value="Yes">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-16-radio" 
+                                                data-id="1-16-radio-2" 
+                                                id="1-16-radio-2" 
+                                                value="No">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-16-radio" 
+                                                data-id="1-16-radio-3" 
+                                                id="1-16-radio-3" 
+                                                value="N/A">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-16-report"
+                                                    class="slds-input">
+                                            </div>                                    
+                                        </td>
+                                    </tr>
+                                    <tr data-answered="false">
+                                        <td>
+                                            <span class="slds-form-element__label">Power fail alarm</span>
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-17-radio" 
+                                                data-id="1-17-radio-1" 
+                                                id="1-17-radio-1" 
+                                                value="Yes">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-17-radio" 
+                                                data-id="1-17-radio-2" 
+                                                id="1-17-radio-2" 
+                                                value="No">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-17-radio" 
+                                                data-id="1-17-radio-3" 
+                                                id="1-17-radio-3" 
+                                                value="N/A">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-17-report"
+                                                    class="slds-input">
+                                            </div>                                    
+                                        </td>
+                                    </tr>
+                                    <tr data-answered="false">
+                                        <td>
+                                            <span class="slds-form-element__label">Automatic changepver devoce/interlocking</span>
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-18-radio" 
+                                                data-id="1-18-radio-1" 
+                                                id="1-18-radio-1" 
+                                                value="Yes">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-18-radio" 
+                                                data-id="1-18-radio-2" 
+                                                id="1-18-radio-2" 
+                                                value="No">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-18-radio" 
+                                                data-id="1-18-radio-3" 
+                                                id="1-18-radio-3" 
+                                                value="N/A">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-18-report"
+                                                    class="slds-input">
+                                            </div>                                    
+                                        </td>
+                                    </tr>
+                                    <tr data-answered="false">
+                                        <td>
+                                            <span class="slds-form-element__label">Automatic lighting on/off by photocell</span>
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-19-radio" 
+                                                data-id="1-19-radio-1" 
+                                                id="1-19-radio-1" 
+                                                value="Yes">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-19-radio" 
+                                                data-id="1-19-radio-2" 
+                                                id="1-19-radio-2" 
+                                                value="No">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-19-radio" 
+                                                data-id="1-19-radio-3" 
+                                                id="1-19-radio-3" 
+                                                value="N/A">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-19-report"
+                                                    class="slds-input">
+                                            </div>                                    
+                                        </td>
+                                    </tr>
+                                    <tr data-answered="false">
+                                        <td>
+                                            <span class="slds-form-element__label">Earth leakage operation test</span>
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-20-radio" 
+                                                data-id="1-20-radio-1" 
+                                                id="1-20-radio-1" 
+                                                value="Yes">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-20-radio" 
+                                                data-id="1-20-radio-2" 
+                                                id="1-20-radio-2" 
+                                                value="No">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-20-radio" 
+                                                data-id="1-20-radio-3" 
+                                                id="1-20-radio-3" 
+                                                value="N/A">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-20-report"
+                                                    class="slds-input">
+                                            </div>                                    
+                                        </td>
+                                    </tr>
+                                    <tr data-answered="false">
+                                        <td>
+                                            <span class="slds-form-element__label">Alarm test</span>
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-21-radio" 
+                                                data-id="1-21-radio-1" 
+                                                id="1-21-radio-1" 
+                                                value="Yes">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-21-radio" 
+                                                data-id="1-21-radio-2" 
+                                                id="1-21-radio-2" 
+                                                value="No">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-21-radio" 
+                                                data-id="1-21-radio-3" 
+                                                id="1-21-radio-3" 
+                                                value="N/A">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-21-report"
+                                                    class="slds-input">
+                                            </div>                                    
+                                        </td>
+                                    </tr>
+                                    <tr data-answered="false">
+                                        <td>
+                                            <span class="slds-form-element__label">Power changeover operation</span>
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-22-radio" 
+                                                data-id="1-22-radio-1" 
+                                                id="1-22-radio-1" 
+                                                value="Yes">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-22-radio" 
+                                                data-id="1-22-radio-2" 
+                                                id="1-22-radio-2" 
+                                                value="No">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-22-radio" 
+                                                data-id="1-22-radio-3" 
+                                                id="1-22-radio-3" 
+                                                value="N/A">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-22-report"
+                                                    class="slds-input">
+                                            </div>                                    
+                                        </td>
+                                    </tr>
+                                    <tr data-answered="false">
+                                        <td>
+                                            <span class="slds-form-element__label">Lighting on/off by auto and manual operation test</span>
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-23-radio" 
+                                                data-id="1-23-radio-1" 
+                                                id="1-23-radio-1" 
+                                                value="Yes">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-23-radio" 
+                                                data-id="1-23-radio-2" 
+                                                id="1-23-radio-2" 
+                                                value="No">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                type="radio" 
+                                                name="1-23-radio" 
+                                                data-id="1-23-radio-3" 
+                                                id="1-23-radio-3" 
+                                                value="N/A">
+                                            </div>                                    
+                                        </td>
+                                        <td>                             
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-23-report"
+                                                    class="slds-input">
+                                            </div>                                    
+                                        </td>
+                                    </tr>
+                                <tr></tr>
+                        </tbody>
+                     </table><br><br>
+                     <!-- remark ท้ายแบบฟอร์ม= -->
+                     <table>
+                        <tbody>
+                            <tr>
+                                <td style="width:150px">
+                                    <span class="slds-form-element__label">Remark</span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <textarea
+                                            onchange={onIEH}
+                                            data-id="remark"
+                                            class="slds-textarea"
+                                            placeholder=""
+                                            rows="2"
+                                        ></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>           
+                </div>
+            </div>
+        </div>
+    </section>
+</li>
+</ul>    
+</div>
+        <!-- save submit reject= -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSubmitModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand" onclick={openRejectModal}>
+                    Reject
+                </button>
+            </div>
+        </section>
+    </div>
+</template>

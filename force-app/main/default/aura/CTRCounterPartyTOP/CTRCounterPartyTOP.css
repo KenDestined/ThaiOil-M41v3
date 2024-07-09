@@ -1,0 +1,24 @@
+.THIS {
+}
+
+.THIS .custom-help-text .slds-form-element__icon {
+    margin-top: -3px;
+}
+.THIS .custom-help-text-icon .slds-form-element__icon {
+    margin-top: -4px;
+}
+.THIS .padding-help .slds-form-element__icon {
+	padding-top: 1px;
+}
+
+.THIS .responsive-col {
+	display: grid;
+    align-items: flex-end;
+    height: 100%;
+}
+
+.THIS .custom-align-item {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}

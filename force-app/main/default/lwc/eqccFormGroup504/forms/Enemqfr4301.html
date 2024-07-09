@@ -1,0 +1,787 @@
+<template>
+    <div data-id="formBegin">
+        <c-step-page-header
+            num-steps="1"
+            current-step="1"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+
+        <!-- Modal placeholder -->
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+        <div style="text-align: right;">
+
+            ENEM-QFR-4301-RADIO
+ 
+         </div>
+        <!-- <div class="slds-text-heading_medium text-center" style="text-decoration: underline; font-weight: bold;">
+            RADIO BATTERY CAPACITY TEST RECORD
+        </div> -->
+
+                <!-- Section for Notification, FL. and Status fields -->
+                <section class="section slds-accordion__section">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col">
+                            <label class="slds-form-element__label" for="tank-no">Notification</label>
+                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                                <svg
+                                    class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                                    aria-hidden="true"
+                                >
+                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                                </svg>
+                                <input
+                                    type="text"
+                                    data-id="notification"
+                                    class="slds-input avoidPercentageInput"
+                                    value={notification}
+                                    disabled
+                                />
+                            </div>
+                            <label class="slds-form-element__label" for="tank-no">Order</label>
+                            <div class="slds-form-element__control">
+                                <input
+                                    type="text"
+                                    data-id="order"
+                                    class="slds-input avoidPercentageInput"
+                                    value={order}
+                                    disabled
+                                />
+                            </div>
+                        </div>
+                        <div class="slds-col">
+                            <label class="slds-form-element__label" for="tank-no">FL.</label>
+                            <div class="slds-form-element__control">
+                                <input
+                                    type="text"
+                                    data-id="fl"
+                                    class="slds-input avoidPercentageInput"
+                                    value={functionalLocation}
+                                    disabled
+                                />
+                            </div>
+                            <label class="slds-form-element__label" for="tank-no">Status</label>
+                            <div class="slds-form-element__control">
+                                <input
+                                    type="text"
+                                    data-id="status"
+                                    class="slds-input avoidPercentageInput"
+                                    value={formStatus}
+                                    disabled
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+        <!-- Body section. -->
+        <div class="slds-card">
+            <div class="bs-example">
+                <!-- <ul class="slds-accordion"> -->
+                    <!-- 1 -->
+                    <!-- <li class="slds-accordion__list-item"> -->
+                        <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+                           
+                            <div  data-id="headingZero">
+                                <h2 style="text-decoration: underline; margin:0px 0px 5px 10px; font-weight: bold;"  class="slds-text-heading_small text-center">
+                                    <!-- <button
+                                        type="button"
+                                        aria-controls="collapseZero"
+                                        aria-expanded="true"
+                                        class="btn btn-link"
+                                        data-parent="sectionZero"
+                                        onclick={expandSection}
+                                    >
+                                        <lightning-icon
+                                            icon-name="utility:switch"
+                                            alternative-text="button icon"
+                                            size="x-small"
+                                            class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                        ></lightning-icon> -->
+                                         RADIO BATTERY CAPACITY TEST RECORD
+
+                                    <!-- </button> -->
+                                </h2>
+                            </div>
+                            <!-- <div data-id="collapseZero" class="slds-accordion__content"> -->
+                            <!-- drop 1 section div -->
+                            <!--Draft Copy-->
+                            <div class="card-body">
+                                <section data-id="1.5" class="pd-b-1" >
+                                    <div class="content dynamicRows">
+                                        <div class="slds-grid slds-gutters slds-scrollable_x" >  
+                                          <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+                                            <thead style="border: thin">
+                                                <tr>
+                                                    <th colspan="5" style="background-color:#A3E4D7; border:thin solid #F5F5DC" class="text-center" >
+                                                        <span class="slds-form-element__label" title="BATTERY">BATTERY</span>
+                                                    </th>
+                                                    <th colspan="5" style="background-color:#A3E4D7; border:thin solid #F5F5DC" class="text-center">
+                                                        <span class="slds-form-element__label" title="CAPACITY"> CAPACITY</span>
+                                                    </th>
+                                                    <th rowspan="2" style="vertical-align: middle; background-color:#A3E4D7; border:thin solid #F5F5DC" class="text-center">
+                                                        <span class="slds-form-element__label" style="width: 150px;" title="REMARK">REMARK</span>
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th style="background-color:#A3E4D7; border:thin solid #F5F5DC" class="text-center">
+                                                        <span class="slds-form-element__label" style="width: 120px;" title="BI">BI</span>
+                                                    </th>
+                                                    <th style="background-color:#A3E4D7; border:thin solid #F5F5DC" class="text-center">
+                                                        <span class="slds-form-element__label" style="width: 120px;" title="MODEL">MODEL</span>
+                                                    </th>
+                                                    <th style="background-color:#A3E4D7 ; border:thin solid #F5F5DC" class="text-center">
+                                                        <span class="slds-form-element__label" style="width: 120px;" title="TAG">TAG</span>
+                                                    </th>
+                                                    <th style="background-color:#A3E4D7 ; border:thin solid #F5F5DC" class="text-center">
+                                                        <span class="slds-form-element__label" style="width: 160px;" title="BATT START TIME Y20XX">BATT START TIME Y20XX</span>
+                                                    </th>
+                                                    <th style="background-color:#A3E4D7 ; border:thin solid #F5F5DC" class="text-center">
+                                                        <span class="slds-form-element__label" style="width: 160px;" title="TEST TIME OF BATTERY">TEST TIME OF BATTERY</span>
+                                                    </th>
+                                                    <!-- ******************************* -->
+                                                    <th style="background-color:#A3E4D7 ; border:thin solid #F5F5DC" class="text-center">
+                                                        <span class="slds-form-element__label" style="width: 120px;" title="Voltage (V)">Voltage (V)</span>
+                                                    </th>
+                                                    <th style="background-color:#A3E4D7; border:thin solid #F5F5DC" class="text-center">
+                                                        <span class="slds-form-element__label" style="width: 120px;" title="Current (mA)">Current (mA)</span>
+                                                    </th>
+                                                    <th style="background-color:#A3E4D7; border:thin solid #F5F5DC" class="text-center">
+                                                        <span class="slds-form-element__label" style="width: 120px;" title="Capacity (%)">Capacity (%)</span>
+                                                    </th>
+                                                    <th style="background-color:#A3E4D7; border:thin solid #F5F5DC" class="text-center">
+                                                        <span class="slds-form-element__label" style="width: 120px;" title="LED status">LED status</span>
+                                                    </th>
+                                                    <th style="background-color:#A3E4D7; border:thin solid #F5F5DC" class="text-center">
+                                                        <span class="slds-form-element__label" style="width: 120px;" title="Start Date">Start Date</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="rowsBodySection">
+                                                <tr>
+                                                    <td>
+                                                        <div  class="slds-form-element__control" title="BI">
+                                                            <input onchange={onIEH} type="text" id="1-1-text-1" data-id="1-1-text-1" class="slds-input" name="1-1-text-1" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="MODEL">
+                                                            <input onchange={onIEH} type="text" id="1-1-text-2" data-id="1-1-text-2" class="slds-input" name="1-1-text-2" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TAG">
+                                                            <input onchange={onIEH} type="text" id="1-1-text-3" data-id="1-1-text-3" class="slds-input" name="1-1-text-3" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="BATT START TIME Y20XX">
+                                                            <input onchange={onIEH} type="text" id="1-1-text-4" data-id="1-1-text-4" class="slds-input" name="1-1-text-4" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TEST TIME OF BATTERY" >
+                                                            <input onchange={onIEH} type="text" id="1-1-text-5" data-id="1-1-text-5" class="slds-input" name="1-1-text-5" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Voltage (V)" >
+                                                            <input onchange={onIEH} type="text" id="1-1-text-6" data-id="1-1-text-6" class="slds-input" name="1-1-text-6" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Current (mA)" >
+                                                            <input onchange={onIEH} type="text" id="1-1-text-7" data-id="1-1-text-7" class="slds-input" name="1-1-text-7" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Capacity (%)" >
+                                                            <input onchange={onIEH} type="text" id="1-1-text-8" data-id="1-1-text-8" class="slds-input" name="1-1-text-8" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="LED status" >
+                                                            <input onchange={onIEH} type="text" id="1-1-text-9" data-id="1-1-text-9" class="slds-input" name="1-1-text-9" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Start Date" >
+                                                            <input onchange={onIEH} type="text" id="1-1-text-10" data-id="1-1-text-10" class="slds-input" name="1-1-text-10" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="REMARK" >
+                                                            <input onchange={onIEH} type="text" id="1-1-text-11" data-id="1-1-text-11" class="slds-input" name="1-1-text-11" value=""/>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div  class="slds-form-element__control" title="BI">
+                                                            <input onchange={onIEH} type="text" id="1-2-text-1" data-id="1-2-text-1" class="slds-input" name="1-2-text-1" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="MODEL">
+                                                            <input onchange={onIEH} type="text" id="1-2-text-2" data-id="1-2-text-2" class="slds-input" name="1-2-text-2" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TAG">
+                                                            <input onchange={onIEH} type="text" id="1-2-text-3" data-id="1-2-text-3" class="slds-input" name="1-2-text-3" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="BATT START TIME Y20XX">
+                                                            <input onchange={onIEH} type="text" id="1-2-text-4" data-id="1-2-text-4" class="slds-input" name="1-2-text-4" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TEST TIME OF BATTERY" >
+                                                            <input onchange={onIEH} type="text" id="1-2-text-5" data-id="1-2-text-5" class="slds-input" name="1-2-text-5" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Voltage (V)" >
+                                                            <input onchange={onIEH} type="text" id="1-2-text-6" data-id="1-2-text-6" class="slds-input" name="1-2-text-6" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Current (mA)" >
+                                                            <input onchange={onIEH} type="text" id="1-2-text-7" data-id="1-2-text-7" class="slds-input" name="1-2-text-7" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Capacity (%)" >
+                                                            <input onchange={onIEH} type="text" id="1-2-text-8" data-id="1-2-text-8" class="slds-input" name="1-2-text-8" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="LED status" >
+                                                            <input onchange={onIEH} type="text" id="1-2-text-9" data-id="1-2-text-9" class="slds-input" name="1-2-text-9" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Start Date" >
+                                                            <input onchange={onIEH} type="text" id="1-2-text-10" data-id="1-2-text-10" class="slds-input" name="1-2-text-10" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="REMARK" >
+                                                            <input onchange={onIEH} type="text" id="1-2-text-11" data-id="1-2-text-11" class="slds-input" name="1-2-text-11" value=""/>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div  class="slds-form-element__control" title="BI">
+                                                            <input onchange={onIEH} type="text" id="1-3-text-1" data-id="1-3-text-1" class="slds-input" name="1-3-text-1" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="MODEL">
+                                                            <input onchange={onIEH} type="text" id="1-3-text-2" data-id="1-3-text-2" class="slds-input" name="1-3-text-2" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TAG">
+                                                            <input onchange={onIEH} type="text" id="1-3-text-3" data-id="1-3-text-3" class="slds-input" name="1-3-text-3" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="BATT START TIME Y20XX">
+                                                            <input onchange={onIEH} type="text" id="1-3-text-4" data-id="1-3-text-4" class="slds-input" name="1-3-text-4" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TEST TIME OF BATTERY" >
+                                                            <input onchange={onIEH} type="text" id="1-3-text-5" data-id="1-3-text-5" class="slds-input" name="1-3-text-5" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Voltage (V)" >
+                                                            <input onchange={onIEH} type="text" id="1-3-text-6" data-id="1-3-text-6" class="slds-input" name="1-3-text-6" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Current (mA)" >
+                                                            <input onchange={onIEH} type="text" id="1-3-text-7" data-id="1-3-text-7" class="slds-input" name="1-3-text-7" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Capacity (%)" >
+                                                            <input onchange={onIEH} type="text" id="1-3-text-8" data-id="1-3-text-8" class="slds-input" name="1-3-text-8" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="LED status" >
+                                                            <input onchange={onIEH} type="text" id="1-3-text-9" data-id="1-3-text-9" class="slds-input" name="1-3-text-9" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Start Date" >
+                                                            <input onchange={onIEH} type="text" id="1-3-text-10" data-id="1-3-text-10" class="slds-input" name="1-3-text-10" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="REMARK" >
+                                                            <input onchange={onIEH} type="text" id="1-3-text-11" data-id="1-3-text-11" class="slds-input" name="1-3-text-11" value=""/>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div  class="slds-form-element__control" title="BI">
+                                                            <input onchange={onIEH} type="text" id="1-4-text-1" data-id="1-4-text-1" class="slds-input" name="1-4-text-1" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="MODEL">
+                                                            <input onchange={onIEH} type="text" id="1-4-text-2" data-id="1-4-text-2" class="slds-input" name="1-4-text-2" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TAG">
+                                                            <input onchange={onIEH} type="text" id="1-4-text-3" data-id="1-4-text-3" class="slds-input" name="1-4-text-3" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="BATT START TIME Y20XX">
+                                                            <input onchange={onIEH} type="text" id="1-4-text-4" data-id="1-4-text-4" class="slds-input" name="1-4-text-4" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TEST TIME OF BATTERY" >
+                                                            <input onchange={onIEH} type="text" id="1-4-text-5" data-id="1-4-text-5" class="slds-input" name="1-4-text-5" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Voltage (V)" >
+                                                            <input onchange={onIEH} type="text" id="1-4-text-6" data-id="1-4-text-6" class="slds-input" name="1-4-text-6" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Current (mA)" >
+                                                            <input onchange={onIEH} type="text" id="1-4-text-7" data-id="1-4-text-7" class="slds-input" name="1-4-text-7" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Capacity (%)" >
+                                                            <input onchange={onIEH} type="text" id="1-4-text-8" data-id="1-4-text-8" class="slds-input" name="1-4-text-8" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="LED status" >
+                                                            <input onchange={onIEH} type="text" id="1-4-text-9" data-id="1-4-text-9" class="slds-input" name="1-4-text-9" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Start Date" >
+                                                            <input onchange={onIEH} type="text" id="1-4-text-10" data-id="1-4-text-10" class="slds-input" name="1-4-text-10" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="REMARK" >
+                                                            <input onchange={onIEH} type="text" id="1-4-text-11" data-id="1-4-text-11" class="slds-input" name="1-4-text-11" value=""/>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div  class="slds-form-element__control" title="BI">
+                                                            <input onchange={onIEH} type="text" id="1-5-text-1" data-id="1-5-text-1" class="slds-input" name="1-5-text-1" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="MODEL">
+                                                            <input onchange={onIEH} type="text" id="1-5-text-2" data-id="1-5-text-2" class="slds-input" name="1-5-text-2" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TAG">
+                                                            <input onchange={onIEH} type="text" id="1-5-text-3" data-id="1-5-text-3" class="slds-input" name="1-5-text-3" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="BATT START TIME Y20XX">
+                                                            <input onchange={onIEH} type="text" id="1-5-text-4" data-id="1-5-text-4" class="slds-input" name="1-5-text-4" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TEST TIME OF BATTERY" >
+                                                            <input onchange={onIEH} type="text" id="1-5-text-5" data-id="1-5-text-5" class="slds-input" name="1-5-text-5" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Voltage (V)" >
+                                                            <input onchange={onIEH} type="text" id="1-5-text-6" data-id="1-5-text-6" class="slds-input" name="1-5-text-6" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Current (mA)" >
+                                                            <input onchange={onIEH} type="text" id="1-5-text-7" data-id="1-5-text-7" class="slds-input" name="1-5-text-7" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Capacity (%)" >
+                                                            <input onchange={onIEH} type="text" id="1-5-text-8" data-id="1-5-text-8" class="slds-input" name="1-5-text-8" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="LED status" >
+                                                            <input onchange={onIEH} type="text" id="1-5-text-9" data-id="1-5-text-9" class="slds-input" name="1-5-text-9" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Start Date" >
+                                                            <input onchange={onIEH} type="text" id="1-5-text-10" data-id="1-5-text-10" class="slds-input" name="1-5-text-10" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="REMARK" >
+                                                            <input onchange={onIEH} type="text" id="1-5-text-11" data-id="1-5-text-11" class="slds-input" name="1-5-text-11" value=""/>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div  class="slds-form-element__control" title="BI">
+                                                            <input onchange={onIEH} type="text" id="1-6-text-1" data-id="1-6-text-1" class="slds-input" name="1-6-text-1" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="MODEL">
+                                                            <input onchange={onIEH} type="text" id="1-6-text-2" data-id="1-6-text-2" class="slds-input" name="1-6-text-2" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TAG">
+                                                            <input onchange={onIEH} type="text" id="1-6-text-3" data-id="1-6-text-3" class="slds-input" name="1-6-text-3" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="BATT START TIME Y20XX">
+                                                            <input onchange={onIEH} type="text" id="1-6-text-4" data-id="1-6-text-4" class="slds-input" name="1-6-text-4" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TEST TIME OF BATTERY" >
+                                                            <input onchange={onIEH} type="text" id="1-6-text-5" data-id="1-6-text-5" class="slds-input" name="1-6-text-5" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Voltage (V)" >
+                                                            <input onchange={onIEH} type="text" id="1-6-text-6" data-id="1-6-text-6" class="slds-input" name="1-6-text-6" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Current (mA)" >
+                                                            <input onchange={onIEH} type="text" id="1-6-text-7" data-id="1-6-text-7" class="slds-input" name="1-6-text-7" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Capacity (%)" >
+                                                            <input onchange={onIEH} type="text" id="1-6-text-8" data-id="1-6-text-8" class="slds-input" name="1-6-text-8" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="LED status" >
+                                                            <input onchange={onIEH} type="text" id="1-6-text-9" data-id="1-6-text-9" class="slds-input" name="1-6-text-9" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Start Date" >
+                                                            <input onchange={onIEH} type="text" id="1-6-text-10" data-id="1-6-text-10" class="slds-input" name="1-6-text-10" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="REMARK" >
+                                                            <input onchange={onIEH} type="text" id="1-6-text-11" data-id="1-6-text-11" class="slds-input" name="1-6-text-11" value=""/>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div  class="slds-form-element__control" title="BI">
+                                                            <input onchange={onIEH} type="text" id="1-7-text-1" data-id="1-7-text-1" class="slds-input" name="1-7-text-1" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="MODEL">
+                                                            <input onchange={onIEH} type="text" id="1-7-text-2" data-id="1-7-text-2" class="slds-input" name="1-7-text-2" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TAG">
+                                                            <input onchange={onIEH} type="text" id="1-7-text-3" data-id="1-7-text-3" class="slds-input" name="1-7-text-3" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="BATT START TIME Y20XX">
+                                                            <input onchange={onIEH} type="text" id="1-7-text-4" data-id="1-7-text-4" class="slds-input" name="1-7-text-4" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TEST TIME OF BATTERY" >
+                                                            <input onchange={onIEH} type="text" id="1-7-text-5" data-id="1-7-text-5" class="slds-input" name="1-7-text-5" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Voltage (V)" >
+                                                            <input onchange={onIEH} type="text" id="1-7-text-6" data-id="1-7-text-6" class="slds-input" name="1-7-text-6" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Current (mA)" >
+                                                            <input onchange={onIEH} type="text" id="1-7-text-7" data-id="1-7-text-7" class="slds-input" name="1-7-text-7" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Capacity (%)" >
+                                                            <input onchange={onIEH} type="text" id="1-7-text-8" data-id="1-7-text-8" class="slds-input" name="1-7-text-8" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="LED status" >
+                                                            <input onchange={onIEH} type="text" id="1-7-text-9" data-id="1-7-text-9" class="slds-input" name="1-7-text-9" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Start Date" >
+                                                            <input onchange={onIEH} type="text" id="1-7-text-10" data-id="1-7-text-10" class="slds-input" name="1-7-text-10" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="REMARK" >
+                                                            <input onchange={onIEH} type="text" id="1-7-text-11" data-id="1-7-text-11" class="slds-input" name="1-7-text-11" value=""/>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div  class="slds-form-element__control" title="BI">
+                                                            <input onchange={onIEH} type="text" id="1-8-text-1" data-id="1-8-text-1" class="slds-input" name="1-8-text-1" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="MODEL">
+                                                            <input onchange={onIEH} type="text" id="1-8-text-2" data-id="1-8-text-2" class="slds-input" name="1-8-text-2" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TAG">
+                                                            <input onchange={onIEH} type="text" id="1-8-text-3" data-id="1-8-text-3" class="slds-input" name="1-8-text-3" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="BATT START TIME Y20XX">
+                                                            <input onchange={onIEH} type="text" id="1-8-text-4" data-id="1-8-text-4" class="slds-input" name="1-8-text-4" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TEST TIME OF BATTERY" >
+                                                            <input onchange={onIEH} type="text" id="1-8-text-5" data-id="1-8-text-5" class="slds-input" name="1-8-text-5" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Voltage (V)" >
+                                                            <input onchange={onIEH} type="text" id="1-8-text-6" data-id="1-8-text-6" class="slds-input" name="1-8-text-6" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Current (mA)" >
+                                                            <input onchange={onIEH} type="text" id="1-8-text-7" data-id="1-8-text-7" class="slds-input" name="1-8-text-7" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Capacity (%)" >
+                                                            <input onchange={onIEH} type="text" id="1-8-text-8" data-id="1-8-text-8" class="slds-input" name="1-8-text-8" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="LED status" >
+                                                            <input onchange={onIEH} type="text" id="1-8-text-9" data-id="1-8-text-9" class="slds-input" name="1-8-text-9" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Start Date" >
+                                                            <input onchange={onIEH} type="text" id="1-8-text-10" data-id="1-8-text-10" class="slds-input" name="1-8-text-10" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="REMARK" >
+                                                            <input onchange={onIEH} type="text" id="1-8-text-11" data-id="1-8-text-11" class="slds-input" name="1-8-text-11" value=""/>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div  class="slds-form-element__control" title="BI">
+                                                            <input onchange={onIEH} type="text" id="1-9-text-1" data-id="1-9-text-1" class="slds-input" name="1-9-text-1" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="MODEL">
+                                                            <input onchange={onIEH} type="text" id="1-9-text-2" data-id="1-9-text-2" class="slds-input" name="1-9-text-2" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TAG">
+                                                            <input onchange={onIEH} type="text" id="1-9-text-3" data-id="1-9-text-3" class="slds-input" name="1-9-text-3" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="BATT START TIME Y20XX">
+                                                            <input onchange={onIEH} type="text" id="1-9-text-4" data-id="1-9-text-4" class="slds-input" name="1-9-text-4" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TEST TIME OF BATTERY" >
+                                                            <input onchange={onIEH} type="text" id="1-9-text-5" data-id="1-9-text-5" class="slds-input" name="1-9-text-5" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Voltage (V)" >
+                                                            <input onchange={onIEH} type="text" id="1-9-text-6" data-id="1-9-text-6" class="slds-input" name="1-9-text-6" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Current (mA)" >
+                                                            <input onchange={onIEH} type="text" id="1-9-text-7" data-id="1-9-text-7" class="slds-input" name="1-9-text-7" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Capacity (%)" >
+                                                            <input onchange={onIEH} type="text" id="1-9-text-8" data-id="1-9-text-8" class="slds-input" name="1-9-text-8" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="LED status" >
+                                                            <input onchange={onIEH} type="text" id="1-9-text-9" data-id="1-9-text-9" class="slds-input" name="1-9-text-9" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Start Date" >
+                                                            <input onchange={onIEH} type="text" id="1-9-text-10" data-id="1-9-text-10" class="slds-input" name="1-9-text-10" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="REMARK" >
+                                                            <input onchange={onIEH} type="text" id="1-9-text-11" data-id="1-9-text-11" class="slds-input" name="1-9-text-11" value=""/>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div  class="slds-form-element__control" title="BI">
+                                                            <input onchange={onIEH} type="text" id="1-10-text-1" data-id="1-10-text-1" class="slds-input" name="1-10-text-1" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="MODEL">
+                                                            <input onchange={onIEH} type="text" id="1-10-text-2" data-id="1-10-text-2" class="slds-input" name="1-10-text-2" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TAG">
+                                                            <input onchange={onIEH} type="text" id="1-10-text-3" data-id="1-10-text-3" class="slds-input" name="1-10-text-3" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="BATT START TIME Y20XX">
+                                                            <input onchange={onIEH} type="text" id="1-10-text-4" data-id="1-10-text-4" class="slds-input" name="1-10-text-4" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="TEST TIME OF BATTERY" >
+                                                            <input onchange={onIEH} type="text" id="1-10-text-5" data-id="1-10-text-5" class="slds-input" name="1-10-text-5" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Voltage (V)" >
+                                                            <input onchange={onIEH} type="text" id="1-10-text-6" data-id="1-10-text-6" class="slds-input" name="1-10-text-6" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Current (mA)" >
+                                                            <input onchange={onIEH} type="text" id="1-10-text-7" data-id="1-10-text-7" class="slds-input" name="1-10-text-7" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Capacity (%)" >
+                                                            <input onchange={onIEH} type="text" id="1-10-text-8" data-id="1-10-text-8" class="slds-input" name="1-10-text-8" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="LED status" >
+                                                            <input onchange={onIEH} type="text" id="1-10-text-9" data-id="1-10-text-9" class="slds-input" name="1-10-text-9" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="Start Date" >
+                                                            <input onchange={onIEH} type="text" id="1-10-text-10" data-id="1-10-text-10" class="slds-input" name="1-10-text-10" value=""/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-form-element__control" title="REMARK" >
+                                                            <input onchange={onIEH} type="text" id="1-10-text-11" data-id="1-10-text-11" class="slds-input" name="1-10-text-11" value=""/>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                        <div style="text-align: right;">
+                                          <button class="slds-button slds-button_destructive" onclick={removeRow} data-id="removeRowPart1">-</button>
+                                          <button class="slds-button slds-button_brand" onclick={addRow} data-id="addRowPart1">+</button>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </section>
+             </div>
+        </div>               
+
+        <!-- For any N/A button sections, use this template
+        <input onchange={onIEH} onchange={disableSection} name="options" type="checkbox" data-id=... />
+        <label...>Label for checkbox</label>
+        -->
+
+        <!-- Button Section for Every Form -->
+        <section class="section slds-accordion__section">
+            <ul class="slds-button-group obj-right" role="group">
+                <li>
+                    <button data-id="saveEQCCStep" class="btn-save slds-button slds-button_brand mgr-5"  onclick={openSaveModal}>
+                        Save Draft
+                    </button>
+                </li>
+                <li>
+                    <button data-id="submitEQCCStep" class="btn-submit slds-button slds-button_brand mgr-5"
+                         onclick={openSubmitModal}>
+                        Submit
+                    </button>
+                </li>
+                <li>
+                    <button data-id="rejectEQCCStep" class="btn-reject slds-button slds-button_brand mgr-5 "
+                         onclick={openRejectModal}>
+                        Reject
+                    </button>
+                </li>
+                <li>
+                    <button data-id="recallEQCCStep" class="btn-recall slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                        Recall
+                    </button>
+                </li>
+            </ul>
+        </section>
+    </div>
+</template>

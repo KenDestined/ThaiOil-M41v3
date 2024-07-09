@@ -1,0 +1,75 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url('../fonts/icomoon.woff2?orgId=00D2v000003OMdM&ta44sz') format('woff2'), url('../fonts/icomoon.ttf?orgId=00D2v000003OMdM&ta44sz') format('truetype'), url('../fonts/icomoon.woff?orgId=00D2v000003OMdM&ta44sz') format('woff'), url('../fonts/icomoon.svg?orgId=00D2v000003OMdM&ta44sz#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.ic {
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ic-location:before {
+  content: "\e90c";
+}
+
+.ic-calendar:before {
+  content: "\e900";
+}
+
+.ic-clearance-certificate:before {
+  content: "\e901";
+}
+
+.ic-dashboard-square:before {
+  content: "\e902";
+}
+
+.ic-dashboard:before {
+  content: "\e903";
+}
+
+.ic-excel:before {
+  content: "\e904";
+}
+
+.ic-high-risk-Work:before {
+  content: "\e905";
+}
+
+.ic-hotwork:before {
+  content: "\e906";
+}
+
+.ic-map:before {
+  content: "\e907";
+}
+
+.ic-pdf:before {
+  content: "\e908";
+}
+
+.ic-report-square:before {
+  content: "\e909";
+}
+
+.ic-report:before {
+  content: "\e90a";
+}
+
+.ic-search:before {
+  content: "\e90b";
+}
+
+.ic-close-out:before {
+  content: "\e93a";
+}

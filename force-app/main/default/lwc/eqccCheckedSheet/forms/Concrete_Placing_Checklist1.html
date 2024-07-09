@@ -1,0 +1,1223 @@
+<template>
+    <div data-id="formBegin">
+        <!-- PAGE STEP COUNTER HEADER
+        Params that need changed are the num-steps and the current-step.
+        Num-steps is how many TOTAL steps there are in the form.
+        Current-step is the step that the html currently is. ie. if a file's name is
+        formStep1.html then the current-step is 1, formStep2.html would be 2 etc.-->
+        <c-step-page-header
+            num-steps="1"
+            current-step="1"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+
+        <!-- Modal placeholder -->
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+        <!-- END Modal Placeholder -->
+
+        <!--
+            Title area for form. Put form title here
+        -->
+        <div class="slds-text-heading_medium text-center">CONCRETE PLACING CHECKLIST</div>
+        <!-- END Title area -->
+
+        <!-- Section for Notification, Order, FL. and Status fields -->
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="slds-form-element__control">
+                        <input onchange={onIEH} type="text" data-id="notification" class="slds-input avoidPercentageInput" value={notification} disabled />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="slds-form-element__control">
+                        <input onchange={onIEH} type="text" data-id="order" class="slds-input avoidPercentageInput" value={order} disabled />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="slds-form-element__control">
+                        <input onchange={onIEH} type="text" data-id="fl" class="slds-input avoidPercentageInput" value={functionalLocation} disabled />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="slds-form-element__control">
+                        <input onchange={onIEH} type="text" data-id="status" class="slds-input avoidPercentageInput" value={formStatus} disabled />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN SECTION -->
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <!-- 0 -->
+                <!-- HEADER INFORMATION (USUALLY DOES NOT HAVE N/A SECTION) -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+                        <div class="card-header" data-id="headingZero">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseZero"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionZero"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210))"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        0</span
+                                    ><span class="slds-accordion__summary-content">Header Information</span>
+                                </button>
+                            </h2>
+                        </div>
+                        <div data-id="collapseZero" class="slds-accordion__content">
+                            <!-- drop 0 section card-body div -->
+                            <div class="card-body">
+                                <div class="slds-section">
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col">
+                                            <label class="slds-form-element__label">Project:</label>
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH} type="text" data-id="project" class="slds-input avoidPercentageInput" />
+                                            </div>
+                                            <label class="slds-form-element__label">Item Name:</label>
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH} type="text" data-id="item-name" class="slds-input avoidPercentageInput" />
+                                            </div>
+                                            <label class="slds-form-element__label">Item No./Location:</label>
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH} type="text" data-id="item-no" class="slds-input avoidPercentageInput" />
+                                            </div>
+                                        </div>
+                                        <div class="slds-col">
+                                            <label class="slds-form-element__label">Date:</label>
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH} type="date" data-id="date" class="slds-input avoidPercentageInput" />
+                                            </div>
+                                            <label class="slds-form-element__label">Report No.:</label>
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH} type="number" data-id="report-no" class="slds-input avoidPercentageInput" />
+                                            </div>
+                                            <label class="slds-form-element__label">Company:</label>
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH} type="text" data-id="company" class="slds-input avoidPercentageInput" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <!-- 1 -->
+                <!-- BEGINNING OF SECOND SECTION WITH N/A-->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionOne">
+                        <div class="card-header" data-id="headingOne">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseOne"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionOne"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210))"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        1</span
+                                    ><span class="slds-accordion__summary-content">Check Items</span>
+                                </button>
+                                <!--
+                                    CHECKBOX FOR N/A
+                                    DELETE IF N/A NOT NEEDED
+                                -->
+                                <!-- NOTE: data-id and id are 'header-na-x', and data-remark is 'x-remark'
+                                where x is the number of the section. Name must be 'options' for each section -->
+                                <div class="slds-col">
+                                    <div class="slds-checkbox obj-right">
+                                        <input
+                                            onchange={disableSection}
+                                            name="options"
+                                            type="checkbox"
+                                            id="header-na-1"
+                                            data-id="header-na-1"
+                                            data-remark="1-remark"
+                                            value="header-na-1"
+                                        />
+                                        <!-- NOTE: 'for' value must match the id value above -->
+                                        <label class="slds-checkbox__label" for="header-na-1"
+                                            ><span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">input N/A</span></label
+                                        >
+                                    </div>
+                                </div>
+                                <!--
+                                    END CHECKBOX FOR N/A
+                                -->
+                            </h2>
+                        </div>
+                        <!--
+                            REMARK SECTION. DELETE IF N/A NOT NEEDED
+                        -->
+                        <!-- NOTE: FOR REMARK SECTION
+                            id and data-id are 'sectionX-remark' where x is the section number
+                        -->
+                        <div
+                            class="slds-grid slds-gutters hide-remark"
+                            id="sectionOne-remark"
+                            data-id="sectionOne-remark"
+                        >
+                            <div class="slds-col">
+                                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                <div class="slds-form-element__control">
+                                    <textarea
+                                        data-id="sectionOne-inputRemark"
+                                        onchange={onIEH}
+                                        id="sectionOne-inputRemark"
+                                        class="slds-textarea"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- NOTE: data-id for section is 'collapseX' where x is the section number-->
+                        <div data-id="collapseOne" class="slds-accordion__content">
+                            <!-- drop 1st section card-body div -->
+                            <div class="card-body">
+                                <div class="slds-m-around_small" style="margin: 0rem">
+                                    <div class="slds-section">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th><span class="slds-form-element__label"></span></th>
+                                                    <th class="text-center">
+                                                        <span class="slds-form-element__label">Accept</span>
+                                                    </th>
+                                                    <th class="text-center">
+                                                        <span class="slds-form-element__label">Reject</span>
+                                                    </th>
+                                                    <th class="text-center">
+                                                        <span class="slds-form-element__label">Remarks</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span class="slds-form-element__label">1 Preparation</span><br />
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >1.1 Visual Inspection Botton</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-1-1"
+                                                                data-id="1-1-accept"
+                                                                id="1-1-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="1-1-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-1-1"
+                                                                data-id="1-1-reject"
+                                                                id="1-1-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="1-1-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="1-1-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >1.2 Construction Joint</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-1-2"
+                                                                data-id="1-2-accept"
+                                                                id="1-2-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="1-2-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-1-2"
+                                                                data-id="1-2-reject"
+                                                                id="1-2-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="1-2-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="1-2-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="slds-form-element__label">2 Form Work</span><br /></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10">2.1 Position</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-2-1"
+                                                                data-id="2-1-accept"
+                                                                id="2-1-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="2-1-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-2-1"
+                                                                data-id="2-1-reject"
+                                                                id="2-1-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="2-1-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="2-1-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >2.2 Dimension</span
+                                                        ><br />
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10">- Horizontal</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-2-2-1"
+                                                                data-id="2-2-1-accept"
+                                                                id="2-2-1-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="2-2-1-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-2-2-1"
+                                                                data-id="2-2-1-reject"
+                                                                id="2-2-1-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="2-2-1-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="2-2-1-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10">- Vertical</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-2-2-2"
+                                                                data-id="2-2-2-accept"
+                                                                id="2-2-2-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="2-2-2-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-2-2-2"
+                                                                data-id="2-2-2-reject"
+                                                                id="2-2-2-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="2-2-2-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="2-2-2-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >2.3 Elevation</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-2-3"
+                                                                data-id="2-3-accept"
+                                                                id="2-3-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="2-3-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-2-3"
+                                                                data-id="2-3-reject"
+                                                                id="2-3-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="2-3-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="2-3-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >2.4 Adequate Bracing</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-2-4"
+                                                                data-id="2-4-accept"
+                                                                id="2-4-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="2-4-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-2-4"
+                                                                data-id="2-4-reject"
+                                                                id="2-4-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="2-4-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="2-4-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >2.5 Sealing Gaps</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-2-5"
+                                                                data-id="2-5-accept"
+                                                                id="2-5-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="2-5-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-2-5"
+                                                                data-id="2-5-reject"
+                                                                id="2-5-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="2-5-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="2-5-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >2.6 Apply Oil Coating</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-2-6"
+                                                                data-id="2-6-accept"
+                                                                id="2-6-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="2-6-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-2-6"
+                                                                data-id="2-6-reject"
+                                                                id="2-6-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="2-6-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="2-6-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >2.7 Survey Report (if necessary)</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-2-7"
+                                                                data-id="2-7-accept"
+                                                                id="2-7-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="2-7-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-2-7"
+                                                                data-id="2-7-reject"
+                                                                id="2-7-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="2-7-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="2-7-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="slds-form-element__label">3 Re-bar Work</span><br />
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >3.1 Size Number</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-3-1"
+                                                                data-id="3-1-accept"
+                                                                id="3-1-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="3-1-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-3-1"
+                                                                data-id="3-1-reject"
+                                                                id="3-1-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="3-1-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="3-1-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >3.2 Length of lapping</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-3-2"
+                                                                data-id="3-2-accept"
+                                                                id="3-2-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="3-2-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-3-2"
+                                                                data-id="3-2-reject"
+                                                                id="3-2-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="3-2-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="3-2-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >3.3 Cover Spacer</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-3-3"
+                                                                data-id="3-3-accept"
+                                                                id="3-3-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="3-3-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-3-3"
+                                                                data-id="3-3-reject"
+                                                                id="3-3-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="3-3-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="3-3-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >3.4 Position / Bending</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-3-4"
+                                                                data-id="3-4-accept"
+                                                                id="3-4-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="3-4-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-3-4"
+                                                                data-id="3-4-reject"
+                                                                id="3-4-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="3-4-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="3-4-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="slds-form-element__label">4 Embeded Items</span><br />
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >4.1 Anchor Bolt, Plate</span
+                                                        ><br />
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >- Size, Length, Diameter</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-4-1-1"
+                                                                data-id="4-1-1-accept"
+                                                                id="4-1-1-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="4-1-1-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-4-1-1"
+                                                                data-id="4-1-1-reject"
+                                                                id="4-1-1-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="4-1-1-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="4-1-1-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >- Type, Position</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-4-1-2"
+                                                                data-id="4-1-2-accept"
+                                                                id="4-1-2-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="4-1-2-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-4-1-2"
+                                                                data-id="4-1-2-reject"
+                                                                id="4-1-2-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="4-1-2-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="4-1-2-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10">- Protection</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-4-1-3"
+                                                                data-id="4-1-3-accept"
+                                                                id="4-1-3-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="4-1-3-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-4-1-3"
+                                                                data-id="4-1-3-reject"
+                                                                id="4-1-3-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="4-1-3-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="4-1-3-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >4.2 Opening Box elec &amp; mec</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-4-2"
+                                                                data-id="4-2-accept"
+                                                                id="4-2-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="4-2-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-4-2"
+                                                                data-id="4-2-reject"
+                                                                id="4-2-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="4-2-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="4-2-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label">5 Cleaning Condition</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-5"
+                                                                data-id="5-accept"
+                                                                id="5-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="5-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-5"
+                                                                data-id="5-reject"
+                                                                id="5-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="5-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="5-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="slds-form-element__label">6 Final Verification</span
+                                                        ><br />
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >6.1 Curing &amp; Protection</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-6-1"
+                                                                data-id="6-1-accept"
+                                                                id="6-1-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="6-1-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-6-1"
+                                                                data-id="6-1-reject"
+                                                                id="6-1-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="6-1-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="6-1-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >6.2 Concrete Surface and Dimension</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-6-2"
+                                                                data-id="6-2-accept"
+                                                                id="6-2-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="6-2-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-6-2"
+                                                                data-id="6-2-reject"
+                                                                id="6-2-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="6-2-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="6-2-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                                <tr data-answered="false">
+                                                    <td>
+                                                        <span class="slds-form-element__label pd-left-10"
+                                                            >6.3 Release for Backfilling</span
+                                                        ><br />
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-6-3"
+                                                                data-id="6-3-accept"
+                                                                id="6-3-accept"
+                                                                value="Accept"
+                                                            />
+                                                            <label class="slds-radio__label" for="6-3-accept">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio"
+                                                                name="p-6-3"
+                                                                data-id="6-3-reject"
+                                                                id="6-3-reject"
+                                                                value="Reject"
+                                                            />
+                                                            <label class="slds-radio__label" for="6-3-reject">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <input onchange={onIEH} type="text" data-id="6-3-input" class="slds-input" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <!-- Copy and paste <li> and it's contents to add sections.
+                    Replace body content and make sure ALL data-id's and id's are unique
+                -->
+            </ul>
+        </div>
+
+        <!-- Button Section for Every Form -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openRejectModal}>
+                    Reject
+                </button>
+                <button data-id="recallEQCCStep" class="slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                    Recall
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Submit</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-lookup object-api-name="user" icon-name="standard:user" onrecordselection={onUserSelection}></c-lookup>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submit} title="Submit">Submit</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

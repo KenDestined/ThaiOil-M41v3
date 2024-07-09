@@ -1,0 +1,60 @@
+<apex:page
+  controller="ICR_DashboardController"
+  standardStylesheets="true"
+  lightningStylesheets="true"
+  sidebar="false"
+  showHeader="false"
+  applyHtmlTag="true"
+  applyBodyTag="false"
+  docType="html-5.0"
+  language="th"
+>
+  <apex:form>
+    <apex:actionFunction
+      name="TestCal"
+      action="{!TestFunction}"
+      reRender="rawDataPanel"
+      oncomplete="window.getData();"
+    />
+  </apex:form>
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="/favicon.ico"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <script src="/js/highcharts.min.js"></script>
+
+    <title>QMOS Dashboard</title>
+    <script type="module" crossorigin src="/assets/qmos.js"></script>
+    <link rel="modulepreload" href="/assets/vendor.js">
+    <link rel="modulepreload" href="/assets/BaseDropdown.js">
+    <link rel="modulepreload" href="/assets/FilterButtons.js">
+    <link rel="modulepreload" href="/assets/formatter.js">
+    <link rel="modulepreload" href="/assets/chartConfig.js">
+    <link rel="stylesheet" href="/assets/BaseDropdown.css">
+    <link rel="stylesheet" href="/assets/FilterButtons.css">
+    <link rel="stylesheet" href="/assets/qmos.css">
+  </head>
+
+  <body>
+    <apex:outputPanel id="rawDataPanel">
+      <div id="rawData" style="display: none">
+        {"companyOptions":[{"id":"1","name":"TOP Group"},{"id":"2","name":"TOP"}],"hoxElementOptions":[{"id":"all","name":"All"}],"areaOptions":[{"id":"all","name":"All"}],"subAreaOptions":[{"id":"all","name":"All"}],"leading":{"totalAuditData":{"month":{"finding":2,"closed":2,"inProgress":0},"year":{"finding":20,"closed":15,"inProgress":5}},"hoxElementData":[{"name":"S1 - Safee Operating Windows & Alarm Management","month":90,"year":90},{"name":"S2 - SafeGuarding Override","month":90,"year":100},{"name":"S3 - Car Seal","month":90,"year":90}],"monthChartData":{"series":{"finding":[6,5,6,2,4,2,6,5,2,4,5,6],"closed":[4,5,3,2,2,2,4,3,1,3,5,3]}},"hoxElementChartData":{"categories":["S1 - SafeOperating","S2 - SafeGuarding Override","S3 - Car Seal"],"series":[9.26,5.56,7.41]}},"lagging":{"lackingData":[{"name":"Fire (Severity &gt= 2)","month":0,"year":0,"kpiTarget":4},{"name":"Small Fire (Severity &lt 2)","month":0,"year":0,"kpiTarget":4},{"name":"PSE Tier 1","month":0,"year":0,"kpiTarget":4},{"name":"PSE Tier 2","month":0,"year":0,"kpiTarget":4},{"name":"PSE Tier 1 &#43; 2","month":7,"year":7,"kpiTarget":4}],"pirData":{"unsafeAct":{"month":139,"year":139,"kpiTarget":130},"closeOut":{"month":97.12,"year":97.12,"kpiTarget":98}}}}
+      </div>
+      <!-- filter data -->
+      <!-- {"leadingFilter":{"area":"all","company":"1","hoxElement":"all","month":1,"subArea":"all","year":2022},"laggingFilter":{"company":"1","month":1,"year":2022}} -->
+    </apex:outputPanel>
+    <div id="app"></div>
+    
+  </body>
+
+  </html>
+</apex:page>

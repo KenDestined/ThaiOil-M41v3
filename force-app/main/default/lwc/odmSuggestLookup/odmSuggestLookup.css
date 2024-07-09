@@ -1,0 +1,15 @@
+.combobox-textbox-search lightning-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0.5rem;
+}
+
+.slds-combobox__input-value label {
+    margin-left: 1.25rem;
+}
+
+.slds-dropdown-trigger .slds-dropdown.custom-dropdown-up {
+    bottom: 100%;
+    top: unset;
+}

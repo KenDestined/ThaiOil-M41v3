@@ -1,0 +1,332 @@
+<template>
+    <div data-id="formBegin">
+        <c-step-page-header
+            num-steps="1"
+            current-step="1"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+
+        <!-- Modal placeholder -->
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+        <div style="text-align: right;">
+
+            ENEM-QFR-4100-DATACOM
+ 
+         </div>
+        <div class="slds-text-heading_medium text-center" style="text-decoration: underline; font-weight: bold;">
+            DATA COMMUNICATION MAINTENANCE FORM
+        </div>
+
+                <!-- Section for Notification, FL. and Status fields -->
+                <section class="section slds-accordion__section">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col">
+                            <label class="slds-form-element__label" for="tank-no">Notification</label>
+                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                                <svg
+                                    class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                                    aria-hidden="true"
+                                >
+                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                                </svg>
+                                <input
+                                    type="text"
+                                    data-id="notification"
+                                    class="slds-input avoidPercentageInput"
+                                    value={notification}
+                                    disabled
+                                />
+                            </div>
+                            <label class="slds-form-element__label" for="tank-no">Order</label>
+                            <div class="slds-form-element__control">
+                                <input
+                                    type="text"
+                                    data-id="order"
+                                    class="slds-input avoidPercentageInput"
+                                    value={order}
+                                    disabled
+                                />
+                            </div>
+                        </div>
+                        <div class="slds-col">
+                            <label class="slds-form-element__label" for="tank-no">FL.</label>
+                            <div class="slds-form-element__control">
+                                <input
+                                    type="text"
+                                    data-id="fl"
+                                    class="slds-input avoidPercentageInput"
+                                    value={functionalLocation}
+                                    disabled
+                                />
+                            </div>
+                            <label class="slds-form-element__label" for="tank-no">Status</label>
+                            <div class="slds-form-element__control">
+                                <input
+                                    type="text"
+                                    data-id="status"
+                                    class="slds-input avoidPercentageInput"
+                                    value={formStatus}
+                                    disabled
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ********************************************************** -->
+                <section class="section slds-accordion__section" data-id="sectionOne">
+                <!--Draft Copy-->
+                    <div class="card-body">
+                        <section data-id="1.5" class="pd-b-1" >
+                            <div class="content dynamicRows rowsBodySection">
+                                
+                                <div class="slds-form">
+                                    <div class="slds-form__row">
+                                        <div class="slds-form__item" data-answered="false">
+                                            <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                                <label class="slds-form-element__label" for="DATA COMMUNICATION EQUIPMENT:">DATA COMMUNICATION EQUIPMENT:</label>
+                                                <div class="slds-form-element__control">
+                                                    <input onchange={onIEH} type="text" id="1-1-input-1" data-id="1-1-input-1" class="slds-input" name="1-1-input-1" value=""/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form__item" data-answered="false">
+                                            <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                                <label class="slds-form-element__label" for="Date :">Date :</label>
+                                                    <div class="slds-form-element__control">
+                                                        <input onchange={onIEH}  type="date" id="1-1-date-2" data-id="1-1-date-2" class="slds-input avoidPercentageInput" name="1-1-date-2" value=""/>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form__item" data-answered="false">
+                                            <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                                <label class="slds-form-element__label" for="MAKER:">MAKER:</label>
+                                                    <div class="slds-form-element__control">
+                                                        <input onchange={onIEH} type="text" id="1-1-input-3" data-id="1-1-input-3" class="slds-input" name="1-1-input-3" value=""/>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form__row">
+                                        <div class="slds-form__item" data-answered="false">
+                                            <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                                <label class="slds-form-element__label" for="MODEL:">MODEL:</label>
+                                                    <div class="slds-form-element__control">
+                                                        <input onchange={onIEH} type="text" id="1-2-input-1" data-id="1-2-input-1" class="slds-input" name="1-2-input-1" value=""/>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form__item" data-answered="false">
+                                            <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                                <label class="slds-form-element__label" for="SERVICE SYSTEM:">SERVICE SYSTEM:</label>
+                                                    <div class="slds-form-element__control">
+                                                            <input onchange={onIEH} type="text" id="1-2-input-2" data-id="1-2-input-2" class="slds-input" name="1-2-input-2" value=""/>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-gutters slds-scrollable_x" >
+                                    <table class="Customtable slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered" aria-label="Example table of Opportunities with vertical borders">
+                                        <thead>
+                                            <th style="background-color:#fde9d9; width:100px;" class="text-center">
+                                                <span class="slds-form-element__label" title="ITEM">ITEM</span>
+                                            </th>
+                                            <th style="background-color:#fde9d9; width:500px;" class="text-center">
+                                                <span class="slds-form-element__label" title="SERVER FUNCTION CHECK">SERVER FUNCTION CHECK</span>
+                                            </th>
+                                            <th style="background-color:#fde9d9; width:300px;" class="text-center">
+                                                <span class="slds-form-element__label" title="RESULT">RESULT</span>
+                                            </th>
+                                            <th style="background-color:#fde9d9;" class="text-center">
+                                                <span class="slds-form-element__label" title="REMARK">REMARK</span>
+                                            </th>
+                                        </thead>
+                                        <tbody >
+                                            <tr data-answered="false">
+                                                <td>
+                                                    <div  class="slds-form-element__control" title="ITEM">
+                                                        <input onchange={onIEH} type="text" id="1-3-text-1" data-id="1-3-text-1" class="slds-input" name="1-3-text-1" value="1" disabled />
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-form-element__control" title="SERVER FUNCTION CHECK">
+                                                        <input onchange={onIEH} type="text" id="1-3-text-2" data-id="1-3-text-2" class="slds-input" name="1-3-text-2" value="Data base alarm log" disabled />
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-form-element__control" style="text-align:left" title="RESULT">
+                                                        <input onchange={onIEH} type="radio" id="1-3-radio-3-pass" data-id="1-3-radio-3-pass" name="1-3-radio-3" value="Pass"/> 
+                                                        <label> Pass</label>
+                                                        <input onchange={onIEH} style="margin-left: 100px;" type="radio" id="1-3-radio-3-fail" data-id="1-3-radio-3-fail" name="1-3-radio-3" value="Fail"/> 
+                                                        <label> Fail</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div  class="slds-form-element__control" title="REMARK">
+                                                        <input onchange={onIEH} type="text" id="1-3-text-4" data-id="1-3-text-4" class="slds-input" name="1-3-text-4" value=""/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-answered="false">
+                                                <td>
+                                                    <div  class="slds-form-element__control" title="ITEM">
+                                                        <input onchange={onIEH} type="text" id="1-4-text-1" data-id="1-4-text-1" class="slds-input" name="1-4-text-1" value="2" disabled/>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-form-element__control" title="SERVER FUNCTION CHECK">
+                                                        <input onchange={onIEH} type="text" id="1-4-text-2" data-id="1-4-text-2" class="slds-input" name="1-4-text-2" value="System backup" disabled/>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-form-element__control" style="text-align:left" title="RESULT">
+                                                        <input onchange={onIEH} type="radio" id="1-4-radio-3-pass" data-id="1-4-radio-3-pass" name="1-4-radio-3" value="Pass"/> 
+                                                        <label> Pass</label>
+                                                        <input onchange={onIEH} style="margin-left: 100px;" type="radio" id="1-4-radio-3-fail" data-id="1-4-radio-3-fail" name="1-4-radio-3" value="Fail"/> 
+                                                        <label> Fail</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div  class="slds-form-element__control" title="REMARK">
+                                                        <input onchange={onIEH} type="text" id="1-4-text-4" data-id="1-4-text-4" class="slds-input" name="1-4-text-4" value=""/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-answered="false">
+                                                <td>
+                                                    <div  class="slds-form-element__control" title="ITEM">
+                                                        <input onchange={onIEH} type="text" id="1-5-text-1" data-id="1-5-text-1" class="slds-input" name="1-5-text-1" value="3" disabled/>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-form-element__control" title="SERVER FUNCTION CHECK">
+                                                        <input onchange={onIEH} type="text" id="1-5-text-2" data-id="1-5-text-2" class="slds-input" name="1-5-text-2" value="Cooling fan operation" disabled/>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-form-element__control" style="text-align:left" title="RESULT">
+                                                        <input onchange={onIEH} type="radio" id="1-5-radio-3-pass" data-id="1-5-radio-3-pass" name="1-5-radio-3" value="Pass"/> 
+                                                        <label> Pass</label>
+                                                        <input onchange={onIEH} style="margin-left: 100px;" type="radio" id="1-5-radio-3-fail" data-id="1-5-radio-3-fail" name="1-5-radio-3" value="Fail"/> 
+                                                        <label> Fail</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div  class="slds-form-element__control" title="REMARK">
+                                                        <input onchange={onIEH} type="text" id="1-5-text-4" data-id="1-5-text-4" class="slds-input" name="1-5-text-4" value=""/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-answered="false">
+                                                <td>
+                                                    <div  class="slds-form-element__control" title="ITEM">
+                                                        <input onchange={onIEH} type="text" id="1-6-text-1" data-id="1-6-text-1" class="slds-input" name="1-6-text-1" value="4" disabled/>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-form-element__control" title="SERVER FUNCTION CHECK">
+                                                        <input onchange={onIEH} type="text" id="1-6-text-2" data-id="1-6-text-2" class="slds-input" name="1-6-text-2" value="Visual inspection and cleaning" disabled/>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-form-element__control" style="text-align:left" title="RESULT">
+                                                        <input onchange={onIEH} type="radio" id="1-6-radio-3-pass" data-id="1-6-radio-3-pass" name="1-6-radio-3" value="Pass"/> 
+                                                        <label> Pass</label>
+                                                        <input onchange={onIEH} style="margin-left: 100px;" type="radio" id="1-6-radio-3-fail" data-id="1-6-radio-3-fail" name="1-6-radio-3" value="Fail"/> 
+                                                        <label> Fail</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div  class="slds-form-element__control" title="REMARK">
+                                                        <input onchange={onIEH} type="text" id="1-6-text-4" data-id="1-6-text-4" class="slds-input" name="1-6-text-4" value=""/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-answered="false">
+                                                <td>
+                                                    <div  class="slds-form-element__control" title="ITEM">
+                                                        <input onchange={onIEH} type="text" id="1-7-text-1" data-id="1-7-text-1" class="slds-input" name="1-7-text-1" value="5" disabled/>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-form-element__control" title="SERVER FUNCTION CHECK">
+                                                        <input onchange={onIEH} type="text" id="1-7-text-2" data-id="1-7-text-2" class="slds-input" name="1-7-text-2" value="Startup and function check" disabled/>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-form-element__control" style="text-align:left" title="RESULT">
+                                                        <input onchange={onIEH} type="radio" id="1-7-radio-3-pass" data-id="1-7-radio-3-pass" name="1-7-radio-3" value="Pass"/> 
+                                                        <label> Pass</label>
+                                                        <input onchange={onIEH} style="margin-left: 100px;" type="radio" id="1-7-radio-3-fail" data-id="1-7-radio-3-fail" name="1-7-radio-3" value="Fail"/> 
+                                                        <label> Fail</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div  class="slds-form-element__control" title="REMARK">
+                                                        <input onchange={onIEH} type="text" id="1-7-text-4" data-id="1-7-text-4" class="slds-input" name="1-7-text-4" value=""/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br/>
+                                <div style="text-align: right;">
+                                    <button class="slds-button slds-button_destructive" onclick={removeRow} data-id="removeRowPart1">-</button>
+                                    <button class="slds-button slds-button_brand" onclick={addRow} data-id="addRowPart1">+</button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+                
+        <!-- ********************************************************** -->
+        <!-- Body section. -->
+
+
+        <!-- For any N/A button sections, use this template
+        <input onchange={onIEH} onchange={disableSection} name="options" type="checkbox" data-id=... />
+        <label...>Label for checkbox</label>
+        -->
+
+        <!-- Button Section for Every Form -->
+        <section class="section slds-accordion__section">
+            <ul class="slds-button-group obj-right" role="group">
+                <li>
+                    <button data-id="saveEQCCStep" class="btn-save slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                        Save Draft
+                    </button>
+                </li>
+                <li>
+                    <button data-id="submitEQCCStep" class="btn-submit slds-button slds-button_brand mgr-5"
+                        onclick={openSubmitModal}>
+                        Submit
+                    </button>
+                </li>
+                <li>
+                    <button data-id="rejectEQCCStep" class="btn-reject slds-button slds-button_brand mgr-5 "
+                         onclick={openRejectModal}>
+                        Reject
+                    </button>
+                </li>
+                <li>
+                    <button data-id="recallEQCCStep" class="btn-recall slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                        Recall
+                    </button>
+                </li>
+            </ul>
+        </section>
+    </div>
+</template>

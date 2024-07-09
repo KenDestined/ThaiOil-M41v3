@@ -1,0 +1,93 @@
+<aura:component controller="CTRDisclaimerController"
+    implements="lightning:isUrlAddressable,force:lightningQuickActionWithoutHeader,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes"
+    access="global">
+    <aura:attribute name="languageList" type="List" default="[]" />
+    <aura:attribute name="selectedLanguage" type="String" />
+    <aura:attribute name="showLoading" type="Boolean" default="true" />
+    <aura:attribute name="isModalOpen" type="Boolean" default="true" />
+
+    <lightning:navigation aura:id="navService" />
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+
+    <aura:html tag="style">
+        .slds-modal__container {
+        width: 70% !important;
+        max-width: 80% !important;
+        height: 100% !important;
+        }
+        .cuf-content {
+        padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+        padding: 0rem !important;
+        }
+        .slds-modal__content {
+        overflow-y: auto !important;
+        height: unset !important;
+        max-height: unset !important;
+        }
+        .closeIcon {
+        display: none !important;
+        }
+    </aura:html>
+
+    <aura:if isTrue="{!v.showLoading}">
+        <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+    <aura:if isTrue="{!v.isModalOpen}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- HEADER -->
+                <div class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                        Disclaimer
+                    </h2>
+                </div>
+                <!-- BODY -->
+                <div class="slds-modal__content slds-var-p-around_medium">
+                    <div class="slds-grid slds-wrap slds-var-p-around_x-large slds-align_absolute-center">
+                        <div class="slds-col slds-size_3-of-12" style="text-align: right; padding-right: 10px; padding-top: 15px;">
+                          Select Language:
+                        </div>
+                        <div class="slds-col slds-size_6-of-12">
+                            <lightning:select name="selected_language"
+                                onchange="{!c.handleSelect}" 
+                                value="{!v.selectedLanguage}">
+                                <option value="">--Select Language--</option>
+                                <aura:iteration items="{!v.languageList}" var="language">
+                                    <option value="{!language.value}" selected="{!language.selected}">{!language.label}</option>
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                        <div class="slds-col slds-size_5-of-12"></div>
+                        <div class="slds-col slds-size_7-of-12">
+                            <!-- <lightning:radioGroup name="radioGroup" label="" variant="label-hidden"
+                                options="{!v.languageList}" value="{!v.selectedLanguage}" type="radio"
+                                class="radio-padding-bottom" /> -->
+
+                            <!-- <aura:iteration items="{!v.languageList}" var="language">
+                                <div class="row-option">
+                                    <lightning:input type="checkbox" name="{!'checkbox_'+language.value}"
+                                    onchange="{!c.handleSelect}" value="{!language.value}"
+                                    checked="{!language.selected}" />
+                                    <span>
+                                        {!language.label}
+                                    </span>
+                                </div>
+                            </aura:iteration> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- FOOTER -->
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="brand-outline" label="Cancel" title="Cancel"
+                        onclick="{!c.handleCancel}" />
+                    <lightning:button variant="brand" label="Download" title="Download" onclick="{!c.handleDownload}"
+                        disabled="{!!v.selectedLanguage}" />
+                </footer>
+            </div>
+        </section>
+    </aura:if>
+</aura:component>

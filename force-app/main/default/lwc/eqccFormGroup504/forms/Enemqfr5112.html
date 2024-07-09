@@ -1,0 +1,807 @@
+<template>
+    <div data-id="formBegin">
+        <c-step-page-header
+            num-steps="1"
+            current-step="1"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+
+        <!-- Modal placeholder -->
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+        <!-- END Modal Placeholder -->
+
+        <!-- ENIM-QFR-747 /Form Question = 22 -->
+
+        <!--
+            Heading area for form
+        -->
+        <div class="slds-text-heading_large slds-m-bottom_medium text-center " 
+        style="font-weight: bold; color: var(--lwc-brandAccessible, rgb(0, 112, 210));">
+            Thaioil Group
+        </div>
+        <div class="slds-text-heading_medium text-center">
+            การตรวจสอบ Mobile Generator ประจำเดือน
+        </div>
+
+        <!-- Section for Notification, FL. and Status fields -->
+        <section class="section slds-accordion__section">
+            <div class="slds-form">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_6-of-12">
+                        <span></span>
+                    </div>
+    
+                    <div class="slds-col slds-size_6-of-12">
+                        <div  class="slds-card" style="margin-left: 8px;">
+                                <label class="slds-form-element__label" for="date">Date :</label>
+                                  <div class="slds-form-element__control">
+                                    <input type="date"
+                                    data-id="date-02"  
+                                    class="slds-input avoidPercentageInput" />
+                                  </div>
+                        </div>
+                    </div>
+
+                </div>
+               
+                <div class="slds-form__row">
+                    <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                          <label class="slds-form-element__label" for="date">Notification No</label>
+                          <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                            <svg
+                                class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                                aria-hidden="true"
+                            >
+                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                            </svg>
+                            <input
+                                type="text"
+                                data-id="notification"
+                                class="slds-input avoidPercentageInput"
+                                value={notification}
+                                disabled
+                            />
+                        </div>
+                        </div>
+                      </div>
+                      <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                          <label class="slds-form-element__label" for="stacked-combobox-id-01" >Order</label>
+                          <div class="slds-form-element__control">
+                            <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                          </div>
+                        </div>
+                      </div>
+                </div>
+
+                <div class="slds-form__row">
+                    <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                            <label class="slds-form-element__label" for="stacked-combobox-id-01">FL.</label>
+                            <div class="slds-form-element__control">
+                              <input
+                              type="text"
+                              data-id="fl"
+                              class="slds-input avoidPercentageInput"
+                              value={functionalLocation}
+                              disabled
+                          />
+                            </div>
+                          </div>
+                      </div>
+                      <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                          <label class="slds-form-element__label" for="stacked-combobox-id-01">Status</label>
+                          <div class="slds-form-element__control">
+                            <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Body section. -->
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <!-- 0 -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+                        <div class="slds-accordion__summary" data-id="headingZero">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseZero"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionZero"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse"
+                                    >
+                                        A</span
+                                    ><span class="slds-accordion__summary-content" style="font-weight: bold;"> ตรวจสอบสภาพทั่วไป </span>
+                                        <span class="slds-accordion__summary-content" style="color: black;">
+                                            ตามรายการต่อไปนี้ 
+                                    </span>
+                                    
+                                </button>
+                            </h2>
+
+                        </div>
+
+                        <div data-id="collapseZero" class="slds-accordion__content">
+                            <!-- drop 1st section div -->
+                            <div class="card-body">
+                                <section data-id="1.5" class="pd-b-1" >
+                                    <div class="content">
+                                        <div class="slds-grid slds-gutters slds-scrollable_x" >  
+                                            <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="" 
+                                                        style="background-color:#DBE6F2" scope="col" ></th>
+                                                        <th class="text-center" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="Pass"  >ปกติ</div>
+                                                        </th>
+                                                        <th class="text-center" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="Edit" >ต้องแก้ไข</div>
+                                                        </th>
+                                                        <th class="text-center" 
+                                                        style="background-color:#DBE6F2"  scope="col">
+                                                            <div class="slds-form-element__label" title="Remark" >หมายเหตุ</div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                   
+                                                    <tr data-answered="false">
+                                                        <th data-label="Clean" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                              1) สภาพทั่วไปของอุปกรณ์ มีสภาพสมบูรณ์ ไม่ชำรุดเสียหาย 
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="Radio-a-1-1 ">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-1-1" data-id="radio-a-1-1"
+                                                                        name="radio-a-1" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="Radio-a-1-2">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-1-2" data-id="radio-a-1-2"
+                                                                name="radio-a-1" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-a-1-3 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-a-1-3"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <th data-label="Clean" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                                2) น๊อตยึดจุดต่างๆ ต้องขันแน่น ไม่หลุดหาย
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="Radio-a-2-1 ">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-2-1" data-id="radio-a-2-1"
+                                                                        name="radio-a-2" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="Radio-a-2-2">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-2-2" data-id="radio-a-2-2"
+                                                                name="radio-a-2" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-a-2-3 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-a-2-3"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <th data-label="Clean" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                                3) ตรวจสอบระดับน้ำมันเชื้อเพลิง
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="Radio-a-3-1 ">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-3-1" data-id="radio-a-3-1"
+                                                                        name="radio-a-3" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="Radio-3-2">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-3-2" data-id="radio-a-3-2"
+                                                                name="radio-a-3" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-a-3-3 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-a-3-3"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <th data-label="Clean" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                                4) ตรวจสอบระดับน้ำมันเครื่องยนต์
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="Radio-a-4-1">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-4-1" data-id="radio-a-4-1"
+                                                                        name="radio-a-4" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="Radio-a-4-2">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-4-2" data-id="radio-a-4-2"
+                                                                name="radio-a-4" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-a-4-3 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-a-4-3"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <th data-label="Clean" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                                5) ไม่มีการรั่วซึม ของน้ำมันเชื้อเพลิง หรือน้ำมันเครื่องยนต์
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="Radio-a-5-1">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-5-1" data-id="radio-a-5-1"
+                                                                        name="radio-a-5" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="Radio-a-5-2">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-5-2" data-id="radio-a-5-2"
+                                                                name="radio-a-5" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-a-5-3 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-a-5-3"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <th data-label="Clean" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                                6) ท่อน้ำมัน ท่อไอเสีย ไม่แตกหรือชำรุดเสียหาย 
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="Radio-a-6-1">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-6-1" data-id="radio-a-6-1"
+                                                                        name="radio-a-6" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="Radio-a-6-2">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-6-2" data-id="radio-a-6-2"
+                                                                name="radio-a-6" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-a-6-3 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-a-6-3"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <th data-label="Clean" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                                7) ระบบลากจูงและล้อรถ สามารถหมุนได้คล่องตัว ไม่ติดขัด
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="Radio-a-7-1">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-7-1" data-id="radio-a-7-1"
+                                                                        name="radio-a-7" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="Radio-a-7-2">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-7-2" data-id="radio-a-7-2"
+                                                                name="radio-a-7" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-a-7-3 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-a-7-3"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <th data-label="Clean" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                                8) สภาพแบตเตอรี่ไม่บวม ไม่บิดเบี้ยว ไม่มีรอยรั่วซึมของน้ำกลั่น 
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="Radio-a-8-1">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-8-1" data-id="radio-a-8-1"
+                                                                        name="radio-a-8" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="Radio-a-8-2">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-8-2" data-id="radio-a-8-2"
+                                                                name="radio-a-8" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-a-8-3 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-a-8-3"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <th data-label="Clean" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                                9) แบตเตอรี่มีการล็อคแน่นกับที่และขั้วต่อขันยึดแน่น
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="Radio-a-9-1">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-9-1" data-id="radio-a-9-1"
+                                                                        name="radio-a-9" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="Radio-a-9-2">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-9-2" data-id="radio-a-9-2"
+                                                                name="radio-a-9" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-a-9-3 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-a-9-3"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <th data-label="1-No-10" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                                10) ตรวจสอบระดับน้ำกลั่นแบตเตอรี่
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="1-No-10">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="1-radio-10" data-id="1-radio-10"
+                                                                        name="1-No-10" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="1-No-10">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="1-radio-11" data-id="1-radio-11"
+                                                                name="1-No-10" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="1-No-10 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="1-input-12"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <th data-label="1-No-11" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                                11) สภาพทั่วไปของสายไฟและโคมไฟฟ้า
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="1-No-11">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="1-radio-13" data-id="1-radio-13"
+                                                                        name="1-No-11" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="1-No-11">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="1-radio-14" data-id="1-radio-14"
+                                                                name="1-No-11" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="1-No-11 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="1-radio-15"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <th data-label="Clean" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                                12) สภาพโดยทั่วไปของ Support โคมไฟ และสามารถปรับระดับได้ปกติ
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="Radio-a-12-1">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-12-1" data-id="radio-a-12-1"
+                                                                        name="radio-12-4" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="Radio-10-12-2">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="radio-a-12-2" data-id="radio-12-4-2"
+                                                                name="radio-12-4" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-a-12-3 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-a-12-3"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table> 
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+
+                <!-- 1 -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionOne">
+                        <div class="slds-accordion__summary" data-id="headingOne">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseOne"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionOne"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse"
+                                    >
+                                        B</span
+                                    ><span class="slds-accordion__summary-content" style="font-weight: bold; margin-right:6px;"> ตรวจสอบการทำงาน</span>
+                                        <span class="slds-accordion__summary-content" style="color: black;"> ตามรายการต่อไปนี้ 
+                                    </span>
+                                    
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div data-id="collapseOne" class="slds-accordion__content">
+                            <!-- drop 1st section div -->
+                            <div class="card-body">
+                                <section data-id="1.5" class="pd-b-1" >
+                                    <div class="content">
+                                        <div class="slds-grid slds-gutters slds-scrollable_x" >  
+                                            <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="" 
+                                                        style="background-color:#DBE6F2" scope="col"></th>
+                                                        <th class="text-center" 
+                                                        style="background-color:#DBE6F2"  scope="col">
+                                                            <div class="slds-form-element__label" title="Pass" >ปกติ</div>
+                                                        </th>
+                                                        <th class="text-center" 
+                                                        style="background-color:#DBE6F2"  scope="col">
+                                                            <div class="slds-form-element__label" title="Edit"  >ต้องแก้ไข</div>
+                                                        </th>
+                                                        <th class="text-center" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="Remark"  >หมายเหตุ</div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                   
+                                                    <tr data-answered="false">
+                                                        <th data-label="Clean" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                              1) เครื่องยนต์สามารถสตาร์ทติดง่าย
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="Radio-b-1-1 ">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="radio-b-1-1" data-id="radio-b-1-1"
+                                                                        name="radio-b-1" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="Radio-b-1-2">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="radio-b-1-2" data-id="radio-b-1-2"
+                                                                name="radio-b-1" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-b-1-3 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-b-1-3"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <th data-label="Clean" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                                2) สภาพการทำงานทั่วไปของเครื่องยนต์ (ควันมาก, เสียงดัง, สั่นมาก)
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="Radio-b-2-1 ">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="radio-b-2-1" data-id="radio-b-2-1"
+                                                                        name="radio-b-2" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="Radio-b-2-2">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="radio-b-2-2" data-id="radio-b-2-2"
+                                                                name="radio-b-2" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-b-2-3 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-b-2-3"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <th data-label="Clean" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                                3)  เกจวัดและหลอดไฟแสดงสถานะต่างๆอยู่ในสภาพดีและแสดงได้ถูกต้อง
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="Radio-b-3-1">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="radio-b-3-1" data-id="radio-b-3-1"
+                                                                        name="radio-b-3" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="Radio-b-3-2">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="radio-b-3-2" data-id="radio-b-3-2"
+                                                                name="radio-b-3" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-b-3-3 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-b-3-3"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <th data-label="Clean" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                                4) ตรวจสอบแรงดันไฟฟ้าที่ออกจาก Generator 
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="Radio-b-4-1 ">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="radio-b-4-1" data-id="radio-b-4-1"
+                                                                        name="radio-b-4" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="Radio-b-4-2">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="radio-b-4-2" data-id="radio-b-4-2"
+                                                                name="radio-b-4" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-b-4-3 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="4-3-input-4"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+
+                                                    <tr data-answered="false">
+                                                        <th data-label="Clean" scope="row">
+                                                            <div class="slds-truncate" title="Cloudhub">
+                                                                5) ทดสอบการทำงานของโคมไฟฟ้า
+                                                            </div>
+                                                        </th>
+                                                          <td data-label="Radio-b-5-1 ">
+                                                            <div class="slds-truncate text-center" title="Pass">
+                                                                <input onchange={onIEH} type="radio" id="radio-b-5-1" data-id="radio-b-5-1"
+                                                                        name="radio-b-5" value="Pass" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="Radio-b-5-2">
+                                                            <div class="slds-truncate text-center" title="Edit">
+                                                                <input onchange={onIEH} type="radio" id="radio-b-5-2" data-id="radio-b-5-2"
+                                                                name="radio-b-5" value="Edit" />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-b-5-3 text-center">
+                                                            <div class="slds-truncate" title="Remark">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-b-5-3"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table> 
+                                        </div>
+                                    </div>
+                                </section>
+                                <section data-id="1.10" class="pd-b-1" >
+                                    <div class="slds-form" role="list">
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item" role="listitem">
+                                              <div class="slds-form-element slds-form-element_horizontal slds-is-editing slds-form-element_1-col">
+                                                <label class="slds-form-element__label" for="horizontal-form-element-id-14">Remark :</label>
+                                                <div class="slds-form-element__control">
+                                                    <textarea id="horizontal-form-element-id-14" 
+                                                            onchange={onIEH}
+                                                            data-id="1-remark-text-1"
+                                                            rows = "5"
+                                                            style="width: 100%;">
+                                                    </textarea>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <!-- 2 -->
+            </ul>
+        </div>
+
+        <!-- For any N/A button sections, use this template
+        <input onchange={onIEH} onchange={disableSection} name="options" type="checkbox" data-id=... />
+        <label...>Label for checkbox</label>
+        -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5 custom-save-button" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5 custom-submit-button" onclick={openSubmitModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5 custom-reject-button" onclick={openRejectModal}>
+                    Reject
+                </button>
+                <button data-id="recallEQCCStep" class="slds-button slds-button_brand custom-recall-button" disabled onclick={openRecallModal}>
+                    Recall
+                </button>
+            </div>
+        </section>
+    </div>
+</template>

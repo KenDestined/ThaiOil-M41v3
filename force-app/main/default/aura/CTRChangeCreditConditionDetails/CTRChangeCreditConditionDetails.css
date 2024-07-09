@@ -1,0 +1,48 @@
+.THIS .textAreaClass .slds-textarea{
+    height:150px;
+}
+
+.THIS .help-txt-hidden .slds-form-element__icon {
+    display: none !important;
+}
+
+.THIS .custom-help-txt .slds-form-element__icon {
+    padding-top: 1px;
+}
+
+.THIS .custom-help-std .slds-form-element__icon {
+    padding-left: 23%;
+    padding-top: 7px;
+}
+
+.THIS .horizontal_form {
+    margin-left: 2.8%;
+    padding-left: 1%;
+    margin-bottom: var(--lwc-spacingXSmall, 0.5rem);
+}
+
+.THIS .padding-left-label {
+    padding-left: 6%;
+}
+
+.THIS .sub-label-margin {
+    margin-left: 13%;
+    margin-right: 1%;
+    margin-block: auto;
+}
+
+.THIS .slds-hidden {
+    height: 0px;
+}
+
+.THIS .readonly-as-input .slds-input[readonly] {
+    --slds-c-input-spacing-horizontal-start: unset;
+    --slds-c-input-color-border: unset;
+    --slds-c-input-color-background: unset;
+    font-size: unset;
+    font-weight: unset;
+}
+
+.THIS .custom-label-hidden .slds-form-element__label {
+    display: none !important;
+}

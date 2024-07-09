@@ -1,0 +1,60 @@
+<apex:page
+  controller="ICR_DashboardController"
+  standardStylesheets="true"
+  lightningStylesheets="true"
+  sidebar="false"
+  showHeader="false"
+  applyHtmlTag="true"
+  applyBodyTag="false"
+  docType="html-5.0"
+  language="th"
+>
+  <apex:form>
+    <apex:actionFunction
+      name="TestCal"
+      action="{!TestFunction}"
+      reRender="rawDataPanel"
+      oncomplete="window.getData();"
+    />
+  </apex:form>
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="/favicon.ico"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Svelte + TS + Vite App</title>
+    <script type="module" crossorigin src="/assets/ManHoursTotal.js"></script>
+    <link rel="modulepreload" href="/assets/vendor.js">
+    <link rel="modulepreload" href="/assets/BaseDropdown.js">
+    <link rel="modulepreload" href="/assets/dataManagementTabs.js">
+    <link rel="modulepreload" href="/assets/ExportButton.js">
+    <link rel="stylesheet" href="/assets/BaseDropdown.css">
+    <link rel="stylesheet" href="/assets/ExportButton.css">
+    <link rel="stylesheet" href="/assets/ManHoursRestrictedZone.css">
+  </head>
+
+  <body>
+    <apex:outputPanel id="rawDataPanel">
+      <div
+        id="rawData"
+        style="display: none"
+      >
+        {"companies":[{"id":"1","name":"TOP","workType":{"staff":{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}},"contractor":{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}}}},{"id":"2","name":"TLB","workType":{"staff":{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}},"contractor":{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}}}},{"id":"3","name":"TPX","workType":{"staff":{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}},"contractor":{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}}}},{"id":"4","name":"LABIX","workType":{"staff":{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}},"contractor":{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}}}},{"id":"5","name":"TOP SPP","workType":{"staff":{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}},"contractor":{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}}}},{"id":"6","name":"TPX","workType":{"staff":{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}},"contractor":{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}}}}]}
+        <!-- {!jsonTWs} -->
+      </div>
+    </apex:outputPanel>
+    <div id="app"></div>
+    
+  </body>
+
+  </html>
+</apex:page>

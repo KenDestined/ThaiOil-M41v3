@@ -1,0 +1,26 @@
+.THIS .slds-textarea[disabled] { background-color: #f3f3f3; }
+.THIS .slds-is-disabled { background-color: #f3f3f3 !important; }
+.THIS .tooltipFormat {
+	position: absolute;
+	bottom: 1.5rem;
+	left: -14px;
+}
+
+.THIS .popup_Class {
+    width: 300px;
+}
+
+.THIS .responsive-col {
+	display: grid;
+    align-items: flex-end;
+    height: 100%;
+}
+
+.THIS .responsive-block {
+	display: flex;
+    flex-direction: column;
+}
+
+.THIS .padding-help .slds-form-element__icon {
+	padding-top: 1px;
+}

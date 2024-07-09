@@ -1,0 +1,1149 @@
+<template>
+  <div data-id="formBegin">
+    <c-step-page-header num-steps="1" current-step="1" percentage={percentage} is-current={isCurrent}
+      record-id={recordId}></c-step-page-header>
+
+    <!-- Modal placeholder -->
+    <c-lwc-modal title={modalTitle} is-visible={modalVisible} confirm-text={modalConfirmButton}
+      cancel-text={modalCancelButton} name={modalName} message={modalMessage} onselected={handleModalSelection}>
+    </c-lwc-modal>
+    <!-- END Modal Placeholder -->
+
+    <div class="slds-text-heading_medium text-center">ENEM-QFR-1100-TRA</div>
+    <div class="slds-text-heading_medium text-center">POWER TRANSFORMER INSPECTION AND TEST RECORD</div>
+
+    <!-- Section for Notification, FL. and Status fields -->
+    <section class="section slds-accordion__section">
+
+      <div class="slds-form">
+        <div class="slds-form__row">
+          <div class="slds-form__item">
+            <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+              <label class="slds-form-element__label" for="tank-no">Notification No</label>
+              <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                <svg class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                  aria-hidden="true">
+                  <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                </svg>
+                <input type="text" data-id="notification" class="slds-input avoidPercentageInput" value={notification} disabled />
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item">
+            <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+              <label class="slds-form-element__label" for="stacked-combobox-id-01">Order</label>
+              <div class="slds-form-element__control">
+                <input type="text" data-id="order" class="slds-input avoidPercentageInput" value={order} disabled />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slds-form__row">
+          <div class="slds-form__item">
+            <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+              <label class="slds-form-element__label" for="stacked-combobox-id-01">FL.</label>
+              <div class="slds-form-element__control">
+                <input type="text" data-id="fl" class="slds-input avoidPercentageInput" value={functionalLocation} disabled />
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item">
+            <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+              <label class="slds-form-element__label" for="stacked-combobox-id-01">Status</label>
+              <div class="slds-form-element__control">
+                <input type="text" data-id="status" class="slds-input avoidPercentageInput" value={formStatus}
+                  disabled />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Body section. -->
+    <div class="bs-example">
+      <ul class="slds-accordion">
+        <!-- 0 -->
+        <li class="slds-accordion__list-item">
+          <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+            <div class="slds-accordion__summary" data-id="headingZero">
+              <h2 class="slds-accordion__summary-heading card-header">
+                <button type="button" aria-controls="collapseZero" aria-expanded="true" class="btn btn-link"
+                  data-parent="sectionZero" onclick={expandSection}>
+                  <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small"
+                    class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small">
+                  </lightning-icon>
+                  <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                    class="slds-badge slds-badge_inverse">
+                    A</span><span class="slds-accordion__summary-content" style="font-weight: bold;"> Header Section
+                  </span>
+                </button>
+              </h2>
+
+            </div>
+
+            <div data-id="collapseZero" class="slds-accordion__content">
+              <!-- drop 1st section div -->
+              <div class="card-body">
+                <section data-id="1.5" class="pd-b-1">
+                  <div class="slds-form__row">
+                    <div class="slds-form__item">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="stacked-combobox-id-01">Date :</label>
+                        <div class="slds-form-element__control">
+                          <input type="date" data-id="0-input-1" class="slds-input avoidPercentageInput" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slds-form__row">
+                    <div class="slds-form__item">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="stacked-combobox-id-01">Substation :</label>
+                        <div class="slds-form-element__control">
+                          <input type="text" data-id="0-input-2" class="slds-input avoidPercentageInput" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-form__item">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="stacked-combobox-id-01">Service :</label>
+                        <div class="slds-form-element__control">
+                          <input type="text" data-id="0-input-3" class="slds-input avoidPercentageInput" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slds-form__row">
+                    <div class="slds-form__item">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="stacked-combobox-id-01">Maker :</label>
+                        <div class="slds-form-element__control">
+                          <input type="text" data-id="0-input-4" class="slds-input avoidPercentageInput" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-form__item">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="stacked-combobox-id-01">Type :</label>
+                        <div class="slds-form-element__control">
+                          <input type="text" data-id="0-input-5"  class="slds-input avoidPercentageInput" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slds-form__row">
+                    <div class="slds-form__item">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="stacked-combobox-id-01">Serial No. :</label>
+                        <div class="slds-form-element__control">
+                          <input type="text" data-id="0-input-6" class="slds-input avoidPercentageInput" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-form__item">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="stacked-combobox-id-01">Rating (KVA.) :</label>
+                        <div class="slds-form-element__control">
+                          <input type="text" data-id="0-input-7" class="slds-input avoidPercentageInput" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slds-form__row">
+                    <div class="slds-form__item">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="stacked-combobox-id-01">Voltage ratio (V.) :</label>
+                        <div class="slds-form-element__control">
+                          <input type="text" data-id="0-input-8" class="slds-input avoidPercentageInput" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-form__item">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="stacked-combobox-id-01">CT. ratio (A.) :</label>
+                        <div class="slds-form-element__control">
+                          <input type="text" data-id="0-input-9" class="slds-input avoidPercentageInput" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slds-form__row">
+                    <div class="slds-form__item">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="stacked-combobox-id-01">Vector group :</label>
+                        <div class="slds-form-element__control">
+                          <input type="text" data-id="0-input-10" class="slds-input avoidPercentageInput" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-form__item">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="stacked-combobox-id-01">Impedance (%) :</label>
+                        <div class="slds-form-element__control">
+                          <input type="text" data-id="0-input-11" class="slds-input avoidPercentageInput" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slds-form__row">
+                    <div class="slds-form__item">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="stacked-combobox-id-01">Enclosure : </label>
+                        <div class="slds-form-element__control">
+                          <div class="slds-checkbox">
+                            <input type="checkbox" name="Seal" data-id="0-input-12"
+                              value="Seal"/>
+                            <label class="slds-checkbox__label" for="Seal">
+                              <span class="slds-checkbox_faux"></span>
+                              <span class="slds-form-element__label">Seal</span>
+                            </label>
+                            <input type="checkbox" name="Breathing" data-id="0-input-13"
+                              value="Breathing" />
+                            <label class="slds-checkbox__label" for="Breathing">
+                              <span class="slds-checkbox_faux"></span>
+                              <span class="slds-form-element__label">Breathing</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </section>
+        </li>
+
+        <!-- 1 -->
+        <li class="slds-accordion__list-item">
+          <section class="slds-accordion__section" data-id="sectionOne">
+            <div class="slds-accordion__summary" data-id="headingOne">
+              <h2 class="slds-accordion__summary-heading card-header">
+                <button type="button" aria-controls="collapseOne" aria-expanded="true" class="btn btn-link"
+                  data-parent="sectionOne" onclick={expandSection}>
+                  <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small"
+                    class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left">
+                  </lightning-icon>
+                  <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                    class="slds-badge slds-badge_inverse">B</span><span class="slds-accordion__summary-content" style="font-weight: bold;"> Test
+                    Result</span>
+                </button>
+              </h2>
+            </div>
+
+            <div data-id="collapseOne" class="slds-accordion__content">
+              <!-- drop 1st section div -->
+              <div class="card-body">
+                <section data-id="1.5" class="pd-b-1">
+                  <div class="content">
+                    <div class="slds-form-element__control" style="margin-bottom: 12px;">
+                      <span class="slds-radio" style="margin-bottom: 12px;">
+                        <input type="radio" id="p1" value="p1" name="default" checked="" onchange={pageChange1} />
+                        <label class="slds-radio__label" for="p1">
+                          <span class="slds-radio_faux"></span>
+                          <span class="slds-form-element__label">P1</span>
+                        </label>
+                      </span>
+                      <span class="slds-radio">
+                        <input type="radio" id="p2" value="p2" name="default" onchange={pageChange2} />
+                        <label class="slds-radio__label" for="p2">
+                          <span class="slds-radio_faux"></span>
+                          <span class="slds-form-element__label">P2</span>
+                        </label>
+                      </span>
+                    </div>
+                    <div class="slds-grid slds-gutters slds-scrollable_x" style="margin-bottom: 12px;">
+                      <table class="slds-table slds-table_cell-buffer"
+                        aria-labelledby="element-with-table-label other-element-with-table-label">
+                        <thead>
+                          <tr>
+                            <th class="" scope="col" style="background-color:#F3F3F3"></th>
+                            <th class="text-center" scope="col" style="background-color:#F3F3F3">
+                              <div class="slds-form-element__label" title="test">Test voltage (Volts)</div>
+                            </th>
+                            <th class="text-center" scope="col" style="background-color:#F3F3F3">
+                              <div class="slds-form-element__label" title="1min">1 Min. (Meg. Ohms)</div>
+                            </th>
+                            <th class="text-center" scope="col" style="background-color:#F3F3F3">
+                              <div class="slds-form-element__label" title="10min">10 Min. (Meg. Ohms)</div>
+                            </th>
+                            <th class="text-center" scope="col" style="background-color:#F3F3F3">
+                              <div class="slds-form-element__label" title="pi">PI</div>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th colspan="5" style="background-color:#DBE6F2; font-weight:bold;" scope="col">1.
+                              Insulation test</th>
+                          </tr>
+                          <tr data-answered="false">
+                            <th data-label="Clean" scope="row">
+                              <ul class="slds-list_horizontal">
+                                <li>HV. winding (</li>
+                                <li>
+                                  <div class="slds-form-element__control">
+                                    <div class="slds-checkbox">
+                                      <input type="checkbox" name="Inc"                             id="checkbox-unique-id-1"
+                                      data-id="checkbox-unique-id-1"
+                                      data-remark="checkbox-unique-id-1"
+                                      value="checkbox-unique-id-1" />
+                                      <label class="slds-checkbox__label" for="checkbox-hv-test-1">
+                                        <span class="slds-checkbox_faux"></span>
+                                        <span class="slds-form-element__label">Inc</span>
+                                      </label>
+                                      <input type="checkbox" name="Excl"                             id="1-checkbox-1"
+                                      data-id="1-checkbox-1"
+                                      data-remark="1-checkbox-1"
+                                      value="Inc"/>
+                                      <label class="slds-checkbox__label" for="checkbox-hv-test-2">
+                                        <span class="slds-checkbox_faux"></span>
+                                        <span class="slds-form-element__label">Excl. cable)</span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li>to earth</li>
+                              </ul>
+                            </th>
+                            <td data-label="hv-test-1-1">
+                              <div class="slds-truncate text-center" title="hv-test-1-1">
+                                <input type="text" id="1-input-2" data-id="1-input-2" name="hv-test-1-1" />
+                              </div>
+                            </td>
+                            <td data-label="hv-test-1-1">
+                              <div class="slds-truncate text-center" title="Pass">
+                                <input type="text" id="1-input-3" data-id="1-input-3" name="h1-input-3" />
+                              </div>
+                            </td>
+                            <td data-label="hv-test-1-3">
+                              <div class="slds-truncate text-center" title="hv-test-1-3">
+                                <input type="text" id="1-input-4" data-id="1-input-4" name="1-input-4" />
+                              </div>
+                            </td>
+                            <td data-label="hv-test-1-4">
+                              <div class="slds-truncate text-center" title="hv-test-1-4">
+                                <input type="text" id="1-input-5" data-id="1-input-5" name="1-input-5" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr data-answered="false">
+                            <th data-label="Clean" scope="row">
+                              <ul class="slds-list_horizontal">
+                                <li>LV. winding (</li>
+                                <li>
+                                  <div class="slds-form-element__control">
+                                    <div class="slds-checkbox">
+                                      <input type="checkbox" name="Inc" id="1-checkbox-6" data-id="1-checkbox-6" value="Lv. winding Inc" />
+                                      <label class="slds-checkbox__label" for="checkbox-lv-test-1">
+                                        <span class="slds-checkbox_faux"></span>
+                                        <span class="slds-form-element__label">Inc</span>
+                                      </label>
+                                      <input type="checkbox" name="Excl" id="1-checkbox-7" data-id="1-checkbox-7" value="Lv. winding Excl." />
+                                      <label class="slds-checkbox__label" for="checkbox-lv-test-2">
+                                        <span class="slds-checkbox_faux"></span>
+                                        <span class="slds-form-element__label">Excl. cable)</span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li>to earth</li>
+                              </ul>
+                            </th>
+                            <td data-label="hv-test-2-1">
+                              <div class="slds-truncate text-center" title="hv-test-2-1">
+                                <input type="text" id="1-input-8" data-id="1-input-8" name="lv-test-2-1" />
+                              </div>
+                            </td>
+                            <td data-label="lv-test-2-2">
+                              <div class="slds-truncate text-center" title="Pass">
+                                <input type="text" id="1-input-9" data-id="1-input-9" name="lv-test-2-2" />
+                              </div>
+                            </td>
+                            <td data-label="lv-test-2-3">
+                              <div class="slds-truncate text-center" title="lv-test-2-3">
+                                <input type="text" id="1-input-10" data-id="1-input-10" name="hv-test-2-3" />
+                              </div>
+                            </td>
+                            <td data-label="lv-test-2-4">
+                              <div class="slds-truncate text-center" title="hv-test-2-4">
+                                <input type="text" id="1-input-11" data-id="1-input-11" name="hv-test-2-4" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr data-answered="false">
+                            <th data-label="Clean" scope="row" colspan="5">
+                              <ul class="slds-list_horizontal">
+                                <li>HV. winding (</li>
+                                <li>
+                                  <div class="slds-form-element__control">
+                                    <div class="slds-checkbox">
+                                      <input type="checkbox" name="Inc" id="1-checkbox-12" data-id="1-checkbox-12"
+                                        value="Hv. winding Inc" />
+                                      <label class="slds-checkbox__label" for="checkbox-hv-lv-test-1">
+                                        <span class="slds-checkbox_faux"></span>
+                                        <span class="slds-form-element__label">Inc</span>
+                                      </label>
+                                      <input type="checkbox" name="Excl" id="1-checkbox-13" data-id="1-checkbox-13"
+                                        value="Hv. winding Excl" />
+                                      <label class="slds-checkbox__label" for="checkbox-hv-lv-test-2">
+                                        <span class="slds-checkbox_faux"></span>
+                                        <span class="slds-form-element__label">Excl. cable)</span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li>to LV.</li>
+                              </ul>
+                            </th>
+                          </tr>
+                          <tr data-answered="false">
+                            <th data-label="Clean" scope="row" style="padding-bottom:12px;">
+                              <ul class="slds-list_horizontal">
+                                <li>Winding (</li>
+                                <li>
+                                  <div class="slds-form-element__control">
+                                    <div class="slds-checkbox">
+                                      <input type="checkbox" name="Inc" id="1-checkbox-14" data-id="1-checkbox-14"
+                                        value="Winding Inc"  />
+                                      <label class="slds-checkbox__label" for="checkbox-winding-test-1">
+                                        <span class="slds-checkbox_faux"></span>
+                                        <span class="slds-form-element__label">Inc</span>
+                                      </label>
+                                      <input type="checkbox" name="Excl" id="1-checkbox-15" data-id="1-checkbox-15"
+                                        value="Winding Excl." />
+                                      <label class="slds-checkbox__label" for="checkbox-winding-test-2">
+                                        <span class="slds-checkbox_faux"></span>
+                                        <span class="slds-form-element__label">Excl. cable)</span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                </li>
+                              </ul>
+                            </th>
+                            <td data-label="winding-test-2-1">
+                              <div class="slds-truncate text-center" title="winding-test-2-1">
+                                <input type="text" id="1-input-16" data-id="1-input-16"
+                                  name="1-input-16" />
+                              </div>
+                            </td>
+                            <td data-label="winding-test-2-2">
+                              <div class="slds-truncate text-center" title="Pass">
+                                <input type="text" id="1-input-17" data-id="1-input-17" />
+                              </div>
+                            </td>
+                            <td data-label="winding-test-2-3">
+                              <div class="slds-truncate text-center" title="winding-test-2-3">
+                                <input type="text" id="1-input-18" data-id="1-input-18" />
+                              </div>
+                            </td>
+                            <td data-label="winding-test-2-4">
+                              <div class="slds-truncate text-center" title="hv-test-2-4">
+                                <input type="text" id="1-input-19" data-id="1-input-19"
+                                  name="1-input-19" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr data-answered="false">
+                            <th data-label="Hv. cable" scope="row" colspan="5">
+                              <div class="slds-truncate" title="Hv. cable"
+                                style="font-weight:bold ; text-decoration:underline; ">
+                                HV. cable
+                              </div>
+                            </th>
+                          </tr>
+                          <tr data-answered="false">
+                            <th data-label="Hv. cable" scope="row">
+                              <div>
+                                <span style="margin-right: 6px;">No.</span>
+                                  <input type="text" id="1-input-20" data-id="1-input-20" style="margin-right: 6px; margin-bottom:12px;" />
+                                <span>R = Y+B+E</span>
+                              </div>
+                            </th>
+                            <td data-label="no-r-1-1">
+                              <div class="slds-truncate text-center " title="no-r-1-1">
+                                <input type="text" id="1-input-21" data-id="1-input-21" />
+                              </div>
+                            </td>
+                            <td data-label="no-r-1-2">
+                              <div class="slds-truncate text-center " title="no-r-1-2">
+                                <input type="text" id="1-input-22" data-id="1-input-22" />
+                              </div>
+                            </td>
+                            <td data-label="no-r-1-3 ">
+                              <div class="slds-truncate text-center" title="no-r-1-3">
+                                <input type="text" id="1-input-23" data-id="1-input-23" />
+                              </div>
+                            </td>
+                            <td data-label="no-r-1-4 ">
+                              <div class="slds-truncate text-center" title="no-r-1-4">
+                                <input type="text" id="1-input-24" data-id="1-input-24" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr data-answered="false">
+                            <th data-label="Hv. cable" scope="row">
+                              <div>
+                                <span style="margin-right: 6px;">No.</span>
+                                  <input type="text" id="1-input-25" data-id="1-input-25" style="margin-right: 6px; margin-bottom:12px;" />
+                                <span>Y = R+B+E</span>
+                              </div>
+                            </th>
+                            <td data-label="no-y-1-1">
+                              <div class="slds-truncate text-center " title="no-y-1-1">
+                                <input type="text" id="1-input-26" data-id="1-input-26" />
+                              </div>
+                            </td>
+                            <td data-label="no-y-1-2">
+                              <div class="slds-truncate text-center " title="no-y-1-2">
+                                <input type="text" id="1-input-27" data-id="1-input-27" />
+                              </div>
+                            </td>
+                            <td data-label="no-y-1-3 ">
+                              <div class="slds-truncate text-center" title="no-y-1-3">
+                                <input type="text" id="1-input-28" data-id="1-input-28" />
+                              </div>
+                            </td>
+                            <td data-label="no-y-1-4 ">
+                              <div class="slds-truncate text-center" title="no-y-1-4">
+                                <input type="text" id="1-input-29" data-id="1-input-29" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr data-answered="false">
+                            <th data-label="Hv. cable" scope="row">
+                              <div>
+                                <span style="margin-right: 6px;">No.</span>
+                                <input type="text" id="1-input-30" data-id="1-input-30" style="margin-right: 6px; margin-bottom:12px;" />
+                                <span>B = R+Y+E</span>
+                              </div>
+                            </th>
+                            <td data-label="no-b-1-1">
+                              <div class="slds-truncate text-center " title="no-b-1-1">
+                                <input type="text" id="1-input-31" data-id="1-input-31" />
+                              </div>
+                            </td>
+                            <td data-label="no-y-1-2">
+                              <div class="slds-truncate text-center " title="no-b-1-2">
+                                <input type="text" id="1-input-32" data-id="1-input-32" />
+                              </div>
+                            </td>
+                            <td data-label="no-y-1-3 ">
+                              <div class="slds-truncate text-center" title="no-b-1-3">
+                                <input type="text" id="1-input-33" data-id="1-input-33" />
+                              </div>
+                            </td>
+                            <td data-label="no-b-1-4 ">
+                              <div class="slds-truncate text-center" title="no-b-1-4">
+                                <input type="text" id="1-input-34" data-id="1-input-34" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr data-answered="false">
+                            <th data-label="Hv. cable" scope="row" colspan="5" style="padding-bottom:12px;">
+                              <div>
+                                <span style="margin-right: 6px;">Size</span>
+                                <input type="text" id="1-input-35" data-id="1-input-35" />
+                              </div>
+                            </th>
+                          </tr>
+                          <tr data-answered="false">
+                            <th data-label="Lv. cable" scope="row" colspan="5">
+                              <div class="slds-truncate" title="Lv. cable"
+                                style="font-weight:bold ; text-decoration:underline;">
+                                LV. cable
+                              </div>
+                            </th>
+                          </tr>
+                          <tr data-answered="false">
+                            <th data-label="Lv. cable" scope="row">
+                              <div>
+                                <span style="margin-right: 6px;">No.</span>
+                                <input type="text" id="1-input-36" data-id="1-input-36" style="margin-right: 6px; margin-bottom:12px;" />
+                                <template if:true={showTextP1}>
+                                  <span>R = Y+B+E</span>
+                                </template>
+                                <template if:true={showTextP2}>
+                                  <span>R = Y+E+N+B</span>
+                                </template>
+                              </div>
+                            </th>
+                            <td data-label="no-r-2-1">
+                              <div class="slds-truncate text-center " title="no-r-2-1">
+                                <input type="text" id="1-input-37" data-id="1-input-37" />
+                              </div>
+                            </td>
+                            <td data-label="no-r-2-2">
+                              <div class="slds-truncate text-center " title="no-r-2-2">
+                                <input type="text" id="1-input-38" data-id="1-input-38" />
+                              </div>
+                            </td>
+                            <td data-label="no-r-2-3">
+                              <div class="slds-truncate text-center" title="no-r-2-3">
+                                <input type="text" id="1-input-39" data-id="1-input-39"/>
+                              </div>
+                            </td>
+                            <td data-label="no-r-2-4 ">
+                              <div class="slds-truncate text-center" title="no-r-2-4">
+                                <input type="text" id="1-input-40" data-id="no-r-2-4" name="no-r-2-4" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr data-answered="false">
+                            <th data-label="Lv. cable" scope="row">
+                              <div>
+                                <span style="margin-right: 6px;">No.</span>
+                                <input type="text" id="1-input-41" data-id="1-input-41" style="margin-right: 6px; margin-bottom:12px;" />
+                                <template if:true={showTextP1}>
+                                  <span>Y = R+B+E</span>
+                                </template>
+                                <template if:true={showTextP2}>
+                                  <span>Y = R+B+N+E</span>
+                                </template>
+
+                              </div>
+                            </th>
+                            <td data-label="no-y-2-1">
+                              <div class="slds-truncate text-center " title="no-y-2-1">
+                                <input type="text" id="1-input-42" data-id="1-input-42" name="1-input-42" />
+                              </div>
+                            </td>
+                            <td data-label="no-y-2-2">
+                              <div class="slds-truncate text-center " title="no-y-2-2">
+                                <input type="text" id="1-input-43" data-id="1-input-43" />
+                              </div>
+                            </td>
+                            <td data-label="no-y-2-3 ">
+                              <div class="slds-truncate text-center" title="no-y-2-3">
+                                <input type="text" id="1-input-44" data-id="1-input-44" />
+                              </div>
+                            </td>
+                            <td data-label="no-y-2-4 ">
+                              <div class="slds-truncate text-center" title="no-y-2-4">
+                                <input type="text" id="1-input-45" data-id="1-input-45" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr data-answered="false">
+                            <th data-label="Lv. cable" scope="row">
+                              <div>
+                                <span style="margin-right: 6px;">No.</span>
+                                <input type="text" id="1-input-46" data-id="1-input-46"
+                                  style="margin-right: 6px; margin-bottom:12px;" />
+                                <template if:true={showTextP1}>
+                                  <span>B = R+Y+E</span>
+                                </template>
+                                <template if:true={showTextP2}>
+                                  <span>B = R+Y+N+E</span>
+                                </template>
+                              </div>
+                            </th>
+                            <td data-label="no-b-2-1">
+                              <div class="slds-truncate text-center " title="no-b-2-1">
+                                <input type="text" id="1-input-47" data-id="1-input-47"/>
+                              </div>
+                            </td>
+                            <td data-label="no-b-2-2">
+                              <div class="slds-truncate text-center " title="no-b-2-2">
+                                <input type="text" id="1-input-48" data-id="1-input-48" />
+                              </div>
+                            </td>
+                            <td data-label="no-y-2-3 ">
+                              <div class="slds-truncate text-center" title="no-b-2-3">
+                                <input type="text" id="1-input-49" data-id="1-input-49" />
+                              </div>
+                            </td>
+                            <td data-label="no-b-2-4 ">
+                              <div class="slds-truncate text-center" title="no-b-2-4">
+                                <input type="text" id="no-b-2-4" data-id="1-input-50" />
+                              </div>
+                            </td>
+                          </tr>
+                          <!-- Type N -->
+                          <template if:true={showTextP2}>
+                            <tr data-answered="false">
+                              <th data-label="Lv. cable" scope="row">
+                                <div>
+                                  <span style="margin-right: 6px;">No.</span>
+                                  <input type="text" id="no-n-2" data-id="no-r-2" name="no-n-2"
+                                    style="margin-right: 6px; margin-bottom:12px;" />
+                                  <span>N = R+Y+B+E</span>
+                                </div>
+                              </th>
+                              <td data-label="no-n-2-1">
+                                <div class="slds-truncate text-center " title="no-n-2-1">
+                                  <input type="text" id="1-input-51" data-id="1-input-51" />
+                                </div>
+                              </td>
+                              <td data-label="no-n-2-2">
+                                <div class="slds-truncate text-center " title="no-n-2-2">
+                                  <input type="text" id="1-input-52" data-id="1-input-52"/>
+                                </div>
+                              </td>
+                              <td data-label="no-r-2-3 ">
+                                <div class="slds-truncate text-center" title="no-r-2-3">
+                                  <input type="text" id="1-input-53" data-id="1-input-53"/>
+                                </div>
+                              </td>
+                              <td data-label="no-r-2-4 ">
+                                <div class="slds-truncate text-center" title="no-n-2-4">
+                                  <input type="text" id="1-input-54" data-id="1-input-54"/>
+                                </div>
+                              </td>
+                            </tr>
+                          </template>
+                          <tr data-answered="false">
+                            <th data-label="Hv. cable" scope="row" colspan="5">
+                              <div>
+                                <span style="margin-right: 6px;">Size</span>
+                                <input type="text" id="1-input-55" data-id="1-input-55" />
+                              </div>
+                            </th>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="slds-grid slds-gutters slds-scrollable_x" style="margin-bottom: 12px;">
+                      <table class="slds-table slds-table_cell-buffer"
+                        aria-labelledby="element-with-table-label other-element-with-table-label">
+                        <thead>
+                          <tr>
+                            <th class="" scope="col" style="background-color:#F3F3F3"></th>
+                            <th class="text-center" scope="col" style="background-color:#F3F3F3">
+                              <div class="slds-form-element__label" title="test">1st (kV.)</div>
+                            </th>
+                            <th class="text-center" scope="col" style="background-color:#F3F3F3">
+                              <div class="slds-form-element__label" title="1min">2nd (kV.)</div>
+                            </th>
+                            <th class="text-center" scope="col" style="background-color:#F3F3F3">
+                              <div class="slds-form-element__label" title="10min">3rd (kV.)</div>
+                            </th>
+                            <th class="text-center" scope="col" style="background-color:#F3F3F3">
+                              <div class="slds-form-element__label" title="pi">4th (kV.)</div>
+                            </th>
+                            <th class="text-center" scope="col" style="background-color:#F3F3F3">
+                              <div class="slds-form-element__label" title="pi">5th (kV.)</div>
+                            </th>
+                            <th class="text-center" scope="col" style="background-color:#F3F3F3">
+                              <div class="slds-form-element__label" title="pi">Average (kV.)</div>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th colspan="7" style="background-color:#DBE6F2; font-weight:bold;" scope="col">2. Oil
+                              dielectric strength test</th>
+                          </tr>
+                          <tr data-answered="false">
+                            <th data-label="Hv. cable" scope="row">
+                              <div class="slds-truncate" title="breakDown">
+                                Break down
+                              </div>
+                            </th>
+                            <td data-label="break-1">
+                              <div class="slds-truncate text-center " title="break-1">
+                                <input type="text" id="1-input-56" data-id="1-input-56" name="break-1" style="width: 90%;" />
+                              </div>
+                            </td>
+
+                            <td data-label="break-2">
+                              <div class="slds-truncate text-center " title="break-2">
+                                <input type="text" id="1-input-57" data-id="1-input-57" name="break-2" style="width: 90%;" />
+                              </div>
+                            </td>
+
+                            <td data-label="break-3">
+                              <div class="slds-truncate text-center " title="break-3">
+                                <input type="text" id="1-input-58" data-id="1-input-58" name="break-3" style="width: 90%;" />
+                              </div>
+                            </td>
+
+                            <td data-label="break-1">
+                              <div class="slds-truncate text-center " title="break-4">
+                                <input type="text" id="1-input-59" data-id="1-input-59" name="break-4" style="width: 90%;" />
+                              </div>
+                            </td>
+
+                            <td data-label="break-5">
+                              <div class="slds-truncate text-center " title="break-5">
+                                <input type="text" id="1-input-60" data-id="1-input-60" name="break-5" style="width: 90%;" />
+                              </div>
+                            </td>
+
+                            <td data-label="break-1">
+                              <div class="slds-truncate text-center " title="break-avg">
+                                <input type="text" id="1-input-61" data-id="1-input-61" name="break-avg"
+                                  style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="slds-grid slds-gutters slds-scrollable_x" style="margin-bottom: 12px;">
+                      <table class="slds-table slds-table_cell-buffer slds-table_header-hidden"
+                        aria-label=" Example headless table of Opportunities with no borders ">
+                        <tbody>
+                          <tr class="slds-hint-parent">
+                            <th data-label="Title" scope="row" colspan="2"
+                              style="background-color:#DBE6F2; font-weight:bold;">
+                              <div class="slds-truncate" title="General">
+                                3. General inspection :
+                              </div>
+                            </th>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="silica" scope="row">
+                              <div class="slds-truncate" title="Silica">
+                                Check silica gel condition
+                              </div>
+                            </th>
+                            <td data-label="silica">
+                              <div class="slds-truncate text-center " title="silica">
+                                <input type="text" id="1-input-62" data-id="1-input-62" name="silica" style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="oil" scope="row">
+                              <div class="slds-truncate" title="Oil" style="margin-buttom: 8px;">
+                                Check oil level/refill
+                              </div>
+                              <div class="slds-form-element__control" style="margin-left: 12px;">
+                                <div class="slds-checkbox">
+                                  <input type="checkbox" name="OLTC" id="checkbox-oil-oltc"
+                                    value="checkbox-oil-oltc" />
+                                  <label class="slds-checkbox__label" for="checkbox-oil-oltc">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">OLTC</span>
+                                  </label>
+                                </div>
+                              </div>
+                            </th>
+                            <td data-label="oil">
+                              <div class="slds-truncate text-center " title="oil">
+                                <input type="text" id="1-input-63" data-id="1-input-63" name="3-OLTC" style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="oil" scope="row">
+                              <div class="slds-form-element__control" style="margin-left: 12px;">
+                                <div class="slds-checkbox">
+                                  <input type="checkbox" name="CONSERVATOR" id="1-checkbok-64"
+                                    value="Oil Conservator" data-id="1-checkbok-64"/>
+                                  <label class="slds-checkbox__label" for="checkbox-oil-conservator">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">CONSERVATOR</span>
+                                  </label>
+                                </div>
+                              </div>
+                            </th>
+                            <td data-label="oil">
+                              <div class="slds-truncate text-center " title="oil">
+                                <input type="text" id="1-input-65" data-id="1-input-65" name="1-input-65" style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="oil-leak" scope="row">
+                              <div class="slds-truncate" title="oil-leak">
+                                Check oil leak
+                              </div>
+                            </th>
+                            <td data-label="oil-leak">
+                              <div class="slds-truncate text-center " title="oil-leak">
+                                <input type="text" id="1-input-66" data-id="1-input-66" name="oil-leak"
+                                  style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="bursting" scope="row">
+                              <div class="slds-truncate" title="bursting">
+                                Check bursting disc.
+                              </div>
+                            </th>
+                            <td data-label="bursting">
+                              <div class="slds-truncate text-center" title="bursting">
+                                <input type="text" id="1-input-67" data-id="1-input-67" name="bursting"
+                                  style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="tap-changer" scope="row">
+                              <div class="slds-truncate" title="tap-changer">
+                                Check tap-changer and moving, tap no.
+                              </div>
+                            </th>
+                            <td data-label="tap-changer">
+                              <div class="slds-truncate text-center" title="tap-changer">
+                                <input type="text" id="1-input-68" data-id="1-input-68" name="tap-changer"
+                                  style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="load-tap" scope="row">
+                              <div class="slds-truncate" title="load-tap">
+                                Check on load tap change condition
+                              </div>
+                            </th>
+                            <td data-label="load-tap">
+                              <div class="slds-truncate text-center" title="load-tap">
+                                <input type="text" id="load-tap" data-id="1-input-69" name="load-tap"
+                                  style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="transformer" scope="row">
+                              <div class="slds-truncate" title="transformer">
+                                Check transformer bushing
+                              </div>
+                            </th>
+                            <td data-label="transformer">
+                              <div class="slds-truncate text-center" title="transformer">
+                                <input type="text" id="1-input-70" data-id="1-input-70" name="transformer"
+                                  style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="oil" scope="row">
+                              <div class="slds-truncate" title="Oil" style="margin-buttom: 8px;">
+                                Check thermometer
+                              </div>
+                              <div class="slds-form-element__control" style="margin-left: 12px;">
+                                <div class="slds-checkbox">
+                                  <input type="checkbox" name="1-checkbox-71" id="1-checkbox-71"
+                                    value="Thermometer Winding" data-id="1-checkbox-71"/>
+                                  <label class="slds-checkbox__label" for="checkbox-thermometer-winding">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">WINDING</span>
+                                  </label>
+                                </div>
+                              </div>
+                            </th>
+                            <td data-label="thermometer">
+                              <div class="slds-truncate text-center " title="thermometer">
+                                <input type="text" id="1-input-72" data-id="1-input-72" name="thermometer" style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="oil" scope="row">
+                              <div class="slds-form-element__control" style="margin-left: 12px;">
+                                <div class="slds-checkbox">
+                                  <input type="checkbox" name="OIL" id="1-checkbox-74" data-id="1-checkbox-74"
+                                    value="Thermometer Oil" />
+                                    <label class="slds-checkbox__label" for="checkbox-thermometer-oil">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">OIL</span>
+                                </label>
+                                </div>
+                              </div>
+                            </th>
+                            <td data-label="thermometer">
+                              <div class="slds-truncate text-center " title="thermometer">
+                                <input type="text" id="1-input-75" data-id="1-input-75" name="1-input-75" style="width: 90%;" />
+                              </div>
+                            </td>                           
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="position" scope="row">
+                              <div class="slds-truncate" title="position">
+                                Check position of conservator valve
+                              </div>
+                            </th>
+                            <td data-label="position">
+                              <div class="slds-truncate text-center" title="position">
+                                <input type="text" id="1-input-76" data-id="1-input-76" name="position"
+                                  style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="cooling" scope="row">
+                              <div class="slds-truncate" title="cooling">
+                                Check cooling fan condition
+                              </div>
+                            </th>
+                            <td data-label="cooling">
+                              <div class="slds-truncate text-center" title="cooling">
+                                <input type="text" id="1-input-77" data-id="1-input-77" name="cooling"
+                                  style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="isolating" scope="row">
+                              <div class="slds-truncate" title="isolating">
+                                Check isolating switch
+                              </div>
+                            </th>
+                            <td data-label="isolating">
+                              <div class="slds-truncate text-center" title="isolating">
+                                <input type="text" id="1-input-78" data-id="1-input-78" name="isolating"
+                                  style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="arrangement" scope="row">
+                              <div class="slds-truncate" title="arrangement">
+                                Check locking arrangement
+                              </div>
+                            </th>
+                            <td data-label="arrangement">
+                              <div class="slds-truncate text-center" title="arrangement">
+                                <input type="text" id="1-input-79" data-id="1-input-79" name="arrangement"
+                                  style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="terminal" scope="row">
+                              <div class="slds-truncate" title="terminal">
+                                Check earthing terminal
+                              </div>
+                            </th>
+                            <td data-label="terminal">
+                              <div class="slds-truncate text-center" title="terminal">
+                                <input type="text" id="1-input-80" data-id="1-input-80" name="terminal"
+                                  style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="resistance" scope="row">
+                              <div class="slds-truncate" title="resistance">
+                                Check earthing resistance (Ohms.)
+                              </div>
+                            </th>
+                            <td data-label="resistance">
+                              <div class="slds-truncate text-center" title="resistance">
+                                <input type="text" id="1-input-81" data-id="1-input-81" name="resistance"
+                                  style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="continuity" scope="row">
+                              <div class="slds-truncate" title="continuity">
+                                Check earthing continuity (Ohms.)
+                              </div>
+                            </th>
+                            <td data-label="continuity">
+                              <div class="slds-truncate text-center" title="continuity">
+                                <input type="text" id="1-input-82" data-id="1-input-82" name="continuity"
+                                  style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="plate" scope="row">
+                              <div class="slds-truncate" title="plate">
+                                Check bursting plate
+                              </div>
+                            </th>
+                            <td data-label="plate">
+                              <div class="slds-truncate text-center" title="plate">
+                                <input type="text" id="1-input-83" data-id="1-input-83" name="plate"
+                                  style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <th data-label="arrestor" scope="row">
+                              <div class="slds-truncate" title="arrestor">
+                                Check surge arrestor
+                              </div>
+                            </th>
+                            <td data-label="arrestor">
+                              <div class="slds-truncate text-center" title="arrestor">
+                                <input type="text" id="1-input-84" data-id="1-input-84" name="arrestor"
+                                  style="width: 90%;" />
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="slds-form" role="list">
+                      <div class="slds-form__row">
+                        <div class="slds-form__item" role="listitem">
+                          <div
+                            class="slds-form-element slds-form-element_horizontal slds-is-editing slds-form-element_1-col">
+                            <label class="slds-form-element__label" for="horizontal-form-element-id-14">Remark :</label>
+                            <div class="slds-form-element__control">
+                              <textarea data-id="sectionOne-inputRemark"
+                                        onchange={onIEH}
+                                        id="sectionOne-inputRemark"
+                                        rows="5" style="width: 94%;">
+                              </textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </section>
+        </li>
+        <!-- 2 -->
+      </ul>
+    </div>
+
+     <!-- Button Section for Every Form -->
+     <section class="section slds-accordion__section">
+      <div class="slds-button-group obj-right" role="group">
+          <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5 custom-save-button" onclick={openSaveModal}>
+              Save Draft
+          </button>
+          <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5 custom-submit-button" onclick={openSubmitModal}>
+              Submit
+          </button>
+          <button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5 custom-reject-button" onclick={openRejectModal}>
+              Reject
+          </button>
+          <button data-id="recallEQCCStep" class="slds-button slds-button_brand custom-recall-button" disabled onclick={openRecallModal}>
+              Recall
+          </button>
+      </div>
+  </section>
+  </div>
+
+  <template if:true={isModalOpen}>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                    <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Submit</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <c-lookup object-api-name="user" icon-name="standard:user" onrecordselection={onUserSelection}></c-lookup>
+            </div>
+            <footer class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                <button class="slds-button slds-button_brand" onclick={submit} title="Submit">Submit</button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+</template>

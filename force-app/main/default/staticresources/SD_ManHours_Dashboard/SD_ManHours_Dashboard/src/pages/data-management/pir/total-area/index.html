@@ -1,0 +1,46 @@
+<apex:page
+  controller="ICR_DashboardController"
+  standardStylesheets="true"
+  lightningStylesheets="true"
+  sidebar="false"
+  showHeader="false"
+  applyHtmlTag="true"
+  applyBodyTag="false"
+  docType="html-5.0"
+  language="th"
+>
+  <apex:form>
+    <apex:actionFunction
+      name="TestCal"
+      action="{!TestFunction}"
+      reRender="rawDataPanel"
+      oncomplete="window.getData();"
+    />
+  </apex:form>
+
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <link rel="icon" href="/favicon.ico" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Total PIR by Area</title>
+      <script type="module" crossorigin src="/assets/PirTotalArea.js"></script>
+      <link rel="modulepreload" href="/assets/vendor.js">
+      <link rel="modulepreload" href="/assets/BaseDropdown.js">
+      <link rel="modulepreload" href="/assets/dataManagementTabs.js">
+      <link rel="stylesheet" href="/assets/BaseDropdown.css">
+      <link rel="stylesheet" href="/assets/PirTotalArea.css">
+    </head>
+
+    <body>
+      <apex:outputPanel id="rawDataPanel">
+        <div id="rawData" style="display: none">
+          {"totalPIRbyCompany":[{"id":"1","name":"APU-A","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"2","name":"APU-B","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"3","name":"APU-C","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"4","name":"APU-D","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"5","name":"APU-E","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"6","name":"APU-F","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"7","name":"NON-APU","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]}],"months":["January","February","March","April","May","June","July","August","September","October","November","December"]}
+        </div>
+      </apex:outputPanel>
+      <div id="app"></div>
+      
+    </body>
+  </html>
+</apex:page>

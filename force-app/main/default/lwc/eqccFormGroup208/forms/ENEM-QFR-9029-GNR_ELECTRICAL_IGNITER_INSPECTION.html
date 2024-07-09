@@ -1,0 +1,717 @@
+<template>
+    <div data-id="formBegin"> 
+        <c-step-page-header 
+            num-steps="1" 
+            current-step="1" 
+            percentage={percentage} 
+            is-current={isCurrent} 
+            record-id={recordId} >
+        </c-step-page-header> 
+        <c-lwc-modal 
+            title={modalTitle} 
+            is-visible={modalVisible} 
+            confirm-text={modalConfirmButton} 
+            cancel-text={modalCancelButton} 
+            name={modalName} 
+            message={modalMessage} 
+            onselected={handleModalSelection} >
+        </c-lwc-modal>
+        <div class="slds-text-heading_medium text-center">ENEM-QFR-9029-GNR</div>
+        <div class="slds-text-heading_medium text-center">ELECTRICAL IGNITER INSPECTION FORM</div>
+        
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col"> 
+                    <label class="e-label">Notification</label>
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right"> 
+                        <input type="text" data-id="notification" class="slds-input avoidPercentageInput" value={notification} disabled />
+                    </div> 
+                    <label class="e-label">Order Number</label>
+                    <div class="slds-form-element__control"> 
+                        <input type="text" data-id="order" class="slds-input avoidPercentageInput" value={order} disabled />
+                    </div>
+                </div>
+                <div class="slds-col"> 
+                    <label class="e-label">FL.</label>
+                    <div class="slds-form-element__control"> 
+                        <input type="text" data-id="fl" class="slds-input avoidPercentageInput" value={functionalLocation} disabled />
+                    </div> 
+                    <label class="e-label">Status</label>
+                <div class="slds-form-element__control"> 
+                    <input type="text" data-id="status" class="slds-input avoidPercentageInput" value={formStatus} disabled />
+                </div>
+            </div>
+            </div> 
+        </section>
+        <div class="bs-example"></div>
+    </div>
+<!-- Dropdown section 0 = -->
+
+<div class="bs-example">
+    <ul class="slds-accordion">  
+        <li class="slds-accordion__list-item"> 
+        <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+            <div class="card-header" data-id="headingZero">
+                <h2 class="slds-accordion__summary-heading card-header"> 
+                    <button 
+                        type="button" 
+                        aria-controls="collapseZero" 
+                        aria-expanded="true" 
+                        class="btn btn-link" 
+                        data-parent="sectionZero" 
+                        onclick={expandSection} > 
+                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" >    
+                    </lightning-icon> 
+                    <span 
+                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" 
+                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small" >0
+                    </span >
+                    <span class="slds-accordion__summary-content">Header Information</span> 
+                    </button>
+                </h2>
+            </div>
+            <div data-id="collapseZero" class="slds-accordion__content">
+                <div class="card-body">
+                    <div class="table-responsive" style="margin: 0rem;">
+                        <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                            <tbody> 
+                                <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">Tested Date: </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="date" data-id="0-input-1" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td><td></td>  
+                                    <td>
+                                        <span class="slds-form-element__label">Area Maintenance </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-2" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">FL Description </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-3" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td><td></td>  
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                 </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>  
+            </div>    
+        </section>
+    </li>
+
+<!-- Dropdown section 1  = -->
+<li class="slds-accordion__list-item">
+    <section class="slds-accordion__section" data-id="sectionOne">
+        <div class="slds-accordion__summary" data-id="headingOne">
+            <h2 class="slds-accordion__summary-heading card-header">
+                <button
+                    type="button"
+                    aria-controls="collapseOne"
+                    aria-expanded="true"
+                    class="btn btn-link"
+                    data-parent="sectionOne"
+                    onclick={expandSection}
+                >
+                    <lightning-icon
+                        icon-name="utility:switch"
+                        alternative-text="button icon"
+                        size="x-small"
+                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                    ></lightning-icon>
+                    <span
+                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                    >
+                        1</span
+                    ><span class="slds-accordion__summary-content"> ผลการตรวจสอบ</span>
+                </button>
+                <div class="slds-col">
+                    <div class="slds-checkbox obj-right">
+                        <input
+                            onchange={disableSection}
+                            type="checkbox"
+                            name="options"
+                            id="checkbox-unique-id-1"
+                            data-id="checkbox-unique-id-1"
+                            data-remark="checkbox-unique-id-1"
+                            value="checkbox-unique-id-1"
+                            data-parent="sectionOne"
+                        />
+                        <label class="slds-checkbox__label" for="checkbox-unique-id-1">
+                            <span class="slds-checkbox_faux"></span>
+                            <span class="slds-form-element__label">N/A</span>
+                        </label>
+                    </div>
+                </div>
+            </h2>
+        </div>
+        <div
+            class="slds-grid slds-gutters hide-remark"
+            id="sectionOne-remark"
+            data-id="sectionOne-remark"
+        >
+            <div class="slds-col">
+                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                <div class="slds-form-element__control">
+                    <textarea
+                        data-id="sectionOne-inputRemark"
+                        onchange={onIEH}
+                        id="sectionOne-inputRemark"
+                        class="slds-textarea"
+                    ></textarea>
+                </div>
+            </div>
+        </div>
+<div data-id="collapseOne" class="slds-accordion__content">
+    <div class="card-body">
+                <div class="table-responsive" style="margin: 0rem;">
+                    <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                        <colgroup>
+                            <col span="1" style="width: 40%;"> <col span="1" style="width: 15%;"> <col span="1" style="width: 15%;">
+                            <col span="1" style="width: 30%;">
+                            </colgroup> 
+                        <tbody>
+                            <tr>
+                                <td colspan="4"><span class="slds-text-heading_small">Overall Condition</span></td>
+                            </tr>
+                            <tr>
+                                <td ><span class="slds-form-element__label">DESCRIPTION</span></td>      
+                                <td colspan="2" class="text-center"><span class="slds-form-element__label">Equipment Condition </span></td>
+                                <td class="text-center"><span class="slds-form-element__label">Remark</span></td>
+         
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">1. ตรวจความสะอาดทั่วไป</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-1-radio" 
+                                        data-id="1-1-radio-1" 
+                                        id="1-1-radio-1" 
+                                        value="Normal">
+                                        <label for="1-1-radio-1">Normal</label>
+                                    </div>   
+                                </td>
+                                <td class="text-right">
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-1-radio" 
+                                        data-id="1-1-radio-2" 
+                                        id="1-1-radio-2" 
+                                        value="Abnormal">
+                                        <label for="1-1-radio-2">Abnormal</label>
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="1-1-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">2. ตรวจสอบความแข็งแรงของอุปกรณ์  </span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-2-radio" 
+                                        data-id="1-2-radio-1" 
+                                        id="1-2-radio-1" 
+                                        value="Normal">
+                                        <label for="1-2-radio-1">Normal</label>
+                                    </div>   
+                                </td>
+                                <td class="text-right">
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-2-radio" 
+                                        data-id="1-2-radio-2" 
+                                        id="1-2-radio-2" 
+                                        value="Abnormal">
+                                        <label for="1-2-radio-2">Abnormal</label>
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="1-2-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                               
+                                
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">3. ตรวจสอบการ Spark ของ Igniter </span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-3-radio" 
+                                        data-id="1-3-radio-1" 
+                                        id="1-3-radio-1" 
+                                        value="Normal">
+                                        <label for="1-3-radio-1">Normal</label>
+                                    </div>   
+                                </td>
+                                <td class="text-right">
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-3-radio" 
+                                        data-id="1-3-radio-2" 
+                                        id="1-3-radio-2" 
+                                        value="Abnormal">
+                                        <label for="1-3-radio-2">Abnormal</label>
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="1-3-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">4. ตรวจสอบสภาพของสายไฟ</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-4-radio" 
+                                        data-id="1-4-radio-1" 
+                                        id="1-4-radio-1" 
+                                        value="Normal">
+                                        <label for="1-4-radio-1">Normal</label>
+                                    </div>   
+                                </td>
+                                <td class="text-right">
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-4-radio" 
+                                        data-id="1-4-radio-2" 
+                                        id="1-4-radio-2" 
+                                        value="Abnormal">
+                                        <label for="1-4-radio-2">Abnormal</label>
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="1-4-remakr" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">5. ตรวจสอบจุดเชื่อมต่อ Cable Connection </span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-5-radio" 
+                                        data-id="1-5-radio-1" 
+                                        id="1-5-radio-1" 
+                                        value="Normal">
+                                        <label for="1-5-radio-1">Normal</label>
+                                    </div>   
+                                </td>
+                                <td class="text-right">
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-5-radio" 
+                                        data-id="1-5-radio-2" 
+                                        id="1-5-radio-2" 
+                                        value="Abnormal">
+                                        <label for="1-5-radio-2">Abnormal</label>
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="1-5-remakr" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">6. ตรวจสอบสภาพของสาย ground (กรณีของ LPG Igniter/ ระบบ 220 โวลท์)</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-6-radio" 
+                                        data-id="1-6-radio-1" 
+                                        id="1-6-radio-1" 
+                                        value="Normal">
+                                        <label for="1-6-radio-1">Normal</label>
+                                    </div>   
+                                </td>
+                                <td class="text-right">
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-6-radio" 
+                                        data-id="1-6-radio-2" 
+                                        id="1-6-radio-2" 
+                                        value="Abnormal">
+                                        <label for="1-6-radio-2">Abnormal</label>
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="1-6-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"><span class="slds-text-heading_small">Battery Condition</span></td>
+                            </tr>
+                            <tr>
+                                <td ><span class="slds-form-element__label">DESCRIPTION</span></td>      
+                                <td colspan="2" class="text-center"><span class="slds-form-element__label">Equipment Condition </span></td>
+                                <td class="text-center"><span class="slds-form-element__label">Remark</span></td>
+         
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">1. ตรวจสอบสภาพของ Charger set.</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="2-1-radio" 
+                                        data-id="2-1-radio-1" 
+                                        id="2-1-radio-1" 
+                                        value="Normal">
+                                        <label for="2-1-radio-1">Normal</label>
+                                    </div>   
+                                </td>
+                                <td class="text-right">
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="2-1-radio" 
+                                        data-id="2-1-radio-2" 
+                                        id="2-1-radio-2" 
+                                        value="Abnormal">
+                                        <label for="2-1-radio-2">Abnormal</label>
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="2-1-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>                                
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">2. ตรวจสอบสภาพทั่วไปของ Battery</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="2-2-radio" 
+                                        data-id="2-2-radio-1" 
+                                        id="2-2-radio-1" 
+                                        value="Normal">
+                                        <label for="2-1-radio-1">Normal</label>
+                                    </div>   
+                                </td>
+                                <td class="text-right">
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="2-2-radio" 
+                                        data-id="2-2-radio-2" 
+                                        id="2-2-radio-2" 
+                                        value="Abnormal">
+                                        <label for="2-1-radio-2">Abnormal</label>
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="2-2-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>                                
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">3. เปลี่ยน Battery ใหม่</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="2-3-radio" 
+                                        data-id="2-3-radio-1" 
+                                        id="2-3-radio-1" 
+                                        value="Normal">
+                                        <label for="2-1-radio-1">Yes</label>
+                                    </div>   
+                                </td>
+                                <td class="text-right">
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="2-3-radio" 
+                                        data-id="2-3-radio-2" 
+                                        id="2-3-radio-2" 
+                                        value="Abnormal">
+                                        <label for="2-1-radio-2">No</label>
+                                    </div>   
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="2-3-remark" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>                                
+                            </tr>
+             
+                        </tbody>                           
+                    </table>         
+                </div>                 
+            </div>
+        </div>
+        </section>
+              
+
+        <section class="slds-accordion__section" data-id="sectionTwo">
+            <div class="card-header" data-id="headingTwo">
+            <h2 class="slds-accordion__summary-heading card-header"> 
+            <button type="button" aria-controls="collapseTwo" aria-expanded="true" class="btn btn-link" data-parent="sectionTwo" onclick={expandSection} > 
+            <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" >
+            </lightning-icon> 
+            <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" >2</span >
+            <span class="slds-accordion__summary-content">>Gas Tank Condition (In case of LPG Igniter)</span> 
+            </button> 
+            
+
+            <div class="slds-col">
+                <div class="slds-checkbox obj-right">
+                    <input
+                        onchange={disableSection}
+                        type="checkbox"
+                        name="options"
+                        id="checkbox-unique-id-2"
+                        data-id="checkbox-unique-id-2"
+                        data-remark="checkbox-unique-id-2"
+                        value="checkbox-unique-id-2"
+                        data-parent="sectionTwo"
+                    />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-2">
+                        <span class="slds-checkbox_faux"></span>
+                        <span class="slds-form-element__label">N/A</span>
+                    </label>
+                </div>
+            </div>
+            </h2>
+        </div>
+            <div class="slds-grid slds-gutters hide-remark" data-id="sectionTwo-remark" id="sectionTwo-remark" >
+            <div class="slds-col"> 
+            <label class="e-label">Remark</label>
+            <div class="slds-form-element__control">
+            <textarea onchange={onIEH} data-id="sectionTwo-inputRemark" id="sectionTwo-inputRemark" class="slds-textarea" >
+            </textarea>
+            </div>
+            </div>
+            </div>
+            
+            <div data-id="collapseTwo" class="slds-accordion__content">
+            <div class="card-body">
+                <div class="table-responsive" style="margin: 0rem;">
+                    <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                        <colgroup>
+                            <col span="1" style="width: 40%;"> <col span="1" style="width: 15%;"> <col span="1" style="width: 15%;">
+                            <col span="1" style="width: 30%;">
+                            </colgroup> 
+                        <tbody>
+        <tr>
+            <td ><span class="slds-form-element__label">Gas Tank Condition</span></td>      
+            <td colspan="2" class="text-center"><span class="slds-form-element__label">Equipment Condition </span></td>
+            <td class="text-center"><span class="slds-form-element__label">Remark</span></td>
+
+        </tr>
+        <tr data-answered="false">
+            <td><span class="slds-form-element__label">1. ตรวจสอบสภาพทั่วไปของ Gas Tank</span></td>
+            <td>
+                <div class="slds-form-element__control">
+                    <input onchange={onIEH} type="radio" 
+                    name="3-1-radio" 
+                    data-id="3-1-radio-1" 
+                    id="3-1-radio-1" 
+                    value="Normal">
+                    <label for="2-1-radio-1">Normal</label>
+                </div>   
+            </td>
+            <td class="text-right">
+                <div class="slds-form-element__control">
+                    <input onchange={onIEH} type="radio" 
+                    name="3-1-radio" 
+                    data-id="3-1-radio-2" 
+                    id="3-1-radio-2" 
+                    value="Abnormal">
+                    <label for="2-1-radio-2">Abnormal</label>
+                </div>   
+            </td>
+            <td> 
+                <div class="slds-form-element__control"> 
+                    <input onchange={onIEH} type="text" 
+                            data-id="3-1-remark" 
+                            class="slds-input"  
+                            style="padding-right: 0px; padding-left: 0px;">
+                </div>
+            </td>                                
+        </tr>
+        <tr data-answered="false">
+            <td><span class="slds-form-element__label">2. ตรวจสอบปริมาณแก๊สในทังแก๊ส</span></td>
+            <td>
+                <div class="slds-form-element__control">
+                    <input onchange={onIEH} type="radio" 
+                    name="3-2-radio" 
+                    data-id="3-2-radio-1" 
+                    id="3-2-radio-1" 
+                    value="Normal">
+                    <label for="2-1-radio-1">Normal</label>
+                </div>   
+            </td>
+            <td class="text-right">
+                <div class="slds-form-element__control">
+                    <input onchange={onIEH} type="radio" 
+                    name="3-2-radio" 
+                    data-id="3-2-radio-2" 
+                    id="3-2-radio-2" 
+                    value="Abnormal">
+                    <label for="2-1-radio-2">Abnormal</label>
+                </div>   
+            </td>
+            <td> 
+                <div class="slds-form-element__control"> 
+                    <input onchange={onIEH} type="text" 
+                            data-id="3-2-remark" 
+                            class="slds-input"  
+                            style="padding-right: 0px; padding-left: 0px;">
+                </div>
+            </td>                                
+        </tr>
+        <tr data-answered="false">
+            <td><span class="slds-form-element__label">3. ตรวจสอบสภาพสายแก๊ส LPG</span></td>
+            <td>
+                <div class="slds-form-element__control">
+                    <input onchange={onIEH} type="radio" 
+                    name="3-3-radio" 
+                    data-id="3-3-radio-1" 
+                    id="3-3-radio-1" 
+                    value="Normal">
+                    <label for="3-3-radio-1">Normal</label>
+                </div>   
+            </td>
+            <td class="text-right">
+                <div class="slds-form-element__control">
+                    <input onchange={onIEH} type="radio" 
+                    name="3-3-radio" 
+                    data-id="3-3-radio-2" 
+                    id="3-3-radio-2" 
+                    value="Abnormal">
+                    <label for="3-3-radio-2">Abnormal</label>
+                </div>   
+            </td>
+            <td> 
+                <div class="slds-form-element__control"> 
+                    <input onchange={onIEH} type="text" 
+                            data-id="3-3-remark" 
+                            class="slds-input"  
+                            style="padding-right: 0px; padding-left: 0px;">
+                </div>
+            </td>                                
+        </tr>
+        <tr data-answered="false">
+            <td><span class="slds-form-element__label">4. ตรวจสอบ Igniter-Gun.</span></td>
+            <td>
+                <div class="slds-form-element__control">
+                    <input onchange={onIEH} type="radio" 
+                    name="3-4-radio" 
+                    data-id="3-4-radio-1" 
+                    id="3-4-radio-1" 
+                    value="Normal">
+                    <label for="3-4-radio-1">Normal</label>
+                </div>   
+            </td>
+            <td class="text-right">
+                <div class="slds-form-element__control">
+                    <input onchange={onIEH} type="radio" 
+                    name="3-4-radio" 
+                    data-id="3-4-radio-2" 
+                    id="3-4-radio-2" 
+                    value="Abnormal">
+                    <label for="3-4-radio-2">Abnormal</label>
+                </div>   
+            </td>
+            <td> 
+                <div class="slds-form-element__control"> 
+                    <input onchange={onIEH} type="text" 
+                            data-id="3-4-remark" 
+                            class="slds-input"  
+                            style="padding-right: 0px; padding-left: 0px;">
+                </div>
+            </td>                                
+        </tr>
+        </tbody>
+        </table>
+        </div>
+        </div>
+        </div>
+        </section>
+        
+      
+        
+
+
+
+        </li>
+    </ul>    
+</div>
+ <!-- Remark part  = -->
+<br>
+<br>
+
+
+
+        <!-- save submit reject= -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSubmitModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand" onclick={openRejectModal}>
+                    Reject
+                </button>
+            </div>
+        </section>
+    
+</template>

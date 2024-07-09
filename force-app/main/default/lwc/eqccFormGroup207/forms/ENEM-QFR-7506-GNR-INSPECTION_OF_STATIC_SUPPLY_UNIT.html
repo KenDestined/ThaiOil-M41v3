@@ -1,0 +1,821 @@
+<template>
+    <div data-id="formBegin"> 
+        <c-step-page-header 
+            num-steps="1" 
+            current-step="1" 
+            percentage={percentage} 
+            is-current={isCurrent} 
+            record-id={recordId} >
+        </c-step-page-header> 
+        <c-lwc-modal 
+            title={modalTitle} 
+            is-visible={modalVisible} 
+            confirm-text={modalConfirmButton} 
+            cancel-text={modalCancelButton} 
+            name={modalName} 
+            message={modalMessage} 
+            onselected={handleModalSelection} >
+        </c-lwc-modal>
+        <!-- Form Question = 23 -->  
+        <div class="slds-text-heading_medium text-center">ENEM-QFR-7506-GNR</div>
+        <div class="slds-text-heading_medium text-center">INSPECTION OF STATIC SUPPLY UNIT</div>
+        <div class="slds-text-heading_medium text-center">BATTERY DISCHARGE CAPACITY TEST</div>
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="notification"
+                            class="slds-input avoidPercentageInput"
+                            value={notification}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="bs-example"></div>
+    </div>
+<!-- Dropdown section 0 = -->
+
+<div class="bs-example">
+    <ul class="slds-accordion">  
+        <li class="slds-accordion__list-item"> 
+        <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+            <div class="card-header" data-id="headingZero">
+                <h2 class="slds-accordion__summary-heading card-header"> 
+                    <button 
+                        type="button" 
+                        aria-controls="collapseZero" 
+                        aria-expanded="true" 
+                        class="btn btn-link" 
+                        data-parent="sectionZero" 
+                        onclick={expandSection} > 
+                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" >    
+                    </lightning-icon> 
+                    <span 
+                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" 
+                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small" >0
+                    </span >
+                    <span class="slds-accordion__summary-content">Header Information</span> 
+                    </button>
+                </h2>
+            </div>
+            <div data-id="collapseZero" class="slds-accordion__content">
+                <div class="card-body">
+                    <div class="table-responsive" style="margin: 0rem;">
+                        <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                            <tbody> 
+                                <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">Tested Date: </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="date" data-id="0-input-1" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td><td></td>  
+                                    <td>
+                                        <span class="slds-form-element__label">Tag No. </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-2" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">Normal Load: </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-3" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td><td></td>                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>  
+            </div>    
+        </section>
+    </li>
+
+<!-- Dropdown Section 1  = -->
+<li class="slds-accordion__list-item"> 
+    <section class="slds-accordion__section" data-id="sectionOne">
+        <div class="slds-accordion__summary" data-id="headingOne">
+            <h2 class="slds-accordion__summary-heading card-header">
+                <button
+                    type="button"
+                    aria-controls="collapseOne"
+                    aria-expanded="true"
+                    class="btn btn-link"
+                    data-parent="sectionOne"
+                    onclick={expandSection}
+                >
+                    <lightning-icon
+                        icon-name="utility:switch"
+                        alternative-text="button icon"
+                        size="x-small"
+                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                    ></lightning-icon>
+                    <span
+                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                    >
+                        1</span
+                    ><span class="slds-accordion__summary-content"> ผลการตรวจสอบ</span>
+                </button>
+                <div class="slds-col">
+                    <div class="slds-checkbox obj-right">
+                        <input
+                            onchange={disableSection}
+                            type="checkbox"
+                            name="options"
+                            id="checkbox-unique-id-1"
+                            data-id="checkbox-unique-id-1"
+                            data-remark="checkbox-unique-id-1"
+                            value="checkbox-unique-id-1"
+                            data-parent="sectionOne"
+                        />
+                        <label class="slds-checkbox__label" for="checkbox-unique-id-1">
+                            <span class="slds-checkbox_faux"></span>
+                            <span class="slds-form-element__label">N/A</span>
+                        </label>
+                    </div>
+                </div>
+            </h2>
+        </div>
+        <div
+            class="slds-grid slds-gutters hide-remark"
+            id="sectionOne-remark"
+            data-id="sectionOne-remark"
+        >
+            <div class="slds-col">
+                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                <div class="slds-form-element__control">
+                    <textarea
+                        data-id="sectionOne-inputRemark"
+                        onchange={onIEH}
+                        id="sectionOne-inputRemark"
+                        class="slds-textarea"
+                    ></textarea>
+                </div>
+            </div>
+        </div>
+        <div data-id="collapseOne" class="slds-accordion__content">
+            <div class="card-body">
+                <div class="table-responsive" style="margin: 0rem;">
+                    <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td ><span class="slds-form-element__label">Time</span></td>      
+                                <td ><span class="slds-form-element__label">DC volts</span></td>
+                                <td ><span class="slds-form-element__label">DC Amps</span></td>
+                                <td ><span class="slds-form-element__label">AC Volts</span></td>
+                                <td ><span class="slds-form-element__label">AC Amps</span></td>      
+                                <td ><span class="slds-form-element__label">Hz</span></td>         
+                            </tr>
+                            <tr>
+                                <td><span class="slds-form-element__label">0 Min.</span></td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="dcvolt1-1" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="dcamp1-1" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="acvolt1-1" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="acamp1-1" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="Hz1-1" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="slds-form-element__label">5 Min.</span></td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="dcvolt1-2" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="dcamp1-2" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="acvolt1-2" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="acamp1-2" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="Hz1-2" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="slds-form-element__label">19 Min.</span></td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="dcvolt1-3" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="dcamp1-3" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="acvolt1-3" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="acamp1-3" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="Hz1-3" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="slds-form-element__label">15 Min.</span></td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="dcvolt1-4" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="dcamp1-4" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="acvolt1-4" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="acamp1-4" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" 
+                                                data-id="Hz1-4" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> 
+                                    <div class="slds-form-element__control" > 
+                                        <input type="text" 
+                                                data-id="time1-5" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="dcvolt1-5" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="dcamp1-5" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="acvolt1-5" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="acamp1-5" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="Hz1-5" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="time1-6" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="dcvolt1-6" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="dcamp1-6" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="acvolt1-6" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="acamp1-6" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="Hz1-6" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="time1-7" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="dcvolt1-7" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="dcamp1-7" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="acvolt1-7" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="acamp1-7" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="Hz1-7" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="time1-8" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="dcvolt1-8" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="dcamp1-8" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="acvolt1-8" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="acamp1-8" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="Hz1-8" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="time1-9" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="dcvolt1-9" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="dcamp1-9" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="acvolt1-9" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="acamp1-9" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="Hz1-9" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="time1-10" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="dcvolt1-10" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="dcamp1-10" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="acvolt1-10" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="acamp1-10" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="Hz1-10" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="time1-11" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="dcvolt1-11" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="dcamp1-11" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="acvolt1-11" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="acamp1-11" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="Hz1-11" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="time1-12" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="dcvolt1-12" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="dcamp1-12" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="acvolt1-12" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="acamp1-12" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input type="text" 
+                                                data-id="Hz1-12" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>                           
+                    </table>
+
+
+                                <!-- new part  = -->
+                          
+                </div>                 
+            </div>
+        </div>
+        </section>
+        </li>
+    </ul>    
+</div>
+<p>TEST GUIDE LINE</p> <br>
+            <p>1. Discharge load current to be equal to normal load current +/- 10% </p> 
+            <p>2.  Simulate a rectifier power failure and discharge to the point of  inverter trip or the specified minimum voltage.</p>
+            <P>3. Cell voltages may be measured during battery discharge, to detect defect</P>
+            <p>4. Upon completing of the test carry out boost charging.</p>
+
+        <!-- save submit reject= -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSubmitModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand" onclick={openRejectModal}>
+                    Reject
+                </button>
+            </div>
+        </section>
+    
+</template>

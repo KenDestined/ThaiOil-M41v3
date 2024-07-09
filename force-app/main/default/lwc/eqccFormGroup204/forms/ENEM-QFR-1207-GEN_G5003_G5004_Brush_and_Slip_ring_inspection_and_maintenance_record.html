@@ -1,0 +1,776 @@
+<template>
+    <div data-id="formBegin"> 
+        <c-step-page-header 
+            num-steps="1" 
+            current-step="1" 
+            percentage={percentage} 
+            is-current={isCurrent} 
+            record-id={recordId} >
+        </c-step-page-header> 
+        <c-lwc-modal 
+            title={modalTitle} 
+            is-visible={modalVisible} 
+            confirm-text={modalConfirmButton} 
+            cancel-text={modalCancelButton} 
+            name={modalName} 
+            message={modalMessage} 
+            onselected={handleModalSelection} >
+        </c-lwc-modal>        
+        <!-- Form Question = 47 -->  
+        <div class="slds-text-heading_medium text-center">ENEM-QFR-1207-GEN</div>
+        <div class="slds-text-heading_medium text-center">G-5003/G-5004  BRUSH  AND  SLIP  RING  INSPECTION </div>
+        <div class="slds-text-heading_medium text-center">AND  MAINTENANCE  RECORD </div>
+        <!-- *********** จบส่วน  Header ชื่อ แบบฟอร์ม  ************* -->
+
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="notification"
+                            class="slds-input avoidPercentageInput"
+                            value={notification}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+ <!--  เร่ิมต้น Header information Section Zero ยังไม่ต้องแก้ไขอะไร -->
+<div class="bs-example"></div>  
+<div class="bs-example">
+    <ul class="slds-accordion">
+        <li class="slds-accordion__list-item"> 
+        <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+            <div class="card-header" data-id="headingZero">
+                <h2 class="slds-accordion__summary-heading card-header"> 
+                    <button 
+                        type="button" 
+                        aria-controls="collapseZero" 
+                        aria-expanded="true" 
+                        class="btn btn-link" 
+                        data-parent="sectionZero" 
+                        onclick={expandSection} > 
+                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" >    
+                    </lightning-icon> 
+                    <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" 
+                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small" >0</span >
+                    <span class="slds-accordion__summary-content">Header Information</span> 
+                    </button>
+                </h2>
+            </div>
+            <div data-id="collapseZero" class="slds-accordion__content">
+                <div class="card-body">
+
+                    <!-- ********** เนื้อหา  Header information เริ่มแก้ไขส่วนนี้ *********** -->
+                    <div class="table-responsive" style="margin: 0rem;">
+                        <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                            <colgroup>
+                                <col span="1" style="width: 20%;"><col span="1" style="width: 20%;"><col span="1" style="width: 20%;">
+                                <col span="1" style="width: 20%;"><col span="1" style="width: 20%;">
+                                </colgroup> 
+                            <tbody> 
+                                <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">Date: </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="date" data-id="date" class="slds-input" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="slds-form-element__label">Substation: </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="substation" class="slds-input" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td>
+                                        <span class="slds-form-element__label">Subject: </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="radio" 
+                                            name="0-1-radio" 
+                                            data-id="0-1-radio-1" 
+                                            id="0-1-radio-1" 
+                                            value="Preventive">
+                                            <label>Preventive</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="radio" 
+                                            name="0-1-radio" 
+                                            data-id="0-1-radio-2" 
+                                            id="0-1-radio-2" 
+                                            value="Shutdown">
+                                            <label>Shutdown</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="radio" 
+                                            name="0-1-radio" 
+                                            data-id="0-1-radio-3" 
+                                            id="0-1-radio-3" 
+                                            value="Trouble">
+                                            <label>Trouble</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td>
+                                        <span class="slds-form-element__label">Service: </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="radio" 
+                                            name="0-2-radio" 
+                                            data-id="0-2-radio-1" 
+                                            id="0-2-radio-1" 
+                                            value="G-5003">
+                                            <label>G-5003</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="radio" 
+                                            name="0-2-radio" 
+                                            data-id="0-2-radio-2" 
+                                            id="0-2-radio-" 
+                                            value="G-5004">
+                                            <label>G-5004</label>
+                                        </div>
+                                    </td> 
+                                </tr>   
+                            </tbody>
+                        </table>  
+  <!-- ********** จบการแก้ไขส่วน  Header information *********** -->  
+                    </div>
+                </div>  
+            </div>    
+        </section>
+        </li>
+
+<!-- Section one -->  
+        <li class="slds-accordion__list-item">
+            <section class="slds-accordion__section" data-id="sectionOne">
+                <div class="slds-accordion__summary" data-id="headingOne">
+                    <h2 class="slds-accordion__summary-heading card-header">
+                        <button
+                            type="button"
+                            aria-controls="collapseOne"
+                            aria-expanded="true"
+                            class="btn btn-link"
+                            data-parent="sectionOne"
+                            onclick={expandSection}
+                        >
+                            <lightning-icon
+                                icon-name="utility:switch"
+                                alternative-text="button icon"
+                                size="x-small"
+                                class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                            ></lightning-icon>
+                            <span
+                                style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                            >
+                                1</span
+                            ><span class="slds-accordion__summary-content"> ผลการตรวจสอบ (A1-C4)</span>
+                        </button>
+                        <div class="slds-col">
+                            <div class="slds-checkbox obj-right">
+                                <input
+                                    onchange={disableSection}
+                                    type="checkbox"
+                                    name="options"
+                                    id="checkbox-unique-id-1"
+                                    data-id="checkbox-unique-id-1"
+                                    data-remark="checkbox-unique-id-1"
+                                    value="checkbox-unique-id-1"
+                                    data-parent="sectionOne"
+                                />
+                                <label class="slds-checkbox__label" for="checkbox-unique-id-1">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">N/A</span>
+                                </label>
+                            </div>
+                        </div>
+                    </h2>
+                </div>
+                <div
+                    class="slds-grid slds-gutters hide-remark"
+                    id="sectionOne-remark"
+                    data-id="sectionOne-remark"
+                >
+                    <div class="slds-col">
+                        <label class="slds-form-element__label" for="tank-no">Remark</label>
+                        <div class="slds-form-element__control">
+                            <textarea
+                                data-id="sectionOne-inputRemark"
+                                onchange={onIEH}
+                                id="sectionOne-inputRemark"
+                                class="slds-textarea"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+        <div data-id="collapseOne" class="slds-accordion__content">
+            <div class="card-body">
+
+                <!-- ********** เริ่มเนื้อหาผลการตรวจสอบ ตั่งแต่ตรงนี้  *********** -->  
+                <div class="slds-text-heading_small">INSPECTION AND MAINTENANCE</div>
+                <img src="https://thaioil--training1--c.documentforce.com/servlet/servlet.ImageServer?id=0159D000000Jtp3&oid=00D9D0000001rCe&lastMod=1652342311000" alt="image1" />
+                <div class="table-responsive" style="margin: 0rem;">
+                    <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                        <colgroup>
+                            <col span="1" style="width: 20%;"><col span="1" style="width: 20%;">
+                            <col span="1" style="width: 20%;">
+                            <col span="1" style="width: 20%;">
+                            <col span="1" style="width: 20%;">
+                            </colgroup> 
+                        <tbody>
+                            <tr>
+                                <td class="text-center">
+                                    <span class="slds-form-element__label">Description </span>
+                                 </td>
+                                 <td colspan=4 class="text-center">
+                                    <span class="slds-form-element__label">Carbon brush and brush holder position</span>
+                                 </td>
+
+                            </tr>
+                            <tr >
+                                <td rowspan=2 style="vertical-align: middle" >
+                                   <span class="slds-form-element__label" style="text-align:center">Brush length in % </span>
+                                </td>
+                                <td  class="text-center" data-answered="false">
+                                    <label >1A1</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress}
+                                     data-id="1-1-input-1A1" class="slds-input" />
+                                    </div>
+                                </td> 
+                                <td class="text-center" data-answered="false">
+                                    <label>1B2</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-1-input-1B2" class="slds-input" />
+                                    </div>
+                                </td>  
+                                <td class="text-center" data-answered="false">
+                                    <label >1C1</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-1-input-1C1" class="slds-input" />
+                                    </div>
+                                </td>  
+                                <td class="text-center" data-answered="false">
+                                    <label>1D2</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-1-input-1D2" class="slds-input" />
+                                    </div>
+                                </td>                                                                   
+                            </tr>
+                            <tr>
+                                <td class="text-center"  data-answered="false">
+                                    <label>2A1</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-1-input-2A1" class="slds-input" />
+                                    </div>
+                                </td>
+                                <td class="text-center" data-answered="false" >
+                                    <label>2B2</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-1-input-2B2" class="slds-input" />
+                                    </div>
+                                </td>
+                                <td class="text-center" data-answered="false" >
+                                    <label>2C1</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-1-input-2C1" class="slds-input" />
+                                    </div>
+                                </td>
+                                <td class="text-center" data-answered="false" >
+                                    <label>2D2</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-1-input-2D2" class="slds-input" />
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr >
+                                <td rowspan=2 style="vertical-align: middle" >
+                                   <span class="slds-form-element__label" style="text-align:center">Clearance brush holder and commutator (mm.) </span>
+                                </td>
+                                <td  class="text-center" data-answered="false">
+                                    <label >1A1</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress}
+                                     data-id="1-2-input-1A1" class="slds-input" />
+                                    </div>
+                                </td> 
+                                <td class="text-center" data-answered="false">
+                                    <label>1B2</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-2-input-1B2" class="slds-input" />
+                                    </div>
+                                </td>  
+                                <td class="text-center" data-answered="false">
+                                    <label >1C1</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-2-input-1C1" class="slds-input" />
+                                    </div>
+                                </td>  
+                                <td class="text-center" data-answered="false">
+                                    <label>1D2</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-2-input-1D2" class="slds-input" />
+                                    </div>
+                                </td>                                                                   
+                            </tr>
+                            <tr>
+                                <td class="text-center"  data-answered="false">
+                                    <label>2A1</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-2-input-2A1" class="slds-input" />
+                                    </div>
+                                </td>
+                                <td class="text-center" data-answered="false" >
+                                    <label>2B2</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-2-input-2B2" class="slds-input" />
+                                    </div>
+                                </td>
+                                <td class="text-center" data-answered="false" >
+                                    <label>2C1</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-2-input-2C1" class="slds-input" />
+                                    </div>
+                                </td>
+                                <td class="text-center" data-answered="false" >
+                                    <label>2D2</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-2-input-2D2" class="slds-input" />
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr >
+                                <td rowspan=2 style="vertical-align: middle" >
+                                   <span class="slds-form-element__label" style="text-align:center">'Brush holder condition</span>
+                                </td>
+                                <td  class="text-center" data-answered="false">
+                                    <label >1A1</label>
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text"
+                                        data-id="1-3-input-1A1" class="slds-input" />
+                                    </div>
+                                </td> 
+                                <td class="text-center" data-answered="false">
+                                    <label>1B2</label>
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text"
+                                        data-id="1-3-input-1B2" class="slds-input" />
+                                    </div>
+                                </td>  
+                                <td class="text-center" data-answered="false">
+                                    <label >1C1</label>
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text"
+                                        data-id="1-3-input-1C1" class="slds-input" />
+                                    </div>
+                                </td>  
+                                <td class="text-center" data-answered="false">
+                                    <label>1D2</label>
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text"
+                                        data-id="1-3-input-1C2" class="slds-input" />
+                                    </div>
+                                </td>                                                                   
+                            </tr>
+                            <tr>
+                                <td class="text-center"  data-answered="false">
+                                    <label>2A1</label>
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text"
+                                        data-id="1-3-input-2A1" class="slds-input" />
+                                    </div>
+                                </td>
+                                <td class="text-center" data-answered="false" >
+                                    <label>2B2</label>
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text"
+                                        data-id="1-3-input-2B2" class="slds-input" />
+                                    </div>
+                                </td>
+                                <td class="text-center" data-answered="false" >
+                                    <label>2C1</label>
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text"
+                                        data-id="1-3-input-2C1" class="slds-input" />
+                                    </div>
+                                </td>
+                                <td class="text-center" data-answered="false" >
+                                    <label>2D2</label>
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text"
+                                        data-id="1-3-input-2D2" class="slds-input" />
+                                    </div>
+                                </td>
+                            </tr>
+                            
+
+                            <tr >
+                                <td rowspan=2 style="vertical-align: middle" >
+                                   <span class="slds-form-element__label" style="text-align:center">Tension of brush 'holder spring (gm.)</span>
+                                </td>
+                                <td  class="text-center" data-answered="false">
+                                    <label >1A1</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress}
+                                     data-id="1-4-input-1A1" class="slds-input" />
+                                    </div>
+                                </td> 
+                                <td class="text-center" data-answered="false">
+                                    <label>1B2</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-4-input-1B2" class="slds-input" />
+                                    </div>
+                                </td>  
+                                <td class="text-center" data-answered="false">
+                                    <label >1C1</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-4-input-1C1" class="slds-input" />
+                                    </div>
+                                </td>  
+                                <td class="text-center" data-answered="false">
+                                    <label>1D2</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-4-input-1D2" class="slds-input" />
+                                    </div>
+                                </td>                                                                   
+                            </tr>
+                            <tr>
+                                <td class="text-center"  data-answered="false">
+                                    <label>2A1</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-4-input-2A1" class="slds-input" />
+                                    </div>
+                                </td>
+                                <td class="text-center" data-answered="false" >
+                                    <label>2B2</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-4-input-2B2" class="slds-input" />
+                                    </div>
+                                </td>
+                                <td class="text-center" data-answered="false" >
+                                    <label>2C1</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-4-input-2C1" class="slds-input" />
+                                    </div>
+                                </td>
+                                <td class="text-center" data-answered="false" >
+                                    <label>2D2</label>
+                                    <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number"
+                                    min="0"
+                                    step="1"
+                                    onkeypress={onKeyPress} data-id="1-4-input-2D2" class="slds-input" />
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr >
+                                <td rowspan=2 style="vertical-align: middle" >
+                                   <span class="slds-form-element__label" style="text-align:center">Carbon brush replacement </span>
+                                </td>
+                                <td  class="text-center" data-answered="false">
+                                    <label >1A1</label>
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text"
+                                        data-id="1-5-input-1A1" class="slds-input" />
+                                    </div>
+                                </td> 
+                                <td class="text-center" data-answered="false">
+                                    <label>1B2</label>
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text"
+                                        data-id="1-5-input-1B2" class="slds-input" />
+                                    </div>
+                                </td>  
+                                <td class="text-center" data-answered="false">
+                                    <label >1C1</label>
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text"
+                                        data-id="1-5-input-1C1" class="slds-input" />
+                                    </div>
+                                </td>  
+                                <td class="text-center" data-answered="false">
+                                    <label>1D2</label>
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text"
+                                        data-id="1-5-input-1D2" class="slds-input" />
+                                    </div>
+                                </td>                                                                   
+                            </tr>
+                            <tr>
+                                <td class="text-center"  data-answered="false">
+                                    <label>2A1</label>
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text"
+                                        data-id="1-5-input-2A1" class="slds-input" />
+                                    </div>
+                                </td>
+                                <td class="text-center" data-answered="false" >
+                                    <label>2B2</label>
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text"
+                                        data-id="1-5-input-2B2" class="slds-input" />
+                                    </div>
+                                </td>
+                                <td class="text-center" data-answered="false" >
+                                    <label>2C1</label>
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text"
+                                        data-id="1-5-input-2C1" class="slds-input" />
+                                    </div>
+                                </td>
+                                <td class="text-center" data-answered="false" >
+                                    <label>2D2</label>
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="text"
+                                        data-id="1-5-input-2D2" class="slds-input" />
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                        <colgroup>
+                            <col span="1" style="width: 40%;"><col span="1" style="width: 20%;">
+                            <col span="1" style="width: 20%;"><col span="1" style="width: 20%;">
+                            </colgroup> 
+                        <tbody>
+                            <tr data-answered="false">
+                                <td >
+                                    <span class="slds-form-element__label">Slip ring condition: </span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-1-radio" 
+                                        data-id="1-1-radio-1" 
+                                        id="1-1-radio-1" 
+                                        value="Normal">
+                                        <label>Normal</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-1-radio" 
+                                        data-id="1-1-radio-2" 
+                                        id="1-1-radio-2" 
+                                        value="Burnt">
+                                        <label>Burnt</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-1-radio" 
+                                        data-id="1-1-radio-3" 
+                                        id="1-1-radio-3" 
+                                        value="Scratch">
+                                        <label>Scratch</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td >
+                                    <span class="slds-form-element__label">Clean carbon brush holder and slip ring: </span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-2-radio" 
+                                        data-id="1-2-radio-1" 
+                                        id="1-2-radio-1" 
+                                        value="Done">
+                                        <label>Done</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="1-2-radio" 
+                                        data-id="1-2-radio-2" 
+                                        id="1-2-radio-2" 
+                                        value="Not Done">
+                                        <label>Not Done</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <td colspan="2">
+                                    <span class="slds-form-element__label">Generator magnetic field winding insulation check by 100 VDC.: </span>
+                                </td>
+                                <td data-answered="false">
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="number"
+                                        min="0"
+                                        step="1"
+                                        onkeypress={onKeyPress} 
+                                        data-id="1-3-input-1" 
+                                        class="slds-input" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="slds-form-element__label"> Ohms.</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <span class="slds-form-element__label">Use carbon brush type LCF-557 MESC. No. 6622010139</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                                      
+                    <!-- ********** จบเนื้อหาผลการตรวจสอบส่วนที่ 1 ตั่งแต่ตรงนี้  *********** --> 
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+</li>
+</ul>    
+</div>
+        <!-- save submit reject= -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSubmitModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand" onclick={openRejectModal}>
+                    Reject
+                </button>
+            </div>
+        </section>
+    </div>
+</template>

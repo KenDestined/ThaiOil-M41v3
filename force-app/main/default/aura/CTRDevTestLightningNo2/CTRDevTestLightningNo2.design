@@ -1,0 +1,10 @@
+<design:component>
+    <design:attribute name="historyType" label="History Type" datasource="Initial,Extend,Edit,SAP,DestinationCountry,Shareholder" default="Edit"/>
+    <design:attribute name="fieldApi" label="fieldApi"/>
+    <design:attribute name="fieldLabel" label="fieldLabel"/>
+    <design:attribute name="picklistOptionsStr" label="picklistOptionsStr"/>
+    <design:attribute name="selectedValue" label="selectedValue"/>
+    <design:attribute name="disabled" label="disabled"/>
+    <design:attribute name="required" label="required"/>
+    <design:attribute name="displayFieldLabel" label="displayFieldLabel"/>
+</design:component>

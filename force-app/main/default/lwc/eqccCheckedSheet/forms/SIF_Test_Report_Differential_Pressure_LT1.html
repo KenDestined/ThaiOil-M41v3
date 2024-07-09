@@ -1,0 +1,846 @@
+<template>
+    <div data-id="formBegin">
+        <!-- PAGE STEP COUNTER HEADER
+        Params that need changed are the num-steps and the current-step.
+        Num-steps is how many TOTAL steps there are in the form.
+        Current-step is the step that the html currently is. ie. if a file's name is
+        formStep1.html then the current-step is 1, formStep2.html would be 2 etc.-->
+        <c-step-page-header
+            num-steps="1"
+            current-step="1"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+
+        <!-- Modal placeholder -->
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+        <!-- END Modal Placeholder -->
+
+        <!--
+            Title area for form. Put form title here
+        -->
+        <div class="slds-text-heading_medium text-center">SAFETY INSTRUMENTED FUNCTION - TEST REPORT
+            DIFFERENTIAL PRESSURE LEVEL TRANSMITTER</div>
+        <!-- END Title area -->
+
+        <!-- Section for Notification, Order, FL. and Status fields -->
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="slds-form-element__control">
+                        <input type="text" data-id="notification" class="slds-input avoidPercentageInput" value={notification} disabled />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="slds-form-element__control">
+                        <input type="text" data-id="order" class="slds-input avoidPercentageInput" value={order} disabled />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="slds-form-element__control">
+                        <input type="text" data-id="fl" class="slds-input avoidPercentageInput" value={functionalLocation} disabled />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="slds-form-element__control">
+                        <input type="text" data-id="status" class="slds-input avoidPercentageInput" value={formStatus} disabled />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN SECTION -->
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <!-- 0 -->
+                <!-- HEADER INFORMATION (USUALLY DOES NOT HAVE N/A SECTION) -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+                        <div class="card-header" data-id="headingZero">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseZero"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionZero"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210))"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        0</span
+                                    ><span class="slds-accordion__summary-content"> Header Information</span>
+                                </button>
+                            </h2>
+                        </div>
+                        <div data-id="collapseZero" class="slds-accordion__content">
+                            <!-- drop 0 section card-body div -->
+                            <div class="card-body">
+                                <!-- INSERT INPUTS FOR FIRST SECTION HERE $$$$-->
+                                <div class="slds-section">
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col">
+                                            <label class="slds-form-element__label">Service:</label>
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH} type="text" data-id="service" class="slds-input" />
+                                            </div>
+                                            <!---->
+                                            <label class="slds-form-element__label">Job Type</label>
+                                            <div class="slds-col">
+                                                <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                    <li>
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio" id="Type-radio-1" data-id="Type-radio-1"
+                                                                name="Type-radio" value="CM" />
+                                                            <label class="slds-radio__label" for="Type-radio-1">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label">CM</span>
+                                                            </label>
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio" id="Type-radio-2" data-id="Type-radio-2"
+                                                                name="Type-radio" value="PM" />
+                                                            <label class="slds-radio__label" for="Type-radio-2">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label">PM</span>
+                                                            </label>
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="slds-radio">
+                                                            <input onchange={onIEH} type="radio" id="Type-radio-3" data-id="Type-radio-3"
+                                                                name="Type-radio" value="SH" />
+                                                            <label class="slds-radio__label" for="Type-radio-3">
+                                                                <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label">SH</span>
+                                                            </label>
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!---->
+                                        </div>
+                                        <div class="slds-col">
+                                            <label class="slds-form-element__label">PEFS No:</label>
+                                            <div class="slds-form-element__control">
+                                                <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                    data-id="pefs" class="slds-input" />
+                                            </div>
+                                        </div>
+                                    </div><br />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <!-- 1 -->
+                <!-- BEGINNING OF SECOND SECTION WITH N/A-->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionOne">
+                        <!--
+                            CHECKBOX FOR N/A
+                            DELETE IF N/A NOT NEEDED
+                        -->
+                        <!-- NOTE: data-id and id are 'header-na-x', and data-remark is 'x-remark'
+                        where x is the number of the section. Name must be 'options' for each section -->
+                        <div class="slds-col">
+                            <div class="slds-checkbox obj-right">
+                                <input
+                                    onchange={disableSection}
+                                    name="options"
+                                    type="checkbox"
+                                    id="header-na-1"
+                                    data-id="header-na-1"
+                                    data-remark="1-remark"
+                                    value="header-na-1"
+                                />
+                                <!-- NOTE: 'for' value must match the id value above -->
+                                <label class="slds-checkbox__label" for="header-na-1"
+                                    ><span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">N/A</span></label
+                                >
+                            </div>
+                        </div>
+                        <!--
+                            END CHECKBOX FOR N/A
+                        -->
+                        <div class="card-header" data-id="headingOne">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseOne"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionOne"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210))"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        1</span
+                                    ><span class="slds-accordion__summary-content"> Test Record</span>
+                                </button>
+                            </h2>
+                        </div>
+                        <!--
+                            REMARK SECTION. DELETE IF N/A NOT NEEDED
+                        -->
+                        <!-- NOTE: FOR REMARK SECTION
+                            id and data-id are 'sectionX-remark' where x is the section number
+                        -->
+                        <div
+                            class="slds-grid slds-gutters hide-remark"
+                            id="sectionOne-remark"
+                            data-id="sectionOne-remark"
+                        >
+                            <div class="slds-col">
+                                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                <div class="slds-form-element__control">
+                                    <textarea
+                                        data-id="sectionOne-inputRemark"
+                                        onchange={onIEH}
+                                        id="sectionOne-inputRemark"
+                                        class="slds-textarea"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!--
+                            END REMARK SECTION
+                        -->
+                        <!-- NOTE: data-id for section is 'collapseX' where x is the section number-->
+                        <div data-id="collapseOne" class="slds-accordion__content">
+                            <!-- drop 1st section card-body div -->
+                            <div class="card-body">
+                                <div class="slds-m-around_small" style="margin: 0rem">
+
+                                    <!--
+                                        BEGIN SECTION BODY
+
+                                        Inputs must have:
+                                            a unique data-id
+                                            'onchange={onIEH}'
+                                    -->
+
+                                    <div class="slds-section">
+                                        <section id="1.1" class="pd-b-1" data-answered="false">
+                                            <span class="slds-form-element__label"><b>1.1 Record Reading</b></span><br />
+                                            <div class="content">
+                                                <span class="slds-form-element__label">Before Start Any Activity</span>
+                                                <div class="slds-grid slds-gutters">
+                                                    <div class="slds-col">
+                                                        <label class="slds-form-element__label">At Transmitter:</label>
+                                                        <div class="slds-form-element__control">
+                                                            <input onchange={onIEH} type="text" data-id="1-1-input-1" class="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col">
+                                                        <label class="slds-form-element__label">At DCS:</label>
+                                                        <div class="slds-form-element__control">
+                                                            <input onchange={onIEH} type="text" data-id="1-1-input-2" class="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="content">
+                                                <span class="slds-form-element__label">After Finish Activity (Item 7)</span>
+                                                <div class="slds-grid slds-gutters">
+                                                    <div class="slds-col">
+                                                        <label class="slds-form-element__label">At Transmitter:</label>
+                                                        <div class="slds-form-element__control">
+                                                            <input onchange={onIEH} type="text" data-id="1-1-input-3" class="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col">
+                                                        <label class="slds-form-element__label">At DCS:</label>
+                                                        <div class="slds-form-element__control">
+                                                            <input onchange={onIEH} type="text" data-id="1-1-input-4" class="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+
+                                        <section id="1.2" class="pd-b-1">
+                                            <span class="slds-form-element__label"><b>1.2 Field Inspection</b></span><br />
+                                            <div class="content" data-answered="false">
+                                                <span class="slds-form-element__label">1) Transmitter/Impulse Line/Seal Pot Condition</span>
+                                                <div class="slds-grid slds-gutters">
+                                                    <div class="slds-col" style="padding-left: 2.3rem;">
+                                                        <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-2-1-radio-1" data-id="1-2-1-radio-1"
+                                                                        name="1-2-1-radio" value="Good" />
+                                                                    <label class="slds-radio__label" for="1-2-1-radio-1">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">Good</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-2-1-radio-2" data-id="1-2-1-radio-2"
+                                                                        name="1-2-1-radio" value="Not Good" />
+                                                                    <label class="slds-radio__label" for="1-2-1-radio-2">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">Not Good</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="content" data-answered="false">
+                                                <span class="slds-form-element__label">2) Wiring/Cable Gland/Grounding Condition</span>
+                                                <div class="slds-grid slds-gutters">
+                                                    <div class="slds-col" style="padding-left: 2.3rem;">
+                                                        <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-2-2-radio-1" data-id="1-2-2-radio-1"
+                                                                        name="1-2-2-radio" value="Good" />
+                                                                    <label class="slds-radio__label" for="1-2-2-radio-1">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">Good</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-2-2-radio-2" data-id="1-2-2-radio-2"
+                                                                        name="1-2-2-radio" value="Not Good" />
+                                                                    <label class="slds-radio__label" for="1-2-2-radio-2">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">Not Good</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="content" data-answered="false">
+                                                <span class="slds-form-element__label">3) Steam Tracing/Purge System</span>
+                                                <div class="slds-grid slds-gutters">
+                                                    <div class="slds-col" style="padding-left: 2.3rem;">
+                                                        <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-2-3-radio-1" data-id="1-2-3-radio-1"
+                                                                        name="1-2-3-radio" value="Good" />
+                                                                    <label class="slds-radio__label" for="1-2-3-radio-1">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">WORKING</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-2-3-radio-2" data-id="1-2-3-radio-2"
+                                                                        name="1-2-3-radio" value="Not Good" />
+                                                                    <label class="slds-radio__label" for="1-2-3-radio-2">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">NOT WORKING</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-2-3-radio-3" data-id="1-2-3-radio-3"
+                                                                        name="1-2-3-radio" value="N/A" />
+                                                                    <label class="slds-radio__label" for="1-2-3-radio-3">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">N/A</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+
+                                        <section id="1.3" class="pd-b-1" data-answered="false">
+                                            <span class="slds-form-element__label"><b>1.3 Transmitter Configuration
+                                                    Verification</b></span><br />
+                                            <div class="content">
+                                                <span class="slds-form-element__label">1) Burnout Direction</span>
+                                                <div class="slds-grid slds-gutters">
+                                                    <div class="slds-col" style="padding-left: 2.3rem;">
+                                                        <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-3-1-radio-1" data-id="1-3-1-radio-1"
+                                                                        name="1-3-1-radio" value="HIGH" />
+                                                                    <label class="slds-radio__label" for="1-3-1-radio-1">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">HIGH</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-3-1-radio-2" data-id="1-3-1-radio-2"
+                                                                        name="1-3-1-radio" value="LOW" />
+                                                                    <label class="slds-radio__label" for="1-3-1-radio-2">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">LOW</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-3-1-radio-3" data-id="1-3-1-radio-3"
+                                                                        name="1-3-1-radio" value="N/A" />
+                                                                    <label class="slds-radio__label" for="1-3-1-radio-3">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">N/A</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+
+                                        <section id="1.4" class="pd-b-1" data-answered="false">
+                                            <span class="slds-form-element__label"><b>1.4 Verify Instrument Range in
+                                                    Transmitter</b></span><br />
+                                            <div class="content">
+                                                <span class="slds-form-element__label">Calibration Rang</span>
+                                                <div class="slds-grid slds-gutters">
+                                                    <div class="slds-col">
+                                                        <label class="slds-form-element__label">Design*</label>
+                                                        <div class="slds-form-element__control">
+                                                            <input onchange={onIEH} type="text" data-id="1-4-input-1" class="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col">
+                                                        <label class="slds-form-element__label">Actual</label>
+                                                        <div class="slds-form-element__control">
+                                                            <input onchange={onIEH} type="text" data-id="1-4-input-2" class="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                </div><br />
+                                            </div>
+                                        </section>
+
+                                        <section id="1.5" class="pd-b-1">
+                                            <span class="slds-form-element__label"><b>1.5 Verify Trip Setting in IPS</b></span><br />
+                                            <div class="content">
+                                                <span class="slds-form-element__label">1) Trip Setting Design*</span>
+                                                <div class="slds-grid slds-gutters" data-answered="false">
+                                                    <div class="slds-col">
+                                                        <label class="slds-form-element__label">Low Low</label>
+                                                        <div class="slds-form-element__control">
+                                                            <input onchange={onIEH} type="text" data-id="1-5-1-input-1" class="slds-input" />
+                                                        </div>
+                                                        <label class="slds-form-element__label">Hight Hight</label>
+                                                        <div class="slds-form-element__control">
+                                                            <input onchange={onIEH} type="text" data-id="1-5-1-input-3" class="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col">
+                                                        <label class="slds-form-element__label">Low</label>
+                                                        <div class="slds-form-element__control">
+                                                            <input onchange={onIEH} type="text" data-id="1-5-1-input-2" class="slds-input" />
+                                                        </div>
+                                                        <label class="slds-form-element__label">Hight</label>
+                                                        <div class="slds-form-element__control">
+                                                            <input onchange={onIEH} type="text" data-id="1-5-1-input-4" class="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                </div><br />
+                                                <span class="slds-form-element__label">2) Actual in IPS</span>
+                                                <div class="slds-grid slds-gutters" data-answered="false">
+                                                    <div class="slds-col">
+                                                        <label class="slds-form-element__label">Low Low</label>
+                                                        <div class="slds-form-element__control">
+                                                            <input onchange={onIEH} type="text" data-id="1-5-2-input-1" class="slds-input" />
+                                                        </div>
+                                                        <label class="slds-form-element__label">Hight Hight</label>
+                                                        <div class="slds-form-element__control">
+                                                            <input onchange={onIEH} type="text" data-id="1-5-2-input-3" class="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col">
+                                                        <label class="slds-form-element__label">Low</label>
+                                                        <div class="slds-form-element__control">
+                                                            <input onchange={onIEH} type="text" data-id="1-5-2-input-2" class="slds-input" />
+                                                        </div>
+                                                        <label class="slds-form-element__label">Hight</label>
+                                                        <div class="slds-form-element__control">
+                                                            <input onchange={onIEH} type="text" data-id="1-5-2-input-4" class="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+
+                                        <section id="1.6" class="pd-b-1" data-answered="false">
+                                            <span class="slds-form-element__label"><b>1.6 Isolate, Test Trip by Apply/Release
+                                                    Pressure</b></span><br />
+                                            <div class="content">
+                                                <div class="slds-grid slds-gutters">
+                                                    <div class="slds-col">
+                                                        <label class="slds-form-element__label">Record Actual Trip Point<sup>(H)</sup></label>
+                                                        <div class="slds-form-element__control">
+                                                            <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                                data-id="1-6-input" class="slds-input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col">
+                                                        <label class="slds-form-element__label">SOE Activated</label>
+                                                        <div class="slds-form-element__control">
+                                                            <div class="slds-checkbox">
+                                                                <input onchange={onIEH} type="checkbox" name="1-6-checkbox" id="1-6-checkbox"
+                                                                    data-id="1-6-checkbox" value="SOE Activated" />
+                                                                <label class="slds-checkbox__label" for="1-6-checkbox">
+                                                                    <span class="slds-checkbox_faux"></span>
+                                                                    <span class="slds-form-element__label"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+
+                                        <section id="1.7" class="pd-b-1">
+                                            <span class="slds-form-element__label"><b>1.7 Drain and Clear Impulse Lines of
+                                                    Transmitter</b></span><br />
+                                            <div class="content">
+                                                <span class="slds-form-element__label">1) Impulse Line Blockage (As Found)</span>
+                                                <div class="slds-grid slds-gutters" data-answered="false">
+                                                    <div class="slds-col" style="padding-left: 2.3rem;">
+                                                        <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-7-1-radio-1" data-id="1-7-1-radio-1"
+                                                                        name="1-7-1-radio" value="Blocked" />
+                                                                    <label class="slds-radio__label" for="1-7-1-radio-1">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">BLOCKED</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-7-1-radio-2" data-id="1-7-1-radio-2"
+                                                                        name="1-7-1-radio" value="Not Blocked" />
+                                                                    <label class="slds-radio__label" for="1-7-1-radio-2">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">NOT BLOCKED</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <span class="slds-form-element__label">2) Seal Fluid Type</span>
+                                                <div class="slds-grid slds-gutters" data-answered="false">
+                                                    <div class="slds-col" style="padding-left: 2.3rem;">
+                                                        <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-7-2-radio-1" data-id="1-7-2-radio-1"
+                                                                        name="1-7-2-radio" value="Process" />
+                                                                    <label class="slds-radio__label" for="1-7-2-radio-1">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">PROCESS</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-7-2-radio-2" data-id="1-7-2-radio-2"
+                                                                        name="1-7-2-radio" value="Glycerin" />
+                                                                    <label class="slds-radio__label" for="1-7-2-radio-2">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">GLYCERIN</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-7-2-radio-3" data-id="1-7-2-radio-3"
+                                                                        name="1-7-2-radio" value="WATER" />
+                                                                    <label class="slds-radio__label" for="1-7-2-radio-3">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">WATER</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <span class="slds-form-element__label">3) Zero Supression (LRV/URV)</span>
+                                                <div class="slds-grid slds-gutters" data-answered="false">
+                                                    <div class="slds-col" style="padding-left: 2.3rem;">
+                                                        <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-7-3-radio-1" data-id="1-7-3-radio-1"
+                                                                        name="1-7-3-radio" value="Ok" />
+                                                                    <label class="slds-radio__label" for="1-7-3-radio-1">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">OK</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="slds-radio">
+                                                                    <input onchange={onIEH} type="radio" id="1-7-3-radio-2" data-id="1-7-3-radio-2"
+                                                                        name="1-7-3-radio" value="Not Ok" />
+                                                                    <label class="slds-radio__label" for="1-7-3-radio-2">
+                                                                        <span class="slds-radio_faux"></span>
+                                                                        <span class="slds-form-element__label">NOT OK</span>
+                                                                    </label>
+                                                                </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <span class="slds-form-element__label">* Range and Trip setting shall refer to alarm &amp; trip
+                                                    setting in ENPortal</span><br />
+                                                <span class="slds-form-element__label">(H) = Hold Point for QC Inspection or Test</span>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <!-- Copy and paste <li> and it's contents to add sections.
+                    Replace body content and make sure ALL data-id's and id's are unique
+                -->
+
+                <!-- 2 -->
+                <!-- BEGINNING OF SECOND SECTION WITH N/A-->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionTwo">
+                        <!--
+                            CHECKBOX FOR N/A
+                            DELETE IF N/A NOT NEEDED
+                        -->
+                        <!-- NOTE: data-id and id are 'header-na-x', and data-remark is 'x-remark'
+                        where x is the number of the section. Name must be 'options' for each section -->
+                        <div class="slds-col">
+                            <div class="slds-checkbox obj-right">
+                                <input
+                                    onchange={disableSection}
+                                    name="options"
+                                    type="checkbox"
+                                    id="header-na-2"
+                                    data-id="header-na-2"
+                                    data-remark="1-remark"
+                                    value="header-na-2"
+                                />
+                                <!-- NOTE: 'for' value must match the id value above -->
+                                <label class="slds-checkbox__label" for="header-na-2"
+                                    ><span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">N/A</span></label
+                                >
+                            </div>
+                        </div>
+                        <!--
+                            END CHECKBOX FOR N/A
+                        -->
+                        <div class="card-header" data-id="headingTwo">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseTwo"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionTwo"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210))"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        2</span
+                                    ><span class="slds-accordion__summary-content"> Test Result (Fault
+                                        Code)</span>
+                                </button>
+                            </h2>
+                        </div>
+                        <!--
+                            REMARK SECTION. DELETE IF N/A NOT NEEDED
+                        -->
+                        <!-- NOTE: FOR REMARK SECTION
+                            id and data-id are 'sectionX-remark' where x is the section number
+                        -->
+                        <div
+                            class="slds-grid slds-gutters hide-remark"
+                            id="sectionTwo-remark"
+                            data-id="sectionTwo-remark"
+                        >
+                            <div class="slds-col">
+                                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                <div class="slds-form-element__control">
+                                    <textarea
+                                        data-id="sectionTwo-inputRemark"
+                                        onchange={onIEH}
+                                        id="sectionTwo-inputRemark"
+                                        class="slds-textarea"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!--
+                            END REMARK SECTION
+                        -->
+                        <!-- NOTE: data-id for section is 'collapseX' where x is the section number-->
+                        <div data-id="collapseTwo" class="slds-accordion__content">
+                            <!-- drop 1st section card-body div -->
+                            <div class="card-body">
+                                <div class="slds-m-around_small" style="margin: 0rem">
+
+                                    <!--
+                                        BEGIN SECTION BODY
+
+                                        Inputs must have:
+                                            a unique data-id
+                                            'onchange={onIEH}'
+                                    -->
+
+                                    <div class="slds-section">
+                                        <fieldset class="slds-form-element content" style="padding-left: 40px;" data-answered="false">
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-radio">
+                                                    <input onchange={onIEH} type="radio" name="2-radio-1" id="2-radio-1" data-id="2-radio-1"
+                                                        value="Safeguarding Normal (I-SN)" />
+                                                    <label class="slds-radio__label" for="2-radio-1">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label">Safeguarding Normal (I-SN)</span>
+                                                    </label>
+                                                </div>
+                                                <div class="slds-radio">
+                                                    <input onchange={onIEH} type="radio" name="2-radio-1" id="2-radio-2" data-id="2-radio-2"
+                                                        value="Safeguarding Un-revealed/ Dangerous failure (I-SU)" />
+                                                    <label class="slds-radio__label" for="2-radio-2">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label">Safeguarding Un-revealed/ Dangerous failure
+                                                            (I-SU)</span>
+                                                    </label>
+                                                </div>
+                                                <div class="slds-radio">
+                                                    <input onchange={onIEH} type="radio" name="2-radio-1" id="2-radio-3" data-id="2-radio-3"
+                                                        value="Safeguarding Revealed/ Safe failure (I-SR)" />
+                                                    <label class="slds-radio__label" for="2-radio-3">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label">Safeguarding Revealed/ Safe failure (I-SR)</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </fieldset><br />
+                                        <div class="content">
+                                            <span class="slds-form-element__label"><b>Work Summary (Not required if I-SN)</b></span>
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label">Problem:</label>
+                                                <div class="slds-form-element__control">
+                                                    <textarea data-id="2-input-1" class="slds-textarea" rows="6"></textarea>
+                                                </div>
+                                                <label class="slds-form-element__label">Action:</label>
+                                                <div class="slds-form-element__control">
+                                                    <textarea data-id="2-input-2" class="slds-textarea" rows="6"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <!-- Copy and paste <li> and it's contents to add sections.
+                    Replace body content and make sure ALL data-id's and id's are unique
+                -->
+            </ul>
+        </div>
+
+        <!-- Button Section for Every Form -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openRejectModal}>
+                    Reject
+                </button>
+                <button data-id="recallEQCCStep" class="slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                    Recall
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Submit</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-lookup object-api-name="user" icon-name="standard:user" onrecordselection={onUserSelection}></c-lookup>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submit} title="Submit">Submit</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

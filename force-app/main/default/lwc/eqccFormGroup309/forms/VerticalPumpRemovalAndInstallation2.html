@@ -1,0 +1,819 @@
+<template>
+    <div data-id="formBegin">
+        <c-step-page-header
+            num-steps="3"
+            current-step="2"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+
+        <div class="slds-text-heading_medium text-center">VERTICAL PUMP REMOVAL AND INSTALLATION</div>
+
+        <!-- Section for Notification, FL. and Status fields -->
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                        <svg
+                            class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                            aria-hidden="true"
+                        >
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                        </svg>
+                        <input
+                            type="text"
+                            data-id="notification"
+                            class="slds-input avoidPercentageInput"
+                            value={notification}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Body section. -->
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <!-- Li-4 -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionThree">
+                        <div class="slds-accordion__summary" data-id="headingThree">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseThree"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionThree"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        3</span
+                                    ><span class="slds-accordion__summary-content"> INSTALLATION (งานติดตั้งPump)</span>
+                                </button>
+                                <div class="slds-col">
+                                    <div class="slds-checkbox obj-right">
+                                        <input
+                                            onchange={disableSection}
+                                            type="checkbox"
+                                            name="options"
+                                            id="checkbox-unique-id-3"
+                                            data-id="checkbox-unique-id-3"
+                                            data-remark="checkbox-unique-id-3"
+                                            value="checkbox-unique-id-3"
+                                            data-parent="sectionThree"
+                                        />
+                                        <label class="slds-checkbox__label" for="checkbox-unique-id-3">
+                                            <span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">N/A</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </h2>
+                        </div>
+                        <div
+                            class="slds-grid slds-gutters hide-remark"
+                            id="sectionThree-remark"
+                            data-id="sectionThree-remark"
+                        >
+                            <div class="slds-col">
+                                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                <div class="slds-form-element__control">
+                                    <textarea
+                                        data-id="sectionThree-inputRemark"
+                                        onchange={onIEH}
+                                        id="sectionThree-inputRemark"
+                                        class="slds-textarea"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-id="collapseThree" class="slds-accordion__content">
+                            <div class="card-body">
+
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            ><b>3.1</b> &nbsp;&nbsp;Check levelling, re-installpumpand driver on foundations</span
+                                            ><br />                                
+                                            </span><br />
+                                    <span class="slds-form-element__label"
+                                    >&nbsp;&nbsp;&nbsp;Tighten hold-down bolts of the equipment. Hand turn to check smooth rotation                                   
+                                            </span><br />
+                                    <span class="slds-form-element__label"
+                                    >&nbsp;&nbsp;&nbsp;ตรวจสอบวัดค่า และแก้ไข levelingของฐาน ติดตั้ง pump ขัน hold down bolt ให้ครบ                                   
+                                            </span><br />
+                                            <span class="slds-form-element__label"
+                                    >&nbsp;&nbsp;&nbsp;จากนั้น ทำการหมุนเพลาของ pump ว่าไม่มีการติด                                    
+                                            </span>
+                                            <div class="slds-grid slds-gutters">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr >
+                                                            <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                Record /Comment</b></span>
+                                                            </td>
+                                                            <td class="text-center w-50%">
+                                                                <div class="slds-form-element">
+                                                                    <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                        <input
+                                                                                onchange={onIEH}
+                                                                                type="text"
+                                                                                data-id="3-1-input-1"
+                                                                                id="3-1-input-1"
+                                                                                class="slds-input"
+                                                                        />
+                                                                        <span
+                                                                                class="slds-form-element__addon slds-form-element__label"
+                                                                                data-id="fixed-text-addon-post"
+                                                                        ></span
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                </div>
+                                <div class="slds-section">
+                                    <span class="slds-form-element__label"
+                                            ><b>3.2</b> &nbsp;&nbsp;Measure and report alignment of suction and discharge flanges to nozzles.</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >&nbsp;&nbsp;&nbsp;วัดค่า flange alignment ของ pump
+                                            </span>
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr >
+                                                        <th rowspan="2" class="text-center"><span class="slds-form-element__label">Suction</span>
+                                                        </th>
+                                                        <td class="text-center"><span class="slds-form-element__label"><b>Gap</b>, mm
+                                                        </span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="slds-form-element">
+                                                                    <input
+                                                                            onchange={onIEH}
+                                                                            type="number"
+                                                                            data-id="3-2-input-1"
+                                                                            id="3-2-input-1"
+                                                                            class="slds-input"
+                                                                    />
+                                                                    <span
+                                                                            class="slds-form-element__addon slds-form-element__label"
+                                                                            data-id="fixed-text-addon-post"
+                                                                    ></span
+                                                                    >
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td class="text-center"><span class="slds-form-element__label"><b>Offset</b>, mm</span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="slds-form-element">      
+                                                                    <input
+                                                                            onchange={onIEH}
+                                                                            type="number"
+                                                                            data-id="3-2-input-2"
+                                                                            id="3-2-input-2"
+                                                                            class="slds-input"
+                                                                    />
+                                                                    <span
+                                                                            class="slds-form-element__addon slds-form-element__label"
+                                                                            data-id="fixed-text-addon-post"
+                                                                    ></span
+                                                                    >
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <th rowspan="2" class="text-center" ><span class="slds-form-element__label">Discharge</span>
+                                                        </th>
+                                                        <td class="text-center"><span class="slds-form-element__label"><b>Gap</b>, mm</span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="slds-form-element">    
+                                                                    <input
+                                                                            onchange={onIEH}
+                                                                            type="number"
+                                                                            data-id="3-2-input-3"
+                                                                            id="3-2-input-3"
+                                                                            class="slds-input"
+                                                                    />
+                                                                    <span
+                                                                            class="slds-form-element__addon slds-form-element__label"
+                                                                            data-id="fixed-text-addon-post"
+                                                                    ></span
+                                                                    >
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td class="text-center"><span class="slds-form-element__label"><b>Offset</b>, mm</span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="slds-form-element">     
+                                                                    <input
+                                                                            onchange={onIEH}
+                                                                            type="number"
+                                                                            data-id="3-2-input-4"
+                                                                            id="3-2-input-4"
+                                                                            class="slds-input"
+                                                                    />
+                                                                    <span
+                                                                            class="slds-form-element__addon slds-form-element__label"
+                                                                            data-id="fixed-text-addon-post"
+                                                                    ></span
+                                                                    >
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                </div>
+                                <div class="slds-section">
+                                    <span class="slds-form-element__label"
+                                            ><b>3.3</b> &nbsp;&nbsp;Install indicator at coupling end and measure impact of Suction</span
+                                            ><br />
+                                            <span class="slds-form-element__label"
+                                            >&nbsp;&nbsp;&nbsp;and Discharge flange tightening. [TIR 0.05mm]</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >&nbsp;&nbsp;&nbsp;ติดตั้ง Dial gauge ที่ปลายเพลา ท าการขันหน้าแปลนของpump
+                                            </span><br />
+                                            <span class="slds-form-element__label"
+                                            >&nbsp;&nbsp;&nbsp;ค่าที่อ่านได้หลังจากขันแน่น เพลาต้องบิดตัวน้อยกว่า0.05mm
+                                                    </span>
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr >
+                                                        <th rowspan="2" class="text-center"><span class="slds-form-element__label">TIR, mm</span>
+                                                        </th>
+                                                        <td class="text-center"><span class="slds-form-element__label"><b>Hor</b>
+                                                        </span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="slds-form-element">   
+                                                                    <input
+                                                                            onchange={onIEH}
+                                                                            type="number"
+                                                                            data-id="3-3-input-1"
+                                                                            id="3-3-input-1"
+                                                                            class="slds-input"
+                                                                    />
+                                                                    <span
+                                                                            class="slds-form-element__addon slds-form-element__label"
+                                                                            data-id="fixed-text-addon-post"
+                                                                    ></span
+                                                                    >
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td class="text-center"><span class="slds-form-element__label"><b>Ver</b></span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="slds-form-element">
+                                                                <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                    <input
+                                                                            onchange={onIEH}
+                                                                            type="number"
+                                                                            onkeypress={onKeyPress}
+                                                                            data-id="3-3-input--2"
+                                                                            class="slds-input"
+                                                                    />
+                                                                    <span
+                                                                            class="slds-form-element__addon slds-form-element__label"
+                                                                            data-id="fixed-text-addon-post"
+                                                                    ></span
+                                                                    >
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                </div>
+                                <div class="slds-section" >
+                                    <span class="slds-form-element__label"
+                                            ><b>3.4</b> &nbsp;&nbsp;Tightening of Pump Suction and Discharge flanges</span
+                                            ><br />
+                                            <span class="slds-form-element__label"
+                                            >&nbsp;&nbsp;&nbsp;ขันประกอบหน้าแปลนของ pump ด้วยค่า Torque ที่เหมาะสม
+                                                    </span><br />
+                                                    <span class="slds-form-element__label"
+                                            >1st-path –30%
+                                                    </span><br />
+                                                    <span class="slds-form-element__label"
+                                            >2nd-path –60%
+                                                    </span><br />
+                                                    <span class="slds-form-element__label"
+                                            >3rd-path –100%
+                                                    </span><br />
+                                                    <span class="slds-form-element__label"
+                                            >QC path(Confirm that all bolts and nut is tighte)
+                                                    </span>
+                                                    <div class="slds-grid slds-gutters">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <tr >
+                                                                    <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                        Raise faceconditionGasket Spec</b></span>
+                                                                    </td>
+                                                                    <td class="text-center w-50%">
+                                                                        <div class="slds-form-element">
+                                                                            <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                                <input
+                                                                                        onchange={onIEH}
+                                                                                        type="text"
+                                                                                        onkeypress={onKeyPress}
+                                                                                        data-id="3-4-input-1"
+                                                                                        class="slds-input"
+                                                                                />
+                                                                                <span
+                                                                                        class="slds-form-element__addon slds-form-element__label"
+                                                                                        data-id="fixed-text-addon-post"
+                                                                                ></span
+                                                                                >
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr >
+                                                                    <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                        Gasket Spec</b></span>
+                                                                    </td>
+                                                                    <td class="text-center w-50%">
+                                                                        <div class="slds-form-element">
+                                                                            <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                                <input
+                                                                                        onchange={onIEH}
+                                                                                        type="text"
+                                                                                        onkeypress={onKeyPress}
+                                                                                        data-id="3-4-input-2"
+                                                                                        class="slds-input"
+                                                                                />
+                                                                                <span
+                                                                                        class="slds-form-element__addon slds-form-element__label"
+                                                                                        data-id="fixed-text-addon-post"
+                                                                                ></span
+                                                                                >
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr >
+                                                                    <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                        Lubricationon Flanges and Fastening</b></span>
+                                                                    </td>
+                                                                    <td class="text-center w-50%">
+                                                                        <div class="slds-form-element">
+                                                                            <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                                <input
+                                                                                        onchange={onIEH}
+                                                                                        type="text"
+                                                                                        onkeypress={onKeyPress}
+                                                                                        data-id="3-4-input-3"
+                                                                                        class="slds-input"
+                                                                                />
+                                                                                <span
+                                                                                        class="slds-form-element__addon slds-form-element__label"
+                                                                                        data-id="fixed-text-addon-post"
+                                                                                ></span
+                                                                                >
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr >
+                                                                    <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                        Torque value, NM</b></span>
+                                                                    </td>
+                                                                    <td class="text-center w-50%">
+                                                                        <div class="slds-form-element">
+                                                                            <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                                <input
+                                                                                        onchange={onIEH}
+                                                                                        type="number"
+                                                                                        onkeypress={onKeyPress}
+                                                                                        data-id="3-4-input-4"
+                                                                                        class="slds-input"
+                                                                                />
+                                                                                <span
+                                                                                        class="slds-form-element__addon slds-form-element__label"
+                                                                                        data-id="fixed-text-addon-post"
+                                                                                ></span
+                                                                                >
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                </div>
+
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            ><b>3.5</b>&nbsp;&nbsp; Connect all auxiliary piping such as water line,</span
+                                            ><br />
+                                            <span class="slds-form-element__label"
+                                            >&nbsp;&nbsp;&nbsp;seal system intermediate piping,drain lines etc.</span
+                                            ><br />
+                                            <span class="slds-form-element__label"
+                                            >&nbsp;&nbsp;&nbsp;Hand turn to check smooth rotation</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >&nbsp;&nbsp;&nbsp;ประกอบ pipingต่างๆของระบบ seal, cooling, lube oil                                    
+                                            </span><br />
+                                            <span class="slds-form-element__label"
+                                    >&nbsp;&nbsp;&nbsp;จากนั้นหมุนเพลาด้วยมือว่าไม่มีการติด                                    
+                                            </span>
+                                            <div class="slds-grid slds-gutters">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr >
+                                                            <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                Record /Comment</b></span>
+                                                            </td>
+                                                            <td class="text-center w-50%">
+                                                                <div class="slds-form-element">
+                                                                    <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                        <input
+                                                                                onchange={onIEH}
+                                                                                type="text"
+                                                                                onkeypress={onKeyPress}
+                                                                                data-id="3-5-input-1"
+                                                                                class="slds-input"
+                                                                        />
+                                                                        <span
+                                                                                class="slds-form-element__addon slds-form-element__label"
+                                                                                data-id="fixed-text-addon-post"
+                                                                        ></span
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                </div>
+
+                                <div class="slds-section" >
+                                    <span class="slds-form-element__label"
+                                            ><b>3.6</b> &nbsp;&nbsp;Motor solo run (กรณี overhaul motor)</span
+                                            ><br />
+                                                    <div class="slds-grid slds-gutters">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <tr >
+                                                                    <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                        CW or CCW?</b></span>
+                                                                    </td>
+                                                                    <td class="text-center w-50%">
+                                                                        <div class="slds-form-element">
+                                                                            <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                                <input
+                                                                                        onchange={onIEH}
+                                                                                        type="text"
+                                                                                        onkeypress={onKeyPress}
+                                                                                        data-id="3-6-input-1"
+                                                                                        class="slds-input"
+                                                                                />
+                                                                                <span
+                                                                                        class="slds-form-element__addon slds-form-element__label"
+                                                                                        data-id="fixed-text-addon-post"
+                                                                                ></span
+                                                                                >
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                </div>
+                                <div class="slds-section" >
+                                    <span class="slds-form-element__label"
+                                            ><b>3.7</b> &nbsp;&nbsp;Set rotor at right axial/ shaft lift (VS), measure DBSE</span
+                                            ><br />
+                                            <span class="slds-form-element__label"
+                                            >&nbsp;&nbsp;&nbsp;ตั้งค่าตำแหน่ง shaft lift(ถ้ามี)วัดค่า DBSE</span
+                                            >       
+                                                    <div class="slds-grid slds-gutters">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <tr >
+                                                                    <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                        DBSE, mm</b></span>
+                                                                    </td>
+                                                                    <td class="text-center w-50%">
+                                                                        <div class="slds-form-element">
+                                                                            <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                                <input
+                                                                                        onchange={onIEH}
+                                                                                        type="number"
+                                                                                        onkeypress={onKeyPress}
+                                                                                        data-id="3-7-input-1"
+                                                                                        class="slds-input"
+                                                                                />
+                                                                                <span
+                                                                                        class="slds-form-element__addon slds-form-element__label"
+                                                                                        data-id="fixed-text-addon-post"
+                                                                                ></span
+                                                                                >
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                </div>
+                                <div class="slds-section" >
+                                    <span class="slds-form-element__label"
+                                            ><b>3.8</b> &nbsp;&nbsp;Assemble coupling hub to shaft end, runout check</span
+                                            ><br />
+                                            <span class="slds-form-element__label"
+                                            >&nbsp;&nbsp;&nbsp;ประกอบ coupling hub เข้ากับเพลา วัด runout ของ hub (criteria : 0.03mm)</span
+                                            >       
+                                                    <div class="slds-grid slds-gutters">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <tr >
+                                                                    <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                        Face runout, mm (TIR)</b></span>
+                                                                    </td>
+                                                                    <td class="text-center w-50%">
+                                                                        <div class="slds-form-element">
+                                                                            <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                                <input
+                                                                                        onchange={onIEH}
+                                                                                        type="number"
+                                                                                        onkeypress={onKeyPress}
+                                                                                        data-id="3-8-input-1"
+                                                                                       class="slds-input"
+                                                                                />
+                                                                                <span
+                                                                                        class="slds-form-element__addon slds-form-element__label"
+                                                                                        data-id="fixed-text-addon-post"
+                                                                                ></span
+                                                                                >
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr >
+                                                                    <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                        Radial runout, mm (TIR)</b></span>
+                                                                    </td>
+                                                                    <td class="text-center w-50%">
+                                                                        <div class="slds-form-element">
+                                                                            <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                                <input
+                                                                                        onchange={onIEH}
+                                                                                        type="number"
+                                                                                        onkeypress={onKeyPress}
+                                                                                        data-id="3-8-input-2"
+                                                                                        class="slds-input"
+                                                                                />
+                                                                                <span
+                                                                                        class="slds-form-element__addon slds-form-element__label"
+                                                                                        data-id="fixed-text-addon-post"
+                                                                                ></span
+                                                                                >
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                </div>
+                                <div class="slds-section" >
+                                    <span class="slds-form-element__label"
+                                            ><b>3.9</b> &nbsp;&nbsp;Final Shaft Alignment </span
+                                            ><br />
+                                            <span class="slds-form-element__label"
+                                            >&nbsp;&nbsp;&nbsp;Rim and face method (criteria : 0.05mm)</span
+                                            >       
+                                                    <div class="slds-grid slds-gutters">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <tr >
+                                                                    <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                        @Temperature, DegC</b></span>
+                                                                    </td>
+                                                                    <td class="text-center w-50%">
+                                                                        <div class="slds-form-element">
+                                                                            <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                                <input
+                                                                                        onchange={onIEH}
+                                                                                        type="number"
+                                                                                        onkeypress={onKeyPress}
+                                                                                        data-id="3-9-input-1"
+                                                                                        class="slds-input"
+                                                                                />
+                                                                                <span
+                                                                                        class="slds-form-element__addon slds-form-element__label"
+                                                                                        data-id="fixed-text-addon-post"
+                                                                                ></span
+                                                                                >
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr >
+                                                                    <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                        Face, mm(TIR)</b></span>
+                                                                    </td>
+                                                                    <td class="text-center w-50%">
+                                                                        <div class="slds-form-element">
+                                                                            <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                                <input
+                                                                                        onchange={onIEH}
+                                                                                        type="number"
+                                                                                         onkeypress={onKeyPress}
+                                                                                        data-id="3-9-input-2"
+                                                                                         class="slds-input"
+                                                                                />
+                                                                                <span
+                                                                                        class="slds-form-element__addon slds-form-element__label"
+                                                                                        data-id="fixed-text-addon-post"
+                                                                                ></span
+                                                                                >
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr >
+                                                                    <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                        Radial, mm(TIR)</b></span>
+                                                                    </td>
+                                                                    <td class="text-center w-50%">
+                                                                        <div class="slds-form-element">
+                                                                            <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                                <input
+                                                                                        onchange={onIEH}
+                                                                                        type="number"
+                                                                                        onkeypress={onKeyPress}
+                                                                                        data-id="3-9-input-3"
+                                                                                         class="slds-input"
+                                                                                />
+                                                                                <span
+                                                                                        class="slds-form-element__addon slds-form-element__label"
+                                                                                        data-id="fixed-text-addon-post"
+                                                                                ></span
+                                                                                >
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                </div>
+                                <div class="slds-section" >
+                                    <span class="slds-form-element__label"
+                                            ><b>3.10</b> &nbsp;&nbsp;Install coupling spacer and tighten bolt.</span
+                                            ><br />
+                                            <span class="slds-form-element__label"
+                                            >&nbsp;&nbsp;&nbsp;(Lubricate gear type couplin</span
+                                            > <br /> 
+                                            <span class="slds-form-element__label"
+                                            >&nbsp;&nbsp;&nbsp;ประกอบ couplingขันให้แน่น</span
+                                            >      
+                                                    <div class="slds-grid slds-gutters">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <tr >
+                                                                    <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                        Torque value, NM</b></span>
+                                                                    </td>
+                                                                    <td class="text-center w-50%">
+                                                                        <div class="slds-form-element">
+                                                                            <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                                <input
+                                                                                        onchange={onIEH}
+                                                                                        type="number"
+                                                                                       onkeypress={onKeyPress}
+                                                                                        data-id="3-10-input-1"
+                                                                                        class="slds-input"
+                                                                                />
+                                                                                <span
+                                                                                        class="slds-form-element__addon slds-form-element__label"
+                                                                                        data-id="fixed-text-addon-post"
+                                                                                ></span
+                                                                                >
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+            </ul>
+        </div>
+        <!-- Button Section for Every Form -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openRejectModal}>
+                    Reject
+                </button>
+                <button data-id="recallEQCCStep" class="slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                    Recall
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Submit</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-lookup object-api-name="user" icon-name="standard:user" onrecordselection={onUserSelection}></c-lookup>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submit} title="Submit">Submit</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

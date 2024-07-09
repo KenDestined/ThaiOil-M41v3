@@ -1,0 +1,47 @@
+<apex:page
+  controller="ICR_DashboardController"
+  standardStylesheets="true"
+  lightningStylesheets="true"
+  sidebar="false"
+  showHeader="false"
+  applyHtmlTag="true"
+  applyBodyTag="false"
+  docType="html-5.0"
+  language="th"
+>
+  <apex:form>
+    <apex:actionFunction
+      name="TestCal"
+      action="{!TestFunction}"
+      reRender="rawDataPanel"
+      oncomplete="window.getData();"
+    />
+  </apex:form>
+
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <link rel="icon" href="/favicon.ico" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Total PIR by Company</title>
+      <script type="module" crossorigin src="/assets/PirTotalCompany.js"></script>
+      <link rel="modulepreload" href="/assets/vendor.js">
+      <link rel="modulepreload" href="/assets/BaseDropdown.js">
+      <link rel="modulepreload" href="/assets/dataManagementTabs.js">
+      <link rel="stylesheet" href="/assets/BaseDropdown.css">
+      <link rel="stylesheet" href="/assets/PirTotalArea.css">
+    </head>
+
+    <body>
+      <apex:outputPanel id="rawDataPanel">
+        <div id="rawData" style="display: none">
+          {"totalPIRbyCompany":[{"id":"1","name":"TOP","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":3,"contractor":1,"total":5}},{"open":{"staff":6,"contractor":6,"total":11},"close":{"staff":2,"contractor":1,"total":5}},{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}},{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}},{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}},{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}},{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}},{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}},{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}},{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}},{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}},{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}}]}]},{"id":"2","name":"TLB","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}}]}]},{"id":"3","name":"TPX","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}}]}]},{"id":"4","name":"LABIX","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}}]}]},{"id":"5","name":"TOP SPP","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}}]}]},{"id":"6","name":"TP","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6,"total":11},"close":{"staff":4,"contractor":1,"total":5}}]}]}],"months":["January","February","March","April","May","June","July","August","September","October","November","December"]}
+          <!-- {!jsonTWs} -->
+        </div>
+      </apex:outputPanel>
+      <div id="app"></div>
+      
+    </body>
+  </html>
+</apex:page>

@@ -1,0 +1,682 @@
+<template>
+    <div data-id="formBegin">
+        <!-- PAGE STEP COUNTER HEADER
+        Params that need changed are the num-steps and the current-step.
+        Num-steps is how many TOTAL steps there are in the form.
+        Current-step is the step that the html currently is. ie. if a file's name is
+        formStep1.html then the current-step is 1, formStep2.html would be 2 etc.-->
+        <c-step-page-header
+            num-steps="2"
+            current-step="2"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+
+        <!-- Modal placeholder -->
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+        <!-- END Modal Placeholder -->
+
+        <!--
+            Title area for form. Put form title here
+        -->
+        <div class="slds-text-heading_medium text-center">BLOWER INSPECTION AND INSTALLATION</div>
+        <!-- END Title area -->
+
+        <!-- Section for Notification, Order, FL. and Status fields -->
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="notification"
+                            class="slds-input avoidPercentageInput"
+                            value={notification}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN SECTION -->
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <!-- 0 -->
+                <!-- HEADER INFORMATION (USUALLY DOES NOT HAVE N/A SECTION) -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+                        <div class="card-header" data-id="headingZero">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseZero"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionZero"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        11</span
+                                    ><span class="slds-accordion__summary-content"> Test Run</span>
+                                </button>
+                                <div class="slds-col">
+                                    <div class="slds-checkbox obj-right">
+                                        <input
+                                            onchange={disableSection}
+                                            name="options"
+                                            type="checkbox"
+                                            id="header-na-0"
+                                            data-id="header-na-0"
+                                            data-remark="0-remark"
+                                            value="header-na-0"
+                                        />
+                                        <!-- NOTE: 'for' value must match the id value above -->
+                                        <label class="slds-checkbox__label" for="header-na-0"
+                                            ><span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">input N/A</span></label
+                                        >
+                                    </div>
+                                </div>
+                            </h2>
+                        </div>
+
+                        <div
+                            class="slds-grid slds-gutters hide-remark"
+                            id="sectionZero-remark"
+                            data-id="sectionZero-remark"
+                        >
+                            <div class="slds-col">
+                                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                <div class="slds-form-element__control">
+                                    <textarea
+                                        onchange={onIEH}
+                                        data-id="sectionZero-inputRemark"
+                                        id="sectionZero-inputRemark"
+                                        class="slds-textarea"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div data-id="collapseZero" class="slds-accordion__content">
+                            <!-- drop 0 section card-body div -->
+                            <div class="card-body">
+                                <section data-id="1" class="slds-section section-tb" data-answered="false">
+                                    <table class="table" style="margin-left: 23px;">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <span class="slds-form-element__label">Blower Bearing, NDE</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span
+                                                                class="slds-form-element__label"
+                                                                style="padding-top: 2px;"
+                                                                >Bearings Temp. (°C)</span
+                                                            >
+                                                        </li>
+                                                        <li>
+                                                            <div class="slds-form-element__control">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="11-1-input-1"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span
+                                                                class="slds-form-element__label"
+                                                                style="padding-top: 2px;"
+                                                                >Velocity mm/s RMS</span
+                                                            >
+                                                        </li>
+                                                        <li>
+                                                            <div
+                                                                class="slds-form-element__control"
+                                                                style="margin-left: 3px;"
+                                                            >
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="11-1-input-2"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span
+                                                                class="slds-form-element__label"
+                                                                style="padding-top: 2px;"
+                                                                >Acceleration, G</span
+                                                            >
+                                                        </li>
+                                                        <li>
+                                                            <div
+                                                                class="slds-form-element__control"
+                                                                style="margin-left: 28px;"
+                                                            >
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="11-1-input-3"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </section>
+
+                                <section data-id="2" class="slds-section section-tb" data-answered="false">
+                                    <table class="table" style="margin-left: 23px;">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <span class="slds-form-element__label">Blower Bearing, DE</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span
+                                                                class="slds-form-element__label"
+                                                                style="padding-top: 2px;"
+                                                                >Bearings Temp. (°C)</span
+                                                            >
+                                                        </li>
+                                                        <li>
+                                                            <div class="slds-form-element__control">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="11-2-input-1"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span
+                                                                class="slds-form-element__label"
+                                                                style="padding-top: 2px;"
+                                                                >Velocity mm/s RMS</span
+                                                            >
+                                                        </li>
+                                                        <li>
+                                                            <div
+                                                                class="slds-form-element__control"
+                                                                style="margin-left: 3px;"
+                                                            >
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="11-2-input-2"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span
+                                                                class="slds-form-element__label"
+                                                                style="padding-top: 2px;"
+                                                                >Acceleration, G</span
+                                                            >
+                                                        </li>
+                                                        <li>
+                                                            <div
+                                                                class="slds-form-element__control"
+                                                                style="margin-left: 28px;"
+                                                            >
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="11-2-input-3"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </section>
+
+                                <section data-id="3" class="slds-section section-tb" data-answered="false">
+                                    <table class="table" style="margin-left: 23px;">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <span class="slds-form-element__label">Driver Bearing, DE</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span
+                                                                class="slds-form-element__label"
+                                                                style="padding-top: 2px;"
+                                                                >Bearings Temp. (°C)</span
+                                                            >
+                                                        </li>
+                                                        <li>
+                                                            <div class="slds-form-element__control">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="11-3-input-1"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span
+                                                                class="slds-form-element__label"
+                                                                style="padding-top: 2px;"
+                                                                >Velocity mm/s RMS</span
+                                                            >
+                                                        </li>
+                                                        <li>
+                                                            <div
+                                                                class="slds-form-element__control"
+                                                                style="margin-left: 3px;"
+                                                            >
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="11-3-input-2"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span
+                                                                class="slds-form-element__label"
+                                                                style="padding-top: 2px;"
+                                                                >Acceleration, G</span
+                                                            >
+                                                        </li>
+                                                        <li>
+                                                            <div
+                                                                class="slds-form-element__control"
+                                                                style="margin-left: 28px;"
+                                                            >
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="11-3-input-3"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </section>
+
+                                <section data-id="4" class="slds-section section-tb" data-answered="false">
+                                    <table class="table" style="margin-left: 23px;">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <span class="slds-form-element__label">Driver Bearing, NDE</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span
+                                                                class="slds-form-element__label"
+                                                                style="padding-top: 2px;"
+                                                                >Bearings Temp. (°C)</span
+                                                            >
+                                                        </li>
+                                                        <li>
+                                                            <div class="slds-form-element__control">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="11-4-input-1"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span
+                                                                class="slds-form-element__label"
+                                                                style="padding-top: 2px;"
+                                                                >Velocity mm/s RMS</span
+                                                            >
+                                                        </li>
+                                                        <li>
+                                                            <div
+                                                                class="slds-form-element__control"
+                                                                style="margin-left: 3px;"
+                                                            >
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="11-4-input-2"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span
+                                                                class="slds-form-element__label"
+                                                                style="padding-top: 2px;"
+                                                                >Acceleration, G</span
+                                                            >
+                                                        </li>
+                                                        <li>
+                                                            <div
+                                                                class="slds-form-element__control"
+                                                                style="margin-left: 28px;"
+                                                            >
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="11-4-input-3"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <!-- 1 -->
+                <!-- BEGINNING OF SECOND SECTION WITH N/A-->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionOne">
+                        <div class="card-header" data-id="headingOne">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseOne"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionOne"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        12</span
+                                    ><span class="slds-accordion__summary-content">
+                                        Additional Scope in case of results of Test Run are not Accepted: (Scope
+                                        งานที่ต้องทำเพิ่มเติม เนื่องมาจากผลการ Test Run พบความผิดปกติ)</span
+                                    >
+                                </button>
+                                <div class="slds-col">
+                                    <div class="slds-checkbox obj-right">
+                                        <input
+                                            onchange={disableSection}
+                                            name="options"
+                                            type="checkbox"
+                                            id="header-na-1"
+                                            data-id="header-na-1"
+                                            data-remark="1-remark"
+                                            value="header-na-1"
+                                        />
+                                        <!-- NOTE: 'for' value must match the id value above -->
+                                        <label class="slds-checkbox__label" for="header-na-1"
+                                            ><span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">input N/A</span></label
+                                        >
+                                    </div>
+                                </div>
+                            </h2>
+                        </div>
+                        <div
+                            class="slds-grid slds-gutters hide-remark"
+                            id="sectionOne-remark"
+                            data-id="sectionOne-remark"
+                        >
+                            <div class="slds-col">
+                                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                <div class="slds-form-element__control">
+                                    <textarea
+                                        data-id="sectionOne-inputRemark"
+                                        onchange={onIEH}
+                                        id="sectionOne-inputRemark"
+                                        class="slds-textarea"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-id="collapseOne" class="slds-accordion__content">
+                            <!-- drop 1st section card-body div -->
+                            <div class="card-body">
+                                <div class="slds-m-around_small" style="margin: 0rem;">
+                                    <section data-id="4" class="slds-section section-tb">
+                                        <label class="slds-form-element__label">ENRM RE engineer</label>
+                                        <div class="slds-form-element__control">
+                                            <textarea data-id="enrm" class="slds-textarea" rows="6"></textarea>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <!-- Copy and paste <li> and it's contents to add sections.
+                    Replace body content and make sure ALL data-id's and id's are unique
+                -->
+            </ul>
+        </div>
+
+        <!-- Button Section for Every Form -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openRejectModal}>
+                    Reject
+                </button>
+                <button data-id="recallEQCCStep" class="slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                    Recall
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Submit</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-lookup object-api-name="user" icon-name="standard:user" onrecordselection={onUserSelection}></c-lookup>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submit} title="Submit">Submit</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

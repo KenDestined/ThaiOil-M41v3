@@ -1,0 +1,1217 @@
+<apex:page controller="CTRCustomerMasterFormController" contentType="application/msword#filename.doc" sidebar="false" standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false" showHeader="false">
+<!-- contentType="application/msword#filename.doc"  -->
+
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <style type="text/css">  
+
+           body {
+                font-family: Arial Unicode MS;
+                font-size: 11px;
+            }
+           font {
+                font-family: Arial Unicode MS !important;
+            }
+
+           .custom-checkbox {
+                width: 40px;
+                height: 80px;
+                border-radius: 15px ;
+                border: 1px solid black;
+                padding: 2px;
+                text-align: center;
+                font-size: 10px;
+                display: block;
+           }
+            .check-mark {
+                color: black; 
+            }
+           .uncheck {
+                color: white;
+                visibility: hidden;
+           }
+            p.MsoHeader, li.MsoHeader, div.MsoHeader{
+                margin:0in;
+                margin-top:.0001pt;
+                mso-pagination:widow-orphan;
+                tab-stops:center 3.0in right 6.0in;
+            }
+
+            p.MsoFooter, li.MsoFooter, div.MsoFooter{
+                margin:0in;
+                margin-bottom:.0001pt;
+                mso-pagination:widow-orphan;
+                tab-stops:center 3.0in right 6.0in;
+            }
+
+            @page Section1{
+                size:A4;
+                /* size:8.5in 11.0in; */
+                margin:0.5in 0.75in 0.5in 0.75in;
+                mso-header-margin:0.5in;
+                mso-footer:f1; 
+                mso-footer-margin:0.5in;
+                mso-paper-source:0;
+            }
+
+            div.Section1{
+                page:Section1;
+            }
+
+            table#hrdftrtbl{
+                margin:0in 0in 0in 9in;
+            }
+            
+           .row {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .column {
+                display: flex;
+            }
+            .layout-table {
+                /* border: 1px solid black; */
+                width: 100%;
+            }
+            .layout-td{
+                padding-left:50px;
+            }
+            .value {
+                text-decoration: underline;
+            }
+            .font-bigger{
+                font-size: 12px;
+            }
+
+            /* .table-grid-1of2 td{
+                width: 50%;
+            } */
+
+            .section-header {
+                text-decoration: underline;
+                font-size: 13px;
+                font-weight: bold;
+                margin: 10px 0px;
+                /* height: 40px; */
+            }
+
+            .page-header {
+                font-size: 24px;
+                font-weight: bold;
+                text-align: center;
+                /* padding: 10px; */
+                /* height: 40px; */
+                margin: 20px;
+            }
+
+            @page Main {
+                mso-header:h1;
+                mso-footer:f1;
+            }
+            div.Main{
+                page:Main;
+            }
+            p.MyFoot, li.MyFoot, div.MyFoot{
+                mso-pagination:widow-orphan;
+                tab-stops:center 216.0pt right 432.0pt;
+            }
+            p.MyHead {
+
+            }
+        </style>
+    </head>
+        <body>
+            <div class="Section1">
+                <!-- {!recordId},{!RecordType} -->
+                <div class="page-header">
+                    <span>Counterparty Registration Form</span>
+                </div>
+                
+                <div>
+                    <table class="layout-table">
+                        <tbody>
+                            <tr>
+                                <td style="width: 16%;">
+                                    <span><b>Customer No.</b> {!requestItem.Customer__r.AccountNumber__c}</span>
+                                </td>
+                                <td style="width: 16%;">
+                                    <span></span>
+                                </td>
+                                <td style="width: 16%;">
+                                    <span><b>Supplier No.</b> {!requestItem.Customer__r.SupplierNumber__c}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="layout-table">
+                        <tbody>
+                            <tr>
+                                <td style="width: 18%; padding-left: 108px;">
+                                    <apex:outputPanel rendered="{!requestItem.RecordTypeName__c = 'CustomerInitial'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.RecordTypeName__c = 'CustomerInitial')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>New Customer</span>
+                                </td>
+                                <td style="width: 12%; padding-left: 16.5px;">
+                                    <apex:outputPanel rendered="{!requestItem.RecordTypeName__c = 'CustomerExtend'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.RecordTypeName__c = 'CustomerExtend')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>Extend Customer</span>
+                                </td>
+                                <td style="width: 22%; padding-left: 2px;">
+                                    <apex:outputPanel rendered="{!requestItem.RecordTypeName__c = 'CustomerEditInfo'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.RecordTypeName__c = 'CustomerEditInfo')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>Change Customer</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 18%; padding-left: 108px;">
+                                    <apex:outputPanel rendered="{!requestItem.RecordTypeName__c = 'SupplierInitial'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.RecordTypeName__c = 'SupplierInitial')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>New Supplier</span>
+                                </td>
+                                <td style="width: 12%; padding-left: 16.5px;">
+                                    <apex:outputPanel rendered="{!requestItem.RecordTypeName__c = 'SupplierExtend'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.RecordTypeName__c = 'SupplierExtend')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>Extend Supplier</span>
+                                </td>
+                                <td style="width: 22%; padding-left: 2px;">
+                                    <apex:outputPanel rendered="{!requestItem.RecordTypeName__c = 'SupplierEditInfo'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.RecordTypeName__c = 'SupplierEditInfo')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>Change Supplier</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="layout-table">
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center; width: 16%">
+                                    <span>Business Unit</span>
+                                </td>
+                                <td style="width: 21%">
+                                    <apex:outputPanel rendered="{!requestItem.SubBU__c == 'TOP'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.SubBU__c == 'TOP')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>TOP</span>
+                                </td>
+                                <td style="width: 21%">
+                                    <apex:outputPanel rendered="{!requestItem.SubBU__c == 'TPX'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.SubBU__c == 'TPX')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>TPX</span>
+                                </td>
+                                <td style="width: 21%">
+                                    <apex:outputPanel rendered="{!requestItem.SubBU__c == 'TLB'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.SubBU__c == 'TLB')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>TLB</span>
+                                </td>
+                                <td style="width: 21%">
+                                    <apex:outputPanel rendered="{!requestItem.SubBU__c == 'LABIX'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.SubBU__c == 'LABIX')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>LABIX</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="layout-table">
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center; width: 16%">
+                                    <span>Account Group</span>
+                                </td>
+                                <td style="width: 21%">
+                                    <apex:outputPanel rendered="{!requestItem.CTRRequestFormHeader__r.AccountGroup__c == 'TRDL'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.CTRRequestFormHeader__r.AccountGroup__c == 'TRDL')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>TRDL</span>
+                                </td>
+                                <td style="width: 21%">
+                                    <apex:outputPanel rendered="{!requestItem.CTRRequestFormHeader__r.AccountGroup__c == 'TRDF'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.CTRRequestFormHeader__r.AccountGroup__c == 'TRDF')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>TRDF</span>
+                                </td>
+                                <td style="width: 21%">
+                                    <apex:outputPanel rendered="{!requestItem.CTRRequestFormHeader__r.AccountGroup__c == 'NTRL'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.CTRRequestFormHeader__r.AccountGroup__c == 'NTRL')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>NTRL</span>
+                                </td>
+                                <td style="width: 21%">
+                                    <apex:outputPanel rendered="{!requestItem.CTRRequestFormHeader__r.AccountGroup__c == 'NTRF'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.CTRRequestFormHeader__r.AccountGroup__c == 'NTRF')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>NTRF</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                                <td>
+                                    <apex:outputPanel rendered="{!requestItem.CTRRequestFormHeader__r.AccountGroup__c == 'TOPG'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.CTRRequestFormHeader__r.AccountGroup__c == 'TOPG')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>TOPG</span>
+                                </td>
+                                <td>
+                                    <apex:outputPanel rendered="{!requestItem.CTRRequestFormHeader__r.AccountGroup__c == 'ONET'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.CTRRequestFormHeader__r.AccountGroup__c == 'ONET')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>ONET</span>
+                                </td>
+                                <td>
+                                    <apex:outputPanel rendered="{!requestItem.CTRRequestFormHeader__r.AccountGroup__c == 'GOVN'}">
+                                        <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(requestItem.CTRRequestFormHeader__r.AccountGroup__c == 'GOVN')}">
+                                        <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                    </apex:outputPanel>
+                                        <span>GOVN</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <br/>
+                    <div>
+                        <div class="section-header">
+                            <span>General Data (ระบุได้ทั้งไทยและอังกฤษ Local - Thai Export - EN)</span>
+                        </div>
+                        <table class="layout-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Name (ชื่อบริษัท 35 digits)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.CustomerNameLocal1__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.CustomerNameLocal1__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.CustomerNameLocal1__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Name 2 (ชื่อบริษัท 35 digits)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.CustomerNameLocal2__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.CustomerNameLocal2__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.CustomerNameLocal2__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Name 3 (ชื่อบริษัท 35 digits)</span>
+                                        <span>_____________________________________________________________________</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Name 4 (ชื่อบริษัท 35 digits)</span>
+                                        <span>_____________________________________________________________________</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Search Term ½ (ไม่เกิน 8 Digits)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.CustomerSearchTermLocal__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.CustomerSearchTermLocal__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.CustomerSearchTermLocal__c)}">
+                                            <span>_____</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Postal Code (รหัสไปรษณีย์)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.PostalCodeLocalText__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.PostalCodeLocalText__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.PostalCodeLocalText__c)}">
+                                            <span>_____</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Street 2 (Moo, Building Name, Floor &#38; Room)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.Street2Local__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.Street2Local__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.Street2Local__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Street 3 (Extended Building Name, Floor and room No.)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.Street3Local__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.Street3Local__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.Street3Local__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Street (Soi)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.StreetLocal__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.StreetLocal__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.StreetLocal__c)}">
+                                            <span>_____</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">House Number</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.HousenoLocal__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.HousenoLocal__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.HousenoLocal__c)}">
+                                            <span>_____</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Street 4 (Name of Road)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.Street4Local__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.Street4Local__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.Street4Local__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Street 5 (Extended name of Road)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.Street5Local__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.Street5Local__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.Street5Local__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">District (ตำบล/อำเภอ)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.DistrictLocalText__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.DistrictLocalText__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.DistrictLocalText__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">City (จังหวัด/ชื่อเมืองเฉพาะต่างประเทศ) </span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.CityStateLocal__r.Description__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.CityStateLocal__r.Description__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.CityStateLocal__r.Description__c)}">
+                                            <span>_____</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Country (รหัสประเทศ 2 Digits )  </span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.Country__r.Code__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.Country__r.Code__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.Country__r.Code__c)}">
+                                            <span>_____</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div>
+                        <div class="section-header">
+                            <span>International Version for Oil System (for Communication data Language = EN)</span>
+                        </div>
+                        <table class="layout-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Name (ชื่อบริษัท – ภาษาอังกฤษ)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.CustomerNameEN1__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.CustomerNameEN1__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.CustomerNameEN1__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Name 2 (ชื่อบริษัท – ภาษาอังกฤษ)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.CustomerNameEN2__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.CustomerNameEN2__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.CustomerNameEN2__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Name 3 (ชื่อบริษัท – ภาษาอังกฤษ)</span>
+                                        <span>_____________________________________________________________________</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Name 4 (ชื่อบริษัท – ภาษาอังกฤษ)</span>
+                                        <span>_____________________________________________________________________</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Search Term ½ (ไม่เกิน 8 Digits)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.CustomerSearchTermEN__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.CustomerSearchTermEN__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.CustomerSearchTermEN__c)}">
+                                            <span>_____</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Street 2 (Moo, Building Name, Floor &#38; Room)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.Street2EN__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.Street2EN__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.Street2EN__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Street 3 (Extended Building Name, Floor and room No.)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.Street3EN__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.Street3EN__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.Street3EN__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Street (Soi)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.StreetEN__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.StreetEN__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.StreetEN__c)}">
+                                            <span>_____</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">House Number</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.HousenoLocal__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.HousenoLocal__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.HousenoLocal__c)}">
+                                            <span>_____</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Street 4 (Name of Road)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.Street4EN__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.Street4EN__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.Street4EN__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Street 5 (Extended name of Road)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.Street5EN__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.Street5EN__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.Street5EN__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Postal Code (รหัสไปรษณีย์)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.PostalCodeLocalText__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.PostalCodeLocalText__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.PostalCodeLocalText__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">District (ตำบล/อำเภอ)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.DistrictENText__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.DistrictENText__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.DistrictENText__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">City (จังหวัด/ชื่อเมืองเฉพาะต่างประเทศ)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.CityStateLocal__r.Description__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.CityStateLocal__r.Description__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.CityStateLocal__r.Description__c)}">
+                                            <span>_____</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Country (รหัสประเทศ 2 Digits )</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.Country__r.Code__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.Country__r.Code__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.Country__r.Code__c)}">
+                                            <span>_____</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <div>
+                    <div>
+                        <div class="section-header">
+                            <span>Communications Data</span>
+                        </div>
+                        <table class="layout-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Telephone</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.Phone__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.Phone__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.Phone__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+    
+                                    <td>
+                                        <span>Language</span>
+                                    </td>
+    
+                                    <td>
+                                        <apex:outputPanel rendered="{!requestItem.CTRRequestFormHeader__r.Language__c == '2'}">
+                                            <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!NOT(requestItem.CTRRequestFormHeader__r.Language__c == '2')}">
+                                            <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                        </apex:outputPanel>
+                                            <span>Thai</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Extension</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.PhoneExtension__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.PhoneExtension__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.PhoneExtension__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+    
+                                    <td>
+                                        &nbsp;
+                                    </td>
+    
+                                    <td>
+                                        <apex:outputPanel rendered="{!requestItem.CTRRequestFormHeader__r.Language__c == 'E'}">
+                                            <span class="custom-checkbox">&nbsp;&nbsp;<span class="check-mark">X</span>&nbsp;&nbsp;</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!NOT(requestItem.CTRRequestFormHeader__r.Language__c == 'E')}">
+                                            <span class="custom-checkbox check-mark">&nbsp;&nbsp;<span class="uncheck">X</span>&nbsp;&nbsp;</span>
+                                        </apex:outputPanel>
+                                            <span>English</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">FAX</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.Fax__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.Fax__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.Fax__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Extension</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.FaxExtension__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.FaxExtension__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.FaxExtension__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div>
+                        <div class="section-header">
+                            <span>E-mail</span>
+                        </div>
+                        <table class="layout-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Main contact person:</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.Email__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.Email__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.Email__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Transportation:</span>
+                                        <span>_____________________________________________</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Accounting สำหรับแจ้งรับเช็ค:</span>
+                                        <span>_____________________________________________</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div>
+                        <div class="section-header">
+                            <span>Account Control</span>
+                        </div>
+                        <table class="layout-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Trading Partner (ชื่อย่อเฉพาะบริษัทที่อยู่ใน TOP Group &#38; PTT Group ไม่เกิน 6 digits)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.TradingPartner__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.TradingPartner__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.TradingPartner__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Tax Number 1 (ID Card 13 Digits)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.TaxCode1__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.TaxCode1__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.TaxCode1__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Tax Number 2 (TAX ID 10 Digits)</span>
+                                        <span>______________</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Type of Business (Branch)</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CTRRequestFormHeader__r.TypeOfBusinessBranch__c))}">
+                                            <span class="value">{!requestItem.CTRRequestFormHeader__r.TypeOfBusinessBranch__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CTRRequestFormHeader__r.TypeOfBusinessBranch__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- <br clear="all" style="page-break-before:always" /> -->
+                    <br/>
+                    <br/>
+                    <div>
+                        <div class="section-header">
+                            <span>Accounting Information</span>
+                        </div>
+                        <table class="layout-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Reconciliation Account</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.ReconAccount__c))}">
+                                            <span class="value">{!requestItem.ReconAccount__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.ReconAccount__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Cash management group </span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CashManagementGroup__c))}">
+                                            <span class="value">{!requestItem.CashManagementGroup__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CashManagementGroup__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div>
+                        <div class="section-header">
+                            <span>Payment Data</span>
+                        </div>
+                        <table class="layout-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">Payment terms</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.TermOfPayment__r.Name))}">
+                                            <span class="value">{!requestItem.TermOfPayment__r.Name}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.TermOfPayment__r.Name)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br clear="all" style="page-break-before:always" />
+                    <div>
+                        <div class="section-header">
+                            <span>Sales Area Data</span>
+                        </div>
+                        <table class="layout-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">&emsp; Sales Organization</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.SalesOrganization__c))}">
+                                            <span class="value">{!requestItem.SalesOrganization__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.SalesOrganization__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">&emsp; Distribution Channel</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="layout-table">
+                            <tbody>
+                                <tr>
+                                    <td class="layout-td">
+                                        <apex:outputPanel rendered="{!requestItem.DistributionChannel__c == '10'}">
+                                            <span>[&nbsp;<span>X</span>&nbsp;]</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!NOT(requestItem.DistributionChannel__c == '10')}">
+                                            <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        </apex:outputPanel>
+
+                                        <!-- <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span> -->
+                                        <span>10 Local Major Oil</span>
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel rendered="{!requestItem.DistributionChannel__c == '11'}">
+                                            <span>[&nbsp;<span>X</span>&nbsp;]</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!NOT(requestItem.DistributionChannel__c == '11')}">
+                                            <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        </apex:outputPanel>
+                                        <span>11 Local 3rd Party</span>
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel rendered="{!requestItem.DistributionChannel__c == '12'}">
+                                            <span>[&nbsp;<span>X</span>&nbsp;]</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!NOT(requestItem.DistributionChannel__c == '12')}">
+                                            <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        </apex:outputPanel>
+                                        <span>12 Local Related</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="layout-td">
+                                        <apex:outputPanel rendered="{!requestItem.DistributionChannel__c == '13'}">
+                                            <span>[&nbsp;<span>X</span>&nbsp;]</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!NOT(requestItem.DistributionChannel__c == '13')}">
+                                            <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        </apex:outputPanel>
+                                        <span>13 Local Non-Related</span>
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel rendered="{!requestItem.DistributionChannel__c == '20'}">
+                                            <span>[&nbsp;<span>X</span>&nbsp;]</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!NOT(requestItem.DistributionChannel__c == '20')}">
+                                            <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        </apex:outputPanel>
+                                        <span>20 Export Direct</span>
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel rendered="{!requestItem.DistributionChannel__c == '21'}">
+                                            <span>[&nbsp;<span>X</span>&nbsp;]</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!NOT(requestItem.DistributionChannel__c == '21')}">
+                                            <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        </apex:outputPanel>
+                                        <span>21 Export Indirect</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="layout-td">
+                                        <apex:outputPanel rendered="{!requestItem.DistributionChannel__c == '22'}">
+                                            <span>[&nbsp;<span>X</span>&nbsp;]</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!NOT(requestItem.DistributionChannel__c == '22')}">
+                                            <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        </apex:outputPanel>
+                                        <span>22 Free Zone</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="layout-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">&emsp; Sales</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="layout-table">
+                            <tbody>
+                                <tr>
+                                    <td class="layout-td">
+                                        <span class="title-data">Price group</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.PriceGroup__c))}">
+                                            <span class="value">{!requestItem.PriceGroup__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.PriceGroup__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                    <td>
+                                        <span class="title-data">Cust.pric.proc</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.CustPriceProc__c))}">
+                                            <span class="value">{!requestItem.CustPriceProc__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.CustPriceProc__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="layout-td">
+                                        <span class="title-data">Price List</span>
+                                        <span>____________________</span>
+                                    </td>
+                                    <td>
+                                        <span class="title-data">Incoterms </span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.Incoterms__c))}">
+                                            <span class="value">{!requestItem.Incoterms__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.Incoterms__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="layout-td">
+                                        <span class="title-data">Acct assgmt group</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.AccountAssignmentGroup__c))}">
+                                            <span class="value">{!requestItem.AccountAssignmentGroup__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.AccountAssignmentGroup__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                    <td>
+                                        <span class="title-data">Terms of payment</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.TermOfPayment__r.Name))}">
+                                            <span class="value">{!requestItem.TermOfPayment__r.Name}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.TermOfPayment__r.Name)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="layout-td">
+                                        <span class="title-data">Tax Classification</span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.TaxClassification__c))}">
+                                            <span class="value">{!requestItem.TaxClassification__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.TaxClassification__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div>
+                        <div class="section-header">
+                            <span>Credit Management</span>
+                        </div>
+                        <table class="layout-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">&emsp; Credit control area	</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="layout-table">
+                            <tbody>
+                                <tr>
+                                    <td class="layout-td">
+                                        <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        <span>DEPO - Deposit CCAr</span>
+                                    </td>
+                                    <td>
+                                        <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        <span>INTK - Intank CCAr</span>
+                                    </td>
+                                    <td>
+                                        <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        <span>LOCH  - Lorry Cash CCAr</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="layout-td">
+                                        <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        <span>LOCR - Lorry Credit CCAr</span>
+                                    </td>
+                                    <td>
+                                        <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        <span>PIPE - Pipe CCAr</span>
+                                    </td>
+                                    <td>
+                                        <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        <span>THAP - Thappline CCAr</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="layout-td">
+                                        <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        <span>SHIP - Ship Local CCAr</span>
+                                    </td>
+                                    <td>
+                                        <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        <span>SHEX - Ship Export CCAr</span>
+                                    </td>
+                                    <td>
+                                        <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        <span>SHIN - Ship Indirect Export CCAr</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="layout-td">
+                                       <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        <span>SWAP - Swap CCAr</span>
+                                    </td>
+                                    <td>
+                                       <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        <span>TOP - TOP CCAr</span>
+                                    </td>
+                                    <td>
+                                        <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        <span>WHDW - Wihtdrawal CCAr</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="layout-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="title-data">&emsp; Risk category</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="layout-table">
+                            <tbody>
+                                <tr>
+                                    <td class="layout-td">
+                                        <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        <span>001 - Open Credit</span>
+                                    </td>
+                                    <td>
+                                        <span>[&nbsp;<span class="uncheck">X</span>&nbsp;]</span>
+                                        <span>002 - Check Credit</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div>
+                        <div class="section-header">
+                            <span>Correspondence</span>
+                        </div>
+                        <table class="layout-table">
+                            <tbody>
+                                <tr>
+                                    <td colspan="2">
+                                        <span class="title-data">Accounting Clerk : </span>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(requestItem.AccigClerk__c))}">
+                                            <span class="value">{!requestItem.AccigClerk__c}</span>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!ISBLANK(requestItem.AccigClerk__c)}">
+                                            <span>______________</span>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width= 5%">
+                                        <span class="title-data">Remark : </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer definition -->
+            <table id='hrdftrtbl' border='0' cellspacing='0' cellpadding='0'>
+                <tr>
+                    <td>
+                        <div style='mso-element:footer' id="f1" >                               
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" >
+                                <p class="MsoFooter">
+                                    <tr>
+                                        <td width="50%">
+                                            <span>Request By________________</span>
+                                            <span style="padding-left: 30px; margin-left: 30px;">Approved By_________________</span>
+                                        </td>
+                                    </tr>
+                                </p>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </body>
+</apex:page>

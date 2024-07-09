@@ -1,0 +1,1499 @@
+<template>
+    <div data-id="formBegin">
+        <c-step-page-header
+            num-steps="3"
+            current-step="1"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+
+        <div class="slds-text-heading_medium text-center">EQCC-ENRM-002</div>
+        <div class="slds-text-heading_medium text-center">Horizontal Pump Removal/ Installation Checklist</div>
+
+        <!-- Section for Notification, FL. and Status fields -->
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                        <svg
+                            class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                            aria-hidden="true"
+                        >
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                        </svg>
+                        <input
+                            type="text"
+                            data-id="notification"
+                            class="slds-input avoidPercentageInput"
+                            value={notification}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Body section. -->
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+                        <div class="slds-accordion__summary" data-id="headingZero">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseZero"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionZero"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    >
+                                    </lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        0</span
+                                    ><span class="slds-accordion__summary-content"> Header Information</span>
+                                </button>
+                            </h2>
+                        </div>
+                        <div data-id="collapseZero" class="slds-accordion__content">
+                            <div class="card-body">
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col">
+                                        <span class="slds-form-element__label"><B>Isolation</B></span><br/>
+                                        <span class="slds-form-element__label"
+                                                >Check pump is electrically isolated, flushed, depressurized and properly LOTO. Check instrument
+                                                isolation, e.g. dual fire lines, axial / radial displacement probes, etc.
+                                                </span><br/>
+                                            <span class="slds-form-element__label">
+                                            ขั้นตอนการขออนุญาตทำงานครบถ้วน isolate ระบบไฟฟ้า ทำการ flushed, de-pressure และ LOTO เรียบร้อย อุปกรณ์
+                                            instrument ที่อยู่ในบริเวณทำงานถูกถอด หรือ ป้องกันอย่างเหมาะสม</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-id="collapseZero" class="slds-accordion__content">
+                            <div class="card-body">
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col">
+                                        <span class="slds-form-element__label"
+                                                >Clearance No:</span
+                                            >
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="clearance-no"
+                                                class="slds-input"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionOne">
+                        <div class="slds-accordion__summary" data-id="headingOne">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseOne"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionOne"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        1</span
+                                    ><span class="slds-accordion__summary-content"> Initial Inspection</span>
+                                </button>
+                                <div class="slds-col">
+                                    <div class="slds-checkbox obj-right">
+                                        <input
+                                            onchange={disableSection}
+                                            type="checkbox"
+                                            name="options"
+                                            id="checkbox-unique-id-1"
+                                            data-id="checkbox-unique-id-1"
+                                            data-remark="checkbox-unique-id-1"
+                                            value="checkbox-unique-id-1"
+                                            data-parent="sectionOne"
+                                        />
+                                        <label class="slds-checkbox__label" for="checkbox-unique-id-1">
+                                            <span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">N/A</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </h2>
+                        </div>
+                        <div
+                            class="slds-grid slds-gutters hide-remark"
+                            id="sectionOne-remark"
+                            data-id="sectionOne-remark"
+                        >
+                            <div class="slds-col">
+                                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                <div class="slds-form-element__control">
+                                    <textarea
+                                        data-id="sectionOne-inputRemark"
+                                        onchange={onIEH}
+                                        id="sectionOne-inputRemark"
+                                        class="slds-textarea"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-id="collapseOne" class="slds-accordion__content">
+                            <div class="card-body">
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            >1.1 Check and report any loose mounting or coupling bolts. Report found
+                                            abnormalities.</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >ตรวจสอบเบื้องต้นว่ามีการหลวมคลอนของน้อต coupling, hold down bolt
+                                            </span>
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col" >
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-1-checkbox-1"
+                                                    data-children="0"
+                                                    data-controlledby="1-1-checkbox-21-1-checkbox-31-1-checkbox-4"
+                                                    data-id="1-1-checkbox-1"
+                                                    id="1-1-checkbox-1"
+                                                    value="ปกติ"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-1-checkbox-1">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> ปกติ</span>
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-1-checkbox-2"
+                                                    data-id="1-1-checkbox-2"
+                                                    id="1-1-checkbox-2"
+                                                    data-children="0"
+                                                    data-controlledby="1-1-checkbox-1"
+                                                    value="หลวม"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-1-checkbox-2">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> หลวม</span>
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-1-checkbox-3"
+                                                    data-id="1-1-checkbox-3"
+                                                    id="1-1-checkbox-3"
+                                                    data-children="0"
+                                                    data-controlledby="1-1-checkbox-1"
+                                                    value="กัดกร่อน"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-1-checkbox-3">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> กัดกร่อน</span>
+                                                </label>
+                                            </div>
+                                            <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                <li>
+                                                    <div class="slds-checkbox">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="checkbox"
+                                                            name="1-1-checkbox-4"
+                                                            data-id="1-1-checkbox-4"
+                                                            id="1-1-checkbox-4"
+                                                            data-children="0"
+                                                            data-controlledby="1-1-checkbox-1"
+                                                            value="อื่นๆ"
+                                                        />
+                                                        <label class="slds-checkbox__label" for="1-1-checkbox-4">
+                                                            <span class="slds-checkbox_faux"></span>
+                                                            <span class="slds-form-element__label"> อื่นๆ</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="w-80">
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="text"
+                                                            data-id="1-1-input"
+                                                            data-disabled="true"
+                                                            data-children="-1"
+                                                            disabled
+                                                            data-controlledby="1-1-checkbox-4"
+                                                            class="slds-input"
+                                                        />
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-section">
+                                    <span class="slds-form-element__label"
+                                            >1.2 Initial Shaft Alignment check</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >เก็บค่า Shaft Alignment ก่อนถอดหน้าแปลน
+                                            </span>
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col" >
+                                            <label class="slds-form-element__label mgr-5">Gap, mm </label>
+                                            <img
+                                                src="https://thaioil--c.documentforce.com/servlet/servlet.ImageServer?id=0152v00000I2iKW&oid=00D2v000003OMdM&lastMod=1608127727000"
+                                                alt="image1"
+                                                width="50"
+                                                height="50"
+                                            /><br />
+                                            <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                <li data-answered="false">
+                                                    <label class="slds-form-element__label" for="text-input-id-1"
+                                                        >Hor</label
+                                                    >
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="1-2-input-gap-hor"
+                                                            class="slds-input w-80"
+                                                        />
+                                                    </div>
+                                                </li>
+                                                <li data-answered="false">
+                                                    <label class="slds-form-element__label" for="text-input-id-1"
+                                                        >Ver</label
+                                                    >
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="1-2-input-gap-ver"
+                                                            class="slds-input w-80"
+                                                        />
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <br />
+
+                                            <label class="slds-form-element__label mgr-5">Offset, mm </label>
+                                            <img
+                                                alt="image2"
+                                                src="https://thaioil--c.documentforce.com/servlet/servlet.ImageServer?id=0152v00000I2iKg&oid=00D2v000003OMdM&lastMod=1608127853000"
+                                                width="50"
+                                                height="50"
+                                            /><br />
+                                            <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                <li data-answered="false">
+                                                    <label class="slds-form-element__label" for="text-input-id-1"
+                                                        >Hor</label
+                                                    >
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="1-2-input-offset-hor"
+                                                            class="slds-input w-80"
+                                                        />
+                                                    </div>
+                                                </li>
+                                                <li data-answered="false">
+                                                    <label class="slds-form-element__label" for="text-input-id-1"
+                                                        >Ver</label
+                                                    >
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="1-2-input-offset-ver"
+                                                            class="slds-input w-80"
+                                                        />
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-section">
+                                    <span class="slds-form-element__label"
+                                            >1.3 Disconnect piping, measure and report alignment of suction and
+                                            discharge flanges</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >เช็คค่า Flange Alignment หลังทำการถอดหน้าแปลน
+                                            </span><br/>
+                                    <div class="slds-grid slds-gutters">
+                                        <table >
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width: 50%;" class="text-center">
+                                                        <span class="slds-form-element__label"><b>Suction</b></span></td>
+                                                        <td style="width: 50%;" class="text-center">
+                                                            <span class="slds-form-element__label"><b>Discharge</b></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="slds-col">
+                                                            <table>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td></td>
+                                                                        <td style="width: 10%; padding-bottom: 10px;" class="text-center">
+                                                                            <div class="slds-form-element__control">
+                                                                                <input
+                                                                                    onchange={onIEH}
+                                                                                    type="number"
+                                                                                    onkeypress={onKeyPress}
+                                                                                    data-id="circle1-top"
+                                                                                    class="slds-input"
+                                                                                    style="width: 70%;"
+                                                                                />
+                                                                                <span class="slds-form-element__addon">mm.&emsp;&emsp;</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="width: 10%;" class="text-center">
+                                                                            <div class="slds-form-element__control">
+                                                                                <input
+                                                                                    onchange={onIEH}
+                                                                                    type="number"
+                                                                                    onkeypress={onKeyPress}
+                                                                                    data-id="circle1-left"
+                                                                                    class="slds-input"
+                                                                                    style="width: 70%;"
+                                                                                />
+                                                                                <span class="slds-form-element__addon">mm.&emsp;&emsp;</span>
+                                                                            </div>
+                                                                            
+                                                                        </td>
+                                                                        <td >
+                                                                            <div class="circle">
+                                                                                <div class="circle__inner">
+                                                                                    <div class="circle__wrapper">
+                                                                                        <div
+                                                                                            class="circle__content slds-form-element__label"
+                                                                                        >
+                                                                                            GAP
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td style="width: 10%;" class="text-center">
+                                                                            <div class="slds-form-element__control">
+                                                                                <input
+                                                                                    onchange={onIEH}
+                                                                                    type="number"
+                                                                                    onkeypress={onKeyPress}
+                                                                                    data-id="circle1-right"
+                                                                                    class="slds-input"
+                                                                                    style="width: 70%;"
+                                                                                />
+                                                                                <span class="slds-form-element__addon">mm.&emsp;&emsp;</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td></td>
+                                                                        <td class="text-center" style="padding-top: 10px;">
+                                                                            <div class="slds-form-element__control">
+                                                                                <input
+                                                                                    onchange={onIEH}
+                                                                                    type="number"
+                                                                                    onkeypress={onKeyPress}
+                                                                                    data-id="circle1-bottom"
+                                                                                    class="slds-input"
+                                                                                    style="width: 70%;"
+                                                                                />
+                                                                                <span class="slds-form-element__addon">mm.&emsp;&emsp;</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-col">
+                                                            <table>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td></td>
+                                                                        <td
+                                                                            style="width: 10%; padding-bottom: 10px;"
+                                                                            class="text-center"
+                                                                        >
+                                                                            <div class="slds-form-element__control">
+                                                                                <input
+                                                                                    onchange={onIEH}
+                                                                                    type="number"
+                                                                                    onkeypress={onKeyPress}
+                                                                                    data-id="circle2-top"
+                                                                                    class="slds-input"
+                                                                                    style="width: 70%;"
+                                                                                />
+                                                                            </div>
+                                                                            <span class="slds-form-element__addon">mm.&emsp;&emsp;</span>
+                                                                        </td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="width: 10%;" class="text-center">
+                                                                            <div class="slds-form-element__control">
+                                                                                <input
+                                                                                    onchange={onIEH}
+                                                                                    type="number"
+                                                                                    onkeypress={onKeyPress}
+                                                                                    data-id="circle2-left"
+                                                                                    class="slds-input"
+                                                                                    style="width: 70%;"
+                                                                                />
+                                                                                <span class="slds-form-element__addon">mm.&emsp;&emsp;</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="circle">
+                                                                                <div class="circle__inner">
+                                                                                    <div class="circle__wrapper">
+                                                                                        <div
+                                                                                            class="circle__content slds-form-element__label"
+                                                                                        >
+                                                                                            GAP
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td style="width: 10%;" class="text-center">
+                                                                            <div class="slds-form-element__control">
+                                                                                <input
+                                                                                    onchange={onIEH}
+                                                                                    type="number"
+                                                                                    onkeypress={onKeyPress}
+                                                                                    data-id="circle2-right"
+                                                                                    class="slds-input"
+                                                                                    style="width: 70%;"
+                                                                                />
+                                                                                <span class="slds-form-element__addon">mm.&emsp;&emsp;</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td></td>
+                                                                        <td class="text-center" style="padding-top: 10px">
+                                                                            <div class="slds-form-element__control">
+                                                                                <input
+                                                                                    onchange={onIEH}
+                                                                                    type="number"
+                                                                                    onkeypress={onKeyPress}
+                                                                                    data-id="circle2-bottom"
+                                                                                    class="slds-input"
+                                                                                    style="width: 70%;"
+                                                                                />
+                                                                            </div>
+                                                                            <span class="slds-form-element__addon">mm.&emsp;&emsp;</span>
+                                                                        </td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                                <div class="slds-section">
+                                    <span class="slds-form-element__label"
+                                            >1.4 Check as-found DBSE</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >ตรวจสอบระยะ DBSE
+                                            </span>
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col" >
+                                            <div class="form-check form-check-inline">
+                                                <label class="slds-form-element__label" for="text-input-id-1"
+                                                    >DBSE, mm</label
+                                                >
+                                                <div class="slds-form-element__control" data-answered="false">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="number"
+                                                        min="0"
+                                                        step="1"
+                                                        onkeypress={onKeyPress}
+                                                        data-id="1-4-input"
+                                                        class="slds-input w-50"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            >1.5 Check Flanges Raise Face serration condition</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >ตรวจสอบสภาพของ Raise face ของ หน้าแปลน
+                                            </span>
+                                    
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col" >
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-5-checkbox-1"
+                                                    data-children="0"
+                                                    data-controlledby="1-5-checkbox-21-5-checkbox-31-5-checkbox-41-5-checkbox-5"
+                                                    data-id="1-5-checkbox-1"
+                                                    id="1-5-checkbox-1"
+                                                    value="ปกติ"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-5-checkbox-1">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> ปกติ</span>
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-5-checkbox-2"
+                                                    data-id="1-5-checkbox-2"
+                                                    id="1-5-checkbox-2"
+                                                    data-children="0"
+                                                    data-controlledby="1-5-checkbox-1"
+                                                    value="เป็นสนิม"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-5-checkbox-2">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> เป็นสนิม</span>
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-5-checkbox-3"
+                                                    data-id="1-5-checkbox-3"
+                                                    id="1-5-checkbox-3"
+                                                    data-children="0"
+                                                    data-controlledby="1-5-checkbox-1"
+                                                    value="รอยหยุบ"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-5-checkbox-3">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> รอยหยุบ</span>
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-5-checkbox-4"
+                                                    data-id="1-5-checkbox-4"
+                                                    id="1-5-checkbox-4"
+                                                    data-children="0"
+                                                    data-controlledby="1-5-checkbox-1"
+                                                    value="แตกหัก"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-5-checkbox-4">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> แตกหัก</span>
+                                                </label>
+                                            </div>
+                                            <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                <li>
+                                                    <div class="slds-checkbox">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="checkbox"
+                                                            name="1-5-checkbox-5"
+                                                            data-id="1-5-checkbox-5"
+                                                            id="1-5-checkbox-5"
+                                                            data-children="0"
+                                                            data-controlledby="1-5-checkbox-1"
+                                                            value="อื่นๆ"
+                                                        />
+                                                        <label class="slds-checkbox__label" for="1-5-checkbox-5">
+                                                            <span class="slds-checkbox_faux"></span>
+                                                            <span class="slds-form-element__label"> อื่นๆ</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="w-80">
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="text"
+                                                            data-id="1-5-input"
+                                                            data-disabled="true"
+                                                            data-children="-1"
+                                                            disabled
+                                                            data-controlledby="1-5-checkbox-5"
+                                                            class="slds-input"
+                                                        />
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            >1.6 Suction and Discharge Piping Supports condition</span
+                                            >
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col" >
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-6-checkbox-1"
+                                                    data-children="0"
+                                                    data-controlledby="1-6-checkbox-21-6-checkbox-31-6-checkbox-41-6-checkbox-5"
+                                                    data-id="1-6-checkbox-1"
+                                                    id="1-6-checkbox-1"
+                                                    value="ปกติ"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-6-checkbox-1">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> ปกติ</span>
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-6-checkbox-2"
+                                                    data-id="1-6-checkbox-2"
+                                                    id="1-6-checkbox-2"
+                                                    data-children="0"
+                                                    data-controlledby="1-6-checkbox-1"
+                                                    value="เป็นสนิม/กัดกร่อน"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-6-checkbox-2">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> เป็นสนิม/กัดกร่อน</span>
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-6-checkbox-3"
+                                                    data-id="1-6-checkbox-3"
+                                                    id="1-6-checkbox-3"
+                                                    data-children="0"
+                                                    data-controlledby="1-6-checkbox-1"
+                                                    value="ยุบตัว/ทรุด"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-6-checkbox-3">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> ยุบตัว/ทรุด</span>
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-6-checkbox-4"
+                                                    data-id="1-6-checkbox-4"
+                                                    id="1-6-checkbox-4"
+                                                    data-children="0"
+                                                    data-controlledby="1-6-checkbox-1"
+                                                    value="แตกหัก"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-6-checkbox-4">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> แตกหัก</span>
+                                                </label>
+                                            </div>
+                                            <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                <li>
+                                                    <div class="slds-checkbox">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="checkbox"
+                                                            name="1-6-checkbox-5"
+                                                            data-id="1-6-checkbox-5"
+                                                            id="1-6-checkbox-5"
+                                                            data-children="0"
+                                                            data-controlledby="1-6-checkbox-1"
+                                                            value="อื่นๆ"
+                                                        />
+                                                        <label class="slds-checkbox__label" for="1-6-checkbox-5">
+                                                            <span class="slds-checkbox_faux"></span>
+                                                            <span class="slds-form-element__label"> อื่นๆ</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="w-80">
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="text"
+                                                            data-id="1-6-input"
+                                                            data-disabled="true"
+                                                            data-children="-1"
+                                                            disabled
+                                                            data-controlledby="1-6-checkbox-5"
+                                                            class="slds-input"
+                                                        />
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            >1.7 Suction strainer condition? (record mesh size)</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >ตรวจสอบ suction strainer? (บันทึก mesh size)
+                                            </span>
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col" >
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-7-checkbox-1"
+                                                    data-children="0"
+                                                    data-controlledby="1-7-checkbox-21-7-checkbox-31-7-checkbox-4"
+                                                    data-id="1-7-checkbox-1"
+                                                    id="1-7-checkbox-1"
+                                                    value="ปกติ"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-7-checkbox-1">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> ปกติ</span>
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-7-checkbox-2"
+                                                    data-id="1-7-checkbox-2"
+                                                    id="1-7-checkbox-2"
+                                                    data-children="0"
+                                                    data-controlledby="1-7-checkbox-1"
+                                                    value="แตกหัก/ขาด"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-7-checkbox-2">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> แตกหัก/ขาด</span>
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-7-checkbox-3"
+                                                    data-id="1-7-checkbox-3"
+                                                    id="1-7-checkbox-3"
+                                                    data-children="0"
+                                                    data-controlledby="1-7-checkbox-1"
+                                                    value="สกปรก"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-7-checkbox-3">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> สกปรก</span>
+                                                </label>
+                                            </div>
+                                            <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                <li>
+                                                    <div class="slds-checkbox">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="checkbox"
+                                                            name="1-7-checkbox-4"
+                                                            data-id="1-7-checkbox-4"
+                                                            id="1-7-checkbox-4"
+                                                            data-children="0"
+                                                            data-controlledby="1-7-checkbox-1"
+                                                            value="จำนวน Mesh"
+                                                        />
+                                                        <label class="slds-checkbox__label" for="1-7-checkbox-4">
+                                                            <span class="slds-checkbox_faux"></span>
+                                                            <span class="slds-form-element__label"> จำนวน Mesh</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="w-80">
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-disabled="true"
+                                                            data-children="-1"
+                                                            disabled
+                                                            data-controlledby="1-7-checkbox-4"
+                                                            data-id="1-7-input"
+                                                            class="slds-input"
+                                                        />
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            >1.8 Check Valve functioning and internal inspected</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >ตรวจสอบ check valve (กรณีมีปัญหาเรื่อง passing)
+                                            </span>
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col" >
+                                            <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                <li>
+                                                    <span class="slds-radio">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="radio"
+                                                            data-id="1-8-radio-1"
+                                                            id="1-8-radio-1"
+                                                            name="1-8-radio"
+                                                            value="ปกติ"
+                                                        />
+                                                        <label class="slds-radio__label" for="1-8-radio-1">
+                                                            <span class="slds-radio_faux"></span>
+                                                            <span class="slds-form-element__label"> ปกติ</span>
+                                                        </label>
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span class="slds-radio">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="radio"
+                                                            data-id="1-8-radio-2"
+                                                            id="1-8-radio-2"
+                                                            name="1-8-radio"
+                                                            value="ผิดปกติ"
+                                                        />
+                                                        <label class="slds-radio__label" for="1-8-radio-2">
+                                                            <span class="slds-radio_faux"></span>
+                                                            <span class="slds-form-element__label"> ผิดปกติ</span>
+                                                        </label>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                            <div class="slds-form-element__control">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-8-input"
+                                                    class="slds-input w-80"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            >1.9 Steam tracing functioning check; steam traps reported for
+                                            replacement</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >ตรวจสอบการทำงานของ steam tracing หรือ trap (ถ้ามี)
+                                            </span>
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col" >
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-9-checkbox-1"
+                                                    data-children="0"
+                                                    data-controlledby="1-9-checkbox-21-9-checkbox-31-9-checkbox-41-9-checkbox-5"
+                                                    data-id="1-9-checkbox-1"
+                                                    id="1-9-checkbox-1"
+                                                    value="ปกติ"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-9-checkbox-1">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> ปกติ</span>
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-9-checkbox-2"
+                                                    data-id="1-9-checkbox-2"
+                                                    id="1-9-checkbox-2"
+                                                    data-children="0"
+                                                    data-controlledby="1-9-checkbox-1"
+                                                    value="Tracing ไม่ทำงาน/ มี condensate"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-9-checkbox-2">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label"
+                                                        > Tracing ไม่ทำงาน/ มี condensate</span
+                                                    >
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-9-checkbox-3"
+                                                    data-id="1-9-checkbox-3"
+                                                    id="1-9-checkbox-3"
+                                                    data-children="0"
+                                                    data-controlledby="1-9-checkbox-1"
+                                                    value="ไม่เกี่ยวข้อง"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-9-checkbox-3">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> ไม่เกี่ยวข้อง</span>
+                                                </label>
+                                            </div>
+                                            <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                <li>
+                                                    <div class="slds-checkbox">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="checkbox"
+                                                            name="1-9-checkbox-5"
+                                                            data-id="1-9-checkbox-5"
+                                                            id="1-9-checkbox-5"
+                                                            data-children="0"
+                                                            data-controlledby="1-9-checkbox-1"
+                                                            value="อื่นๆ"
+                                                        />
+                                                        <label class="slds-checkbox__label" for="1-9-checkbox-5">
+                                                            <span class="slds-checkbox_faux"></span>
+                                                            <span class="slds-form-element__label"> อื่นๆ</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="w-80">
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="text"
+                                                            data-id="1-9-input"
+                                                            data-disabled="true"
+                                                            data-children="-1"
+                                                            disabled
+                                                            data-controlledby="1-9-checkbox-5"
+                                                            class="slds-input"
+                                                        />
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            >1.10 Check and report Faulty Local Gauges</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >ตรวจสอบ pressure gauge หรืออุปกรณ์การวัดที่เสียหาย
+                                            </span>
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col" >
+                                            <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                <li>
+                                                    <span class="slds-radio">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="radio"
+                                                            data-id="1-10-radio-1"
+                                                            id="1-10-radio-1"
+                                                            name="1-10-radio"
+                                                            value="ปกติ"
+                                                        />
+                                                        <label class="slds-radio__label" for="1-10-radio-1">
+                                                            <span class="slds-radio_faux"></span>
+                                                            <span class="slds-form-element__label"> ปกติ</span>
+                                                        </label>
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span class="slds-radio">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="radio"
+                                                            data-id="1-10-radio-2"
+                                                            id="1-10-radio-2"
+                                                            name="1-10-radio"
+                                                            value="ผิดปกติ"
+                                                        />
+                                                        <label class="slds-radio__label" for="1-10-radio-2">
+                                                            <span class="slds-radio_faux"></span>
+                                                            <span class="slds-form-element__label"> ผิดปกติ</span>
+                                                        </label>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                            <div class="slds-form-element__control">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-10-input"
+                                                    id="1-10-input"
+                                                    name="1-10-input"
+                                                    class="slds-input w-80"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            >1.11 Check coupling condition</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >ตรวจสอบสภาพของ coupling
+                                            </span>
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col" >
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-11-checkbox-1"
+                                                    data-children="0"
+                                                    data-controlledby="1-11-checkbox-21-11-checkbox-31-11-checkbox-41-11-checkbox-5"
+                                                    data-id="1-11-checkbox-1"
+                                                    id="1-11-checkbox-1"
+                                                    value="ปกติ"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-11-checkbox-1">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> ปกติ</span>
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-11-checkbox-2"
+                                                    data-id="1-11-checkbox-2"
+                                                    id="1-11-checkbox-2"
+                                                    data-children="0"
+                                                    data-controlledby="1-11-checkbox-1"
+                                                    value="แตก"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-11-checkbox-2">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> แตก</span>
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-11-checkbox-3"
+                                                    data-id="1-11-checkbox-3"
+                                                    id="1-11-checkbox-3"
+                                                    data-children="0"
+                                                    data-controlledby="1-11-checkbox-1"
+                                                    value="เสียรูป"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-11-checkbox-3">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> เสียรูป</span>
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-11-checkbox-4"
+                                                    data-id="1-11-checkbox-4"
+                                                    id="1-11-checkbox-4"
+                                                    data-children="0"
+                                                    data-controlledby="1-11-checkbox-1"
+                                                    value="หลวม"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-11-checkbox-4">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> หลวม</span>
+                                                </label>
+                                            </div>
+                                            <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                <li>
+                                                    <div class="slds-checkbox">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="checkbox"
+                                                            name="1-11-checkbox-5"
+                                                            data-id="1-11-checkbox-5"
+                                                            id="1-11-checkbox-5"
+                                                            data-children="0"
+                                                            data-controlledby="1-11-checkbox-1"
+                                                            value="อื่นๆ"
+                                                        />
+                                                        <label class="slds-checkbox__label" for="1-11-checkbox-5">
+                                                            <span class="slds-checkbox_faux"></span>
+                                                            <span class="slds-form-element__label"> อื่นๆ</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="w-80">
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="text"
+                                                            data-id="1-11-input"
+                                                            data-disabled="true"
+                                                            data-children="-1"
+                                                            disabled
+                                                            data-controlledby="1-11-checkbox-5"
+                                                            class="slds-input"
+                                                        />
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            >1.12 Inspect insulation condition</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >ตรวจสอบสภาพของฉนวนกันความร้อน
+                                            </span>
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col" >
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-12-checkbox-1"
+                                                    data-children="0"
+                                                    data-controlledby="1-12-checkbox-21-12-checkbox-31-12-checkbox-4"
+                                                    data-id="1-12-checkbox-1"
+                                                    id="1-12-checkbox-1"
+                                                    value="ปกติ"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-12-checkbox-1">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> ปกติ</span>
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-12-checkbox-2"
+                                                    data-id="1-12-checkbox-2"
+                                                    id="1-12-checkbox-2"
+                                                    data-children="0"
+                                                    data-controlledby="1-12-checkbox-1"
+                                                    value="ยุบแตก"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-12-checkbox-2">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> ยุบแตก</span>
+                                                </label>
+                                            </div>
+                                            <div class="slds-checkbox">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    name="1-12-checkbox-3"
+                                                    data-id="1-12-checkbox-3"
+                                                    id="1-12-checkbox-3"
+                                                    data-children="0"
+                                                    data-controlledby="1-12-checkbox-1"
+                                                    value="ไม่เกี่ยวข้อง"
+                                                />
+                                                <label class="slds-checkbox__label" for="1-12-checkbox-3">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label mgr-10"> ไม่เกี่ยวข้อง</span>
+                                                </label>
+                                            </div>
+
+                                            <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                <li>
+                                                    <div class="slds-checkbox">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="checkbox"
+                                                            name="1-12-checkbox-4"
+                                                            data-id="1-12-checkbox-4"
+                                                            id="1-12-checkbox-4"
+                                                            data-children="0"
+                                                            data-controlledby="1-12-checkbox-1"
+                                                            value="อื่นๆ"
+                                                        />
+                                                        <label class="slds-checkbox__label" for="1-12-checkbox-4">
+                                                            <span class="slds-checkbox_faux"></span>
+                                                            <span class="slds-form-element__label"> อื่นๆ</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="w-80">
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="text"
+                                                            data-id="1-12-input"
+                                                            id="1-12-input"
+                                                            name="1-12-input"
+                                                            data-disabled="true"
+                                                            data-children="-1"
+                                                            disabled
+                                                            data-controlledby="1-12-checkbox-4"
+                                                            class="slds-input"
+                                                        />
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            >1.13 Motor solo run, vibration acquired, Rotation check</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >Motor no-load เก็บค่า vibration ตรวจสอบทิศทางการหมุน
+                                            </span>
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col" >
+                                            <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                <li>
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span class="slds-radio">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="radio"
+                                                                    data-id="1-13-radio-1"
+                                                                    id="1-13-radio-1"
+                                                                    name="1-13-radio-1"
+                                                                    value="CW"
+                                                                />
+                                                                <label class="slds-radio__label" for="1-13-radio-1">
+                                                                    <span class="slds-radio_faux"></span>
+                                                                    <span class="slds-form-element__label"> CW</span>
+                                                                </label>
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="slds-radio">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="radio"
+                                                                    data-id="1-13-radio-2"
+                                                                    id="1-13-radio-2"
+                                                                    name="1-13-radio-1"
+                                                                    value="CWW"
+                                                                />
+                                                                <label class="slds-radio__label" for="1-13-radio-2">
+                                                                    <span class="slds-radio_faux"></span>
+                                                                    <span class="slds-form-element__label"> CWW</span>
+                                                                </label>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span class="slds-radio">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="radio"
+                                                                    data-id="1-13-radio-3"
+                                                                    id="1-13-radio-3"
+                                                                    name="1-13-radio-2"
+                                                                    value="ปกติ"
+                                                                />
+                                                                <label class="slds-radio__label" for="1-13-radio-3">
+                                                                    <span class="slds-radio_faux"></span>
+                                                                    <span class="slds-form-element__label"> ปกติ</span>
+                                                                </label>
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="slds-radio">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="radio"
+                                                                    data-id="1-13-radio-4"
+                                                                    id="1-13-radio-4"
+                                                                    name="1-13-radio-2"
+                                                                    value="ผิดปกติ"
+                                                                />
+                                                                <label class="slds-radio__label" for="1-13-radio-4">
+                                                                    <span class="slds-radio_faux"></span>
+                                                                    <span class="slds-form-element__label"
+                                                                        > ผิดปกติ</span
+                                                                    >
+                                                                </label>
+                                                                <!-- <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="1-13-input"
+                                                                    class="slds-input"
+                                                                /> -->
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+            </ul>
+        </div>
+        <!-- Button Section for Every Form -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openRejectModal}>
+                    Reject
+                </button>
+                <button data-id="recallEQCCStep" class="slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                    Recall
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Submit</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-lookup object-api-name="user" icon-name="standard:user" onrecordselection={onUserSelection}></c-lookup>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submit} title="Submit">Submit</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

@@ -1,0 +1,1096 @@
+<template>
+    <!-- Form Question = 11 -->  
+<div data-id="formBegin"> <c-step-page-header num-steps="1" current-step="1" percentage={percentage} is-current={isCurrent} record-id={recordId} >
+</c-step-page-header> <c-lwc-modal title={modalTitle} is-visible={modalVisible} confirm-text={modalConfirmButton} cancel-text={modalCancelButton} 
+name={modalName} message={modalMessage} onselected={handleModalSelection} >
+</c-lwc-modal>
+<div class="slds-text-heading_medium text-center">ENEM-QFR-7507-GNR</div>
+<div class="slds-text-heading_medium text-center">INSPECTION OF STATIC SUPPLY UNIT</div>
+<div class="slds-text-heading_medium text-center">BATTERIES CELL TEST</div>
+<section class="section slds-accordion__section">
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+            <label class="slds-form-element__label" for="tank-no">Notification</label>
+            <div class="f-c">
+                <input
+                    type="text"
+                    data-id="notification"
+                    class="slds-input avoidPercentageInput"
+                    value={notification}
+                    disabled
+                />
+            </div>
+            <label class="slds-form-element__label" for="tank-no">Order</label>
+            <div class="f-c">
+                <input
+                    type="text"
+                    data-id="order"
+                    class="slds-input avoidPercentageInput"
+                    value={order}
+                    disabled
+                />
+            </div>
+        </div>
+        <div class="slds-col">
+            <label class="slds-form-element__label" for="tank-no">FL.</label>
+            <div class="f-c">
+                <input
+                    type="text"
+                    data-id="fl"
+                    class="slds-input avoidPercentageInput"
+                    value={functionalLocation}
+                    disabled
+                />
+            </div>
+            <label class="slds-form-element__label" for="tank-no">Status</label>
+            <div class="f-c">
+                <input
+                    type="text"
+                    data-id="status"
+                    class="slds-input avoidPercentageInput"
+                    value={formStatus}
+                    disabled
+                />
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="bs-example"></div> 
+<div class="bs-example">
+<ul class="slds-accordion">
+<li class="slds-accordion__list-item"> 
+<section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+<div class="card-header" data-id="headingZero">
+<h2 class="slds-accordion__summary-heading card-header"> 
+<button type="button" aria-controls="collapseZero" aria-expanded="true" class="btn btn-link" data-parent="sectionZero" onclick={expandSection} > 
+<lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" >    
+</lightning-icon> 
+<span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" >0</span >
+<span class="slds-accordion__summary-content">Header Information</span> </button>
+</h2>
+</div>
+<div data-id="collapseZero" class="slds-accordion__content">
+<div class="card-body">
+<div class="table-responsive" style="margin: 0rem;">
+<table class="table"  border="0" cellpadding="0" cellspacing="0">
+<tbody> 
+<tr>
+    <td> <span class="slds-form-element__label">Tag no: </span></td>
+    <td><div class="slds-form-element__control" data-answered="false"> <input onchange={onIEH} type="text" data-id="tag" class="slds-input avoidPercentageInput" /></div></td>
+    <td><span class="slds-form-element__label">Unit: </span></td>
+    <td><div class="slds-form-element__control" data-answered="false"> <input onchange={onIEH} type="text" data-id="unit" class="slds-input avoidPercentageInput" /></div>
+    </td>
+</tr>
+<tr>
+    <td><span class="slds-form-element__label">Area: </span></td>
+    <td><div class="slds-form-element__control" data-answered="false"> <input onchange={onIEH} type="text" data-id="area" class="slds-input avoidPercentageInput" /></div></td>
+    <td><span class="slds-form-element__label">Date of inspection: </span></td>
+    <td><div class="slds-form-element__control" data-answered="false"> <input onchange={onIEH} type="date" data-id="date" class="slds-input avoidPercentageInput" /> </div></td>
+</tr>   
+<tr>
+    <td><span class="slds-form-element__label">Inspected by. </span></td>
+    <td><div class="slds-form-element__control" data-answered="false"> <input onchange={onIEH} type="text" data-id="inspector" class="slds-input avoidPercentageInput" /></div>
+    </td> <td> </td>  <td></td> </tr>  
+</tbody></table> </div></div> </div>  </section></li>
+
+<li class="slds-accordion__list-item"> 
+<section class="slds-accordion__section" data-id="sectionOne">
+<div class="card-header" data-id="headingOne">
+<h2 class="slds-accordion__summary-heading card-header"> 
+<button type="button" aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-parent="sectionOne" onclick={expandSection} > 
+<lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" >
+
+</lightning-icon> 
+<span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" >1</span >
+<span class="slds-accordion__summary-content">รายงานการตรวจสอบเซลที่ 1-50</span> 
+</button>
+<div class="slds-col">
+<div class="slds-checkbox obj-right" > 
+<!-- <input 
+onchange={disableSection} 
+name="options" 
+type="checkbox" 
+data-id="header-na-1" 
+id="header-na-1" 
+data-remark="1-remark" 
+value="header-na-1" /> -->
+
+<input
+onchange={disableSection}
+type="checkbox"
+name="options"
+id="checkbox-unique-id-1"
+data-id="checkbox-unique-id-1"
+data-remark="checkbox-unique-id-1"
+value="checkbox-unique-id-1"
+data-parent="sectionOne"
+/>
+<label class="slds-checkbox__label" for="checkbox-unique-id-1">
+    <span class="slds-checkbox_faux"></span>
+    <span class="slds-form-element__label">Input N/A</span>
+</label>
+</div></div></h2>
+</div>
+<div class="slds-grid slds-gutters hide-remark"
+    id="sectionOne-remark"
+    data-id="sectionOne-remark">
+<div class="slds-col">
+    <label class="slds-form-element__label" for="tank-no">Remark</label>
+    <div class="slds-form-element__control">
+        <textarea
+            data-id="sectionOne-inputRemark"
+            onchange={onIEH}
+            id="sectionOne-inputRemark"
+            class="slds-textarea"
+        ></textarea>
+    </div>
+</div>
+</div>
+<div data-id="collapseOne" class="slds-accordion__content">
+<div class="card-body">
+<div class="table-responsive" style="margin: 0rem;" >
+<table class="table"  border="0" cellpadding="0" cellspacing="0">
+<colgroup>
+<col span="1" style="width: 10%;"> <col span="1" style="width: 10%;"> <col span="1" style="width: 30%;">
+<col span="1" style="width: 10%;"> <col span="1" style="width: 10%;"><col span="1" style="width: 30%;">
+</colgroup>                  
+<thead>
+<td class="text-center"><span class="slds-form-element__label">Cell No.</span></td>
+<td class="text-center"><span class="slds-form-element__label">Volt</span></td>
+<td class="text-center"><span class="slds-form-element__label">Remark</span></td>
+<td class="text-center"> <span class="slds-form-element__label">Cell No.</span></td>
+<td class="text-center"> <span class="slds-form-element__label">Volt</span></td>     
+<td class="text-center" ><span class="slds-form-element__label">Remark</span></td>  
+</thead>
+<tbody >
+<tr>
+<td> <div class="slds-form-element__control" data-answered="false"> <input onchange={onIEH} type="text" data-id="cell1-1-1" 
+    class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control" data-answered="false"> <input onchange={onIEH} type="number" data-id="volt1-1-1"
+    class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control" data-answered="false"> <input onchange={onIEH} type="text" data-id="remark1-1-1"
+    class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control" data-answered="false"><input onchange={onIEH} type="text" data-id="cell1-1-2"
+    class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control" data-answered="false"><input onchange={onIEH} type="number" data-id="volt1-1-2" 
+    class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control" data-answered="false"><input onchange={onIEH} type="text" data-id="remark1-1-2" 
+    class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-2-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-2-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-2-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-2-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-2-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-2-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-3-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-3-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-3-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-3-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-3-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-3-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-4-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-4-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-4-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-4-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-4-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-4-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-5-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-5-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-5-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-5-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-5-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-5-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-6-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-6-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-6-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-6-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-6-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-6-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-7-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-7-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-7-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-7-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-7-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-7-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-8-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-8-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-8-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-8-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-8-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-8-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-9-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-9-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-9-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-9-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-9-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-9-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-10-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-10-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-10-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-10-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-10-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-10-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-11-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-11-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-11-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-11-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-11-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-11-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-12-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-12-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-12-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-12-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-12-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-12-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-13-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-13-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-13-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-13-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-13-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-13-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-14-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-14-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-14-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-14-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-14-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-14-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-15-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-15-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-15-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-15-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-15-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-15-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-16-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="vol11-16-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-16-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-16-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-16-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-16-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-17-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-17-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-17-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-17-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-17-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-17-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-18-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-18-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-18-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-18-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-18-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-18-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-19-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-19-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-19-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-19-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-19-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-19-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-20-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-20-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-20-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-20-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-20-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-20-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-21-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-21-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-21-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-21-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-21-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-21-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-22-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-22-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-22-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-22-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-22-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-22-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-23-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-23-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-23-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-23-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-23-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-23-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-24-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-24-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-24-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-24-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-24-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-24-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+    <tr>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="cell1-25-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+        <td> <div class="slds-form-element__control"> <input type="number" data-id="volt1-25-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"> <input type="text" data-id="remark1-25-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="cell1-25-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+        <td> <div class="slds-form-element__control"><input type="number" data-id="volt1-25-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+        <td> <div class="slds-form-element__control"><input type="text" data-id="remark1-25-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<!-- second2 part-->
+<section class="slds-accordion__section" data-id="sectionTwo">
+<div class="card-header" data-id="headingTwo">
+<h2 class="slds-accordion__summary-heading card-header"> 
+<button type="button" aria-controls="collapseTwo" aria-expanded="true" class="btn btn-link" data-parent="sectionTwo" onclick={expandSection} > 
+<lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" >
+</lightning-icon> 
+<span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" >2</span >
+<span class="slds-accordion__summary-content">รายงานการตรวจสอบเซลที่ 51-100</span> 
+</button>
+<div class="slds-col">
+<div class="slds-checkbox obj-right"> 
+    <input
+    onchange={disableSection}
+    type="checkbox"
+    name="options"
+    id="checkbox-unique-id-2"
+    data-id="checkbox-unique-id-2"
+    data-remark="checkbox-unique-id-2"
+    value="checkbox-unique-id-2"
+    data-parent="sectionTwo"
+    />
+<label class="slds-checkbox__label" for="checkbox-unique-id-2">
+    <span class="slds-checkbox_faux"></span>
+    <span class="slds-form-element__label">Input N/A</span>
+</label>
+</div>
+</div>
+</h2>
+
+</div>
+<div
+class="slds-grid slds-gutters hide-remark"
+id="sectionTwo-remark"
+data-id="sectionTwo-remark"
+>
+<div class="slds-col">
+    <label class="slds-form-element__label" for="tank-no">Remark</label>
+    <div class="slds-form-element__control">
+        <textarea
+            data-id="sectionTwo-inputRemark"
+            onchange={onIEH}
+            id="sectionTwo-inputRemark"
+            class="slds-textarea"
+        ></textarea>
+    </div>
+</div>
+</div>
+<div data-id="collapseTwo" class="slds-accordion__content">
+<div class="card-body">
+<div class="table-responsive" style="margin: 0rem;"><table class="table" border="0" cellpadding="0" cellspacing="0">
+<colgroup>
+<col span="1" style="width: 10%;"><col span="1" style="width: 10%;"><col span="1" style="width: 30%;">
+<col span="1" style="width: 10%;"><col span="1" style="width: 10%;"><col span="1" style="width: 30%;">
+</colgroup>                  
+<thead>
+<td class="text-center"><span class="slds-form-element__label">Cell No.</span></td>
+<td class="text-center"><span class="slds-form-element__label">Volt</span></td>
+<td class="text-center"><span class="slds-form-element__label">Remark</span></td>
+<td class="text-center"> <span class="slds-form-element__label">Cell No.</span></td>
+<td class="text-center"> <span class="slds-form-element__label">Volt</span></td>     
+<td class="text-center" ><span class="slds-form-element__label">Remark</span></td> 
+</thead>
+<tbody>
+<tr>
+    <td> <div class="slds-form-element__control"><input type="text" data-id="cell2-1-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-1-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-1-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-1-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-1-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-1-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+    <td> <div class="slds-form-element__control"><input type="text" data-id="cell2-2-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-2-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-2-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-2-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-2-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-2-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-3-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td><td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-3-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-3-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-3-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-3-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-3-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+    <td> <div class="slds-form-element__control"><input type="text" data-id="cell2-4-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-4-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-4-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-4-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-4-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-4-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-5-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-5-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-5-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-5-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-5-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-5-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-6-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-6-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-6-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-6-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-6-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-6-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-7-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-7-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-7-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-7-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-7-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-7-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-8-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-8-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-8-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-8-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-8-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-8-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-9-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-9-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-9-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-9-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-9-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-9-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-10-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-10-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-10-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-10-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-10-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-10-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-11-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-11-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-11-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-11-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-11-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-11-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-12-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-12-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-12-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-12-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-12-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-12-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-13-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-13-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-13-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-13-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-13-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-13-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-14-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-14-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-14-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-14-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-14-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-14-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-15-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-15-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-15-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-15-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-15-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-15-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-16-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-16-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-16-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-16-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-16-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-16-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-17-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-17-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-17-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-17-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-17-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-17-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-18-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-18-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-18-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-18-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-18-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-18-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-19-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-19-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-19-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-19-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-19-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-19-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-20-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-20-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-20-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-20-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-20-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-20-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-21-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-21-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-21-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-21-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-21-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-21-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-22-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-22-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-22-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-22-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-22-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-22-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-23-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-23-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-23-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-23-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-23-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-23-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-24-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-24-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-24-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-24-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-24-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-24-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell2-25-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt2-25-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark2-25-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-25-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt2-25-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark2-25-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+</tbody>
+</table></div></div></div></section>
+<section class="slds-accordion__section" data-id="sectionThree">
+<div class="card-header" data-id="headingThree">
+<h2 class="slds-accordion__summary-heading card-header"> 
+<button type="button" aria-controls="collapseThree" aria-expanded="true" class="btn btn-link" data-parent="sectionThree" onclick={expandSection} > 
+<lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" >
+</lightning-icon> 
+<span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" >3</span >
+<span class="slds-accordion__summary-content">รายงานการตรวจสอบเซลที่ 101-150</span> 
+</button>
+<div class="slds-col">
+<div class="slds-checkbox obj-right"> 
+    <input
+    onchange={disableSection}
+    type="checkbox"
+    name="options"
+    id="checkbox-unique-id-3"
+    data-id="checkbox-unique-id-3"
+    data-remark="checkbox-unique-id-3"
+    value="checkbox-unique-id-3"
+    data-parent="sectionThree"
+    /><label class="slds-checkbox__label" for="checkbox-unique-id-3">
+    <span class="slds-checkbox_faux"></span>
+    <span class="slds-form-element__label">Input N/A</span>
+</label>
+</div>
+</div>
+</h2>
+
+</div>
+<div
+class="slds-grid slds-gutters hide-remark"
+id="sectionThree-remark"
+data-id="sectionThree-remark"
+>
+<div class="slds-col">
+    <label class="slds-form-element__label" for="tank-no">Remark</label>
+    <div class="slds-form-element__control">
+        <textarea
+            data-id="sectionThree-inputRemark"
+            onchange={onIEH}
+            id="sectionThree-inputRemark"
+            class="slds-textarea"
+        ></textarea>
+    </div>
+</div>
+</div>
+<div data-id="collapseThree" class="slds-accordion__content">
+<div class="card-body">
+<div class="table-responsive" style="margin: 0rem;"><table class="table"  border="0" cellpadding="0" cellspacing="0">
+<colgroup>
+<col span="1" style="width: 10%;"><col span="1" style="width: 10%;"><col span="1" style="width: 30%;">
+<col span="1" style="width: 10%;"><col span="1" style="width: 10%;"><col span="1" style="width: 30%;">
+</colgroup>                  
+<thead>
+<td class="text-center"><span class="slds-form-element__label">Cell No.</span></td>
+<td class="text-center"><span class="slds-form-element__label">Volt</span></td>
+<td class="text-center"><span class="slds-form-element__label">Remark</span></td>
+<td class="text-center"> <span class="slds-form-element__label">Cell No.</span></td>
+<td class="text-center"> <span class="slds-form-element__label">Volt</span></td>     
+<td class="text-center" ><span class="slds-form-element__label">Remark</span></td> 
+                
+</thead>
+<tbody>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-1-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-1-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-1-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-1-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-1-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-1-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-2-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-2-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-2-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-2-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-2-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-2-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-3-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-3-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-3-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell2-3-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-3-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-3-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-4-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-4-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-4-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-4-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-4-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-4-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-5-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-5-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-5-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-5-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-5-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-5-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-6-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-6-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-6-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-6-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-6-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-6-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-7-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-7-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-7-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-7-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-7-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-7-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-8-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-8-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-8-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-8-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-8-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-8-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-9-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-9-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-9-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-9-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-9-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-9-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-10-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-10-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-10-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-10-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-10-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-10-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-11-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-11-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-11-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-11-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-11-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-11-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-12-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-12-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-12-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-12-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-12-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-12-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-12-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-12-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-12-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-12-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-12-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-12-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-13-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-13-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-13-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-13-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-13-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-13-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-14-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-14-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-14-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-14-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-14-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-12-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-15-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-15-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-15-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-15-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-15-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-15-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-16-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-16-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-16-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-16-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-16-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-16-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-17-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-17-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-17-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-17-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-17-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-17-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-18-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-18-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-18-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-18-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-18-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-18-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-19-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-19-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-19-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-19-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-19-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-19-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-20-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-20-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-20-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-20-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-20-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-20-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-21-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-21-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-21-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-21-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-21-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-21-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-22-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-22-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-22-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-22-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-22-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-22-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-23-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-23-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-23-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-23-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-23-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-23-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-24-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-24-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-24-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-24-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-24-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-24-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell3-25-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt3-25-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark3-25-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell3-25-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt3-25-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark3-25-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+</tbody></table> </div></div></div></section>
+
+<section class="slds-accordion__section" data-id="sectionFour">
+<div class="card-header" data-id="headingFour">
+<h2 class="slds-accordion__summary-heading card-header"> 
+<button type="button" aria-controls="collapseFour" aria-expanded="true" class="btn btn-link" data-parent="sectionFour" onclick={expandSection} > 
+<lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" >
+</lightning-icon> 
+<span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" >4</span >
+<span class="slds-accordion__summary-content">รายงานการตรวจสอบเซลที่ 151-200</span> 
+</button>
+<div class="slds-col">
+<div class="slds-checkbox obj-right"> 
+    <input
+    onchange={disableSection}
+    type="checkbox"
+    name="options"
+    id="checkbox-unique-id-4"
+    data-id="checkbox-unique-id-4"
+    data-remark="checkbox-unique-id-4"
+    value="checkbox-unique-id-4"
+    data-parent="sectionFour"
+    /><label class="slds-checkbox__label" for="checkbox-unique-id-4">
+    <span class="slds-checkbox_faux"></span>
+    <span class="slds-form-element__label">Input N/A</span>
+</label>
+</div></div></h2>
+
+</div>
+<div
+class="slds-grid slds-gutters hide-remark"
+id="sectionFour-remark"
+data-id="sectionFour-remark"
+>
+<div class="slds-col">
+    <label class="slds-form-element__label" for="tank-no">Remark</label>
+    <div class="slds-form-element__control">
+        <textarea
+            data-id="sectionFour-inputRemark"
+            onchange={onIEH}
+            id="sectionFour-inputRemark"
+            class="slds-textarea"
+        ></textarea>
+    </div>
+</div>
+</div>
+<div data-id="collapseFour" class="slds-accordion__content">
+<div class="card-body">
+<div class="table-responsive" style="margin: 0rem;"><table class="table"  border="0" cellpadding="0" cellspacing="0">
+<colgroup>
+<col span="1" style="width: 10%;"><col span="1" style="width: 10%;"><col span="1" style="width: 30%;">
+<col span="1" style="width: 10%;"><col span="1" style="width: 10%;"><col span="1" style="width: 30%;">
+</colgroup>                  
+<thead>
+<td class="text-center"><span class="slds-form-element__label">Cell No.</span></td>
+<td class="text-center"><span class="slds-form-element__label">Volt</span></td>
+<td class="text-center"><span class="slds-form-element__label">Remark</span></td>
+<td class="text-center"> <span class="slds-form-element__label">Cell No.</span></td>
+<td class="text-center"> <span class="slds-form-element__label">Volt</span></td>     
+<td class="text-center" ><span class="slds-form-element__label">Remark</span></td> 
+</thead><tbody>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-1-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-1-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-1-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-1-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-1-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-1-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-2-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-2-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-2-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-2-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-2-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-2-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-3-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-3-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-3-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-3-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-3-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-3-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-4-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-4-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-4-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-4-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-4-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-4-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-5-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-5-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-5-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-5-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-5-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-5-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-6-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-6-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-6-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-6-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-6-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-6-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-7-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-7-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-7-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-7-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-7-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-7-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-8-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-8-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-8-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-8-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-8-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-8-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-9-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-9-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-9-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-9-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-9-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-9-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-10-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-10-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-10-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-8-10" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-10-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-10-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-11-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-11-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-11-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-11-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-11-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-11-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-12-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-12-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-12-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-12-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-12-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-12-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td></tr>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-13-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-13-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-13-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-13-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-13-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-13-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-14-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-14-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-14-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-14-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-14-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-12-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-15-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-15-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-15-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-15-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-15-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-15-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-16-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-16-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-16-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-16-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-16-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-16-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-17-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-17-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-17-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-17-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-17-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-17-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-18-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-18-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-18-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-18-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-18-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-18-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-19-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-19-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-19-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-19-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-19-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-19-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-20-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-20-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-20-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-20-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-20-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-20-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr>
+<tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-21-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-21-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-21-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-21-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-21-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-21-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-22-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-22-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-22-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-22-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-22-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-22-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-23-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-23-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-23-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-23-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-23-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-23-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-24-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-24-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-24-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-24-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-24-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-24-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr><tr>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="cell4-25-1" class="slds-input"  style="padding-right: 0px; padding-left: 0px;"></div></td>
+<td> <div class="slds-form-element__control"> <input type="number" data-id="volt4-25-1" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"> <input type="text" data-id="remark4-25-1" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="cell4-25-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"> </div> </td>
+<td> <div class="slds-form-element__control"><input type="number" data-id="volt4-25-2" class="slds-input" step="0.01" style="padding-right: 0px; padding-left: 0px;"></div>  </td>
+<td> <div class="slds-form-element__control"><input type="text" data-id="remark4-25-2" class="slds-input" style="padding-right: 0px; padding-left: 0px;"></div> </td>
+</tr>
+</tbody></table> </div></div></div></section>
+
+<section>         
+
+</section>
+</li></ul></div>
+<!-- save submit reject= -->
+<section class="section slds-accordion__section">
+<div class="slds-button-group obj-right" role="group">
+<button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+Save Draft
+</button>
+<button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSubmitModal}>
+Submit
+</button>
+<button data-id="rejectEQCCStep" class="slds-button slds-button_brand" onclick={openRejectModal}>
+Reject
+</button></div></section></div>
+</template>

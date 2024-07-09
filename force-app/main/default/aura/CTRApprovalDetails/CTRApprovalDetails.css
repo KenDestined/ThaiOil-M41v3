@@ -1,0 +1,83 @@
+.THIS .slds-leftpad{
+	padding-left: 2rem;
+}
+.THIS .iconheight{
+    top: 65%;
+}
+
+.THIS .leftspace input {
+    padding-left:2rem;
+}
+.THIS .slds-textarea[disabled] { background-color: #f3f3f3; }
+.THIS .slds-is-disabled { background-color: #f3f3f3 !important; }
+
+.THIS .textAreaClass .slds-textarea{
+    height:120px;
+    width:100%;
+}
+
+.THIS .custom-help-txt .slds-form-element__icon {
+    padding-top: 1px;
+}
+
+.THIS .help-txt-hidden .slds-form-element__icon {
+    display: none !important;
+}
+
+.THIS .custom-help-std .slds-form-element__icon {
+    padding-left: 20%;
+    padding-top: 7px;
+    padding-right: 2px;
+}
+
+.THIS .horizontal_form {
+    margin-left: 2.8%;
+    padding-left: 1%;
+    margin-bottom: var(--lwc-spacingXSmall, 0.5rem);
+}
+
+.THIS .padding-left-label {
+    padding-left: 6%;
+}
+
+.THIS .readonly-as-input .slds-input[readonly] {
+    --slds-c-input-spacing-horizontal-start: unset;
+    --slds-c-input-color-border: unset;
+    --slds-c-input-color-background: unset;
+    font-size: unset;
+    font-weight: unset;
+}
+
+
+
+.THIS #ExcelSummaryItemList .slds-form-element_horizontal .slds-form-element__control,
+.THIS #ExcelSummaryItemList .slds-form_horizontal .slds-form-element .slds-form-element__control,
+.THIS #ExcelSummaryItemList .slds-form_stacked .slds-form-element_horizontal .slds-form-element__control {
+    /* padding-left: 33.33%; */
+    padding-left: unset;
+}
+
+.THIS #CreditConditionTraderList .slds-form-element_horizontal .slds-form-element__control,
+.THIS #CreditConditionTraderList .slds-form_horizontal .slds-form-element .slds-form-element__control,
+.THIS #CreditConditionTraderList .slds-form_stacked .slds-form-element_horizontal .slds-form-element__control {
+    /* padding-left: 33.33%; */
+    padding-left: unset;
+}
+
+.THIS #FAReassignTaskItemList .slds-form-element_horizontal .slds-form-element__control,
+.THIS #FAReassignTaskItemList .slds-form_horizontal .slds-form-element .slds-form-element__control,
+.THIS #FAReassignTaskItemList .slds-form_stacked .slds-form-element_horizontal .slds-form-element__control {
+    /* padding-left: 33.33%; */
+    padding-left: unset;
+}
+
+.THIS .slds-hidden {
+    display: block;
+    height: 0px;
+}
+
+.THIS .slds-form-element_horizontal .slds-form-element__help, 
+.THIS .slds-form_horizontal .slds-form-element .slds-form-element__help, 
+.THIS .slds-form_stacked .slds-form-element_horizontal .slds-form-element__help {
+    margin-left: unset;
+}

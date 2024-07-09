@@ -1,0 +1,203 @@
+<template>
+    <div data-id="formBegin">
+        <c-step-page-header
+            num-steps="1"
+            current-step="1"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+
+        <!-- Modal placeholder -->
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+        <!-- END Modal Placeholder -->
+
+        <!-- ENIM-QFR-747 /Form Question = 22 -->
+
+        <!--
+            Heading area for form
+        -->
+        <div style="text-align: right;">
+            ENEM-QFR-9009-GNR
+        </div>
+        <div class="slds-text-heading_large text-center "
+            style="font-weight: bold; 
+            color: var(--lwc-brandAccessible, rgb(0, 112, 210));">
+            Thaioil Group
+        </div>
+        <div class="slds-text-heading_medium text-center">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <span>
+                        <h2>test เรื่อง add rows</h2>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- kd -->
+        
+
+        <!-- Section for Notification, FL. and Status fields -->
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                        <svg class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                            aria-hidden="true">
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                        </svg>
+                        <input type="text" data-id="notification" class="slds-input avoidPercentageInput" value={notification}
+                            disabled />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="slds-form-element__control">
+                        <input type="text" data-id="order" class="slds-input avoidPercentageInput" value={order} disabled />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="slds-form-element__control">
+                        <input type="text" data-id="fl" class="slds-input avoidPercentageInput" value={functionalLocation}
+                            disabled />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="slds-form-element__control">
+                        <input type="text" data-id="status" class="slds-input avoidPercentageInput" value={formStatus}
+                            disabled />
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Body section. -->
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <!-- 1 -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section slds-is-open" data-id="section1">
+                        <div data-id="collapseSix" class="slds-accordion__content">
+                            <div class="card-body">
+                                <div class="slds-m-around_small" style="margin: 0rem;">
+                                    <div class="slds-section">
+                                        <div class="dynamicRows">
+                                            <table class="table">
+                                                <thead>
+                                                    <td rowspan="2"><span class="slds-form-element__label"></span></td>
+                                                    <td class="text-center"> <span class="slds-form-element__label">A*</span></td>
+                                                    <td class="text-center"> <span class="slds-form-element__label">B*</span></td>
+                                                    <td class="text-center"> <span class="slds-form-element__label">C*</span></td>
+                                                </thead>
+                                                <tbody data-answered="false" class="rowsBodySection" data-dynamicrow="true">
+                                                    <tr>
+                                                        <td><span class="slds-form-element__label">1.</span></td>
+                                                        <td class="text-center">
+                                                            <div class="f-c"> <input onchange={handleSectionCellsA} data-cell="A" type="number"
+                                                                    min="0" step="1" onkeypress={onKeyPress} data-id="6-1-input-a"
+                                                                    class="slds-input" /></div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="f-c"> <input onchange={handleSectionCellsB} data-cell="B" type="number"
+                                                                    min="0" step="1" onkeypress={onKeyPress} data-id="6-1-input-b"
+                                                                    class="slds-input" /></div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="f-c"> <input onchange={onIEH} type="number" min="0" step="1"
+                                                                    onkeypress={onKeyPress} data-id="6-1-input-c" class="slds-input" /></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="slds-form-element__label">2.</span></td>
+                                                        <td class="text-center">
+                                                            <div class="f-c"> <input onchange={handleSectionCellsA} data-cell="A" type="number"
+                                                                    min="0" step="1" onkeypress={onKeyPress} data-id="6-2-input-a"
+                                                                    class="slds-input" /></div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="f-c"> <input onchange={handleSectionCellsB} data-cell="B" type="number"
+                                                                    min="0" step="1" onkeypress={onKeyPress} data-id="6-2-input-b"
+                                                                    class="slds-input" /></div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="f-c"> <input onchange={onIEH} type="number" min="0" step="1"
+                                                                    onkeypress={onKeyPress} data-id="6-2-input-c" class="slds-input" /></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="slds-form-element__label">3.</span></td>
+                                                        <td class="text-center">
+                                                            <div class="f-c"> <input onchange={handleSectionCellsA} data-cell="A" type="number"
+                                                                    min="0" step="1" onkeypress={onKeyPress} data-id="6-3-input-a"
+                                                                    class="slds-input" /></div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="f-c"> <input onchange={handleSectionCellsB} data-cell="B" type="number"
+                                                                    min="0" step="1" onkeypress={onKeyPress} data-id="6-3-input-b"
+                                                                    class="slds-input" /></div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="f-c"> <input onchange={onIEH} type="number" min="0" step="1"
+                                                                    onkeypress={onKeyPress} data-id="6-3-input-c" class="slds-input" /></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="slds-form-element__label">4.</span></td>
+                                                        <td class="text-center">
+                                                            <div class="f-c"> <input onchange={handleSectionCellsA} data-cell="A" type="number"
+                                                                    min="0" step="1" onkeypress={onKeyPress} data-id="6-4-input-a"
+                                                                    class="slds-input" /></div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="f-c"> <input onchange={handleSectionCellsB} data-cell="B" type="number"
+                                                                    min="0" step="1" onkeypress={onKeyPress} data-id="6-4-input-b"
+                                                                    class="slds-input" /></div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="f-c"> <input onchange={onIEH} type="number" min="0" step="1"
+                                                                    onkeypress={onKeyPress} data-id="6-4-input-c" class="slds-input" /></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="slds-form-element__label">5.</span></td>
+                                                        <td class="text-center">
+                                                            <div class="f-c"> <input onchange={handleSectionCellsA} data-cell="A" type="number"
+                                                                    min="0" step="1" onkeypress={onKeyPress} data-id="6-5-input-a"
+                                                                    class="slds-input" /></div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="f-c"> <input onchange={handleSectionCellsB} data-cell="B" type="number"
+                                                                    min="0" step="1" onkeypress={onKeyPress} data-id="6-5-input-b"
+                                                                    class="slds-input" /></div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="f-c"> <input onchange={onIEH} type="number" min="0" step="1"
+                                                                    onkeypress={onKeyPress} data-id="6-5-input-c" class="slds-input" /></div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div style="text-align: right;"> <span class="slds-button slds-button_destructive"
+                                                    onclick={removeRow} data-id="removeRowPart1">-</span> <span
+                                                    class="slds-button slds-button_brand" onclick={addRow} data-id="addRowPart1">+</span></div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+               
+            </ul>
+        </div>
+        
+    </div>
+</template>

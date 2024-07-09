@@ -1,0 +1,958 @@
+<template>
+    <div data-id="formBegin">
+        <c-step-page-header
+            num-steps="2"
+            current-step="2"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+        <!-- Modal placeholder -->
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        >
+        </c-lwc-modal>
+        <!-- END Modal Placeholder -->
+
+        <!--
+        Heading area for form
+    <div class="slds-text-heading_medium text-center">Heading</div>
+    -->
+        <div class="slds-text-heading_medium text-center">BELT DRIVEN FIN FANS CORRECTIVE MAINTENANCE</div>
+
+        <!-- Section for Notification, FL. and Status fields -->
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters w-100">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                        <svg
+                            class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                            aria-hidden="true"
+                        >
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                        </svg>
+                        <input
+                            type="text"
+                            data-id="notification"
+                            class="slds-input avoidPercentageInput"
+                            value={notification}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section slds-is-open" data-id="sectionTwo">
+                        <div class="card-header" data-id="headingTwo">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseTwo"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionTwo"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        2</span
+                                    ><span class="slds-accordion__summary-content"> Preparation for Commissioning</span>
+                                </button>
+                                <div class="slds-col">
+                                    <div class="slds-checkbox obj-right">
+                                        <input
+                                            onchange={disableSection}
+                                            type="checkbox"
+                                            name="options"
+                                            data-id="header-na-2"
+                                            data-remark="2-remark"
+                                            id="header-na-2"
+                                            value="na"
+                                            data-parent="sectionTwo"
+                                        />
+                                        <label class="slds-checkbox__label" for="header-na-2">
+                                            <span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">N/A</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </h2>
+                            <div
+                                class="slds-grid slds-gutters w-100 hide-remark"
+                                id="sectionTwo-remark"
+                                data-id="sectionTwo-remark"
+                            >
+                                <div class="slds-col">
+                                    <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                    <div class="slds-form-element__control">
+                                        <textarea
+                                            data-id="sectionTwo-inputRemark"
+                                            onchange={onIEH}
+                                            id="sectionTwo-inputRemark"
+                                            class="slds-textarea"
+                                        ></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-id="collapseTwo" class="slds-accordion__content">
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th class="text-center"><span class="slds-form-element__label">Checked</span></th>
+                                            <th class="text-center"><span class="slds-form-element__label">Remark</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-answered="false">
+                                            <td>
+                                                <span class="slds-form-element__label">2.1 Re-check that there is no loosen part, properly tighten</span><br />
+                                                <span class="slds-form-element__label">ตรวจสอบว่าไม่มีการหลวมคลอนของส่วนประกอบเครื่องจักร
+                                                    ขันยึดเรียบร้อยครบถ้วน</span>
+                                            </td>
+                                            <td class="text-center middle">
+                                                <div class="slds-checkbox">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="checkbox"
+                                                        data-id="2-1-checkbox-1"
+                                                        id="2-1-checkbox-1"
+                                                        name="2-1-checkbox-1"
+                                                        value="2.1"
+                                                    />
+                                                    <label class="slds-checkbox__label" for="2-1-checkbox-1">
+                                                        <span class="slds-checkbox_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="middle">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="text"
+                                                    data-id="2-1-input-1"
+                                                    id="2-1-input-1"
+                                                    name="2-1-input-1"
+                                                    class="slds-input"
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr data-answered="false">
+                                            <td>
+                                                <span class="slds-form-element__label">2.2 There is no foreign object left in a plenum</span><br />
+                                                <span class="slds-form-element__label">ไม่มีอุปกรณ์หรือสิ่งแปลกปลอมทิ้งไว้ด้านบนปล่องลม</span>
+                                            </td>
+                                            <td class="text-center middle">
+                                                <div class="slds-checkbox">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="checkbox"
+                                                        data-id="2-2-checkbox-1"
+                                                        id="2-2-checkbox-1"
+                                                        name="2-2-checkbox-1"
+                                                        value="2.2"
+                                                    />
+                                                    <label class="slds-checkbox__label" for="2-2-checkbox-1">
+                                                        <span class="slds-checkbox_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="middle">
+                                                <input
+                                            onchange={onIEH}
+                                            type="text"
+                                            data-id="2-2-input-1"
+                                            id="2-2-input-1"
+                                            name="2-2-input-1"
+                                            class="slds-input"
+                                        />
+                                            </td>
+                                        </tr>
+                                        <tr data-answered="false">
+                                            <td>
+                                                <span class="slds-form-element__label">2.3 Pitch control mechanism stroke check (if any)</span><br />
+                                                <span class="slds-form-element__label">ทำการ stroke check ชุดปรับองศาใบ (ถ้ามี)</span>
+                                            </td>
+                                            <td class="text-center middle">
+                                                <div class="slds-checkbox">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="checkbox"
+                                                        data-id="2-3-checkbox-1"
+                                                        id="2-3-checkbox-1"
+                                                        name="2-3-checkbox-1"
+                                                        value="2.3"
+                                                    />
+                                                    <label class="slds-checkbox__label" for="2-3-checkbox-1">
+                                                        <span class="slds-checkbox_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="middle">
+                                                <input
+                                            onchange={onIEH}
+                                            type="text"
+                                            data-id="2-3-input-1"
+                                            id="2-3-input-1"
+                                            name="2-3-input-1"
+                                            class="slds-input"
+                                            />
+                                            </td>
+                                        </tr>
+                                        <tr data-answered="false">
+                                            <td>
+                                                <span class="slds-form-element__label">2.4 Protection guard is installed properly</span><br />
+                                                <span class="slds-form-element__label">ติดตั้ง Protection guard เรียบร้อย</span>
+                                            </td>
+                                            <td class="text-center middle">
+                                                <div class="slds-checkbox">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="checkbox"
+                                                        data-id="2-4-checkbox-1"
+                                                        id="2-4-checkbox-1"
+                                                        name="2-4-checkbox-1"
+                                                        value="2.4"
+                                                    />
+                                                    <label class="slds-checkbox__label" for="2-4-checkbox-1">
+                                                        <span class="slds-checkbox_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="middle">
+                                                <input
+                                            onchange={onIEH}
+                                            type="text"
+                                            data-id="2-4-input-1"
+                                            id="2-4-input-1"
+                                            name="2-4-input-1"
+                                            class="slds-input"
+                                        />
+                                            </td>
+                                        </tr>
+                                        <tr data-answered="false">
+                                            <td>
+                                                <span class="slds-form-element__label">2.5 Vibration switch is well-functioned</span><br />
+                                                <span class="slds-form-element__label">ตรวจสอบแล้วว่า vibration switch พร้อมใช้งาน</span>
+                                            </td>
+                                            <td class="text-center middle">
+                                                <div class="slds-checkbox">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="checkbox"
+                                                        data-id="2-5-checkbox-1"
+                                                        id="2-5-checkbox-1"
+                                                        name="2-5-checkbox-1"
+                                                        value="2.5"
+                                                    />
+                                                    <label class="slds-checkbox__label" for="2-5-checkbox-1">
+                                                        <span class="slds-checkbox_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td class="middle">
+                                                <input
+                                            onchange={onIEH}
+                                            type="text"
+                                            data-id="2-5-input-1"
+                                            id="2-5-input-1"
+                                            name="2-5-input-1"
+                                            class="slds-input"
+                                        />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionThree">
+                        <div class="card-header" data-id="headingThree">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseThree"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionThree"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        3</span
+                                    ><span class="slds-accordion__summary-content"> Test Run</span>
+                                </button>
+                                <div class="slds-col">
+                                    <div class="slds-checkbox obj-right">
+                                        <input
+                                            onchange={disableSection}
+                                            type="checkbox"
+                                            name="options"
+                                            id="header-na-3"
+                                            data-id="header-na-3"
+                                            data-remark="3-remark"
+                                            value="na"
+                                            data-parent="sectionThree"
+                                        />
+                                        <label class="slds-checkbox__label" for="header-na-3">
+                                            <span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">N/A</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </h2>
+                            <div
+                                class="slds-grid slds-gutters w-100 hide-remark"
+                                id="sectionThree-remark"
+                                data-id="sectionThree-remark"
+                            >
+                                <div class="slds-col">
+                                    <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                    <div class="slds-form-element__control">
+                                        <textarea
+                                            data-id="sectionThree-inputRemark"
+                                            onchange={onIEH}
+                                            id="sectionThree-inputRemark"
+                                            class="slds-textarea"
+                                        ></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-id="collapseThree" class="slds-accordion__content">
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th class="text-center"><span class="slds-form-element__label">Checked</span></th>
+                                            <th class="text-center"><span class="slds-form-element__label">Remark</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-answered="false">
+                                            <td class="pd-0">
+                                                <span class="slds-form-element__label">3.1 Start Fin- Fan, check for possible abnormalities</span><br />
+                                                <span class="slds-form-element__label">Test run Fin- Fan, ตรวจสอบความผิดปกติที่เกิด</span>
+                                            </td>
+                                            <td class="text-center middle">
+                                                <div class="slds-checkbox">
+                                                    <input
+                                                    onchange={onIEH}
+                                                    type="checkbox"
+                                                    data-id="3-1-checkbox-1"
+                                                    id="3-1-checkbox-1"
+                                                    name="3-1-checkbox-1"
+                                                    value="3.1"
+                                                />
+                                                <label class="slds-checkbox__label" for="3-1-checkbox-1">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label"></span>
+                                                </label>
+                                                </div>
+                                            </td>
+                                            <td class="middle">
+                                                <input onchange={onIEH} type="text" data-id="3-1-input-1" class="slds-input" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="slds-section">
+                                    <span class="slds-form-element__label">3.2 Condition Assessment after Greasing</span><br />
+                                        <span class="slds-form-element__label">Condition Assessment หลังอัดจาระบี</span>
+                                        <table class="table" data-answered="false">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span class="slds-form-element__label">Fan Vibration</span>
+                                                    </td>
+                                                    <td>
+                                                        <label class="slds-form-element__label" for="tank-no"
+                                                            >Velocity mm/s RMS</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="3-2-input-1"
+                                                            class="slds-input"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>
+                                                        <label class="slds-form-element__label" for="tank-no"
+                                                            >Acceleration, G</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="3-2-input-2"
+                                                            class="slds-input"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="slds-form-element__label">Motor Bearing, DE</span>
+                                                    </td>
+                                                    <td>
+                                                        <label class="slds-form-element__label" for="tank-no"
+                                                            >Velocity mm/s RMS</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="3-2-input-3"
+                                                            class="slds-input"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>
+                                                        <label class="slds-form-element__label" for="tank-no"
+                                                            >Acceleration, G</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="3-2-input-4"
+                                                            class="slds-input"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="slds-form-element__label">Motor Bearing, NDE</span>
+                                                    </td>
+                                                    <td>
+                                                        <label class="slds-form-element__label" for="tank-no"
+                                                            >Velocity mm/s RMS</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="3-2-input-5"
+                                                            class="slds-input"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>
+                                                        <label class="slds-form-element__label" for="tank-no"
+                                                            >Acceleration, G</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="3-2-input-6"
+                                                            class="slds-input"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionFour">
+                        <div class="card-header" data-id="headingFour">
+                            <h2 class="slds-accordion__summary-heading">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseFour"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionFour"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        4</span
+                                    ><span class="slds-accordion__summary-content"> BELT Re-tensioning, 48h- Run</span>
+                                </button>
+                                <div class="slds-col">
+                                    <div class="slds-checkbox obj-right">
+                                        <input
+                                            onchange={disableSection}
+                                            type="checkbox"
+                                            name="options"
+                                            id="header-na-4"
+                                            data-id="header-na-4"
+                                            data-remark="4-remark"
+                                            value="na"
+                                            data-parent="sectionFour"
+                                        />
+                                        <label class="slds-checkbox__label" for="header-na-4">
+                                            <span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">N/A</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </h2>
+                            <div
+                                class="slds-grid slds-gutters w-100 hide-remark"
+                                id="sectionFour-remark"
+                                data-id="sectionFour-remark"
+                            >
+                                <div class="slds-col">
+                                    <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                    <div class="slds-form-element__control">
+                                        <textarea
+                                            data-id="sectionFour-inputRemark"
+                                            onchange={onIEH}
+                                            id="sectionFour-inputRemark"
+                                            class="slds-textarea"
+                                        ></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-id="collapseFour" class="slds-accordion__content">
+                            <div class="card-body">
+                                <div class="slds-section">
+                                    <div data-answered="false">
+                                        <div class="">
+                                            <span class="slds-form-element__label">4.1</span>
+                                            <div class="slds-form-element__label">
+                                                <span>Belt re-tensioning, Measure Deflection, mm</span><br />
+                                                <span>ตั้งค่าความตึงสายพาน, วัดค่าระยะกด, mm</span><br />
+                                                <div class="slds-form-element__control">
+                                                    <label class="slds-form-element__label" for="tank-no"
+                                                        >Used Belt Design</label
+                                                    >
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="number"
+                                                        min="0"
+                                                        step="1"
+                                                        onkeypress={onKeyPress}
+                                                        data-id="4-1-input-1"
+                                                        class="slds-input"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th><span class="slds-form-element__label">As Found</span></th>
+                                                    <th>
+                                                        <span class="slds-form-element__label">As Returned</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div
+                                                                class="slds-form-element__control slds-input-has-fixed-addon"
+                                                            >
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="4-1-input-2"
+                                                                    class="slds-input"
+                                                                />
+                                                                <span
+                                                                    class="slds-form-element__addon slds-form-element__label"
+                                                                    >mm</span
+                                                                >
+                                                            </div>
+                                                    </td>
+                                                    <td>
+                                                        <div
+                                                                class="slds-form-element__control slds-input-has-fixed-addon"
+                                                            >
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="4-1-input-3"
+                                                                    class="slds-input"
+                                                                />
+                                                                <span
+                                                                    class="slds-form-element__addon slds-form-element__label"
+                                                                    >mm</span
+                                                                >
+                                                            </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><br/>
+
+                                    <div data-answered="false">
+                                        <div class="">
+                                            <span class="slds-form-element__label">4.2</span>
+                                            <div class="slds-form-element__label">
+                                                <span>Measure Deflection Force, kgf</span><br />
+                                                <span>ตั้งค่าความตึงสายพาน, วัดค่าระยะกด, kgf</span><br />
+                                                <div class="slds-form-element__control">
+                                                    <label class="slds-form-element__label" for="tank-no"
+                                                        >Used Belt Design</label
+                                                    >
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="number"
+                                                        min="0"
+                                                        step="1"
+                                                        onkeypress={onKeyPress}
+                                                        data-id="4-2-input-1"
+                                                        class="slds-input"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th><span class="slds-form-element__label">As Found</span></th>
+                                                    <th>
+                                                        <span class="slds-form-element__label">As Returned</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div
+                                                                class="slds-form-element__control slds-input-has-fixed-addon"
+                                                            >
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="4-2-input-2"
+                                                                    class="slds-input"
+                                                                />
+                                                                <span
+                                                                    class="slds-form-element__addon slds-form-element__label"
+                                                                    >kgf</span
+                                                                >
+                                                            </div>
+                                                    </td>
+                                                    <td>
+                                                        <div
+                                                                class="slds-form-element__control slds-input-has-fixed-addon"
+                                                            >
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="4-2-input-3"
+                                                                    class="slds-input"
+                                                                />
+                                                                <span
+                                                                    class="slds-form-element__addon slds-form-element__label"
+                                                                    >kgf</span
+                                                                >
+                                                            </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><br/>
+
+                                    <div data-answered="false">
+                                        <div class="">
+                                            <span class="slds-form-element__label">4.3</span>
+                                            <div class="slds-form-element__label">
+                                                <span>Vibration Baseline after Belt Re-tensioning</span>
+                                            </div>
+                                        </div>
+                                        <table class="table" >
+                                            <tbody>
+                                                <tr>
+                                                    <td><span class="slds-form-element__label">Fan Vibration</span></td>
+                                                    <td>
+                                                        <label class="slds-form-element__label" for="tank-no"
+                                                            >Velocity mm/s RMS</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="4-3-input-1"
+                                                            class="slds-input"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>
+                                                        <label class="slds-form-element__label" for="tank-no"
+                                                            >Acceleration, G</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="4-3-input-2"
+                                                            class="slds-input"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="slds-form-element__label">Motor Bearing, DE</span>
+                                                    </td>
+                                                    <td>
+                                                        <label class="slds-form-element__label" for="tank-no"
+                                                            >Velocity mm/s RMS</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="4-3-input-3"
+                                                            class="slds-input"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>
+                                                        <label class="slds-form-element__label" for="tank-no"
+                                                            >Acceleration, G</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="4-3-input-4"
+                                                            class="slds-input"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="slds-form-element__label">Motor Bearing, NDE</span>
+                                                    </td>
+                                                    <td>
+                                                        <label class="slds-form-element__label" for="tank-no"
+                                                            >Velocity mm/s RMS</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="4-3-input-5"
+                                                            class="slds-input"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>
+                                                        <label class="slds-form-element__label" for="tank-no"
+                                                            >Acceleration, G</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="4-3-input-6"
+                                                            class="slds-input"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+            </ul>
+        </div>
+
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openRejectModal}>
+                    Reject
+                </button>
+                <button data-id="recallEQCCStep" class="slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                    Recall
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Submit</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-lookup object-api-name="user" icon-name="standard:user" onrecordselection={onUserSelection}></c-lookup>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submit} title="Submit">Submit</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

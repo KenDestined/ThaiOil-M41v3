@@ -1,0 +1,477 @@
+<template>
+    <div data-id="formBegin">
+        <c-step-page-header
+            num-steps="3"
+            current-step="3"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+
+        <div class="slds-text-heading_medium text-center">EQCC-ENRM-002</div>
+        <div class="slds-text-heading_medium text-center">Horizontal Pump Removal/ Installation Checklist</div>
+
+        <!-- Section for Notification, FL. and Status fields -->
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                        <svg
+                            class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                            aria-hidden="true"
+                        >
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                        </svg>
+                        <input
+                            type="text"
+                            data-id="notification"
+                            class="slds-input avoidPercentageInput"
+                            value={notification}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Body section.  -->
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionFive">
+                        <div class="slds-accordion__summary" data-id="headingFive">
+                            <h2 class="slds-accordion__summary-heading card-heading">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseFive"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionFive"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        5</span
+                                    ><span class="slds-accordion__summary-content">
+                                        Commissioning, Test Run and Handover to Operation</span
+                                    >
+                                </button>
+                                <div class="slds-col">
+                                    <div class="slds-checkbox obj-right">
+                                        <input
+                                            onchange={disableSection}
+                                            type="checkbox"
+                                            name="options"
+                                            id="checkbox-unique-id-1"
+                                            data-id="checkbox-unique-id-1"
+                                            data-remark="5-remark"
+                                            value="checkbox-unique-id-1"
+                                            data-parent="sectionFive"
+                                        />
+                                        <label class="slds-checkbox__label" for="checkbox-unique-id-1">
+                                            <span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">N/A</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </h2>
+                        </div>
+                        <div
+                            class="slds-grid slds-gutters hide-remark"
+                            id="sectionFive-remark"
+                            data-id="sectionFive-remark"
+                        >
+                            <div class="slds-col">
+                                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                <div class="slds-form-element__control">
+                                    <textarea
+                                        data-id="sectionFive-inputRemark"
+                                        id="sectionFive-inputRemark"
+                                        class="slds-textarea"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-id="collapseFive" class="slds-accordion__content">
+                            <div class="card-body">
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            >5.1 All safeguarding devices are properly installed, function test?</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >อุปกรณ์ที่เกี่ยวข้องกับ safe guarding ได้ถูกติดตั้งแล้วและได้ทำ Function
+                                    Test
+                                            </span>
+                                            <div class="slds-grid slds-gutters">
+                                                <div class="slds-col" >
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span class="slds-radio">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="radio"
+                                                                    data-id="5-1-radio-1"
+                                                                    id="5-1-radio-1"
+                                                                    name="5-1-radio"
+                                                                    value="ผ่าน"
+                                                                />
+                                                                <label class="slds-radio__label" for="5-1-radio-1">
+                                                                    <span class="slds-radio_faux"></span>
+                                                                    <span class="slds-form-element__label"> ผ่าน</span>
+                                                                </label>
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="slds-radio">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="radio"
+                                                                    data-id="5-1-radio-2"
+                                                                    id="5-1-radio-2"
+                                                                    name="5-1-radio"
+                                                                    value="ไม่เกี่ยวข้อง"
+                                                                />
+                                                                <label class="slds-radio__label" for="5-1-radio-2">
+                                                                    <span class="slds-radio_faux"></span>
+                                                                    <span class="slds-form-element__label"> ไม่เกี่ยวข้อง</span>
+                                                                </label>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                </div>
+
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            >5.2 All instruments are commissioned and ready for start-up</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >อุปกรณ์ instruments พร้อมใช้งาน
+                                            </span>
+                                            <div class="slds-grid slds-gutters">
+                                                <div class="slds-col" >
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span class="slds-radio">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="radio"
+                                                                    data-id="5-2-radio-1"
+                                                                    id="5-2-radio-1"
+                                                                    name="5-2-radio"
+                                                                    value="ผ่าน"
+                                                                />
+                                                                <label class="slds-radio__label" for="5-2-radio-1">
+                                                                    <span class="slds-radio_faux"></span>
+                                                                    <span class="slds-form-element__label"> ผ่าน</span>
+                                                                </label>
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="slds-radio">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="radio"
+                                                                    data-id="5-2-radio-2"
+                                                                    id="5-2-radio-2"
+                                                                    name="5-2-radio"
+                                                                    value="ไม่เกี่ยวข้อง"
+                                                                />
+                                                                <label class="slds-radio__label" for="5-2-radio-2">
+                                                                    <span class="slds-radio_faux"></span>
+                                                                    <span class="slds-form-element__label"> ไม่เกี่ยวข้อง</span>
+                                                                </label>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                </div>
+                                
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            >5.3 Lube oil level at bearings is adjusted. Oil grade sticker is affixed</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >ปรับตั้งระดับน้ำมันให้เหมาะสม ติดสติกเกอร์เบอร์น้ำมันที่ถูกต้อง
+                                            </span>
+                                            <div class="slds-grid slds-gutters">
+                                                <div class="slds-col" >
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span class="slds-radio">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="radio"
+                                                                    data-id="5-3-radio-1"
+                                                                    id="5-3-radio-1"
+                                                                    name="5-3-radio"
+                                                                    value="ผ่าน"
+                                                                />
+                                                                <label class="slds-radio__label" for="5-3-radio-1">
+                                                                    <span class="slds-radio_faux"></span>
+                                                                    <span class="slds-form-element__label"> ผ่าน</span>
+                                                                </label>
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="slds-radio">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="radio"
+                                                                    data-id="5-3-radio-2"
+                                                                    id="5-3-radio-2"
+                                                                    name="5-3-radio"
+                                                                    value="ไม่เกี่ยวข้อง"
+                                                                />
+                                                                <label class="slds-radio__label" for="5-3-radio-2">
+                                                                    <span class="slds-radio_faux"></span>
+                                                                    <span class="slds-form-element__label"> ไม่เกี่ยวข้อง</span>
+                                                                </label>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                </div>
+
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            >5.4 Steam system and Steam tracing system are commissioned; manual drain vales
+                                            are closed</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >Steam system และ Steam tracing system สามารถใช้งานได้ปกติ
+                                            </span>
+                                            <div class="slds-grid slds-gutters">
+                                                <div class="slds-col" >
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span class="slds-radio">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="radio"
+                                                                    data-id="5-4-radio-1"
+                                                                    id="5-4-radio-1"
+                                                                    name="5-4-radio"
+                                                                    value="ผ่าน"
+                                                                />
+                                                                <label class="slds-radio__label" for="5-4-radio-1">
+                                                                    <span class="slds-radio_faux"></span>
+                                                                    <span class="slds-form-element__label"> ผ่าน</span>
+                                                                </label>
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="slds-radio">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="radio"
+                                                                    data-id="5-4-radio-2"
+                                                                    id="5-4-radio-2"
+                                                                    name="5-4-radio"
+                                                                    value="ไม่เกี่ยวข้อง"
+                                                                />
+                                                                <label class="slds-radio__label" for="5-4-radio-2">
+                                                                    <span class="slds-radio_faux"></span>
+                                                                    <span class="slds-form-element__label"> ไม่เกี่ยวข้อง</span>
+                                                                </label>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                </div>
+                                
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            >5.5 Pump is lined up with the system, properly primed and vented</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >Pump ได้รับการ priming อย่างถูกต้อง vent และ warm up เตรียมพร้อม test run
+                                            </span>
+                                            <div class="slds-grid slds-gutters">
+                                                <div class="slds-col" >
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span class="slds-radio">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="radio"
+                                                                    data-id="5-5-radio-1"
+                                                                    id="5-5-radio-1"
+                                                                    name="5-5-radio"
+                                                                    value="ผ่าน"
+                                                                />
+                                                                <label class="slds-radio__label" for="5-5-radio-1">
+                                                                    <span class="slds-radio_faux"></span>
+                                                                    <span class="slds-form-element__label"> ผ่าน</span>
+                                                                </label>
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="slds-radio">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="radio"
+                                                                    data-id="5-5-radio-2"
+                                                                    id="5-5-radio-2"
+                                                                    name="5-5-radio"
+                                                                    value="ไม่เกี่ยวข้อง"
+                                                                />
+                                                                <label class="slds-radio__label" for="5-5-radio-2">
+                                                                    <span class="slds-radio_faux"></span>
+                                                                    <span class="slds-form-element__label"> ไม่เกี่ยวข้อง</span>
+                                                                </label>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                </div>
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            >5.6 Reinstate fire protection plastic tube</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >ติดตั้ง plastic tube กลับคืนที่ถูกต้อง
+                                            </span>
+                                            <div class="slds-grid slds-gutters">
+                                                <div class="slds-col" >
+                                                    <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                        <li>
+                                                            <span class="slds-radio">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="radio"
+                                                                    data-id="5-6-radio-1"
+                                                                    id="5-6-radio-1"
+                                                                    name="5-6-radio"
+                                                                    value="ผ่าน"
+                                                                />
+                                                                <label class="slds-radio__label" for="5-6-radio-1">
+                                                                    <span class="slds-radio_faux"></span>
+                                                                    <span class="slds-form-element__label"> ผ่าน</span>
+                                                                </label>
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="slds-radio">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="radio"
+                                                                    data-id="5-6-radio-2"
+                                                                    id="5-6-radio-2"
+                                                                    name="5-6-radio"
+                                                                    value="ไม่เกี่ยวข้อง"
+                                                                />
+                                                                <label class="slds-radio__label" for="5-6-radio-2">
+                                                                    <span class="slds-radio_faux"></span>
+                                                                    <span class="slds-form-element__label"> ไม่เกี่ยวข้อง</span>
+                                                                </label>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+            </ul>
+        </div>
+        <!-- Button Section for Every Form -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand" onclick={openRejectModal}>
+                    Reject
+                </button>
+                <button data-id="recallEQCCStep" class="slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                    Recall
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Submit</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-lookup object-api-name="user" icon-name="standard:user" onrecordselection={onUserSelection}></c-lookup>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submit} title="Submit">Submit</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

@@ -1,0 +1,10 @@
+@media (max-width: 950px) {
+    .slds-modal__container {
+        position: fixed; /* or absolute */
+        width: 85%;
+        max-width: 85% !important;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

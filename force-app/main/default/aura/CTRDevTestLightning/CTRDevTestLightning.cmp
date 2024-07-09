@@ -1,0 +1,207 @@
+<aura:component
+    implements="force:lightningQuickActionWithoutHeader,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName"
+    access="global" controller="CTRsendToSAPController">
+
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="mToken" type="String" />
+    <aura:attribute name="mainComponentName" type="String" />
+    <aura:attribute name="mDataValidateMessage" type="String" />
+    <aura:attribute name="mValidateMessageList" type="String[]" />
+    <aura:attribute name="mDataReady" type="boolean" default="false" />
+    <aura:attribute name="mRequestHeader" type="sObject" />
+    <aura:attribute name="mRequestItem" type="sObject" />
+    <aura:attribute name="submitSendtoSap" type="boolean" default="false" />
+    <aura:attribute name="isModalOpen" type="boolean" default="true" />
+    <aura:attribute name="isGeneralSent" type="boolean" default="false" />
+
+    <aura:attribute name="isSyncing" type="boolean" default="false" />
+    <aura:attribute name="LatestIntegrationName" type="String" />
+    <aura:attribute name="LatestIntegrationStatus" type="String" />
+    <aura:attribute name="CurrentPageStatus" type="String" />
+
+    <aura:attribute name="isInitial" type="boolean" default="false" />
+    <aura:attribute name="isExtend" type="boolean" default="false" />
+    <aura:attribute name="isShipTo" type="boolean" default="false" />
+    <aura:attribute name="isEdit" type="boolean" default="false" />
+    <aura:attribute name="isBlock" type="boolean" default="false" />
+    <aura:attribute name="isChange" type="boolean" default="false" />
+    <aura:attribute name="testDisable" type="boolean" default="false" />
+
+    <aura:attribute name="AllowSend" type="boolean" default="false" />
+    <aura:attribute name="DynamicText" type="String" />
+    <aura:attribute name="ConfirmButtonName" type="String" default="Confirm" />
+    <aura:attribute name="ConfirmGeneralButtonName" type="String" default="Submit General" />
+    <aura:attribute name="ConfirmViewButtonName" type="String" default="Submit view" />
+
+    <aura:attribute name="HeaderFieldHeaderList" type="List" default="[]" />
+    <aura:attribute name="FieldChanged" type="List" default="[]" />
+    <aura:attribute name="isPreviewTable" type="boolean" default="false" />
+
+    <aura:attribute name="buttonList" type="List" default="[]" />
+
+    <aura:attribute name="mRecordTypeName" type="String" />
+    <aura:attribute name="selectedValue" type="String" default="AL" />
+    <aura:attribute name="currentText" type="String" />
+    <aura:attribute name="picklistValues" type="List" />
+    <aura:attribute name="targetRecord" type="CTRRequestFormItem__c" />
+
+    <aura:attribute name="loaded" type="Boolean" default="false" />
+
+    <aura:handler name='init' value='{!this}' action='{!c.doInit}' />
+
+    <aura:html tag="style">
+        .slds-modal__container {
+        max-width: 80% !important;
+        height: 100% !important;
+        }
+        .slds-modal__content {
+        overflow-y: auto !important;
+        height: unset !important;
+        max-height: unset !important;
+        }
+    </aura:html>
+
+    <force:recordData aura:id="accountRecord" recordId="{!v.recordId}"
+            fields="Id, Name, RequestToChangeCredit__c"
+            targetFields="{!v.targetRecord}" />
+
+    <div class=" modal-header slds-modal__header slds-size_1-of-1" style="top: 0; position: sticky; z-index: 5;">
+        <h4 class="title slds-text-heading–medium"><b>Send Information to SAP</b></h4>
+    </div>
+    <div style="padding :20px;">
+
+        <div class="slds-grid" style="min-height: 220px;">
+            <aura:if isTrue="{! v.loaded }">
+                <aura:set attribute="else">
+                    <lightning:spinner alternativeText="Loading" />
+                </aura:set>
+            </aura:if>
+
+
+            <div class="slds-container--center" style="margin: auto; text-align: center; width: 100%">
+
+                <aura:if isTrue="{!! v.isPreviewTable }">
+                    <!-- <aura:if isTrue="{! v.isInitial }">
+                            <aura:if isTrue="{!! v.isGeneralSent }">
+                                <aura:if isTrue="{! v.mDataReady }">
+                                        Are you sure you want to send this counterpaty information to SAP? <br/>
+                                        After the submission, you will not be able to edit this information.
+                                </aura:if>
+                                <aura:if isTrue="{!!v.mDataReady }">
+                                    <b>Data is not ready.</b> <br/> 
+                                    <aura:iteration items="{!v.mValidateMessageList}" var="mValidateMessage" indexVar="index">
+            
+                                    <br/>- {!mValidateMessage }
+                                    </aura:iteration>
+                                </aura:if>
+                            </aura:if>
+
+                            <aura:if isTrue="{!v.isGeneralSent }">
+                                <b>{!v.DynamicText}</b> <br/>
+                            </aura:if>
+                    </aura:if>
+                    <aura:if isTrue="{!! v.isInitial }">
+                        <b>{!v.DynamicText}</b> <br/>
+                    </aura:if> -->
+                    <!-- <b>{!v.DynamicText}</b> <br /> -->
+                    test : {!v.recordId}
+                    <lightning:button variant="brand-outline" label="testFunction" onclick="{!c.testFunction }" />
+                    <lightning:recordEditForm aura:id="recordEditForm" objectApiName="CTRRequestFormItem__c"
+                        recordId="{!v.recordId}" onload="{!c.handleEditFormLoaded}" onsubmit="{!c.handleSubmitForm}" onsuccess="{!c.handleFormSuccess}">
+                        <lightning:inputField fieldName="RequestToChangeCredit__c" onchange="{!c.testParentFunction}" required="true"
+                                        id="RequestToChangeCredit__c"/>
+                        <lightning:inputField fieldName="SubTypeCondition__c" onchange="{!c.testFunction}"
+                        id="SubTypeCondition__c"/>
+
+
+                        <aura:renderIf isTrue="{!v.targetRecord.RequestToChangeCredit__c == 'Other requests'}">
+                            <span style="color: red; font-weight: 600">This is other request : {!v.targetRecord.RequestToChangeCredit__c}</span>
+                        </aura:renderIf>
+<!-- 
+                        <aura:if isTrue="{!v.testDisable}">
+                            <lightning:inputField fieldName="Description__c" />
+                        </aura:if> -->
+
+                        <lightning:button label="Submit" type="submit"/>
+                    </lightning:recordEditForm>
+
+
+                    <lightning:button label="Refresh Focused Tab" onclick="{!c.refreshFocusedTab}"/>
+
+
+                    <c:CTRDevTestLightningNo2 selectedValue="{!v.selectedValue}" picklistOptions="{!v.picklistValues}"
+                        fieldApi="MobileCountryCode__c" fieldLabel="Country Code (Mobile)" disabled="false"
+                        required="true" displayFieldLabel="true" />
+                    <b>
+                        <lightning:formattedRichText value="{!v.DynamicText}" />
+                    </b> <br />
+                </aura:if>
+                <aura:if isTrue="{! v.isPreviewTable }">
+                    <div class="slds-notify_container slds-is-relative" style="margin-bottom: 15px;">
+                        <div class="slds-notify slds-notify_toast slds-theme_warning" role="status">
+                            <span class="slds-assistive-text">warning</span>
+                            <span
+                                class="slds-icon_container slds-icon-utility-warning slds-m-right_small slds-no-flex slds-align-top"
+                                title="Description of icon when needed">
+                                <lightning:icon iconName="utility:warning" alternativeText="warning" size="medium"
+                                    title="large size" />
+                            </span>
+                            <div class="slds-notify__content">
+                                <h3 class="slds-text-heading_small ">Please review the current and update information of
+                                    General View before Send to SAP. After the submission, you will not be able to edit
+                                    this information.
+                                </h3>
+                                <c:CTRDevTestLightningNo2 selectedValue="{!v.selectedValue}"
+                                    picklistOptions="{!v.picklistValues}" fieldApi="MobileCountryCode__c"
+                                    fieldLabel="Country Code (Mobile)" disabled="false" required="true"
+                                    displayFieldLabel="true" />
+                            </div>
+                            <div class="slds-notify__close">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height: 40vh; width: 100%; border: 1px solid gainsboro;">
+                        <lightning:datatable keyField="id" data="{! v.FieldChanged }"
+                            columns="{! v.HeaderFieldHeaderList }" hideCheckboxColumn="true" />
+                    </div>
+
+                </aura:if>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer slds-modal__footer slds-size_1-of-1" style="Bottom: 0; position: sticky; z-index: 5;">
+        <div>
+            <!-- <aura:if isTrue="{!! v.isPreviewTable }">
+                <aura:if isTrue="{! v.AllowSend }">
+                            <lightning:button variant="Brand" class="slds-button" label="{!v.ConfirmButtonName}" onclick="{!c.submit}"/>
+                </aura:if>
+                <lightning:button variant="Brand" class="slds-button" label="Preview General Changed" onclick="{!c.previewTable}"/>
+                <lightning:button variant="Neutral" class="slds-button" label="Cancel" onclick="{!c.closeModal}"/>
+            </aura:if>
+            <aura:if isTrue="{! v.isPreviewTable }">
+                <lightning:button variant="Neutral" class="slds-button" label="Done" onclick="{!c.donePreview}"/>
+
+            </aura:if> -->
+
+            <aura:if isTrue="{!! v.isPreviewTable }">
+                <!-- <aura:if isTrue="{! v.AllowSend }">
+                            <lightning:button variant="Brand" class="slds-button" label="{!v.ConfirmButtonName}" onclick="{!c.submit}"/>
+                </aura:if>
+                <lightning:button variant="Brand" class="slds-button" label="Preview General Changed" onclick="{!c.previewTable}"/> -->
+
+                <aura:iteration items="{!v.buttonList}" var="btn">
+                    <lightning:button name="{!btn.action}" variant="{!(btn.variant ? btn.variant : 'Brand')}"
+                        class="slds-button" label="{!btn.label}" onclick="{!c.handleBtnClick}" />
+                </aura:iteration>
+                <lightning:button variant="Neutral" class="slds-button" label="Cancel" onclick="{!c.closeModal}" />
+            </aura:if>
+            <aura:if isTrue="{! v.isPreviewTable }">
+                <lightning:button variant="Neutral" class="slds-button" label="Done" onclick="{!c.donePreview}" />
+
+            </aura:if>
+        </div>
+    </div>
+
+</aura:component>

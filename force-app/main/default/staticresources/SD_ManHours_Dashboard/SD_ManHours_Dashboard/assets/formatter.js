@@ -1,0 +1,1 @@
+import{s as n}from"./FilterButtons.js";function a(t){return`${t.getDate()}-${n[t.getMonth()]}-${t.getFullYear().toString().substring(2)}`}function s(t,r=0){if(t){const e=(r===0?t+".":t.toFixed(r)).replace(/\d(?=(\d{3})+\.)/g,"$&,");return r===0?e.replace(".",""):e}return r>0?"0.".padEnd(2+r,"0"):"0"}export{a,s as f};

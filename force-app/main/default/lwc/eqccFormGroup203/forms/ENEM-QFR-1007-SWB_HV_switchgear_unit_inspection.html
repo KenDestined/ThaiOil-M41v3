@@ -1,0 +1,604 @@
+<template>
+    <div data-id="formBegin"> 
+        <c-step-page-header 
+            num-steps="1" 
+            current-step="1" 
+            percentage={percentage} 
+            is-current={isCurrent} 
+            record-id={recordId} >
+        </c-step-page-header> 
+        <c-lwc-modal 
+            title={modalTitle} 
+            is-visible={modalVisible} 
+            confirm-text={modalConfirmButton} 
+            cancel-text={modalCancelButton} 
+            name={modalName} 
+            message={modalMessage} 
+            onselected={handleModalSelection} >
+        </c-lwc-modal>
+        <!-- Form Question = 30 -->
+        <div class="slds-text-heading_medium text-center">ENEM-QFR-1007-SWB</div>
+        <div class="slds-text-heading_medium text-center">HV. SWITCHGEAR SWITCHING UNIT INSPECTION RECORD</div>
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="notification"
+                            class="slds-input avoidPercentageInput"
+                            value={notification}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+   
+
+<div class="bs-example">
+    <ul class="slds-accordion">
+        <li class="slds-accordion__list-item"> 
+        <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+            <div class="card-header" data-id="headingZero">
+                <h2 class="slds-accordion__summary-heading card-header"> 
+                    <button 
+                        type="button" 
+                        aria-controls="collapseZero" 
+                        aria-expanded="true" 
+                        class="btn btn-link" 
+                        data-parent="sectionZero" 
+                        onclick={expandSection} > 
+                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" >    
+                    </lightning-icon> 
+                    <span 
+                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" 
+                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small" >0
+                    </span >
+                    <span class="slds-accordion__summary-content">Header Information</span> 
+                    </button>
+                </h2>
+            </div>
+            <div data-id="collapseZero" class="slds-accordion__content">
+                <div class="card-body">
+                    <div class="table-responsive" style="margin: 0rem;">
+                        <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                            <tbody> 
+                                <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">Date: </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="date" data-id="0-input-1" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="slds-form-element__label">Substation: </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-2" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">Switchboard No.: </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-3" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="slds-form-element__label">Panel No. </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-4" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td>
+                                </tr>   
+                                <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">Function. </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-5" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="slds-form-element__label">Manufacturing. </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-6" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">Serial No. </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-7" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td></td>
+                                    <td>
+                                        <span class="slds-form-element__label">Sytem voltage </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-8" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">Rating. </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-9" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td><td></td><td></td>
+                                </tr>
+                            </tbody>
+                        </table>    
+                        <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                            <tbody> 
+                                <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">Switching unit </span>
+                                    </td>
+                                    <td>
+                                        <span class="slds-form-element__label">Model </span>
+                                    </td>
+                                    <td colspan="5">
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-10" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td>
+                                    <td></td><td></td><td></td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td></td>
+                                    <td>
+                                        <span class="slds-form-element__label">Type: </span>
+                                    </td>
+                                    <td >
+                                        <div class="slds-form-element__control" >
+                                            <input onchange={onIEH} 
+                                            type="radio" 
+                                            name="switchunittype" 
+                                            data-id="circuitbreaker" 
+                                            id="circuitbreaker" 
+                                            value="Circuit Breaker">
+                                        </div> 
+                                    </td>
+                                    <td>
+                                            <span class="slds-form-element__label">Circuit Breaker</span>
+                                    </td> 
+                                    <td>
+                                        <div class="slds-form-element__control" >
+                                            <input onchange={onIEH}
+                                            type="radio" 
+                                            name="switchunittype" 
+                                            data-id="contactor" 
+                                            id="contactor" 
+                                            value="Contactor">
+                                        </div> 
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <span class="slds-form-element__label">Contactor</span>
+                                    </td>                                         
+                                </tr>                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>  
+            </div>    
+        </section>
+        </li>
+
+        <li class="slds-accordion__list-item">
+            <section class="slds-accordion__section" data-id="sectionOne">
+                <div class="slds-accordion__summary" data-id="headingOne">
+                    <h2 class="slds-accordion__summary-heading card-header">
+                        <button
+                            type="button"
+                            aria-controls="collapseOne"
+                            aria-expanded="true"
+                            class="btn btn-link"
+                            data-parent="sectionOne"
+                            onclick={expandSection}
+                        >
+                            <lightning-icon
+                                icon-name="utility:switch"
+                                alternative-text="button icon"
+                                size="x-small"
+                                class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                            ></lightning-icon>
+                            <span
+                                style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                            >
+                                1</span
+                            ><span class="slds-accordion__summary-content"> Inspection Result</span>
+                        </button>
+                        <div class="slds-col">
+                            <div class="slds-checkbox obj-right">
+                                <input
+                                    onchange={disableSection}
+                                    type="checkbox"
+                                    name="options"
+                                    id="checkbox-unique-id-1"
+                                    data-id="checkbox-unique-id-1"
+                                    data-remark="checkbox-unique-id-1"
+                                    value="checkbox-unique-id-1"
+                                    data-parent="sectionOne"
+                                />
+                                <label class="slds-checkbox__label" for="checkbox-unique-id-1">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">N/A</span>
+                                </label>
+                            </div>
+                        </div>
+                    </h2>
+                </div>
+                <div
+                    class="slds-grid slds-gutters hide-remark"
+                    id="sectionOne-remark"
+                    data-id="sectionOne-remark"
+                >
+                    <div class="slds-col">
+                        <label class="slds-form-element__label" for="tank-no">Remark</label>
+                        <div class="slds-form-element__control">
+                            <textarea
+                                data-id="sectionOne-inputRemark"
+                                onchange={onIEH}
+                                id="sectionOne-inputRemark"
+                                class="slds-textarea"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+        <div data-id="collapseOne" class="slds-accordion__content">
+            <div class="card-body">
+                <div class="table-responsive" style="margin: 0rem;">
+                    <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                            <td>
+                                <span style="font-weight:bold" class="slds-form-element__label">1. Record of the reading of the operations counter</span>
+                            </td>
+                            <td>
+                                <div class="slds-form-element__control" data-answered="false">
+                                    <input onchange={onIEH}
+                                        type="text"
+                                        data-id="1input1"
+                                        class="slds-input">                                        
+                                </div>   
+                            </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <span style="font-weight:bold" class="slds-form-element__label">2.Check the following item and report amd deviations/defects under remarks:</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:300px;">
+                                    <span class="slds-form-element__label">- Circuit labeling correct</span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control" data-answered="false">
+                                    <input onchange={onIEH}
+                                        type="text"
+                                        data-id="1input2"
+                                        class="slds-input">                                        
+                                    </div>   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="slds-form-element__label">- Operation of safety shutters</span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control" data-answered="false">
+                                    <input onchange={onIEH}
+                                        type="text"
+                                        data-id="1input3"
+                                        class="slds-input">                                        
+                                    </div>   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="slds-form-element__label">- Padlocking facilities</span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control" data-answered="false">
+                                    <input onchange={onIEH}
+                                        type="text"
+                                        data-id="1input4"
+                                        class="slds-input">                                        
+                                    </div>   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="slds-form-element__label">- Interlocking facilities, mechanical/electrical</span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control" data-answered="false">
+                                    <input onchange={onIEH}
+                                        type="text"
+                                        data-id="1input5"
+                                        class="slds-input">                                        
+                                    </div>   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="slds-form-element__label">- Mechanical position</span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control" data-answered="false">
+                                    <input onchange={onIEH}
+                                        type="text"
+                                        data-id="1input6"
+                                        class="slds-input">                                        
+                                    </div>   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="slds-form-element__label">- Insulationg bushing and barries</span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control" data-answered="false">
+                                    <input onchange={onIEH}
+                                        type="text"
+                                        data-id="1input7"
+                                        class="slds-input">                                        
+                                    </div>   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="slds-form-element__label">- Cable box and temination</span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control" data-answered="false">
+                                    <input onchange={onIEH}
+                                        type="text"
+                                        data-id="1input8"
+                                        class="slds-input">                                        
+                                    </div>   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="slds-form-element__label">- Alignment of main and auxiliary contact</span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control" data-answered="false">
+                                    <input onchange={onIEH}
+                                        type="text"
+                                        data-id="1input9"
+                                        class="slds-input">                                        
+                                    </div>   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="slds-form-element__label">- Mechanical closing and tripping</span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control" data-answered="false">
+                                    <input onchange={onIEH}
+                                        type="text"
+                                        data-id="1input10"
+                                        class="slds-input">                                        
+                                    </div>   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="slds-form-element__label">- Electrical closing  local/remote</span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control" data-answered="false">
+                                    <input onchange={onIEH}
+                                        type="text"
+                                        data-id="1input11"
+                                        class="slds-input">                                        
+                                    </div>   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="slds-form-element__label">- Electrical tripping local / remote</span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control" data-answered="false">
+                                    <input onchange={onIEH}
+                                        type="text"
+                                        data-id="1input12"
+                                        class="slds-input">                                        
+                                    </div>   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="slds-form-element__label">- Alarm indication local/remote</span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control" data-answered="false">
+                                    <input onchange={onIEH}
+                                        type="text"
+                                        data-id="1input13"
+                                        class="slds-input">                                        
+                                    </div>   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="slds-form-element__label">- Anti-condensations local/remote</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span style="padding-left: 20px;" class="slds-form-element__label">- test insulation resistance at 500V</span>
+                                </td>                            
+                                <td>
+                                    <div class="slds-form-element__control" data-answered="false">
+                                    <input onchange={onIEH}
+                                        type="text"
+                                        data-id="1input14"
+                                        class="slds-input">                                        
+                                    </div>   
+                                </td>
+                                <td><label class="slds-form-element__label">Mohm</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="slds-form-element__label">- Second and auxiliary wiring</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span style="padding-left: 20px;" class="slds-form-element__label">- test insulation resistance at 500V</span>
+                                </td>                            
+                                <td>
+                                    <div class="slds-form-element__control" data-answered="false">
+                                    <input onchange={onIEH}
+                                        type="text"
+                                        data-id="1input15"
+                                        class="slds-input">                                        
+                                    </div>   
+                                </td>
+                                <td><label class="slds-form-element__label">Mohm</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span style="font-weight:bold" class="slds-form-element__label">3. Earthing system (See test form No)</span>
+                                </td>
+                                <td>
+                                    <div class="slds-form-element__control" data-answered="false">
+                                        <input onchange={onIEH}
+                                            type="text"
+                                            data-id="1input16"
+                                            class="slds-input">                                        
+                                    </div>   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <span style="font-weight:bold" class="slds-form-element__label">4. Power Record (for contactor type)</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td >
+                                    <span style="padding-left: 20px;" class="slds-form-element__label">Manufacturer</span>
+                                </td>                                
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false">
+                                        <input onchange={onIEH}
+                                            type="text"
+                                            data-id="1input17"
+                                            class="slds-input">                                        
+                                    </div>   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td >
+                                    <span style="padding-left: 20px;" class="slds-form-element__label">Type</span>
+                                </td>                                
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false">
+                                        <input onchange={onIEH}
+                                            type="text"
+                                            data-id="1input18"
+                                            class="slds-input">                                        
+                                    </div>   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td >
+                                    <span style="padding-left: 20px;" class="slds-form-element__label">rating</span>
+                                </td>                                
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false">
+                                        <input onchange={onIEH}
+                                            type="text"
+                                            data-id="1input19"
+                                            class="slds-input">                                        
+                                    </div>   
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</li>
+</ul>    
+</div>
+</div>
+        <!-- save submit reject= -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSubmitModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand" onclick={openRejectModal}>
+                    Reject
+                </button>
+            </div>
+        </section>
+    
+</template>

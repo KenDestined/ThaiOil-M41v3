@@ -1,0 +1,8 @@
+<apex:page lightningStylesheets="true" standardcontroller="CTRCommitteeApproval__c">
+    
+    
+    <br /><br />
+        <center><h3>Do not have permission, please click Back</h3></center>
+        <br /><br />
+   
+</apex:page>

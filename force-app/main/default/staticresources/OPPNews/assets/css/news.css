@@ -1,0 +1,229 @@
+
+/* News Category Label */
+.news-category-head {
+    color: rgb(183, 183, 183, 1);
+}
+
+.slds-border_bottom.news-category-head {
+    border-bottom-color: rgb(80, 120, 251, 1);
+    border-bottom-width: 2px;
+}
+
+.slds-border_bottom.news-category-head .slds-is-relative {
+    display: inline-block
+}
+
+.slds-border_bottom.news-category-head .title {
+    color: rgb(255, 255, 255, 1);
+    font-size: 1rem;
+    background-color: rgb(80, 120, 251, 1);
+    padding: 2px 10px;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+[data-category] lightning-badge {
+    background-color: rgb(1, 137, 255, 1);
+    color: rgb(255, 255, 255, 1);
+}
+[data-category].news-category {
+    border: 1px solid rgb(188, 190, 192, 1);
+    border-radius: 30px;
+}
+[data-category].news-category.active,
+[data-category].news-category:hover {
+    color: rgb(255, 255, 255, 1);
+    background-color: rgb(1, 137, 255, 1);
+}
+[data-category].news-category svg {
+    fill: rgb(1, 137, 255, 1);
+}
+.slds-border_bottom.news-category-head[data-category] {
+    font-size: 1.2rem;
+    color: rgb(1, 137, 255, 1);
+    border-bottom-color: rgb(1, 137, 255, 1);
+}
+.slds-border_bottom.news-category-head[data-category] .title {
+    color: rgb(1, 137, 255, 1);
+    background: transparent;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding-left: 0;
+}
+
+
+
+
+
+
+[data-category="Operation"] lightning-badge {
+    background-color: rgb(196, 154, 108, 1);;
+    color: rgb(255, 255, 255, 1);
+}
+[data-category="Operation"].news-category.active,
+[data-category="Operation"].news-category:hover {
+    background-color: rgb(196, 154, 108, 1);
+    border-color: rgb(196, 154, 108, 1);
+}
+[data-category="Operation"].news-category svg {
+    fill: rgb(196, 154, 108, 1);
+}
+.slds-border_bottom.news-category-head[data-category="Operation"] {
+    color: rgb(196, 154, 108, 1);
+    border-bottom-color: rgb(196, 154, 108, 1);
+}
+.slds-border_bottom.news-category-head[data-category="Operation"] .title {
+    color: rgb(196, 154, 108, 1);
+}
+
+
+
+
+
+
+[data-category="Corporate"].news-category.active,
+[data-category="Corporate"].news-category:hover {
+    border-color: rgb(28, 117, 188, 1);
+    background-color: rgb(28, 117, 188, 1);
+}
+[data-category="Corporate"].news-category svg {
+    fill: rgb(28, 117, 188, 1);
+}
+.slds-border_bottom.news-category-head[data-category="Corporate"] {
+    color: rgb(28, 117, 188, 1);
+    border-bottom-color: rgb(28, 117, 188, 1);
+}
+.slds-border_bottom.news-category-head[data-category="Corporate"] .title {
+    color: rgb(28, 117, 188, 1);
+}
+
+
+
+
+
+
+[data-category="PM4U"].news-category.active,
+[data-category="People"].news-category.active,
+[data-category="PM4U"].news-category:hover,
+[data-category="People"].news-category:hover {
+    border-color: rgb(255, 86, 119, 1);
+    background-color: rgb(255, 86, 119, 1);
+}
+[data-category="PM4U"].news-category svg,
+[data-category="People"].news-category svg {
+    fill: rgb(255, 86, 119, 1);
+}
+.slds-border_bottom.news-category-head[data-category="PM4U"],
+.slds-border_bottom.news-category-head[data-category="People"] {
+    color: rgb(255, 86, 119, 1);
+    border-bottom-color: rgb(255, 86, 119, 1);
+}
+.slds-border_bottom.news-category-head[data-category="PM4U"] .title,
+.slds-border_bottom.news-category-head[data-category="People"] .title {
+    color: rgb(255, 86, 119, 1);
+}
+
+
+
+
+
+
+[data-category="Digital"].news-category.active,
+[data-category="Digital"].news-category:hover {
+    border-color: rgb(116, 53, 183, 1);
+    background-color: rgb(116, 53, 183, 1);
+}
+[data-category="Digital"].news-category svg {
+    fill: rgb(116, 53, 183, 1);
+}
+.slds-border_bottom.news-category-head[data-category="Digital"] {
+    color: rgb(116, 53, 183, 1);
+    border-bottom-color: rgb(116, 53, 183, 1);
+}
+.slds-border_bottom.news-category-head[data-category="Digital"] .title {
+    color: rgb(153, 80, 151, 1);
+}
+
+
+
+
+
+[data-category="KM"].news-category.active,
+[data-category="KM"].news-category:hover {
+    border-color: rgb(241, 90, 41, 1);
+    background-color: rgb(241, 90, 41, 1);
+}
+[data-category="KM"].news-category svg {
+    fill: rgb(241, 90, 41, 1);
+}
+.slds-border_bottom.news-category-head[data-category="KM"] {
+    border-bottom-color: rgb(241, 90, 41, 1);
+    color: rgb(241, 90, 41, 1);
+}
+.slds-border_bottom.news-category-head[data-category="KM"] .title {
+    color: rgb(241, 90, 41, 1);
+}
+
+
+
+
+
+
+[data-category="QSHE"].news-category.active,
+[data-category="QSHE"].news-category:hover {
+    border-color: rgb(43, 182, 115, 1);
+    background-color: rgb(43, 182, 115, 1);
+}
+[data-category="QSHE"].news-category svg {
+    fill: rgb(43, 182, 115, 1);
+}
+.slds-border_bottom.news-category-head[data-category="QSHE"] {
+    color: rgb(43, 182, 115, 1);
+    border-bottom-color: rgb(43, 182, 115, 1);
+}
+.slds-border_bottom.news-category-head[data-category="QSHE"] .title {
+    color: rgb(43, 182, 115, 1);
+}
+
+
+
+
+
+
+[data-category="Club"].news-category.active,
+[data-category="Club"].news-category:hover {
+    border-color: rgb(0, 174, 239, 1);
+    background-color: rgb(0, 174, 239, 1);
+}
+[data-category="Club"].news-category svg {
+    fill: rgb(0, 174, 239, 1);
+}
+.slds-border_bottom.news-category-head[data-category="Club"] {
+    color: rgb(0, 174, 239, 1);
+    border-bottom-color: rgb(0, 174, 239, 1);
+}
+.slds-border_bottom.news-category-head[data-category="Club"] .title {
+    color: rgb(0, 174, 239, 1);
+}
+
+
+
+
+
+
+[data-category="Akanee"].news-category.active,
+[data-category="Akanee"].news-category:hover {
+    border-color: rgb(251, 176, 64, 1);
+    background-color: rgb(251, 176, 64, 1);
+}
+[data-category="Akanee"].news-category svg {
+    fill: rgb(251, 176, 64, 1);
+}
+.slds-border_bottom.news-category-head[data-category="Akanee"] {
+    color: rgb(251, 176, 64, 1);
+    border-bottom-color: rgb(251, 176, 64, 1);
+}
+.slds-border_bottom.news-category-head[data-category="Akanee"] .title {
+    color: rgb(236, 190, 78, 1);
+}

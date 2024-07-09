@@ -1,0 +1,823 @@
+<template>
+    <div data-id="formBegin">
+        <c-step-page-header
+            num-steps="1"
+            current-step="1"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+
+        <!-- Modal placeholder -->
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+        <!-- END Modal Placeholder -->
+
+        <!--
+            Heading area for form
+        -->
+        <div class="slds-text-heading_medium text-center">
+            THAIOIL รายการตรวจสอบสภาพความปลอดภัยทั่วไป สำหรับงานยกโดยใช้ Crane/Hiab
+        </div>
+
+        <!-- Section for Notification, FL. and Status fields -->
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                        <svg
+                            class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                            aria-hidden="true"
+                        >
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                        </svg>
+                        <input
+                            type="text"
+                            data-id="notification"
+                            class="slds-input avoidPercentageInput"
+                            value={notification}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Body section. -->
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <!-- 0 -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+                        <div class="card-header" data-id="headingZero">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseZero"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionZero"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        0</span
+                                    ><span class="slds-accordion__summary-content"> Header Information</span>
+                                </button>
+                            </h2>
+                        </div>
+                        <div data-id="collapseZero" class="slds-accordion__content">
+                            <!-- drop 0 section card-body div -->
+                            <div class="card-body">
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col">
+                                        <label class="slds-form-element__label">อุปกรณ์เลขที่</label>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="0-input-1"
+                                                class="slds-input avoidPercentageInput"
+                                            />
+                                        </div>
+                                        <label class="slds-form-element__label">รถเครน ยี่ห้อ/รุ่น/ขนาด</label>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="0-input-3"
+                                                class="slds-input avoidPercentageInput"
+                                            />
+                                        </div>
+                                        <label class="slds-form-element__label">วันที่</label>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                onchange={onIEH}
+                                                type="date"
+                                                data-id="0-input-5"
+                                                class="slds-input avoidPercentageInput"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="slds-col">
+                                        <label class="slds-form-element__label">สถานที่</label>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="0-input-2"
+                                                class="slds-input avoidPercentageInput"
+                                            />
+                                        </div>
+                                        <label class="slds-form-element__label">บริษัท</label>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="0-input-4"
+                                                class="slds-input avoidPercentageInput"
+                                            />
+                                        </div>
+                                        <label class="slds-form-element__label">ชื่อผู้รับผิดชอบ</label>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="0-input-6"
+                                                class="slds-input avoidPercentageInput"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <!-- 1 -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionOne">
+                        <div class="slds-accordion__summary" data-id="headingOne">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseOne"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionOne"
+                                    onclick={expandSection}
+                                    name="options"
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        1</span
+                                    ><span class="slds-accordion__summary-content"> โปรดตรวจสอบ</span>
+                                </button>
+                                <div class="slds-col">
+                                    <div class="slds-checkbox obj-right">
+                                        <input
+                                            onchange={disableSection}
+                                            type="checkbox"
+                                            name="options"
+                                            data-id="header-na-1"
+                                            id="header-na-1"
+                                            data-remark="1-remark"
+                                            value="na"
+                                            data-parent="sectionOne"
+                                        />
+                                        <label class="slds-checkbox__label" for="header-na-1">
+                                            <span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">N/A</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </h2>
+                        </div>
+                        <div
+                            class="slds-grid slds-gutters hide-remark"
+                            id="sectionOne-remark"
+                            data-id="sectionOne-remark"
+                        >
+                            <div class="slds-col">
+                                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                <div class="slds-form-element__control">
+                                    <textarea
+                                        data-id="sectionOne-inputRemark"
+                                        onchange={onIEH}
+                                        id="sectionOne-inputRemark"
+                                        class="slds-textarea"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-id="collapseOne" class="slds-accordion__content">
+                            <!-- drop 1st section card-body div -->
+                            <div class="card-body">
+                                <ul class="slds-list_horizontal" data-answered="false">
+                                    <li class="slds-form-element__label">1 วัน/เวลาที่ยกจริง</li>
+                                    <li>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="date" data-id="1-input" class="slds-input" />
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul class="slds-list_horizontal" data-answered="false">
+                                    <li class="slds-form-element__label">2 น้ำหนักอุปกรณ์ที่ยกจริง</li>
+                                    <li>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                onchange={onIEH}
+                                                type="number"
+                                                min="0"
+                                                step="1"
+                                                onkeypress={onKeyPress}
+                                                data-id="2-input"
+                                                class="slds-input"
+                                            />
+                                        </div>
+                                    </li>
+                                    <li class="slds-form-element__label pd-l-5">ตัน</li>
+                                </ul>
+                                <ul class="slds-list_horizontal" data-answered="false">
+                                    <li class="slds-form-element__label">3 ความสามารถในการยกของรถเครนจาก Load Chart</li>
+                                    <li>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                onchange={onIEH}
+                                                type="number"
+                                                min="0"
+                                                step="1"
+                                                onkeypress={onKeyPress}
+                                                data-id="3-input"
+                                                class="slds-input"
+                                            />
+                                        </div>
+                                    </li>
+                                    <li class="slds-form-element__label pd-l-5">ตัน</li>
+                                </ul>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th><span class="slds-form-element__label"></span></th>
+                                            <th class="text-center">
+                                                <span class="slds-form-element__label">ใช่</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span class="slds-form-element__label">ไม่ใช่</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-answered="false">
+                                            <td>
+                                                <span class="slds-form-element__label"
+                                                    >4 รถเครนสามารถที่จะยกเครื่องจักรอุปกรณ์อย่างปลอดภัย</span
+                                                >
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-4"
+                                                        data-id="4-yes"
+                                                        id="4-yes"
+                                                        value="Yes"
+                                                    />
+                                                    <label class="slds-radio__label" for="4-yes">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-4"
+                                                        data-id="4-no"
+                                                        id="4-no"
+                                                        value="No"
+                                                    />
+                                                    <label class="slds-radio__label" for="4-no">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr data-answered="false">
+                                            <td>
+                                                <span class="slds-form-element__label"
+                                                    >5 ยกวางบนพื้น (จากพื้นสู่พื้น)</span
+                                                >
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-5"
+                                                        data-id="5-yes"
+                                                        id="5-yes"
+                                                        value="Yes"
+                                                    />
+                                                    <label class="slds-radio__label" for="5-yes">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-5"
+                                                        data-id="5-no"
+                                                        id="5-no"
+                                                        value="No"
+                                                    />
+                                                    <label class="slds-radio__label" for="5-no">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr data-answered="false">
+                                            <td>
+                                                <span class="slds-form-element__label"
+                                                    >6 ยกวางที่สูงกว่า 5 เมตร (จากพื้นสู่ที่สูง)</span
+                                                >
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-6"
+                                                        data-id="6-yes"
+                                                        id="6-yes"
+                                                        value="Yes"
+                                                    />
+                                                    <label class="slds-radio__label" for="6-yes">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-6"
+                                                        data-id="6-no"
+                                                        id="6-no"
+                                                        value="No"
+                                                    />
+                                                    <label class="slds-radio__label" for="6-no">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr data-answered="false">
+                                            <td>
+                                                <span class="slds-form-element__label"
+                                                    >7 ยกข้ามอุปกรณ์ที่กำลังใช้งาน</span
+                                                >
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-7"
+                                                        data-id="7-yes"
+                                                        id="7-yes"
+                                                        value="Yes"
+                                                    />
+                                                    <label class="slds-radio__label" for="7-yes">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-7"
+                                                        data-id="7-no"
+                                                        id="7-no"
+                                                        value="No"
+                                                    />
+                                                    <label class="slds-radio__label" for="7-no">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr data-answered="false">
+                                            <td>
+                                                <span class="slds-form-element__label"
+                                                    >8 ยกในพื้นที่แคบและมีเครื่องจักรหนาแน่น</span
+                                                >
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-8"
+                                                        data-id="8-yes"
+                                                        id="8-yes"
+                                                        value="Yes"
+                                                    />
+                                                    <label class="slds-radio__label" for="8-yes">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-8"
+                                                        data-id="8-no"
+                                                        id="8-no"
+                                                        value="No"
+                                                    />
+                                                    <label class="slds-radio__label" for="8-no">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr data-answered="false">
+                                            <td>
+                                                <span class="slds-form-element__label"
+                                                    >9 พื้นที่จอดรถเครนไม่สามารถรับน้ำหนัก (ดินอ่อน,
+                                                    ไม่ใช่พื้นคอนกรีตและมีท่อ, สายไฟ, รางน้ำ อยู่ใต้ดิน)
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-9"
+                                                        data-id="9-yes"
+                                                        id="9-yes"
+                                                        value="Yes"
+                                                    />
+                                                    <label class="slds-radio__label" for="9-yes">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-9"
+                                                        data-id="9-no"
+                                                        id="9-no"
+                                                        value="No"
+                                                    />
+                                                    <label class="slds-radio__label" for="9-no">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr data-answered="false">
+                                            <td>
+                                                <span class="slds-form-element__label"
+                                                    >10 ปิดถนนนานเกินกว่า 4 ชั่วโมง</span
+                                                >
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-10"
+                                                        data-id="10-yes"
+                                                        id="10-yes"
+                                                        value="Yes"
+                                                    />
+                                                    <label class="slds-radio__label" for="10-yes">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-10"
+                                                        data-id="10-no"
+                                                        id="10-no"
+                                                        value="No"
+                                                    />
+                                                    <label class="slds-radio__label" for="10-no">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr data-answered="false">
+                                            <td>
+                                                <span class="slds-form-element__label"
+                                                    >11 พิจารณาแล้วมีความเสี่ยงที่จะเกิดอุบัติเหตุสูง (High Risk)</span
+                                                >
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-11"
+                                                        data-id="11-yes"
+                                                        id="11-yes"
+                                                        value="Yes"
+                                                    />
+                                                    <label class="slds-radio__label" for="11-yes">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-11"
+                                                        data-id="11-no"
+                                                        id="11-no"
+                                                        value="No"
+                                                    />
+                                                    <label class="slds-radio__label" for="11-no">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr data-answered="false">
+                                            <td>
+                                                <span class="slds-form-element__label"
+                                                    >12 งานยกถ้าเกิดอุบัติเหตุจะมีอันตรายต่อทรัพย์สินหรือ ความปลอดภัย
+                                                    ของบุคคลอย่างร้ายแรงถึงชีวิต (เช่น ทรัพย์สินราคาแพง ๆ, ระบบควบคุม
+                                                    Control และเกิด Gas พิษต่าง ๆ )
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-12"
+                                                        data-id="12-yes"
+                                                        id="12-yes"
+                                                        value="Yes"
+                                                    />
+                                                    <label class="slds-radio__label" for="12-yes">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-12"
+                                                        data-id="12-no"
+                                                        id="12-no"
+                                                        value="No"
+                                                    />
+                                                    <label class="slds-radio__label" for="12-no">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr data-answered="false">
+                                            <td>
+                                                <span class="slds-form-element__label"
+                                                    >13 ต้องทำแผนการยกหรือไม่ (ไม่ต้องทำเมื่อข้อ 4, 5 ตอบว่าใช่)
+                                                    (ต้องทำเมื่อข้อ11, 12 ข้อหนึ่งข้อใดหรือทั้ง 2 ข้อตอบว่าใช่และ
+                                                    ถ้าตอบไม่แน่ใจให้ปรึกษา TOC Rigger)
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-13"
+                                                        data-id="13-yes"
+                                                        id="13-yes"
+                                                        value="Yes"
+                                                    />
+                                                    <label class="slds-radio__label" for="13-yes">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="slds-radio pd-l-8">
+                                                    <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="p-13"
+                                                        data-id="13-no"
+                                                        id="13-no"
+                                                        value="No"
+                                                    />
+                                                    <label class="slds-radio__label" for="13-no">
+                                                        <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                    </label>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="pd-l-5">
+                                    <label class="slds-form-element__label"><u>สรุป</u></label>
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col">
+                                            <ul class="slds-list_horizontal slds-has-block-links_space">
+                                                <li>
+                                                    <span class="slds-checkbox">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="checkbox"
+                                                            data-id="checkbox-1"
+                                                            id="checkbox-1"
+                                                            name="checkbox"
+                                                            data-children="0"
+                                                            data-controlledby="checkbox-2checkbox-3"
+                                                            value="ปลอดภัยให้ยกได้"
+                                                        />
+                                                        <label class="slds-checkbox__label" for="checkbox-1">
+                                                            <span class="slds-checkbox_faux"></span>
+                                                            <span class="slds-form-element__label"
+                                                                >ปลอดภัยให้ยกได้</span
+                                                            >
+                                                        </label>
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span class="slds-checkbox">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="checkbox"
+                                                            data-id="checkbox-2"
+                                                            id="checkbox-2"
+                                                            name="checkbox"
+                                                            value="ทำแผนการยกเพิ่มเติม"
+                                                        />
+                                                        <label class="slds-checkbox__label" for="checkbox-2">
+                                                            <span class="slds-checkbox_faux"></span>
+                                                            <span class="slds-form-element__label"
+                                                                >ทำแผนการยกเพิ่มเติม</span
+                                                            >
+                                                        </label>
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span class="slds-checkbox">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="checkbox"
+                                                            data-id="checkbox-3"
+                                                            id="checkbox-3"
+                                                            name="checkbox"
+                                                            value="ปรึกษา TOC Specialist"
+                                                        />
+                                                        <label class="slds-checkbox__label" for="checkbox-3">
+                                                            <span class="slds-checkbox_faux"></span>
+                                                            <span class="slds-form-element__label"
+                                                                >ปรึกษา TOC Specialist</span
+                                                            >
+                                                        </label>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+            </ul>
+        </div>
+
+        <!-- For any N/A button sections, use this template
+        <input onchange={onIEH} onchange={disableSection} name="options" type="checkbox" data-id=... />
+        <label...>Label for checkbox</label>
+        -->
+
+        <!-- Button Section for Every Form -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openRejectModal}>
+                    Reject
+                </button>
+                <button data-id="recallEQCCStep" class="slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                    Recall
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Submit</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-lookup object-api-name="user" icon-name="standard:user" onrecordselection={onUserSelection}></c-lookup>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submit} title="Submit">Submit</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

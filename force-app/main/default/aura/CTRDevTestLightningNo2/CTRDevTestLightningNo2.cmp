@@ -1,0 +1,64 @@
+<aura:component implements="lightning:hasPageReference,lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,lightning:availableForFlowScreens" access="global" >
+	
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="historyType" type="String" default="" />
+
+    <aura:attribute name="Index" type="Integer"/>
+    <aura:attribute name="objectName" type="String"/>
+    <aura:attribute name="fieldApi" type="String" access="global"/>
+    <aura:attribute name="fieldLabel" type="String" access="global"/>
+    <aura:attribute name="selectedValue" type="String" access="global"/>
+
+    <aura:attribute name="picklistOptionsStr" type="String" access="global"/>
+    <aura:attribute name="picklistOptions" type="String[]" access="global"/>
+    <aura:attribute name="picklistFiltered" type="String[]"/>
+    <aura:attribute name="currentText" type="String"/>
+
+    <aura:attribute name="disabled" type="boolean" default = "false" access="global"/>
+    <aura:attribute name="required" type="boolean" default = "false" access="global"/>
+    <aura:attribute name="displayFieldLabel" type="boolean" default = "true" access="global"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.picklistOptions}" action="{!c.handleChangeOption}" />
+    <aura:handler name="change" value="{!v.selectedValue}" action="{!c.validateField}" />
+    <aura:registerEvent name="OnChangePicklist" type="c:CTROnChangeLookupEvent"/>
+
+        <div onfocusout="{!c.closeDropDown}">         
+            <div class="slds-combobox_container slds-size--1-of-2 slds-p-horizontal_x-small" style="margin-bottom:20px;">
+                <div class="slds-size--1-of-1 slds-p-horizontal_x-small slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aura:id="resultBox" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                    <aura:if isTrue="{!v.displayFieldLabel}">
+                        <label style="text-align:left;">
+                            <aura:renderIf isTrue="{!v.required}"><span style="color:red; font-style: italic;">*</span></aura:renderIf>
+                            {!v.fieldLabel}
+                        </label>
+                    </aura:if>
+                    <!-- below lightning:input is for user to type text -->
+                    <div class="slds-form-element__control" role="none">                 
+                        <lightning:input  aura:id="userinput" name="searchText" onchange="{!c.searchField}" onclick="{!c.getPickListValues}" variant="label-hidden"
+                                            value="{!v.currentText}" type="search" class="leftspace" disabled="{!v.disabled}"/>
+                        <div aura:id="error-userinput" class="slds-form-element__help custom-error" style="text-align:left; position:absolute;" >
+                                            Complete this field.
+                        </div>
+                                        
+                    </div>
+                    <!-- below code is for showing picklist values based on the text-->
+                    <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
+                        <ul class="slds-listbox slds-listbox_vertical" role="presentation" >
+                            <aura:iteration items="{!v.picklistFiltered}" var="serecord" indexVar="hdtv">
+                                <li role="presentation" class="slds-listbox__item">
+                                    <div data-name="{!serecord.label}" data-value="{!serecord.value}" onmousedown="{!c.setSelectedRecord}" class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+                                        <span class="slds-media__body">
+                                            <span class="slds-listbox__option-text slds-listbox__option-text_entity">{!serecord.label}</span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </aura:iteration>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </div> 
+   
+    
+</aura:component>

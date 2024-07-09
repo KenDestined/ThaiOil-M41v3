@@ -1,0 +1,4 @@
+.slds-dropdown-trigger .slds-dropdown.custom-dropdown-up {
+	bottom: 100%;
+	top: unset;
+}

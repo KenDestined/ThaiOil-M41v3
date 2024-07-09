@@ -1,0 +1,46 @@
+<apex:page
+  controller="ICR_DashboardController"
+  standardStylesheets="true"
+  lightningStylesheets="true"
+  sidebar="false"
+  showHeader="false"
+  applyHtmlTag="true"
+  applyBodyTag="false"
+  docType="html-5.0"
+  language="th"
+>
+  <apex:form>
+    <apex:actionFunction
+      name="TestCal"
+      action="{!TestFunction}"
+      reRender="rawDataPanel"
+      oncomplete="window.getData();"
+    />
+  </apex:form>
+
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <link rel="icon" href="/favicon.ico" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Total PIR by Sub Area</title>
+      <script type="module" crossorigin src="/assets/PirTotalSubArea.js"></script>
+      <link rel="modulepreload" href="/assets/vendor.js">
+      <link rel="modulepreload" href="/assets/BaseDropdown.js">
+      <link rel="modulepreload" href="/assets/dataManagementTabs.js">
+      <link rel="stylesheet" href="/assets/BaseDropdown.css">
+      <link rel="stylesheet" href="/assets/PirTotalArea.css">
+    </head>
+
+    <body>
+      <apex:outputPanel id="rawDataPanel">
+        <div id="rawData" style="display: none">
+          {"totalPIRbyCompany":[{"id":"1","name":"TOC-1","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}},{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"2","name":"TOC-2","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"3","name":"Utility","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"4","name":"TOC-3","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"5","name":"TOC-4","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"6","name":"TOC-5","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"7","name":"Offsite","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"8","name":"Movement","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"9","name":"Marine","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"10","name":"Non-APU-TOP","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"11","name":"TLB-E","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"12","name":"Non-APU-TLB","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"13","name":"TPX-F","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"14","name":"Non-APU-TPX","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"15","name":"LABIX-F","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"16","name":"Non-APU-LABIX","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"17","name":"TOP SPP","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"18","name":"Non-APU-TOP SPP","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"19","name":"TP","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]},{"id":"20","name":"Non-APU-TP","unsafe":[{"id":"1","name":"Unsafe Act","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]},{"id":"2","name":"Unsafe Condition","state":[{"open":{"staff":5,"contractor":6},"close":{"staff":4,"contractor":1}}]}]}],"months":["January","February","March","April","May","June","July","August","September","October","November","December"]}
+        </div>
+      </apex:outputPanel>
+      <div id="app"></div>
+      
+    </body>
+  </html>
+</apex:page>

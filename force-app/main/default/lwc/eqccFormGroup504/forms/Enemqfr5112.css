@@ -1,0 +1,60 @@
+.custom-save-button {
+    background-color: #4fc0fd;
+    border-color: inherit;
+}
+
+.custom-save-button:hover {
+    background-color: #0070D2 !important;
+}
+
+.custom-submit-button {
+    background-color: #42C9AC;
+    border-color: inherit;
+}
+
+.custom-submit-button:hover {
+    background-color: #1bddb3 !important;
+}
+
+.custom-reject-button {
+    background-color: #E33053;
+    border-color: inherit;
+}
+
+.custom-reject-button:hover {
+    background-color: #ef224b !important;
+}
+
+.custom-recall-button{
+
+    background-color: #FDC82D;
+
+    border-color: inherit;
+
+}
+.custom-recall-button:hover{
+
+    background-color: #f7be12 !important;
+
+}
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+button::disabled:hover,
+button::disabled:focus,
+button:disabled:hover,
+button:disabled:focus {
+  color:#fff;
+  border-color: #a0a0a0;
+  background-color: #a0a0a0;
+}
+
+.fontweight
+{
+    font-weight: bold;
+}

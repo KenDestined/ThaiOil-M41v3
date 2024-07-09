@@ -1,0 +1,1906 @@
+<apex:page controller="CTRDisclaimerPDFController" applyHtmlTag="false" showHeader="false" renderAs="PDF" action="{!renderPage}" title="Disclaimer">
+
+<html>
+    <head>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                line-height: 16px;
+            }
+            table { 
+            font-size: 9px; 
+            table-layout: fixed; 
+            } 
+  
+            td { 
+            text-align: left;
+            padding: 0.5px;
+            /* border: 1px solid gray; */
+            } 
+            p {
+                margin: 0px;
+                padding: 0px;
+            }
+
+            .subject-space {
+                margin-top: 15px;
+            }
+
+            body {
+                font-family: Arial Unicode MS;
+                font-size: 9px;
+                color: #3f3d3d;
+            }
+
+            font {
+                font-family: Arial Unicode MS !important;
+            }
+
+            .inline {
+                display: inline-block;
+            }
+
+            .inline div {
+                display: inline-block;
+            }
+
+            @page {
+                size: A4;
+                margin: 1cm 0.75cm 1.25cm 0.75cm;
+                font-family: 'Arial Unicode MS';
+                /* font-size: 9.5pt; */
+                /* background-color: #fff; */
+                /* border: 1px solid; */
+                padding: 0;
+                @bottom-right {
+                    /* content: "Page " counter(page); */
+                    content: element(footer);
+                }
+            }
+            .footer {
+                /* display: flex;
+                position: fixed; */
+                display: block;
+                position: running(footer);
+                text-align: justify;
+                font-size: 12px;
+                color: #000000;
+            }
+                .pagenumber:before {
+                    content: counter(page);
+                    float: right;
+                }
+                .pagecount:before {
+                    content: counter(pages);
+                }
+            .page-break {
+            display:block;
+            page-break-after:always;
+            }
+            .section-header {
+                /* background-color: grey; */
+                background-color: #D3D3D3;
+                color: #000000;
+                font-weight: bold;
+                font-size: 10px;
+            }
+            .fontDisclaimer{
+                font-weight:bold;
+                color: #000000;
+                text-align: center;
+                margin-left: 30px;
+                font-size: 15px;
+            }
+            .left-padded {
+                padding-left: 25px;
+            }
+            .left-margin {
+                margin-left: 5px;
+            }
+            .topic-section {
+                color: #000000;
+                font-weight: bold;
+                font-size: 9px;
+                padding-left: 25px;
+            }
+            .section-inline {
+                color: #000000;
+                font-weight: bold;
+                font-size: 9px;
+            }
+            .long-link {
+                display: inline-block;
+                width: 500px;
+                max-width: 500px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            
+            .checkbox {
+                display: inline-block;
+                width: 5px;
+                height: 5px;
+                background: gray;
+                color: white;
+                line-height: 0;
+                padding: 5px;
+                border: 1px solid gray;
+                vertical-align: middle;
+
+            }
+            .checkboxaddress {
+                display: inline-block;
+                width: 5px;
+                height: 5px;
+                background: gray;
+                color: white;
+                line-height: 3px;
+                padding: 5px;
+        		margin: 5px;
+                border: 1px solid gray;
+            }
+            .endorseheader {
+                margin-top: 50px;
+                text-align: right;
+                /* margin-right: 200px; */
+            }
+            .endorsement {
+                text-align: right;
+                margin-right: 50px;
+            }
+            .signature {
+                margin-top: 10px;
+                margin-right: 50px;
+                display: inline-block;
+            }
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                }
+                .image-container {
+                    display: inline-block;
+                    /* justify-content: space-around; */
+                    flex-direction: row;
+                    width: 100%;
+                    margin: 0 10px; 
+                    text-align: center;
+                }
+                .image-item{
+                    /* display: flex;  */
+                    display: inline-block;
+                    /* flex-direction: column; */
+                }
+                img {
+                    width: 100px;
+                    height: auto; 
+                    margin: 0 50px;
+                }
+        </style>
+        
+    </head>
+    <body>
+        <!-- Footer -->
+        <div class="footer">
+            <span>Generated on {!formattedDateTime}</span>
+            <span style="float: right;">Page <span class="pagenumber"/></span>
+        </div>
+        
+        <!-- Page 1 -->
+        <div>
+            <!-- {!selectedLanguage}, {!recordId} -->
+            <img src="{!$Resource.Logo}" style="display: block; width: 25%; margin-left: auto; margin-right: auto;"/>
+            <br />
+            <apex:outputPanel rendered="{!selectedLanguage == 'Thai'}">
+                <div class="fontDisclaimer">
+                     เอกสารข้อสงวนสิทธิ์
+                </div>
+                <br />
+                <section>
+                    <div class="section-header">
+                        ข้อกำหนดและเงื่อนไข
+                    </div>
+                    <div class="section-content" style="width: 100%">
+                            <ol>
+                                <li>บริษัทคู่ค้ารับรองและรับประกันว่าข้อมูลที่ให้นี้เป็นข้อมูลที่ได้ให้โดยถูกต้องในนามของบริษัทคู่ค้า ทั้งยังเป็นข้อมูลที่ถูกต้องและแท้จริง
+                                    ณ เวลาลงทะเบียน</li>
+                                <li>บริษัท ไทยออยล์ จำกัด (มหาชน) ขอสงวนสิทธิแต่เพียงผู้เดียวที่จะยกเลิกหรือเพิกถอนการลงทะเบียนคู่ค้า หากพบว่าบริษัทคู่ค้าไม่มีคุณสมบัติ
+                                    สำหรับการลงทะเบียน หรือข้อมูลที่ได้ให้โดยบริษัทคู่ค้าเป็นข้อมูลที่ไม่ถูกต้อง หรือเป็นข้อมูลเท็จ ทั้งนี้ ภายใต้เงื่อนไขว่าการยกเลิกหรือเพิกถอน
+                                    การลงทะเบียนจะไม่กระทบต่อสิทธิและหน้าที่ของทั้งสองฝ่ายตามธุรกรรมที่มีอยู่</li>
+                                <li>บริษัทคู่ค้าอาจถูกร้องขอข้อมูลเพิ่มเติมระหว่างการพิจารณา</li>
+                                <li>กลุ่มไทยออยล์มีความมุ่งมั่นต่อการเคารพหลักสิทธิมนุษยชนตามที่ระบุในกฎบัตรระหว่างประเทศว่าด้วยสิทธิมนุษยชนในทุกการดำเนินธุรกิจตลอด
+                                    ห่วงโซ่คุณค่า กลุ่มไทยออยล์จะดำเนินการที่จำเป็นเพื่อให้มั่นใจว่าพนักงาน กิจกรรม ผลิตภัณฑ์ หรือบริการ ตลอดจนคู่ค้าจะหลีกเลี่ยงการเข้าไปมี
+                                    ส่วนเกี่ยวข้องกับการละเมิดสิทธิมนุษยชน</li>
+                            </ol>
+                        <br />
+                            <div class="left-padded">
+                                เพื่อให้บรรลุเป้าหมายดังกล่าว กลุ่มไทยออยล์ได้ดำเนินกระบวนการตรวจสอบตามหลักการชี้แนะว่าด้วยธุรกิจและสิทธิมนุษยชนแห่งสหประชาชาติ
+                                คู่ค้าของไทยออยล์ต้องปฏิบัติตามมาตรฐานว่าด้วยสิทธิมนุษยชนระหว่างประเทศ และต้องปฏิบัติตามนโยบายด้านธุรกิจและสิทธิมนุษยชนสำหรับคู่ค้า
+                                ของกลุ่มไทยออยล์ ตลอดจนจะขยายความคาดหวังดังกล่าวนี้ไปยังคู่ค้าอื่นของตนด้วย
+                            </div>
+                    </div>
+                </section>
+            </apex:outputPanel>
+
+            <apex:outputPanel rendered="{!selectedLanguage == 'Vietnamese'}">
+                <div class="fontDisclaimer">
+                    Tài liệu Từ chối trách nhiệm
+                </div>
+                <br />
+                <section>
+                    <div class="section-header">
+                        Các điều khoản và điều kiện
+                    </div>
+                    <div class="section-content" style="width: 100%">
+                            <ol>
+                                <li>Công ty đối tác xác nhận và đảm bảo rằng thông tin đã cung cấp là chính xác, nhân danh công ty đối tác, và đúng sự thật tại thời điểm đăng ký.</li>
+                                <li>Công ty Trách nhiệm hữu hạn Thai Oil (Đại chúng) có toàn quyền hủy bỏ hoặc thu hồi việc đăng ký đối tác, nếu phát hiện công ty
+                                    đối tác không đủ điều kiện đăng ký, hoặc thông tin mà công ty đối tác cung cấp là không chính xác hoặc sai sự thật, theo điều kiện
+                                    rằng việc hủy bỏ hoặc thu hồi việc đăng ký sẽ không ảnh hưởng đến quyền và nghĩa vụ của hai bên theo giao dịch hiện tại.</li>
+                                <li>Các công ty đối tác có thể được yêu cầu cung cấp thêm thông tin trong quá trình xem xét.</li>
+                                <li>Tập đoàn Thai Oil cam kết tôn trọng các nguyên tắc nhân quyền được quy định trong Hiến chương Quốc tế về Nhân quyền trong mọi
+                                    hoạt động kinh doanh, xuyên suốt chuỗi giá trị. Tập đoàn Thai Oil sẽ thực hiện các việc cần thiết để đảm bảo rằng các nhân viên, hoạt
+                                    động, sản phẩm hoặc dịch vụ, và đối tác sẽ tránh liên quan đến những hành vi vi phạm nhân quyền.</li>
+                            </ol>
+                        <br />
+                            <div class="left-padded">
+                                Để đạt được mục tiêu này, Tập đoàn Thai Oil đã thực hiện quy trình kiểm tra theo Nguyên tắc Hướng dẫn về Kinh doanh và Nhân quyền
+                                của Liên hợp quốc. Các đối tác thương mại của Thai Oil phải tuân thủ các tiêu chuẩn nhân quyền quốc tế, và phải tuân thủ Chính sách về
+                                Kinh doanh và Nhân quyền dành cho các đối tác của Tập đoàn Thai Oil, và cũng sẽ mở rộng những kỳ vọng này tới các đối tác khác
+                                của họ.
+                            </div>
+                    </div>
+                </section>
+            </apex:outputPanel>
+
+            <apex:outputPanel rendered="{!selectedLanguage == 'Bahasa'}">
+                <div class="fontDisclaimer">
+                    Surat Penafian
+                </div>
+                <br />
+                <section>
+                    <div class="section-header">
+                        Syarat dan Ketentuan
+                    </div>
+                    <div class="section-content" style="width: 100%">
+                            <ol>
+                                <li>Perusahaan mitra menyatakan dan menjamin bahwa informasi yang diberikan adalah akurat dan akurat atas nama perusahaan
+                                    mitra. Juga merupakan informasi yang benar dan tepat pada saat pendaftaran.</li>
+                                <li>Thai Oil Public Company Limited memiliki hak tunggal untuk membatalkan atau mencabut pendaftaran mitra , jika ternyata
+                                    perusahaan mitra tidak memenuhi syarat untuk mendaftar atau informasi yang diberikan oleh perusahaan mitra tidak benar, atau
+                                    keterangan palsu. Dengan syarat pembatalan atau pencabutan pendaftaran tidak akan mempengaruhi hak dan kewajiban kedua
+                                    belah pihak sesuai transaksi yang ada.</li>
+                                <li>Perusahaan mitra mungkin diminta untuk memberikan informasi tambahan dengan pertimbangan.</li>
+                                <li>Thai oil Group berkomitmen untuk menghormati prinsip-prinsip hak asasi manusia sebagaimana diatur dalam Piagam Internasional
+                                    Hak Asasi Manusia dalam semua aspek operasi bisnisnya. Thai oil Group akan mengambil langkah-langkah yang diperlukan untuk
+                                    memastikan bahwa karyawan, aktivitas, produk atau layanan, dan perusahaan mitra akan menghindari keterlibatan dalam
+                                    pelanggaran hak asasi manusia</li>
+                            </ol>
+                        <br />
+                            <div class="left-padded">
+                                Untuk mencapai tujuan ini, Thai oil Group telah melakukan proses audit sesuai dengan Prinsip Panduan PBB tentang bisnis dan Hak
+                                Asasi Manusia. Pemasok Thai oil harus mematuhi standard hak asasi manusia internasional dan harus mematuhi kebijakan bisnis dan
+                                hak asasi manusia bagi perusahaan mitra Thai oil Group, Mereka harus tunduk pada aturan tersebut, serta akan memperluas
+                                ekspektasi ini kepada mitra dagang mereka yang lain.
+                            </div>
+                    </div>
+                </section>
+            </apex:outputPanel>
+
+            <br />
+            <section>
+                <div class="section-header">
+                    Company Information
+                </div>
+                <div class="section-content">
+                    <table style="width: 100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Company Name (English) : </span>
+                                    <span class="left-margin">{!accountObj.CompanyNameENF__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Company Name (Other Languages) : </span> 
+                                    <span class="left-margin">{!accountObj.CompanyNameLocal__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Specify Languages of Company Name : </span> 
+                                    <span class="left-margin">{!accountObj.SpecifyLanguagesOfCompanyName__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Former Name of Company (If any) : </span> 
+                                    <span class="left-margin">{!accountObj.FormerNameofCompany__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Country : </span> 
+                                    <span class="left-margin">
+                                        <!-- {!accountObj.Country__r.Code__c} - {!accountObj.Country__r.Description__c} -->
+                                        {!IF(
+                                            NOT(ISBLANK(accountObj.Country__r.Code__c)) && NOT(ISBLANK(accountObj.Country__r.Description__c)),
+                                            (accountObj.Country__r.Code__c) + ' - ' + (accountObj.Country__r.Description__c),
+                                            ''
+                                        )}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Customer Type : </span> 
+                                    <span class="left-margin">{!accountObj.CustomerType__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Supplier Type : </span> 
+                                    <span class="left-margin">{!accountObj.SupplierType__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Type of Business : </span> 
+                                    <span class="left-margin">{!accountObj.TypeOfBusinessCommercialEvaluation__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Other Business Type (Please specify) : </span> 
+                                    <span class="left-margin">{!accountObj.TypeOfBusinessOthers__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Legal Entity : </span> 
+                                    <span class="left-margin">{!accountObj.LegalEntity__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Other Legal Entity (Please specify) : </span> 
+                                    <span class="left-margin">{!accountObj.LegalEntityOthers__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Incorporation Date : </span> 
+                                    <span class="left-margin">{!formattedIncorporationDate}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Years of Experience in business? : </span> 
+                                    <span class="left-margin">{!accountObj.YearsofExperience__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">TAX Number : </span> 
+                                    <span class="left-margin">{!accountObj.TaxCode1__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Company Website : </span> 
+                                    <span class="left-margin">{!accountObj.CompanyWebsite__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">CEO/President/Managing Director First Name : </span> 
+                                    <span class="left-margin">{!accountObj.CEOFirstName__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Last Name : </span> 
+                                    <span class="left-margin">{!accountObj.CEOLastName__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Immediate Parent Company : </span> 
+                                    <span class="left-margin">{!accountObj.ImmidiateParentCompany__c}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <br />
+            <section style="margin-bottom: 10px">
+                <div class="section-header">
+                    List of Shareholders who hold an interest in the company more than 10%
+                </div>
+                <table style="width: 100%">
+                    <tbody>
+                        <apex:repeat var="item" value="{!shareholderList}">
+                            <tr>
+                                <td>
+                                    <strong class="topic-section">Name : </strong>
+                                    <span class="left-margin">{!item.Name}</span>
+                                </td>
+                                <td>
+                                    <strong class="section-inline">% of Shareholders </strong>
+                                    <span class="left-margin">{!item.of_Shareholder__c}</span>
+                                </td>
+                            </tr>
+                        </apex:repeat>
+                    </tbody>
+                </table>
+            </section>
+            <br />
+            <section>
+                <div class="section-header">
+                    Registered Address
+                </div>
+                <div class="section-content">
+                    <table style="width: 100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Building Code : </span> 
+                                    <span class="left-margin">{!accountObj.BuildingCodeLocal__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Room : </span> 
+                                    <span class="left-margin">{!accountObj.RoomLocal__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Floor : </span> 
+                                    <span class="left-margin">{!accountObj.FloorLocal__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">c/o : </span> 
+                                    <span class="left-margin">{!accountObj.CoName__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">House no. : </span> 
+                                    <span class="left-margin">{!accountObj.HousenoLocal__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Street : </span> 
+                                    <span class="left-margin">{!accountObj.StreetLocal__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Sub District : </span> 
+                                    <span class="left-margin">{!accountObj.SubDistrictLocalText__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">District : </span> 
+                                    <span class="left-margin">{!accountObj.DistrictLocalText__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">City/State : </span> 
+                                    <span class="left-margin">{!accountObj.CityStateLocal__r.Name}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Postal Code : </span> 
+                                    <span class="left-margin">{!accountObj.PostalCodeLocalText__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <span class="topic-section">Location in Google Maps (Link) : </span> 
+                                    <a href="{!accountObj.LocationInGoogleMapsLinks__c}" class="long-link">
+                                        {!accountObj.LocationInGoogleMapsLinks__c}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Location in Google Maps (Latitude, Longtitude) : </span> 
+                                    <!-- <span class="left-margin">{!accountObj.Location__Latitude__s} , {!accountObj.Location__Longitude__s}</span> -->
+                                    <span class="left-margin">
+                                        {!IF(
+                                            NOT(ISBLANK(accountObj.LocationInGoogleMapsGeolocation__Latitude__s)) && NOT(ISBLANK(accountObj.LocationInGoogleMapsGeolocation__Longitude__s)),
+                                            TEXT(accountObj.LocationInGoogleMapsGeolocation__Latitude__s) + ', ' + TEXT(accountObj.LocationInGoogleMapsGeolocation__Longitude__s),
+                                            ''
+                                        )}
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- Page 2 -->
+        <div style="page-break-after: always"/>
+        <div>
+            <img src="{!$Resource.Logo}" style="display: block; width: 25%; margin-left: auto; margin-right: auto;"/>
+            <br />
+            <div class="fontDisclaimer">
+                <apex:outputPanel rendered="{!selectedLanguage == 'Thai'}">
+                    <!-- Thai language content -->
+                    เอกสารข้อสงวนสิทธิ์
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!selectedLanguage == 'Vietnamese'}">
+                    <!-- Vietnamese language content -->
+                    Tài liệu Từ chối trách nhiệm
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!selectedLanguage == 'Bahasa'}">
+                    <!-- Bahasa language content -->
+                    Surat Penafian
+                </apex:outputPanel>
+            </div>
+            <br />
+            <section>
+                <div class="section-header">
+                    Mailing Address
+                </div>
+                <div class="section-content">
+                    <table style="width: 100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="topic-section" style="display: inline-block;">Same as Registration Address : </span> 
+                                    <apex:outputPanel rendered="{!accountObj.SameRegisteredAddress__c}">
+                                        <span class="checkboxaddress left-margin">&#10003;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!!accountObj.SameRegisteredAddress__c}">
+                                        <span class="checkbox left-margin"></span>
+                                    </apex:outputPanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Building Code : </span> 
+                                    <span class="left-margin">{!accountObj.BuildingCodeLocal__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Room : </span> 
+                                    <span class="left-margin">{!accountObj.RoomLocal__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Floor : </span> 
+                                    <span class="left-margin">{!accountObj.FloorLocal__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">c/o : </span> 
+                                    <span class="left-margin">{!accountObj.CoName__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">House no. : </span> 
+                                    <span class="left-margin">{!accountObj.HousenoLocal__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Street : </span> 
+                                    <span class="left-margin">{!accountObj.StreetLocal__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Sub District : </span> 
+                                    <span class="left-margin">{!accountObj.SubDistrictLocalText__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">District : </span> 
+                                    <span class="left-margin">{!accountObj.DistrictLocalText__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">City/State : </span> 
+                                    <span class="left-margin">{!accountObj.CityStateLocal__r.Name}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Postal Code : </span> 
+                                    <span class="left-margin">{!accountObj.PostalCodeLocalText__c}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <br />
+            <section>
+                <div class="section-header">
+                    Contact Person Information
+                </div>
+                <div class="section-content">
+                    <table style="width: 100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Title (Mr./Mrs./Miss/etc.) : </span> 
+                                    <span class="left-margin">{!accountObj.ContactSalutation__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Nickname : </span> 
+                                    <span class="left-margin">{!accountObj.Nickname__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">First Name : </span> 
+                                    <span class="left-margin">{!accountObj.FirstName__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Last Name : </span> 
+                                    <span class="left-margin">{!accountObj.LastName__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Position : </span> 
+                                    <span class="left-margin">{!accountObj.Position__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Email : </span> 
+                                    <span class="left-margin">{!accountObj.Email__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Language : </span> 
+                                    <span class="left-margin">{!accountObj.Language__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Country Code (Mobile) : </span> 
+                                    <span class="left-margin">{!accountObj.MobileCountryCode__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Mobile : </span> 
+                                    <span class="left-margin">{!accountObj.MobilePhone__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Country Code (Phone) : </span> 
+                                    <span class="left-margin">{!accountObj.PhoneCountryCode__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Phone : </span> 
+                                    <span class="left-margin">{!accountObj.Phone__c}</span>
+
+                                    <span class="section-inline" style="margin-left: 10px;">Phone (Ext.) : </span> 
+                                    <span class="left-margin">{!accountObj.PhoneExtension__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Country Code (Fax) : </span> 
+                                    <span class="left-margin">{!accountObj.FaxCountryCode__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Fax : </span> 
+                                    <span class="left-margin">{!accountObj.Fax__c}</span>
+
+                                    <span class="section-inline" style="margin-left: 21px;">Fax (Ext.) : </span> 
+                                    <span class="left-margin">{!accountObj.FaxExtension__c}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <br />
+            <section>
+                <div class="section-header">
+                    Product of Interested
+                </div>
+                <div class="section-content">
+                    <table style="width: 100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Interested Product Type as Customer : </span> 
+                                    <apex:outputPanel rendered="{!IsCustomer}">
+                                        <span class="left-margin">{!requestItem.ProductName__c}</span>
+                                    </apex:outputPanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Customer Other Products : </span> 
+                                    <span class="left-margin">{!requestItem.CustomerProductIdentification__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Interested Product Type as Supplier : </span> 
+                                    <apex:outputPanel rendered="{!!IsCustomer}">
+                                        <span class="left-margin">{!requestItem.ProductName__c}</span>
+                                    </apex:outputPanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Supplier Other Products : </span> 
+                                    <span class="left-margin">{!requestItem.SupplierProductIdentification__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Please estimate the company purchasing volume per month: </span> 
+                                    <span class="left-margin">{!accountObj.CompanyPurchasingVolumnperGrade__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Unit of purchasing volume per month : </span> 
+                                    <span class="left-margin">{!accountObj.EstimatedMonthlyPurchaseUnit__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">(For Customer) Which company do customers purchase this product from? : </span> 
+                                    <span class="left-margin">{!accountObj.CustomerPurchaseProductFrom__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Customer’s facility (Tank and Storage) : </span> 
+                                    <span class="left-margin">{!accountObj.CustomersFacilityTankAndStorage__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Customer’s facility (Transportation) : </span> 
+                                    <span class="left-margin">{!accountObj.CustomersFacilityTransportation__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">(For Supplier) Which company do you supply this product to? (If any) : </span> 
+                                    <span class="left-margin">{!accountObj.SupplierSupplyProductTo__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Supplier’s facility (Tank and Storage) : </span> 
+                                    <span class="left-margin">{!accountObj.SuppliersFacilityTankAndStorage__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Supplier’s facility (Transportation) : </span> 
+                                    <span class="left-margin">{!accountObj.SuppliersFacilityTransportation__c}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <br />
+            <section style="margin-bottom: 10px">
+                <div class="section-header">
+                    Destination Country
+                </div>
+                <table style="width: 100%">
+                    <tbody>
+                        <apex:repeat var="item" value="{!spList}">
+                            <tr>
+                                <td>
+                                    <strong class="topic-section">Country : </strong>
+                                    <span class="left-margin">{!item.ShippingCountry__c}</span>
+                                </td>
+                                <td>
+                                    <strong class="topic-section">Location Type </strong>
+                                    <span class="left-margin">{!item.LocationType__c}</span>
+                                </td>
+                            </tr>
+                        </apex:repeat>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <!-- Page 3 -->
+        <div style="page-break-after: always"/> <!-- Break page -->
+        <div>
+            <img src="{!$Resource.Logo}" style="display: block; width: 25%; margin-left: auto; margin-right: auto;"/>
+            <br />
+            <div class="fontDisclaimer">
+                <apex:outputPanel rendered="{!selectedLanguage == 'Thai'}">
+                    <!-- Thai language content -->
+                    เอกสารข้อสงวนสิทธิ์
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!selectedLanguage == 'Vietnamese'}">
+                    <!-- Vietnamese language content -->
+                    Tài liệu Từ chối trách nhiệm
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!selectedLanguage == 'Bahasa'}">
+                    <!-- Bahasa language content -->
+                    Surat Penafian
+                </apex:outputPanel>
+            </div>
+            <br />
+            <section>
+                <div class="section-header">
+                    Additional Information
+                </div>
+                <div class="section-content">
+                    <table style="width: 100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Main Service : </span> 
+                                    <span class="left-margin">{!accountObj.MainService__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Other Main Service : </span> 
+                                    <span class="left-margin">{!accountObj.OtherMainService__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Main Product : </span> 
+                                    <span class="left-margin">{!accountObj.MainProduct__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Other Main Product : </span> 
+                                    <span class="left-margin">{!accountObj.OtherMainProduct__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <span class="topic-section">Company’s latest credit rating by international agencies: (Please specify if any e.g. BBB,Baa2) : </span> 
+                                    <span class="left-margin">{!accountObj.CompanyLatestCreditRating__c}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <br />
+            <apex:outputPanel rendered="{!selectedLanguage == 'Thai'}">
+                <section>
+                    <div class="section-header">
+                        ESG and Compliance
+                    </div>
+                    <div class="section-content">
+                        <table style="width: 100%">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="topic-section">Environment: </span> 
+                                        <span>Does your company have Environment policy?</span>
+                                        <div style="margin-left: 25px;">{!accountObj.EnvironmentPolicy__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="topic-section">Social Responsibility: </span> 
+                                        <span>Does your company have Social Responsibility policy?</span>
+                                        <div style="margin-left: 25px;">{!accountObj.SocialResponsibilityPolicy__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="topic-section">Governance: </span> 
+                                        <span>Does your company have Corporate Governance policy?</span>
+                                        <div style="margin-left: 25px;">{!accountObj.CorporateGovernancePolicy__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="topic-section">Occupational Health and Safety: </span> 
+                                        <span>Does your company have Occupational Health and Safety policy?</span>
+                                        <div style="margin-left: 25px;">{!accountObj.OccupationalHealthAndSafetyPolicy__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="topic-section">Human Rights: </span> 
+                                        <span>Does your company have Human Rights policy?</span>
+                                        <div style="margin-left: 25px;">{!accountObj.HumanRightsPolicy__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="topic-section">Has your company or any of its affiliates, or any current director, officer, or key employee ever been charged with, or investigated for fraud, misrepresentation, corruption, bribery, money laundering, forced labour, environmental issues or other related activities during the past five years? </div> 
+                                        <div style="margin-left: 25px;">{!accountObj.HasIssuesDuringThePast5Years__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="topic-section">(For Customer) Has your company ever had any default payment over the amount of USD 50,000 in the last 3 years? </div> 
+                                        <div style="margin-left: 25px;">{!accountObj.PaymentOverTheAmountOfUSD__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="topic-section">(For Supplier) Has your company ever failed to supply under any agreement in the last 3 years? </div> 
+                                        <div style="margin-left: 25px;">{!accountObj.HasFailedSupplyInLast3Years__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="topic-section">Does your company have any offices, transactions, investments, activities or planned activities in sanctioned
+                                            targets or any transactions, investments, activities or planned activities with (or in) any person or entity located
+                                            in sanctioned targets or with (or in) any entity owned or controlled by any entity located in sanctioned targets*?
+                                            *A sanctioned target means any party that is a target of U.S., EU, UK or UN sanctions or to your knowledge,
+                                            any other sanctions authority relevant to your company such as SDN list </div> 
+                                        <div style="margin-left: 25px;">{!accountObj.HasSanctionedTarget__c}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                <br/>
+                <!-- Photo-->
+                <section>
+                    <div style="color: #000000; font-weight: bold; font-size: 10px;">
+                            <h3 style="margin-left: 25px;">สแกน QR เพื่ออ่านรายละเอียดเพิ่มเติม</h3>
+                    </div>
+                    <div class="container">
+                        <div class="image-container">
+                            <div class="image-item">
+                                <img src="{!$Resource.HumanRightsTH}" />
+                                <p>Business and Human Rights Policy </p> <br/>
+                            </div>
+                            <div class="image-item">
+                                <img src="{!$Resource.PrivacyTH}"/>
+                                <p>Privacy Policy for Thai Oil Public <br/> Company Limited and Its Affiliates</p>
+                            </div>
+                            <div class="image-item">
+                                <img src="{!$Resource.QSHETH}"/>
+                                <p>QSHE Policy</p> <br/>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <br />
+                <br />
+                <div class="endorseheader">
+                        <h3 style=" margin-right: 180px;">รับรองข้อมูลโดย</h3>
+                </div>
+                <div class="endorsement">
+                    <div class="signature">
+                            <p>ลงชื่อ ___________________________</p>
+                            <br />
+                            <p>     (__________________________)</p>
+                            <p>วันที่ ____________________________</p>
+                    </div>
+                </div>
+            </apex:outputPanel>
+
+            <apex:outputPanel rendered="{!selectedLanguage == 'Vietnamese'}">
+                <section>
+                    <div class="section-header">
+                        ESG and Compliance
+                    </div>
+                    <div class="section-content">
+                        <table style="width: 100%">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="topic-section">Môi trường: </span> 
+                                        <span>Công ty của bạn có chính sách Môi trường không?</span>
+                                        <div style="margin-left: 25px;">{!accountObj.EnvironmentPolicy__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="topic-section">Trách nhiệm xã hội: </span> 
+                                        <span>Công ty của bạn có chính sách Trách nhiệm xã hội không?</span>
+                                        <div style="margin-left: 25px;">{!accountObj.SocialResponsibilityPolicy__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="topic-section">Quản trị: </span> 
+                                        <span>Công ty của bạn có chính sách Quản trị doanh nghiệp không?</span>
+                                        <div style="margin-left: 25px;">{!accountObj.CorporateGovernancePolicy__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="topic-section">An toàn và Sức khỏe Nghề nghiệp: </span> 
+                                        <span>Công ty của bạn có chính sách An toàn và Sức khỏe Nghề nghiệp không?</span>
+                                        <div style="margin-left: 25px;">{!accountObj.OccupationalHealthAndSafetyPolicy__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="topic-section">Nhân quyền: </span> 
+                                        <span>Công ty của bạn có chính sách Nhân quyền không?</span>
+                                        <div style="margin-left: 25px;">{!accountObj.HumanRightsPolicy__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="topic-section">Công ty của bạn hoặc bất kỳ chi nhánh nào của công ty, hoặc bất kỳ giám đốc, cán bộ hoặc nhân viên chủ chốt hiện tại nào
+                                            có từng bị buộc tội hoặc bị điều tra về gian lận, xuyên tạc, tham nhũng, hối lộ, rửa tiền, lao động cưỡng bức, các vấn đề môi
+                                            trường hoặc các hoạt động liên quan khác trong năm năm qua không? </div> 
+                                        <div style="margin-left: 25px;">{!accountObj.HasIssuesDuringThePast5Years__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="topic-section">(Dành cho Khách hàng) Công ty của bạn đã bao giờ không thanh toán số tiền từ 50,000 USD trong 3 năm qua không?</div> 
+                                        <div style="margin-left: 25px;">{!accountObj.PaymentOverTheAmountOfUSD__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="topic-section">(Dành cho Nhà cung cấp) Công ty của bạn đã bao giờ không cung cấp theo thỏa thuận trong 3 năm qua không?</div> 
+                                        <div style="margin-left: 25px;">{!accountObj.HasFailedSupplyInLast3Years__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="topic-section">Công ty của bạn có bất kỳ văn phòng, giao dịch, khoản đầu tư, hoạt động hoặc hoạt động theo kế hoạch nào tại các mục tiêu
+                                            bị trừng phạt, hay bất kỳ giao dịch, khoản đầu tư, hoạt động hoặc hoạt động theo kế hoạch nào với (hoặc trong) bất kỳ cá nhân
+                                            hoặc tổ chức nào nằm trong các mục tiêu bị trừng phạt, hoặc với (hoặc trong) bất kỳ tổ chức nào thuộc sở hữu hoặc bị kiểm
+                                            soát bởi bất kỳ tổ chức nào nằm trong mục tiêu bị trừng phạt* không?
+                                            *Mục tiêu bị trừng phạt có nghĩa là bất kỳ bên nào là mục tiêu của các lệnh trừng phạt của Hoa Kỳ, Liên minh Châu Âu, Anh
+                                            hoặc Liên Hợp Quốc hoặc theo hiểu biết của bạn, hoặc bất kỳ cơ quan trừng phạt nào khác có liên quan đến công ty của bạn,
+                                            chẳng hạn như danh sách SDN.</div> 
+                                        <div style="margin-left: 25px;">{!accountObj.HasSanctionedTarget__c}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                <br/>
+                <!-- Photo-->
+                <section>
+                    <div style="color: #000000; font-weight: bold; font-size: 10px;">
+                            <h3 style="margin-left: 25px;">Quét mã QR để đọc thêm chi tiết.</h3>
+                    </div>
+                    <div class="container">
+                        <div class="image-container">
+                            <div class="image-item">
+                                <img src="{!$Resource.HumanRightsTH}" />
+                                <p>Business and Human Rights Policy </p> <br/>
+                            </div>
+                            <div class="image-item">
+                                <img src="{!$Resource.PrivacyTH}"/>
+                                <p>Privacy Policy for Thai Oil Public <br/> Company Limited and Its Affiliates</p>
+                            </div>
+                            <div class="image-item">
+                                <img src="{!$Resource.QSHETH}"/>
+                                <p>QSHE Policy</p> <br/>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <br />
+                <br />
+                <div class="endorseheader">
+                    <h3 style=" margin-right: 180px;">Thông tin được xác nhận bởi</h3>
+                </div>
+                <div class="endorsement">
+                    <div class="signature">
+                            <p>Ký tên ___________________________</p>
+                            <br />
+                            <p>     (__________________________)</p>
+                            <p>Ngày ____________________________</p>
+                    </div>
+                </div>
+            </apex:outputPanel>
+
+            <apex:outputPanel rendered="{!selectedLanguage == 'Bahasa'}">
+                <section>
+                    <div class="section-header">
+                        ESG and Compliance
+                    </div>
+                    <div class="section-content">
+                        <table style="width: 100%">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="topic-section">Lingkungan: </span> 
+                                        <span>Apakah perusahaan Anda memiliki kebijakan tentang lingkungan?</span>
+                                        <div style="margin-left: 25px;">{!accountObj.EnvironmentPolicy__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="topic-section">Tanggung Jawab Sosial: </span> 
+                                        <span>Apakah perusahaan Anda memiliki kebijakan tentang Tanggung Jawab Sosial?</span>
+                                        <div style="margin-left: 25px;">{!accountObj.SocialResponsibilityPolicy__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="topic-section">Tata Kelola: </span> 
+                                        <span>Apakah perusahaan Anda memiliki kebijakan tentang Tata Kelola Perusahaan?</span>
+                                        <div style="margin-left: 25px;">{!accountObj.CorporateGovernancePolicy__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="topic-section">Kesehatan dan Keselamatan Kerja: </span> 
+                                        <span>Apakah perusahaan Anda mempunyai kebijakan tentang Kesehatan dan Keselamatan Kerja?</span>
+                                        <div style="margin-left: 25px;">{!accountObj.OccupationalHealthAndSafetyPolicy__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="topic-section">Hak Asasi Manusia: </span> 
+                                        <span>Apakah perusahaan Anda memiliki kebijakan tentang Hak Asasi Manusia?</span>
+                                        <div style="margin-left: 25px;">{!accountObj.HumanRightsPolicy__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="topic-section">Pernahkah perusahaan Anda atau afiliasinya, atau direktur, pejabat, atau karyawan penting mana pun saat ini dituntut, atau
+                                            diselidiki karena penipuan, pernyataan keliru, korupsi, penyuapan, pencucian uang, kerja paksa, masalah lingkungan hidup,
+                                            atau aktivitas terkait lainnya dalam kurun waktu 5 tahun terakhir?</div> 
+                                        <div style="margin-left: 25px;">{!accountObj.HasIssuesDuringThePast5Years__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="topic-section">(Untuk Pelanggan) Apakah perusahaan Anda pernah mengalami gagal bayar melebihi jumlah USD 50.000 dalam 3 tahun
+                                            terakhir?</div> 
+                                        <div style="margin-left: 25px;">{!accountObj.PaymentOverTheAmountOfUSD__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="topic-section">(Untuk Pemasok) Apakah perusahaan Anda pernah gagal memasok berdasarkan perjanjian apa pun dalam waktu 3 tahun
+                                            terakhir?</div> 
+                                        <div style="margin-left: 25px;">{!accountObj.HasFailedSupplyInLast3Years__c}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="topic-section">Apakah perusahaan Anda mempunyai kantor, transaksi, investasi, aktivitas, atau tindakan yang menjadi target dijatuhkan
+                                            sanksi atau transaksi, investasi, aktivitas, atau tindakan yang direncanakan dengan (atau) orang atau entitas mana pun yang
+                                            berlokasi yang menjadi target dijatuhkan sanksi atau dengan (atau) entitas mana pun yang dimiliki atau dikendalikan oleh
+                                            entitas mana pun yang berlokasi yang menjadi target dijatuhkan sanksi*?
+                                            *Target yang dijatuhkan sanksi yaitu pihak mana pun yang menjadi target sanksi A.S., UE, Inggris, atau PBB atau
+                                            sepengetahuan Anda, otoritas sanksi lain yang relevan dengan perusahaan Anda seperti daftar SDN</div> 
+                                        <div style="margin-left: 25px;">{!accountObj.HasSanctionedTarget__c}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                <br/>
+                <!-- Photo-->
+                <section>
+                    <div style="color: #000000; font-weight: bold; font-size: 10px;">
+                            <h3 style="margin-left: 25px;">Pindai QR untuk membaca rincian lebih lanjut.</h3>
+                    </div>
+                    <div class="container">
+                        <div class="image-container">
+                            <div class="image-item">
+                                <img src="{!$Resource.HumanRightsTH}" />
+                                <p>Business and Human Rights Policy </p> <br/>
+                            </div>
+                            <div class="image-item">
+                                <img src="{!$Resource.PrivacyTH}"/>
+                                <p>Privacy Policy for Thai Oil Public <br/> Company Limited and Its Affiliates</p>
+                            </div>
+                            <div class="image-item">
+                                <img src="{!$Resource.QSHETH}"/>
+                                <p>QSHE Policy</p> <br/>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <br />
+                <br />
+                <div class="endorseheader">
+                    <h3 style=" margin-right: 180px;">Keterangan dijamin oleh</h3>
+                </div>
+                <div class="endorsement">
+                    <div class="signature">
+                            <p>Tandatangan ___________________________</p>
+                            <br />
+                            <p>     (__________________________)</p>
+                            <p>Tanggal ____________________________</p>
+                    </div>
+                </div>
+            </apex:outputPanel>
+        </div>
+        
+        <!-- Page 4 -->
+        <div style="page-break-after: always"/> <!-- Break page -->
+        <div>
+            <img src="{!$Resource.Logo}" style="display: block; width: 25%; margin-left: auto; margin-right: auto;"/>
+            <br />
+            <div class="fontDisclaimer">
+                Disclaimer Document
+            </div>
+            <br />
+            <section>
+                <div class="section-header">
+                    Terms Condition
+                </div>
+                <div class="section-content" style="width: 100%">
+                        <ol>
+                            <li>The company represents and warrants that information provided hereunder is rightfully provided on behalf of the company and it is
+                                accurate and true at the time of the registration.</li>
+                            <li>Thai Oil Public Company Limited reserves the right, at its sole discretion, to cancel or terminate the counterparty registration if it finds
+                                the company is disqualified for the registration or the information provided is false or fraud, provided that such cancellation of
+                                the registration shall not affect the rights and obligations of the partners under any existing transactions.</li>
+                            <li>Additional information may be requested upon review.</li>
+                            <li>Thaioil and Subsidiaries are committed to respecting human rights principles are declared in the international Bill of Human Rights in
+                                all business activities across our value chain.</li>
+                        </ol>
+                        <br />
+                        <div class="left-padded">
+                            We will take necessary actions to ensure that our employees, activities, products or services and business partners do not contribute to
+                            adverse human rights impacts. To that end, we have implemented a human rights due diligence process in line with the United Nations
+                            Guiding Principles on Business and Human Rights. Thai Oil's Business partners must follow international human rights standards.
+                            They should comply with the Policy and also extend these expectations to their business partners.
+                        </div>
+                </div>
+            </section>
+            <br />
+            <section>
+                <div class="section-header">
+                    Company Information
+                </div>
+                <div class="section-content">
+                    <table style="width: 100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Company Name (English) : </span> 
+                                    <span class="left-margin">{!accountObj.CompanyNameENF__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Company Name (Other Languages) : </span> 
+                                    <span class="left-margin">{!accountObj.CompanyNameLocal__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Specify Languages of Company Name : </span> 
+                                    <span class="left-margin">{!accountObj.SpecifyLanguagesOfCompanyName__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Former Name of Company (If any) : </span> 
+                                    <span class="left-margin">{!accountObj.FormerNameofCompany__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Country : </span> 
+                                    <span class="left-margin">
+                                        <!-- {!accountObj.Country__r.Code__c} - {!accountObj.Country__r.Description__c} -->
+                                        {!IF(
+                                            NOT(ISBLANK(accountObj.Country__r.Code__c)) && NOT(ISBLANK(accountObj.Country__r.Description__c)),
+                                            (accountObj.Country__r.Code__c) + ' - ' + (accountObj.Country__r.Description__c),
+                                            ''
+                                        )}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Customer Type : </span> 
+                                    <span class="left-margin">{!accountObj.CustomerType__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Supplier Type : </span> 
+                                    <span class="left-margin">{!accountObj.SupplierType__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Type of Business : </span> 
+                                    <span class="left-margin">{!accountObj.TypeOfBusinessCommercialEvaluation__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Other Business Type (Please specify) : </span> 
+                                    <span class="left-margin">{!accountObj.TypeOfBusinessOthers__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Legal Entity : </span> 
+                                    <span class="left-margin">{!accountObj.LegalEntity__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Other Legal Entity (Please specify) : </span> 
+                                    <span class="left-margin">{!accountObj.LegalEntityOthers__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Incorporation Date : </span> 
+                                    <span class="left-margin">{!formattedIncorporationDate}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Years of Experience in business? : </span> 
+                                    <span class="left-margin">{!accountObj.YearsofExperience__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">TAX Number : </span> 
+                                    <span class="left-margin">{!accountObj.TaxCode1__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Company Website : </span> 
+                                    <span class="left-margin">{!accountObj.CompanyWebsite__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">CEO/President/Managing Director First Name : </span> 
+                                    <span class="left-margin">{!accountObj.CEOFirstName__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Last Name : </span> 
+                                    <span class="left-margin">{!accountObj.CEOLastName__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Immediate Parent Company : </span> 
+                                    <span class="left-margin">{!accountObj.ImmidiateParentCompany__c}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <br />
+            <section style="margin-bottom: 10px">
+                <div class="section-header">
+                    List of Shareholders who hold an interest in the company more than 10%
+                </div>
+                <table style="width: 100%">
+                    <tbody>
+                        <apex:repeat var="item" value="{!shareholderList}">
+                            <tr>
+                                <td>
+                                    <strong class="topic-section">Name : </strong>
+                                    <span class="left-margin">{!item.Name}</span>
+                                </td>
+                                <td>
+                                    <strong class="section-inline">% of Shareholders </strong>
+                                    <span class="left-margin">{!item.of_Shareholder__c}</span>
+                                </td>
+                            </tr>
+                        </apex:repeat>
+                    </tbody>
+                </table>
+            </section>
+            <br />
+            <section>
+                <div class="section-header">
+                    Registered Address
+                </div>
+                <div class="section-content">
+                    <table style="width: 100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Building Code : </span> 
+                                    <span class="left-margin">{!accountObj.BuildingCodeLocal__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Room : </span> 
+                                    <span class="left-margin">{!accountObj.RoomLocal__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Floor : </span> 
+                                    <span class="left-margin">{!accountObj.FloorLocal__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">c/o : </span> 
+                                    <span class="left-margin">{!accountObj.CoName__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">House no. : </span> 
+                                    <span class="left-margin">{!accountObj.HousenoLocal__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Street : </span> 
+                                    <span class="left-margin">{!accountObj.StreetLocal__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Sub District : </span> 
+                                    <span class="left-margin">{!accountObj.SubDistrictLocalText__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">District : </span> 
+                                    <span class="left-margin">{!accountObj.DistrictLocalText__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">City/State : </span> 
+                                    <span class="left-margin">{!accountObj.CityStateLocal__r.Name}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Postal Code : </span> 
+                                    <span class="left-margin">{!accountObj.PostalCodeLocalText__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <span class="topic-section">Location in Google Maps (Link) : </span> 
+                                    <a href="{!accountObj.LocationInGoogleMapsLinks__c}" class="long-link">
+                                        {!accountObj.LocationInGoogleMapsLinks__c}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Location in Google Maps (Latitude, Longtitude) : </span> 
+                                    <!-- <span class="left-margin">{!accountObj.Location__Latitude__s} , {!accountObj.Location__Longitude__s}</span> -->
+                                    <span class="left-margin">
+                                        {!IF(
+                                            NOT(ISBLANK(accountObj.LocationInGoogleMapsGeolocation__Latitude__s)) && NOT(ISBLANK(accountObj.LocationInGoogleMapsGeolocation__Longitude__s)),
+                                            TEXT(accountObj.LocationInGoogleMapsGeolocation__Latitude__s) + ', ' + TEXT(accountObj.LocationInGoogleMapsGeolocation__Longitude__s),
+                                            ''
+                                        )}
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- Page 5 -->
+        <div style="page-break-after: always"/>
+        <div>
+            <img src="{!$Resource.Logo}" style="display: block; width: 25%; margin-left: auto; margin-right: auto;"/>
+            <br />
+            <div class="fontDisclaimer">
+                Disclaimer Document
+            </div>
+            <br />
+            <section>
+                <div class="section-header">
+                    Mailing Address
+                </div>
+                <div class="section-content">
+                    <table style="width: 100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Same as Registration Address : </span> 
+                                    <apex:outputPanel rendered="{!accountObj.SameRegisteredAddress__c}">
+                                        <span class="checkboxaddress left-margin">&#10003;</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!!accountObj.SameRegisteredAddress__c}">
+                                        <span class="checkbox left-margin"></span>
+                                    </apex:outputPanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Building Code : </span> 
+                                    <span class="left-margin">{!accountObj.BuildingCodeLocal__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Room : </span> 
+                                    <span class="left-margin">{!accountObj.RoomLocal__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Floor : </span> 
+                                    <span class="left-margin">{!accountObj.FloorLocal__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">c/o : </span> 
+                                    <span class="left-margin">{!accountObj.CoName__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">House no. : </span> 
+                                    <span class="left-margin">{!accountObj.HousenoLocal__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Street : </span> 
+                                    <span class="left-margin">{!accountObj.StreetLocal__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Sub District : </span> 
+                                    <span class="left-margin">{!accountObj.SubDistrictLocalText__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">District : </span> 
+                                    <span class="left-margin">{!accountObj.DistrictLocalText__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">City/State : </span> 
+                                    <span class="left-margin">{!accountObj.CityStateLocal__r.Name}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Postal Code : </span> 
+                                    <span class="left-margin">{!accountObj.PostalCodeLocalText__c}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <br />
+            <section>
+                <div class="section-header">
+                    Contact Person Information
+                </div>
+                <div class="section-content">
+                    <table style="width: 100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Title (Mr./Mrs./Miss/etc.) : </span> 
+                                    <span class="left-margin">{!accountObj.ContactSalutation__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Nickname : </span> 
+                                    <span class="left-margin">{!accountObj.Nickname__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">First Name : </span> 
+                                    <span class="left-margin">{!accountObj.FirstName__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Last Name : </span> 
+                                    <span class="left-margin">{!accountObj.LastName__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Position : </span> 
+                                    <span class="left-margin">{!accountObj.Position__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Email : </span> 
+                                    <span class="left-margin">{!accountObj.Email__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Language : </span> 
+                                    <span class="left-margin">{!accountObj.Language__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Country Code (Mobile) : </span> 
+                                    <span class="left-margin">{!accountObj.MobileCountryCode__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Mobile : </span> 
+                                    <span class="left-margin">{!accountObj.MobilePhone__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Country Code (Phone) : </span> 
+                                    <span class="left-margin">{!accountObj.PhoneCountryCode__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Phone : </span> 
+                                    <span class="left-margin">{!accountObj.Phone__c}</span>
+
+                                    <span class="section-inline" style="margin-left: 10px;">Phone (Ext.) : </span> 
+                                    <span class="left-margin">{!accountObj.PhoneExtension__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Country Code (Fax) : </span> 
+                                    <span class="left-margin">{!accountObj.FaxCountryCode__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Fax : </span> 
+                                    <span class="left-margin">{!accountObj.Fax__c}</span>
+
+                                    <span class="section-inline" style="margin-left: 21px;">Fax (Ext.) : </span> 
+                                    <span class="left-margin">{!accountObj.FaxExtension__c}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <br />
+            <section>
+                <div class="section-header">
+                    Product of Interested
+                </div>
+                <div class="section-content">
+                    <table style="width: 100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Interested Product Type as Customer : </span> 
+                                    <apex:outputPanel rendered="{!IsCustomer}">
+                                        <span class="left-margin">{!requestItem.ProductName__c}</span>
+                                    </apex:outputPanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Customer Other Products : </span> 
+                                    <span class="left-margin">{!requestItem.CustomerProductIdentification__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Interested Product Type as Supplier : </span> 
+                                    <apex:outputPanel rendered="{!!IsCustomer}">
+                                        <span class="left-margin">{!requestItem.ProductName__c}</span>
+                                    </apex:outputPanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Supplier Other Products : </span> 
+                                    <span class="left-margin">{!requestItem.SupplierProductIdentification__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Please estimate the company purchasing volume per month : </span> 
+                                    <span class="left-margin">{!accountObj.CompanyPurchasingVolumnperGrade__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Unit of purchasing volume per month : </span> 
+                                    <span class="left-margin">{!accountObj.EstimatedMonthlyPurchaseUnit__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">(For Customer) Which company do customers purchase this product from? : </span> 
+                                    <span class="left-margin">{!accountObj.CustomerPurchaseProductFrom__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Customer’s facility (Tank and Storage) : </span> 
+                                    <span class="left-margin">{!accountObj.CustomersFacilityTankAndStorage__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Customer’s facility (Transportation) : </span> 
+                                    <span class="left-margin">{!accountObj.CustomersFacilityTransportation__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">(For Supplier) Which company do you supply this product to? (If any) : </span> 
+                                    <span class="left-margin">{!accountObj.SupplierSupplyProductTo__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Supplier’s facility (Tank and Storage) : </span> 
+                                    <span class="left-margin">{!accountObj.SuppliersFacilityTankAndStorage__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Supplier’s facility (Transportation) : </span> 
+                                    <span class="left-margin">{!accountObj.SuppliersFacilityTransportation__c}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <br />
+            <section style="margin-bottom: 10px">
+                <div class="section-header">
+                    Destination Country
+                </div>
+                <table style="width: 100%">
+                    <tbody>
+                        <apex:repeat var="item" value="{!spList}">
+                            <tr>
+                                <td>
+                                    <strong class="topic-section">Country : </strong>
+                                    <span class="left-margin">{!item.ShippingCountry__c}</span>
+                                </td>
+                                <td>
+                                    <strong class="topic-section">Location Type </strong>
+                                    <span class="left-margin">{!item.LocationType__c}</span>
+                                </td>
+                            </tr>
+                        </apex:repeat>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <!-- Page 6 -->
+        <div style="page-break-after: always"/> <!-- Break page -->
+        <div>
+            <img src="{!$Resource.Logo}" style="display: block; width: 25%; margin-left: auto; margin-right: auto;"/>
+            <br />
+            <div class="fontDisclaimer">
+                Disclaimer Document
+            </div>
+            <br />
+            <section>
+                <div class="section-header">
+                    Additional Information
+                </div>
+                <div class="section-content">
+                    <table style="width: 100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Main Service : </span> 
+                                    <span class="left-margin">{!accountObj.MainService__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Other Main Service : </span> 
+                                    <span class="left-margin">{!accountObj.OtherMainService__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Main Product : </span> 
+                                    <span class="left-margin">{!accountObj.MainProduct__c}</span>
+                                </td>
+                                <td>
+                                    <span class="section-inline">Other Main Product : </span> 
+                                    <span class="left-margin">{!accountObj.OtherMainProduct__c}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <span class="topic-section">Company’s latest credit rating by international agencies: (Please specify if any e.g. BBB,Baa2) : </span> 
+                                    <span class="left-margin">{!accountObj.CompanyLatestCreditRating__c}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <br />
+            <section>
+                <div class="section-header">
+                    ESG and Compliance
+                </div>
+                <div class="section-content">
+                    <table style="width: 100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Environment: </span> 
+                                    <span>Does your company have Environment policy?</span>
+                                    <div style="margin-left: 25px;">{!accountObj.EnvironmentPolicy__c}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Social Responsibility: </span> 
+                                    <span>Does your company have Social Responsibility policy?</span>
+                                    <div style="margin-left: 25px;">{!accountObj.SocialResponsibilityPolicy__c}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Governance: </span> 
+                                    <span>Does your company have Corporate Governance policy?</span>
+                                    <div style="margin-left: 25px;">{!accountObj.CorporateGovernancePolicy__c}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Occupational Health and Safety: </span> 
+                                    <span>Does your company have Occupational Health and Safety policy?</span>
+                                    <div style="margin-left: 25px;">{!accountObj.OccupationalHealthAndSafetyPolicy__c}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="topic-section">Human Rights: </span> 
+                                    <span>Does your company have Human Rights policy?</span>
+                                    <div style="margin-left: 25px;">{!accountObj.HumanRightsPolicy__c}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="topic-section">Has your company or any of its affiliates, or any current director, officer, or key employee ever been charged with, or investigated for fraud, misrepresentation, corruption, bribery, money laundering, forced labour, environmental issues or other related activities during the past five years? </div> 
+                                    <div style="margin-left: 25px;">{!accountObj.HasIssuesDuringThePast5Years__c}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="topic-section">(For Customer) Has your company ever had any default payment over the amount of USD 50,000 in the last 3 years? </div> 
+                                    <div style="margin-left: 25px;">{!accountObj.PaymentOverTheAmountOfUSD__c}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="topic-section">(For Supplier) Has your company ever failed to supply under any agreement in the last 3 years? </div> 
+                                    <div style="margin-left: 25px;">{!accountObj.HasFailedSupplyInLast3Years__c}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="topic-section">Does your company have any offices, transactions, investments, activities or planned activities in sanctioned
+                                        targets or any transactions, investments, activities or planned activities with (or in) any person or entity located
+                                        in sanctioned targets or with (or in) any entity owned or controlled by any entity located in sanctioned targets*?
+                                        *A sanctioned target means any party that is a target of U.S., EU, UK or UN sanctions or to your knowledge,
+                                        any other sanctions authority relevant to your company such as SDN list </div> 
+                                    <div style="margin-left: 25px;">{!accountObj.HasSanctionedTarget__c}</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <br/>
+            <!-- Photo-->
+            <section>
+                <div style="color: #000000; font-weight: bold; font-size: 10px;">
+                        <h3 style="margin-left: 25px;">Scan QR to read more details.</h3>
+                </div>
+                <div class="container">
+                    <div class="image-container">
+                        <div class="image-item">
+                            <img src="{!$Resource.HumanRightsTH}" />
+                            <p>Business and Human Rights Policy </p> <br/>
+                        </div>
+                        <div class="image-item">
+                            <img src="{!$Resource.PrivacyTH}"/>
+                            <p>Privacy Policy for Thai Oil Public <br/> Company Limited and Its Affiliates</p>
+                        </div>
+                        <div class="image-item">
+                            <img src="{!$Resource.QSHETH}"/>
+                            <p>QSHE Policy</p> <br/>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <br />
+            <br />
+            <div class="endorseheader">
+                    <h3 style=" margin-right: 210px;">Endorse By</h3>
+            </div>
+            <div class="endorsement">
+                <div class="signature">
+                        <p>Signature: ___________________________</p>
+                        <br />
+                        <p>          (___________________________)</p>
+                        <p>Date: _______________________________</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+</apex:page>

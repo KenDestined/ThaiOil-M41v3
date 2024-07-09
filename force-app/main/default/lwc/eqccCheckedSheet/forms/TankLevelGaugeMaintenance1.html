@@ -1,0 +1,762 @@
+<template>
+    <div data-id="formBegin">
+        <c-step-page-header
+            num-steps="1"
+            current-step="1"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+        <div class="slds-text-heading_medium text-center">Tank Level Gauge Maintenance Record</div>
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                        <svg
+                            class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                            aria-hidden="true"
+                        >
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                        </svg>
+                        <input
+                            type="text"
+                            data-id="notification"
+                            class="slds-input avoidPercentageInput"
+                            value={notification}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no ">FL.</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section slds-is-open" data-id="sectionOne">
+                        <div class="slds-accordion__summary" data-id="headingOne">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseOne"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionOne"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        0</span
+                                    ><span class="slds-accordion__summary-content">Header Information</span>
+                                </button>
+                            </h2>
+                        </div>
+                        <div data-id="collapseOne" class="slds-accordion__content">
+                            <div class="card-body">
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col">
+                                        <label class="slds-form-element__label" for="tank-no">Tank No</label>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="tank-no"
+                                                class="slds-input avoidPercentageInput"
+                                            />
+                                        </div>
+                                        <label class="slds-form-element__label" for="tank-no">Inst. Tag No.</label>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="inst-tag-no"
+                                                class="slds-input avoidPercentageInput"
+                                            />
+                                        </div>
+                                        <label class="slds-form-element__label" for="tank-no">ATG Model</label>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="atg-model"
+                                                class="slds-input avoidPercentageInput"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="slds-col">
+                                        <label class="slds-form-element__label" for="tank-no">Tank Service</label>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="tank-service"
+                                                class="slds-input avoidPercentageInput"
+                                            />
+                                        </div>
+                                        <label class="slds-form-element__label" for="tank-no">ATG Maker</label>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="atg-maker"
+                                                class="slds-input avoidPercentageInput"
+                                            />
+                                        </div>
+                                        <label class="slds-form-element__label" for="tank-no">S/N</label>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="sn"
+                                                class="slds-input avoidPercentageInput"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionTwo">
+                        <div class="slds-accordion__summary" data-id="headingTwo">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseTwo"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionTwo"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse"
+                                    >
+                                        1</span
+                                    ><span class="slds-accordion__summary-content" title="Accordion summary"
+                                        >Level Data Record</span
+                                    >
+                                </button>
+                            </h2>
+                        </div>
+                        <div data-id="collapseTwo" class="slds-accordion__content">
+                            <div class="card-body">
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col">
+                                        <label class="slds-form-element__label" for="tank-no">Record Date</label>
+                                        <div class="slds-form-element__control" data-answered="false">
+                                            <input
+                                                onchange={onIEH}
+                                                type="date"
+                                                data-id="record-date"
+                                                class="slds-input"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="slds-col slds-size_6-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+                                    ></div>
+                                </div>
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col">
+                                        <label class="slds-form-element__label" for="tank-no">Dip Tape S/N</label>
+                                        <div class="slds-form-element__control" data-answered="false">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="dip-tape-sn"
+                                                class="slds-input"
+                                            />
+                                        </div>
+                                        <label class="slds-form-element__label" for="tank-no"
+                                            >Task Reference High (Metre)</label
+                                        >
+                                        <div class="slds-form-element__control" data-answered="false">
+                                            <input onchange={onIEH} type="text" data-id="task-ref" class="slds-input" />
+                                        </div>
+                                    </div>
+                                    <div class="slds-col">
+                                        <label class="slds-form-element__label" for="tank-no">Calibration due</label>
+                                        <div class="slds-form-element__control" data-answered="false">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="calibration-due"
+                                                class="slds-input"
+                                            />
+                                        </div>
+                                        <label class="slds-form-element__label" for="tank-no"
+                                            >Actual Reference High (Metre)</label
+                                        >
+                                        <div class="slds-form-element__control" data-answered="false">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="actual-ref"
+                                                class="slds-input"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <form class="slds-form slds-p-top_small">
+                                    <fieldset class="slds-form-element">
+                                        <div class="slds-form-element__control slds-p-vertical_small">
+                                            <fieldset data-answered="false">
+                                                <label class="slds-form-element__label" for="hatch">Dip Point</label>
+                                                <div class="slds-form-element__control">
+                                                    <div
+                                                        class="slds-form-element__control slds-radio_button-group"
+                                                        style="border: 0px solid #dddbda;"
+                                                    >
+                                                    <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="gauge-hatch" id="gauge-hatch" name="gauge" value="Gauge hatch" /> <label class="slds-radio__label" for="gauge-hatch"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label">Gauge hatch</span > </label> </span>
+                                                    <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="sample-point" id="sample-point" name="gauge" value="Sample point" /> <label class="slds-radio__label" for="sample-point"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label">Sample point</span > </label> </span>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            <fieldset data-answered="false">
+                                                <label class="slds-form-element__label" for="hatch">Dip Method</label>
+                                                <div class="slds-form-element__control">
+                                                    <div
+                                                        class="slds-form-element__control slds-radio_button-group"
+                                                        style="border: 0px solid #dddbda;"
+                                                    >
+                                                        <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="innage" id="innage" name="Innage" value="Innage (Dip)" /> <label class="slds-radio__label" for="innage"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label">Innage (Dip)</span > </label> </span>
+                                                        <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="ullage" id="ullage" name="Innage" value="Ullage" /> <label class="slds-radio__label" for="ullage"> <span class="slds-radio_faux"></span>  <span class="slds-form-element__label">Ullage</span > </label> </span>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                                <div class="slds-m-around_small" style="margin: 0rem;">
+                                    <table class="table" data-answered="false">
+                                        <thead>
+                                            <tr>
+                                                <th><span class="slds-form-element__label">Dipping No.</span></th>
+                                                <th>
+                                                    <span class="slds-form-element__label"
+                                                        >Reading on dip tape (Metre)</span
+                                                    >
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><span class="slds-form-element__label">1</span></td>
+                                                <td>
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="no1"
+                                                            class="slds-input"
+                                                        />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="slds-form-element__label">2</span></td>
+                                                <td>
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="no2"
+                                                            class="slds-input"
+                                                        />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="slds-form-element__label">3</span></td>
+                                                <td>
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="no3"
+                                                            class="slds-input"
+                                                        />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="slds-form-element__label">4</span></td>
+                                                <td>
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="no4"
+                                                            class="slds-input"
+                                                        />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="slds-form-element__label">5</span></td>
+                                                <td>
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="no5"
+                                                            class="slds-input"
+                                                        />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <fieldset
+                                            class="slds-form-element slds-form-element_stacked"
+                                            data-answered="false"
+                                        >
+                                            <label class="slds-form-element__label" for="tank-no"
+                                                >Acceptable dipping level at (Metre)</label
+                                            >
+                                            <div class="slds-form-element__control">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="number"
+                                                    min="0"
+                                                    step="1"
+                                                    onkeypress={onKeyPress}
+                                                    data-id="acceptable"
+                                                    class="slds-input"
+                                                />
+                                            </div>
+                                    </fieldset>
+                                    <fieldset class="slds-form-element slds-form-element__label">
+                                        <aside>
+                                            <strong
+                                                style="text-decoration: underline;"
+                                                class="slds-form-element__label"
+                                                >Note:</strong
+                                            >
+                                            The accepted value must be within 3 mm of of max-min reading of the
+                                            last 3 consecutive dipping.
+                                        </aside>
+                                    </fieldset>
+                                </div>
+                                <form class="slds-form slds-p-top_small">
+                                    <fieldset class="slds-form-element">
+                                        <div class="slds-form-element__control slds-p-vertical_small">
+                                            <fieldset data-answered="false">
+                                                <label class="slds-form-element__label" for="hatch">ATG Type</label>
+                                                <div class="slds-form-element__control">
+                                                    <div
+                                                        class="slds-form-element__control slds-radio_button-group"
+                                                        style="border: 0px solid #dddbda;"
+                                                    >
+                                                    <span class="slds-radio"> 
+                                                        <input 
+                                                        onchange={onIEH} 
+                                                        type="radio" 
+                                                        data-id="servo-type" 
+                                                        id="servo-type" 
+                                                        name="servo" 
+                                                        value="Servo type" /> 
+                                                        <label class="slds-radio__label" for="servo-type"> 
+                                                            <span class="slds-radio_faux"></span>  
+                                                            <span class="slds-form-element__label">Servo type</span > </label> </span>
+                                                            <span class="slds-radio"> 
+                                                                <input 
+                                                                onchange={onIEH} 
+                                                                type="radio" 
+                                                                data-id="radar-type" 
+                                                                id="radar-type" 
+                                                                name="servo" 
+                                                                value="Radar type" /> 
+                                                                <label class="slds-radio__label" for="radar-type"> 
+                                                                    <span class="slds-radio_faux"></span>  
+                                                                    <span class="slds-form-element__label">Radar type</span > </label> </span>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                                <div class="slds-m-around_small" style="margin: 0rem;">
+                                    <table class="table" data-answered="false">
+                                        <thead>
+                                            <tr>
+                                                <th><span class="slds-form-element__label">ATG test no.</span></th>
+                                                <th>
+                                                    <span class="slds-form-element__label">ATG reading (Metre)</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><span class="slds-form-element__label">1</span></td>
+                                                <td>
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="atg-reading-1"
+                                                            class="slds-input"
+                                                        />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="slds-form-element__label">2</span></td>
+                                                <td>
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="atg-reading-2"
+                                                            class="slds-input"
+                                                        />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="slds-form-element__label">3</span></td>
+                                                <td>
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="atg-reading-3"
+                                                            class="slds-input"
+                                                        />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <fieldset class="slds-form-element slds-form-element__label">
+                                        <aside>
+                                            <strong
+                                                style="text-decoration: underline;"
+                                                class="slds-form-element__label"
+                                                >Note:</strong
+                                            >
+                                            The ATG test record has apply for servo type only. The test result shall
+                                            not over 3 mm. of manual dipping.
+                                        </aside>
+                                    </fieldset><br/>
+                                    <div class="slds-form-element__control slds-p-vertical_small">
+                                        <fieldset data-answered="false">
+                                            <label class="slds-form-element__label" for="hatch"
+                                                ><b>Level condition:</b></label
+                                            >
+                                            <div class="slds-form-element__control">
+                                                <div
+                                                    class="slds-form-element__control slds-radio_button-group"
+                                                    style="border: 0px solid #dddbda;"
+                                                >
+                                                <span class="slds-radio"> 
+                                                    <input 
+                                                    onchange={onIEH} 
+                                                    type="radio" 
+                                                    data-id="moving" 
+                                                    id="moving" 
+                                                    name="moving" 
+                                                    value="Moving" /> 
+                                                    <label class="slds-radio__label" for="moving"> 
+                                                        <span class="slds-radio_faux"></span>  
+                                                        <span class="slds-form-element__label">Moving</span > </label> </span>
+                                                        <span class="slds-radio"> 
+                                                            <input 
+                                                            onchange={onIEH} 
+                                                            type="radio" 
+                                                            data-id="non-moving" 
+                                                            id="non-moving" 
+                                                            name="moving" 
+                                                            value="Non-moving" /> 
+                                                            <label class="slds-radio__label" for="non-moving"> 
+                                                                <span class="slds-radio_faux"></span>  
+                                                                <span class="slds-form-element__label">Non-moving</span > </label> </span>
+                                                </div>
+                                            </div>
+                                            <label class="slds-form-element__label" for="hatch"
+                                                ><b>ATG level record:</b></label
+                                            >
+                                            <div class="slds-grid slds-gutters" data-answered="false">
+                                                <div class="slds-col">
+                                                    <div class="slds-form-element">
+                                                        <label
+                                                            class="slds-form-element__label"
+                                                            for="first-reading"
+                                                            >First reading (No adj.)</label
+                                                        >
+                                                        <div
+                                                            class="slds-form-element__control slds-input-has-fixed-addon"
+                                                        >
+                                                            <input
+                                                                onchange={onIEH}
+                                                                type="number"
+                                                                min="0"
+                                                                step="1"
+                                                                onkeypress={onKeyPress}
+                                                                data-id="first-reading"
+                                                                placeholder=""
+                                                                aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post"
+                                                                class="slds-input"
+                                                            />
+                                                            <span class="slds-form-element__addon">M.</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-col">
+                                                    <div class="slds-form-element">
+                                                        <label
+                                                            class="slds-form-element__label"
+                                                            for="reading-after"
+                                                            >Reading after adj.</label
+                                                        >
+                                                        <div
+                                                            class="slds-form-element__control slds-input-has-fixed-addon"
+                                                        >
+                                                            <input
+                                                                onchange={onIEH}
+                                                                type="number"
+                                                                min="0"
+                                                                step="1"
+                                                                onkeypress={onKeyPress}
+                                                                data-id="reading-after"
+                                                                placeholder=""
+                                                                aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post"
+                                                                class="slds-input"
+                                                            />
+                                                            <span class="slds-form-element__addon">M.</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <form class="slds-form slds-p-top_small">
+                                    <fieldset class="slds-form-element">
+                                        <div class="slds-form-element__control slds-p-vertical_small">
+                                            <fieldset data-answered="false">
+                                                <label class="slds-form-element__label" for="hatch"
+                                                    ><b>Tank classification:</b></label
+                                                >
+                                                <div class="slds-form-element__control">
+                                                    <div
+                                                        class="slds-form-element__control slds-radio_button-group"
+                                                        style="border: 0px solid #dddbda;"
+                                                    >
+                                                    <span class="slds-radio"> 
+                                                        <input 
+                                                        onchange={onIEH} 
+                                                        type="radio" 
+                                                        data-id="concerned-excise" 
+                                                        id="concerned-excise" 
+                                                        name="concerned-excise" 
+                                                        value="Concerned Excise" /> 
+                                                        <label class="slds-radio__label" for="concerned-excise"> 
+                                                            <span class="slds-radio_faux"></span>  
+                                                            <span class="slds-form-element__label">Concerned Excise</span > </label> </span>
+                                                            <span class="slds-radio"> 
+                                                                <input 
+                                                                onchange={onIEH} 
+                                                                type="radio" 
+                                                                data-id="concerned-custom" 
+                                                                id="concerned-custom" 
+                                                                name="concerned-excise" 
+                                                                value="Concerned Custom" /> 
+                                                                <label class="slds-radio__label" for="concerned-custom"> 
+                                                                    <span class="slds-radio_faux"></span>  
+                                                                    <span class="slds-form-element__label">Concerned Custom</span > </label> </span>
+                                                                    <span class="slds-radio"> 
+                                                                        <input 
+                                                                        onchange={onIEH} 
+                                                                        type="radio" 
+                                                                        data-id="internal-use" 
+                                                                        id="internal-use" 
+                                                                        name="concerned-excise" 
+                                                                        value="Internal use" /> 
+                                                                        <label class="slds-radio__label" for="internal-use"> 
+                                                                            <span class="slds-radio_faux"></span>  
+                                                                            <span class="slds-form-element__label">Internal use</span > </label> </span>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            <fieldset data-answered="false">
+                                                <label class="slds-form-element__label" for="hatch"
+                                                    ><b>Maintenance result:</b></label
+                                                >
+                                                <div class="slds-form-element__control">
+                                                    <div
+                                                        class="slds-form-element__control slds-radio_button-group"
+                                                        style="border: 0px solid #dddbda;"
+                                                    >
+                                                    <span class="slds-radio"> 
+                                                        <input 
+                                                        onchange={onIEH} 
+                                                        type="radio" 
+                                                        data-id="passed-good" 
+                                                        id="passed-good" 
+                                                        name="passed" 
+                                                        value="Passed, good for service" /> 
+                                                        <label class="slds-radio__label" for="passed-good"> 
+                                                            <span class="slds-radio_faux"></span>  
+                                                            <span class="slds-form-element__label">Passed, good for service</span > </label> </span>
+                                                            <span class="slds-radio"> 
+                                                                <input 
+                                                                onchange={onIEH} 
+                                                                type="radio" 
+                                                                data-id="out-of" 
+                                                                id="out-of" 
+                                                                name="passed" 
+                                                                value="Out of calibration" /> 
+                                                                <label class="slds-radio__label" for="out-of"> 
+                                                                    <span class="slds-radio_faux"></span>  
+                                                                    <span class="slds-form-element__label">Out of calibration</span > </label> </span>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label" for="text-input-id-1"
+                                                        >Remark:</label
+                                                    >
+                                                    <div class="slds-form-element__control">
+                                                        <textarea
+                                                            onchange={onIEH}
+                                                            data-id="remark"
+                                                            class="slds-textarea"
+                                                            placeholder=""
+                                                            rows="6"
+                                                        ></textarea>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+            </ul>
+        </div>
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openRejectModal}>
+                    Reject
+                </button>
+                <button data-id="recallEQCCStep" class="slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                    Recall
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Submit</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-lookup object-api-name="user" icon-name="standard:user" onrecordselection={onUserSelection}></c-lookup>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submit} title="Submit">Submit</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

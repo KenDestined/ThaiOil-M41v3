@@ -1,0 +1,999 @@
+<template>
+    <div data-id="formBegin"> 
+        <c-step-page-header 
+            num-steps="1" 
+            current-step="1" 
+            percentage={percentage} 
+            is-current={isCurrent} 
+            record-id={recordId} >
+        </c-step-page-header> 
+        <c-lwc-modal 
+            title={modalTitle} 
+            is-visible={modalVisible} 
+            confirm-text={modalConfirmButton} 
+            cancel-text={modalCancelButton} 
+            name={modalName} 
+            message={modalMessage} 
+            onselected={handleModalSelection} >
+        </c-lwc-modal>
+        <!-- Form Question = 30 -->  
+        <div class="slds-text-heading_medium text-center">ENEM-QFR-9047-GNR</div>
+        <div class="slds-text-heading_medium text-center">TRANSFORMER INSPECTION</div>
+        
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="notification"
+                            class="slds-input avoidPercentageInput"
+                            value={notification}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="bs-example"></div>
+    </div>
+<!-- Dropdown section 0 = -->
+
+<div class="bs-example">
+    <ul class="slds-accordion">  
+        <li class="slds-accordion__list-item"> 
+        <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+            <div class="card-header" data-id="headingZero">
+                <h2 class="slds-accordion__summary-heading card-header"> 
+                    <button 
+                        type="button" 
+                        aria-controls="collapseZero" 
+                        aria-expanded="true" 
+                        class="btn btn-link" 
+                        data-parent="sectionZero" 
+                        onclick={expandSection} > 
+                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" >    
+                    </lightning-icon> 
+                    <span 
+                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" 
+                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small" >0
+                    </span >
+                    <span class="slds-accordion__summary-content">Header Information</span> 
+                    </button>
+                </h2>
+            </div>
+            <div data-id="collapseZero" class="slds-accordion__content">
+                <div class="card-body">
+                    <div class="table-responsive" style="margin: 0rem;">
+                        <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                            <tbody> 
+                                <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">Tested Date: </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="date" data-id="0-input-1" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td><td></td>  
+                                    <td>
+                                        <span class="slds-form-element__label">Equipment Tag. </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-2" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">Voltage Level(kV) </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-3" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td><td></td>  
+                                    <td>
+                                        <span class="slds-form-element__label">Rated Power (kVA) </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-4" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                        <span class="slds-form-element__label">Project name/Proposal number </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-5" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td><td></td>  
+                                    <td>
+                                        <span class="slds-form-element__label">Notification No. </span>
+                                    </td>
+                                    <td>
+                                        <div class="slds-form-element__control" data-answered="false"> 
+                                        <input onchange={onIEH} type="text" data-id="0-input-6" class="slds-input avoidPercentageInput" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td>
+                                    <span class="slds-form-element__label">Inspection</span></td>
+                                    <td>
+                                        <div class="slds-form-element__control" >
+                                            <input onchange={onIEH} type="radio" 
+                                            name="insp-mtn" 
+                                            data-id="Insp" 
+                                            id="Insp" 
+                                            value="Inspection">
+                                        </div>   
+                                    </td><td></td>
+                                    <td>
+                                    <span class="slds-form-element__label">Maintenance</span></td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="radio" 
+                                            name="insp-mtn" 
+                                            data-id="Mtn" 
+                                            id="Mtn" 
+                                            value="Maintenance">
+                                        </div>   
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>  
+            </div>    
+        </section>
+    </li>
+
+<!-- Dropdown section 1  = -->
+<li class="slds-accordion__list-item">
+    <section class="slds-accordion__section" data-id="sectionOne">
+        <div class="slds-accordion__summary" data-id="headingOne">
+            <h2 class="slds-accordion__summary-heading card-header">
+                <button
+                    type="button"
+                    aria-controls="collapseOne"
+                    aria-expanded="true"
+                    class="btn btn-link"
+                    data-parent="sectionOne"
+                    onclick={expandSection}
+                >
+                    <lightning-icon
+                        icon-name="utility:switch"
+                        alternative-text="button icon"
+                        size="x-small"
+                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                    ></lightning-icon>
+                    <span
+                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                    >
+                        1</span
+                    ><span class="slds-accordion__summary-content"> ผลการตรวจสอบ</span>
+                </button>
+                <div class="slds-col">
+                    <div class="slds-checkbox obj-right">
+                        <input
+                            onchange={disableSection}
+                            type="checkbox"
+                            name="options"
+                            id="checkbox-unique-id-1"
+                            data-id="checkbox-unique-id-1"
+                            data-remark="checkbox-unique-id-1"
+                            value="checkbox-unique-id-1"
+                            data-parent="sectionOne"
+                        />
+                        <label class="slds-checkbox__label" for="checkbox-unique-id-1">
+                            <span class="slds-checkbox_faux"></span>
+                            <span class="slds-form-element__label">N/A</span>
+                        </label>
+                    </div>
+                </div>
+            </h2>
+        </div>
+        <div
+            class="slds-grid slds-gutters hide-remark"
+            id="sectionOne-remark"
+            data-id="sectionOne-remark"
+        >
+            <div class="slds-col">
+                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                <div class="slds-form-element__control">
+                    <textarea
+                        data-id="sectionOne-inputRemark"
+                        onchange={onIEH}
+                        id="sectionOne-inputRemark"
+                        class="slds-textarea"
+                    ></textarea>
+                </div>
+            </div>
+        </div>
+<div data-id="collapseOne" class="slds-accordion__content">
+    <div class="card-body">
+                <div class="table-responsive" style="margin: 0rem;">
+                    <table class="table"  border="0" cellpadding="0" cellspacing="0">
+                        <colgroup>
+                                <col span="1" style="width: 25%;">
+                        </colgroup>
+                        <tbody>
+                            
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">1. Transformer is in good condition as site installation (H) </span></td>
+                                <td class="text-right"><span class="slds-form-element__label">Yes</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="trcond" 
+                                        data-id="trcondYes" 
+                                        id="trcondYes" 
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td class="text-right"><span class="slds-form-element__label">No</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="trcond" 
+                                        data-id="trcondNo" 
+                                        id="trcondNo" 
+                                        value="Not Pass">
+                                    </div>   
+                                </td><td></td>
+                            </tr>
+                                <tr>
+                                    <td><span class="slds-form-element__label">-Remark</span></td>
+                                    <td colspan="5"> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="text" 
+                                                    data-id="remark1" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                
+                            </tr>
+                            <tr data-answered="false">
+                                
+                                <td><span class="slds-form-element__label">2. Transformer insulation test was done, Insulation test result:  (H)</span></td>
+                                <td class="text-right"><span class="slds-form-element__label">Yes</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="controlcable" 
+                                        data-id="Controlcablepass" 
+                                        id="Controlcablepass" 
+                                        value="Pass">
+                                    </div>   
+                                </td>
+                                <td class="text-right"><span class="slds-form-element__label">No</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="controlcable" 
+                                        data-id="Controlcablenotpass" 
+                                        id="Controlcablenotpass" 
+                                        value=" Not Pass">
+                                    </div>   
+                                </td><td></td>
+                            </tr>
+                           
+                            <tr><td></td><td class="text-center"><span class="slds-form-element__label"> (1 min)</span></td> <td></td>
+                                <td class="text-center"><span class="slds-form-element__label"> (10 min)</span></td><td></td> 
+                                <td class="text-center"><span class="slds-form-element__label">PI</span></td> 
+                            </tr>
+
+                            <tr data-answered="false">
+                            <td><span class="slds-form-element__label">Gen.-E  MΩ</span></td>
+                            <td> 
+                                <div class="slds-form-element__control"> 
+                                    <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} 
+                                            data-id="Gen-E-1min" 
+                                            class="slds-input"  
+                                            style="padding-right: 0px; padding-left: 0px;">
+                                </div>
+                            </td>
+                            <td><span class="slds-form-element__label">MΩ</span></td>
+                            <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                data-id="Gen-E-10min" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td><span class="slds-form-element__label">MΩ</span></td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} 
+                                                data-id="Gen-E-PI" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-answered="false">
+                                <td><span class="slds-form-element__label">HV.-E</span></td>
+                                <td> 
+                                    <div class="slds-form-element__control"> 
+                                        <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                data-id="HV-E-1min" 
+                                                class="slds-input"  
+                                                style="padding-right: 0px; padding-left: 0px;">
+                                    </div>
+                                </td>
+                                <td><span class="slds-form-element__label">MΩ</span></td>
+                                <td> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                    data-id="HV-E-10min" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                    <td><span class="slds-form-element__label">MΩ</span></td>
+                                    <td> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} 
+                                                    data-id="HV-E-PI" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td><span class="slds-form-element__label">LV-HV</span></td>
+                                    <td> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                    data-id="LV-HV-1min" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                    <td><span class="slds-form-element__label">MΩ</span></td>
+                                    <td> 
+                                            <div class="slds-form-element__control"> 
+                                                <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                        data-id="LV-HV-10min" 
+                                                        class="slds-input"  
+                                                        style="padding-right: 0px; padding-left: 0px;">
+                                            </div>
+                                        </td>
+                                        <td><span class="slds-form-element__label">MΩ</span></td>
+                                        <td> 
+                                            <div class="slds-form-element__control"> 
+                                                <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                        data-id="LV-HV-PI" 
+                                                        class="slds-input"  
+                                                        style="padding-right: 0px; padding-left: 0px;">
+                                            </div>
+                                        </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="slds-form-element__label">-Remark</span></td>
+                                    <td colspan="5"> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="text" 
+                                                    data-id="remark2" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                    
+                                    <td><span class="slds-form-element__label">3. HV Cable  insulation test was done, Insulation test result: (H)</span></td>
+                                    <td class="text-right"><span class="slds-form-element__label">Yes</span></td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="radio" 
+                                            name="hvcabinsu" 
+                                            data-id="Hvcabpass" 
+                                            id="Hvcabpass" 
+                                            value="Pass"
+                                            style="margin-top: 6px">
+                                        </div>   
+                                    </td>
+                                    <td class="text-right"><span class="slds-form-element__label">No</span></td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="radio" 
+                                            name="hvcabinsu" 
+                                            data-id="Hvcabnotpass" 
+                                            id="Hvcabnotpass" 
+                                            value=" Not Pass"
+                                            style="margin-top:6px">
+                                        </div>   
+                                    </td><td></td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td><span class="slds-form-element__label">L1-E</span></td>
+                                    <td> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                    data-id="L1-E-1" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                    <td><span class="slds-form-element__label">MΩ</span></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td><span class="slds-form-element__label">L2-E</span></td>
+                                
+                                    <td> 
+                                            <div class="slds-form-element__control"> 
+                                                <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                        data-id="L2-E-1" 
+                                                        class="slds-input"  
+                                                        style="padding-right: 0px; padding-left: 0px;">
+                                            </div>
+                                        </td>
+                                        <td><span class="slds-form-element__label">MΩ</span></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td><span class="slds-form-element__label">L3-E</span></td>
+                                        
+                                        <td> 
+                                            <div class="slds-form-element__control"> 
+                                                <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                        data-id="L3-E-1" 
+                                                        class="slds-input"  
+                                                        style="padding-right: 0px; padding-left: 0px;">
+                                            </div>
+                                        </td>
+                                        <td><span class="slds-form-element__label">MΩ</span></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="slds-form-element__label">-Remark</span></td>
+                                    <td colspan="5"> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="text" 
+                                                    data-id="remark3" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                    
+                                    <td><span class="slds-form-element__label"> 4. LV Cable  insulation test was done, Insulation test result: (H)</span></td>
+                                    <td class="text-right"><span class="slds-form-element__label">Yes</span></td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="radio" 
+                                            name="lvcabinsu" 
+                                            data-id="Lvcabpass" 
+                                            id="Lvcabpass" 
+                                            value="Pass"
+                                            style="margin-top: 4px">
+                                        </div>   
+                                    </td>
+                                    <td class="text-right"><span class="slds-form-element__label">No</span></td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="radio" 
+                                            name="lvcabinsu" 
+                                            data-id="Lvcabnotpass" 
+                                            id="Lvcabnotpass" 
+                                            value=" Not Pass"
+                                            style="margin-top: 4px">
+                                        </div>
+                                    </td><td></td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td><span class="slds-form-element__label">L1-E</span></td>
+                                    <td> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                    data-id="L1-E-2" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                    <td><span class="slds-form-element__label">MΩ</span></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td><span class="slds-form-element__label">L2-E</span></td>
+                                
+                                    <td> 
+                                            <div class="slds-form-element__control"> 
+                                                <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                        data-id="L2-E-2" 
+                                                        class="slds-input"  
+                                                        style="padding-right: 0px; padding-left: 0px;">
+                                            </div>
+                                        </td>
+                                        <td><span class="slds-form-element__label">MΩ</span></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td><span class="slds-form-element__label">L3-E</span></td>
+                                        
+                                        <td> 
+                                            <div class="slds-form-element__control"> 
+                                                <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                        data-id="L3-E-2" 
+                                                        class="slds-input"  
+                                                        style="padding-right: 0px; padding-left: 0px;">
+                                            </div>
+                                        </td>
+                                        <td><span class="slds-form-element__label">MΩ</span></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="slds-form-element__label">-Remark</span></td>
+                                    <td colspan="5"> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="text" 
+                                                    data-id="remark4" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                    
+                                    <td><span class="slds-form-element__label">5. Oil / Winding temperator check and function test (H)</span></td>
+                                    <td class="text-right"><span class="slds-form-element__label">Yes</span></td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="radio" 
+                                            name="oiltemp" 
+                                            data-id="oiltpass" 
+                                            id="oiltpass" 
+                                            value="Pass"
+                                            style="margin-top: 6px">
+                                        </div>   
+                                    </td>
+                                    <td class="text-right"><span class="slds-form-element__label">No</span></td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="radio" 
+                                            name="oiltemp" 
+                                            data-id="oiltnotpass" 
+                                            id="oiltnotpass" 
+                                            value=" Not Pass"
+                                            style="margin-top:6px">
+                                        </div>   
+                                    </td><td></td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td><span class="slds-form-element__label">Oil temp:</span></td>
+                                    
+                                    <td><span class="slds-form-element__label">Design A</span></td>
+                                    <td> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                    data-id="OiltempDA" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                    <td><span class="slds-form-element__label">°C</span></td>
+                                    <td><span class="slds-form-element__label">T.</span></td>                               
+                                    <td> 
+                                            <div class="slds-form-element__control"> 
+                                                <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                        data-id="OiltempDAT" 
+                                                        class="slds-input"  
+                                                        style="padding-right: 0px; padding-left: 0px;">
+                                            </div>
+                                        </td>
+                                        <td><span class="slds-form-element__label">°C</span></td>
+                                </tr>
+                                <tr data-answered="false"><td></td>
+                                    <td><span class="slds-form-element__label">Setting A</span></td>
+                                    <td> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                    data-id="OiltempSA" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                    <td><span class="slds-form-element__label">°C</span></td>
+                                    <td><span class="slds-form-element__label">T.</span></td>
+                                
+                                    <td> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                    data-id="OiltempSAT" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                    <td><span class="slds-form-element__label">°C</span></td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td><span class="slds-form-element__label">LV Winding:</span></td>
+                                    
+                                    <td><span class="slds-form-element__label">Design A</span></td>
+                                    <td> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                    data-id="lvwindtempDA" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                    <td><span class="slds-form-element__label">°C</span></td>
+                                    <td><span class="slds-form-element__label">T.</span></td>                               
+                                    <td> 
+                                            <div class="slds-form-element__control"> 
+                                                <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                        data-id="lvtempDAT" 
+                                                        class="slds-input"  
+                                                        style="padding-right: 0px; padding-left: 0px;">
+                                            </div>
+                                        </td>
+                                        <td><span class="slds-form-element__label">°C</span></td>
+                                </tr>
+                                <tr data-answered="false"><td></td>
+                                    <td><span class="slds-form-element__label">Setting A</span></td>
+                                    <td> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                    data-id="lvtempSA" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                    <td><span class="slds-form-element__label">°C</span></td>
+                                    <td><span class="slds-form-element__label">T.</span></td>
+                                
+                                    <td> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                    data-id="lvtempSAT" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                    <td><span class="slds-form-element__label">°C</span></td>
+                                </tr>
+                                <tr data-answered="false">
+                                    <td><span class="slds-form-element__label">HV Winding:</span></td>
+                                    
+                                    <td><span class="slds-form-element__label">Design A</span></td>
+                                    <td> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                    data-id="hvwindtempDA" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                    <td><span class="slds-form-element__label">°C</span></td>
+                                    <td><span class="slds-form-element__label">T.</span></td>                               
+                                    <td> 
+                                            <div class="slds-form-element__control"> 
+                                                <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                        data-id="hvtempDAT" 
+                                                        class="slds-input"  
+                                                        style="padding-right: 0px; padding-left: 0px;">
+                                            </div>
+                                        </td>
+                                        <td><span class="slds-form-element__label">°C</span></td>
+                                </tr>
+                                <tr data-answered="false"><td></td>
+                                    <td><span class="slds-form-element__label">Setting A</span></td>
+                                    <td> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                    data-id="hvtempSA" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                    <td><span class="slds-form-element__label">°C</span></td>
+                                    <td><span class="slds-form-element__label">T.</span></td>
+                                
+                                    <td> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                    data-id="hvtempSAT" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                    <td><span class="slds-form-element__label">°C</span></td>
+                                </tr>
+                                <tr >
+                                    <td><span class="slds-form-element__label">-Remark</span></td>
+                                    <td colspan="5"> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress}
+                                                    data-id="remark5" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td><td></td>
+                                </tr>
+                                <tr data-answered="false">
+                                    
+                                    <td><span class="slds-form-element__label">6. Transformer Potective relay check and function test (Alarm and Trip) (H)</span></td>
+                                    <td class="text-right"><span class="slds-form-element__label">Yes</span></td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="radio" 
+                                            name="trrelay" 
+                                            data-id="trrelaypass" 
+                                            id="trrelaytpass" 
+                                            value="Pass"
+                                            style="margin-top: 6px">
+                                        </div>   
+                                    </td>
+                                    <td class="text-right"><span class="slds-form-element__label">No</span></td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="radio" 
+                                            name="trrelay" 
+                                            data-id="trrelaynotpass" 
+                                            id="trrelaynotpass" 
+                                            value=" Not Pass"
+                                            style="margin-top:6px">
+                                        </div>   
+                                    </td><td></td>
+                                </tr>
+                                </tbody></table>
+                                <table><tbody>
+                                <tr><td></td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="checkbox" 
+                                            name="1-checkbox" 
+                                            data-id="checkbox-1" 
+                                            id="checkbox-1" 
+                                            value="Main. Buchholz checked"
+                                            style="margin-top: 6px">
+                                        </div>   
+                                    </td>
+                                    <td class="text-left"><span class="slds-form-element__label">Main. Buchholz</span></td>
+                                
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="checkbox" 
+                                            name="2-checkbox" 
+                                            data-id="checkbox-2" 
+                                            id="checkbox-2" 
+                                            value="Pressure relief checked"
+                                            style="margin-top: 6px">
+                                        </div>   
+                                    </td>
+                                    <td class="text-left"><span class="slds-form-element__label">Pressure relief</span></td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="checkbox" 
+                                            name="3-checkbox" 
+                                            data-id="checkbox-3" 
+                                            id="checkbox-3" 
+                                            value="Rapid pressure checked"
+                                            style="margin-top: 6px">
+                                        </div>   
+                                    </td>
+                                    <td class="text-left"><span class="slds-form-element__label">Rapid pressure</span></td>
+                                </tr>
+                                <tr ><td></td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="checkbox" 
+                                            name="4-checkbox" 
+                                            data-id="checkbox-4" 
+                                            id="checkbox-4" 
+                                            value="Air detector checked"
+                                            style="margin-top: 6px">
+                                        </div>   
+                                    </td>
+                                    <td class="text-left"><span class="slds-form-element__label">Air detector</span></td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="checkbox" 
+                                            name="5-checkbox" 
+                                            data-id="checkbox-5" 
+                                            id="checkbox-5" 
+                                            value="Air detector checked"
+                                            style="margin-top: 6px">
+                                        </div>   
+                                    </td>
+                                    <td class="text-left"><span class="slds-form-element__label">Oil level L/H</span></td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="checkbox" 
+                                            name="6-checkbox" 
+                                            data-id="checkbox-6" 
+                                            id="checkbox-6" 
+                                            value="Oil level checked"
+                                            style="margin-top: 6px">
+                                        </div>   
+                                    </td>
+                                    <td class="text-left"><span class="slds-form-element__label">OLTC. Oil flow</span></td>
+                                </tr>
+                                <tr ><td></td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="checkbox" 
+                                            name="7-checkbox" 
+                                            data-id="checkbox-7" 
+                                            id="checkbox-7" 
+                                            value="OLTC. Pressure relief checked"
+                                            style="margin-top: 6px">
+                                        </div>   
+                                    </td>
+                                    <td class="text-left"><span class="slds-form-element__label">OLTC. Pressure relief</span></td>
+                                    <td>
+                                        <div class="slds-form-element__control">
+                                            <input onchange={onIEH} type="checkbox" 
+                                            name="7-checkbox" 
+                                            data-id="checkbox-8" 
+                                            id="checkbox-8" 
+                                            value="Oil level checked"
+                                            style="margin-top: 6px">
+                                        </div>   
+                                    </td>
+                                    <td class="text-left"><span class="slds-form-element__label">OLTC. level L/H</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table">
+                            <colgroup>
+                                <col span="1" style="width: 35%;"><col span="1" style="width: 15%;"><col span="1" style="width: 15%;">
+                                <col span="1" style="width: 15%;"><col span="1" style="width: 15%;">
+                                </colgroup> 
+                            <Tbody>
+                                
+                                <tr>
+                                    <td><span class="slds-form-element__label">-Remark</span></td>
+                                    <td colspan="4"> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="text" 
+                                                    data-id="remark6" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                    
+                                <td><span class="slds-form-element__label">7. Transformer termination skid in good condition (H)</span></td>
+                                <td class="text-right"><span class="slds-form-element__label">Yes</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="trskid" 
+                                        data-id="trskidpass" 
+                                        id="trskidpass" 
+                                        value="Pass"
+                                        style="margin-top: 6px">
+                                    </div>   
+                                </td>
+                                <td class="text-right"><span class="slds-form-element__label">No</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="trskid" 
+                                        data-id="trskidnotpass" 
+                                        id="trskidnotpass" 
+                                        value=" Not Pass"
+                                        style="margin-top:6px">
+                                    </div>   
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="slds-form-element__label">-Remark</span></td>
+                                    <td colspan="4"> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="text" 
+                                                    data-id="remark7" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-answered="false">
+                                    
+                                <td><span class="slds-form-element__label">8. Transformer installation and maintenace is good for quantity and condition  (H)</span></td>
+                                <td class="text-right"><span class="slds-form-element__label">Yes</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="trcondQ" 
+                                        data-id="trcondQYes" 
+                                        id="trcondQYes" 
+                                        value="Pass"
+                                        style="margin-top: 6px">
+                                    </div>   
+                                </td>
+                                <td class="text-right"><span class="slds-form-element__label">No</span></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <input onchange={onIEH} type="radio" 
+                                        name="trcondQ" 
+                                        data-id="trcondQNo" 
+                                        id="trcondQNo" 
+                                        value=" Not Pass"
+                                        style="margin-top:6px">
+                                    </div>   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="slds-form-element__label">-Remark</span></td>
+                                    <td colspan="4"> 
+                                        <div class="slds-form-element__control"> 
+                                            <input onchange={onIEH} type="text" 
+                                                    data-id="remark8" 
+                                                    class="slds-input"  
+                                                    style="padding-right: 0px; padding-left: 0px;">
+                                        </div>
+                                </td>
+                            </tr>   
+                        </tbody>                           
+                    </table>         
+                </div>                 
+            </div>
+        </div>
+        </section>
+        </li>
+    </ul>    
+</div>
+ <!-- Remark part  = -->
+<br>
+<br>
+<p> Note:  Yes = Pass&emsp;No = Not Pass </p>
+
+
+        <!-- save submit reject= -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSubmitModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand" onclick={openRejectModal}>
+                    Reject
+                </button>
+            </div>
+        </section>
+    
+</template>

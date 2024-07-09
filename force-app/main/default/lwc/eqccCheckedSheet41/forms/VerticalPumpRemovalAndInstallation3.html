@@ -1,0 +1,509 @@
+<template>
+    <div data-id="formBegin">
+        <c-step-page-header
+            num-steps="3"
+            current-step="3"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+
+        <div class="slds-text-heading_medium text-center">VERTICAL PUMP REMOVAL AND INSTALLATION</div>
+
+        <!-- Section for Notification, FL. and Status fields -->
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                        <svg
+                            class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                            aria-hidden="true"
+                        >
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                        </svg>
+                        <input
+                            type="text"
+                            data-id="notification"
+                            class="slds-input avoidPercentageInput"
+                            value={notification}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Body section. -->
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <!-- Li-5 -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionFour">
+                        <div class="slds-accordion__summary" data-id="headingFour">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseFour"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionFour"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        4</span
+                                    ><span class="slds-accordion__summary-content"> Commissioning, Test Run and Handover to Operations</span>
+                                </button>
+                                <div class="slds-col">
+                                    <div class="slds-checkbox obj-right">
+                                        <input
+                                            onchange={disableSection}
+                                            type="checkbox"
+                                            name="options"
+                                            id="checkbox-unique-id-4"
+                                            data-id="checkbox-unique-id-4"
+                                            data-remark="checkbox-unique-id-4"
+                                            value="checkbox-unique-id-4"
+                                            data-parent="sectionFour"
+                                        />
+                                        <label class="slds-checkbox__label" for="checkbox-unique-id-4">
+                                            <span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">N/A</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </h2>
+                        </div>
+                        <div
+                            class="slds-grid slds-gutters hide-remark"
+                            id="sectionFour-remark"
+                            data-id="sectionFour-remark"
+                        >
+                            <div class="slds-col">
+                                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                <div class="slds-form-element__control">
+                                    <textarea
+                                        data-id="sectionFour-inputRemark"
+                                        onchange={onIEH}
+                                        id="sectionFour-inputRemark"
+                                        class="slds-textarea"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-id="collapseFour" class="slds-accordion__content">
+                            <div class="card-body">
+
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            ><b>4.1</b> All safeguarding devicesare properly installed</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >อุปกรณ์ที่เกี่ยวข้องกับ safe guardingได้ถูกติดตั้งแล้ว                                   
+                                            </span>
+                                            <div class="slds-grid slds-gutters">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr >
+                                                            <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                Serviced</b></span>
+                                                            </td>
+                                                            <td class="text-center w-50%">
+                                                                <div class="slds-form-element">
+                                                                    <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                        <input
+                                                                                onchange={onIEH}
+                                                                                type="text"
+                                                                                onkeypress={onKeyPress}
+                                                                                data-id="4-1-input-1"
+                                                                                placeholder=""
+                                                                                aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post"
+                                                                                class="slds-input"
+                                                                        />
+                                                                        <span
+                                                                                class="slds-form-element__addon slds-form-element__label"
+                                                                                data-id="fixed-text-addon-post"
+                                                                        ></span
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                </div>
+
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            ><b>4.2</b> Allinstrumentsare commissioned and ready for start-up</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >อุปกรณ์instrumentsพร้อมใช้งาน                                   
+                                            </span>
+                                            <div class="slds-grid slds-gutters">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr >
+                                                            <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                Serviced</b></span>
+                                                            </td>
+                                                            <td class="text-center w-50%">
+                                                                <div class="slds-form-element">
+                                                                    <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                        <input
+                                                                                onchange={onIEH}
+                                                                                type="text"
+                                                                                onkeypress={onKeyPress}
+                                                                                data-id="4-2-input-1"
+                                                                                placeholder=""
+                                                                                aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post"
+                                                                                class="slds-input"
+                                                                        />
+                                                                        <span
+                                                                                class="slds-form-element__addon slds-form-element__label"
+                                                                                data-id="fixed-text-addon-post"
+                                                                        ></span
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                </div>
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            ><b>4.3</b> Lube oillevel at bearings is adjusted. Oil grade sticker is affixed</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >ปรับตั้งระดับน ้ามันให้หมาะสม ติดสติกเกอร์เบอร์น ้ามันที่ถูกต้อง                                  
+                                            </span>
+                                            <div class="slds-grid slds-gutters">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr >
+                                                            <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                Serviced</b></span>
+                                                            </td>
+                                                            <td class="text-center w-50%">
+                                                                <div class="slds-form-element">
+                                                                    <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                        <input
+                                                                                onchange={onIEH}
+                                                                                type="text"
+                                                                                onkeypress={onKeyPress}
+                                                                                data-id="4-3-input-1"
+                                                                                placeholder=""
+                                                                                aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post"
+                                                                                class="slds-input"
+                                                                        />
+                                                                        <span
+                                                                                class="slds-form-element__addon slds-form-element__label"
+                                                                                data-id="fixed-text-addon-post"
+                                                                        ></span
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                </div>
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            ><b>4.4</b> CW system commissioned; </span
+                                            ><br />
+                                            <span class="slds-form-element__label"
+                                            >- LO and Seal coolers are bleed / ventedLube oil และ seal cooler ถูก priming และ vent</span
+                                            ><br />
+                                            
+                                            <span class="slds-form-element__label"
+                                            >- Flowrate checked and acceptedตรวจสอบว่า cooling waterมีการไหลปกติ</span
+                                            >
+                                            <div class="slds-grid slds-gutters">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr >
+                                                            <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                Serviced</b></span>
+                                                            </td>
+                                                            <td class="text-center w-50%">
+                                                                <div class="slds-form-element">
+                                                                    <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                        <input
+                                                                                onchange={onIEH}
+                                                                                type="text"
+                                                                                onkeypress={onKeyPress}
+                                                                                data-id="4-4-input-1"
+                                                                                placeholder=""
+                                                                                aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post"
+                                                                                class="slds-input"
+                                                                        />
+                                                                        <span
+                                                                                class="slds-form-element__addon slds-form-element__label"
+                                                                                data-id="fixed-text-addon-post"
+                                                                        ></span
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                </div>
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            ><b>4.5</b> Seal System commissioning </span
+                                            ><br />
+                                            <span class="slds-form-element__label"
+                                            >- Vented</span
+                                            ><br />
+                                            
+                                            <span class="slds-form-element__label"
+                                            >- Seal system charge up to max operating  pressureเติมseal oil ที่ max operating  pressure</span
+                                            ><br />
+                                            <span class="slds-form-element__label"
+                                            >- Pressure and/or Flow reading at DCS correct</span
+                                            ><br />
+                                            <span class="slds-form-element__label"
+                                            >- Seal pot level confirm readin</span
+                                            >
+                                            <div class="slds-grid slds-gutters">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr >
+                                                            <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                Max Pressure@ Plan 53</b></span>
+                                                            </td>
+                                                            <td class="text-center w-50%">
+                                                                <div class="slds-form-element">
+                                                                    <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                        <input
+                                                                                onchange={onIEH}
+                                                                                type="text"
+                                                                                onkeypress={onKeyPress}
+                                                                                data-id="4-5-input-1"
+                                                                                placeholder=""
+                                                                                aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post"
+                                                                                class="slds-input"
+                                                                        />
+                                                                        <span
+                                                                                class="slds-form-element__addon slds-form-element__label"
+                                                                                data-id="fixed-text-addon-post"
+                                                                        ></span
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr >
+                                                            <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                Flow@ Plan 54</b></span>
+                                                            </td>
+                                                            <td class="text-center w-50%">
+                                                                <div class="slds-form-element">
+                                                                    <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                        <input
+                                                                                onchange={onIEH}
+                                                                                type="text"
+                                                                                onkeypress={onKeyPress}
+                                                                                data-id="4-5-input-2"
+                                                                                placeholder=""
+                                                                                aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post"
+                                                                                class="slds-input"
+                                                                        />
+                                                                        <span
+                                                                                class="slds-form-element__addon slds-form-element__label"
+                                                                                data-id="fixed-text-addon-post"
+                                                                        ></span
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr >
+                                                            <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                Seal pot level. %</b></span>
+                                                            </td>
+                                                            <td class="text-center w-50%">
+                                                                <div class="slds-form-element">
+                                                                    <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                        <input
+                                                                                onchange={onIEH}
+                                                                                type="text"
+                                                                                onkeypress={onKeyPress}
+                                                                                data-id="4-5-input-3"
+                                                                                placeholder=""
+                                                                                aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post"
+                                                                                class="slds-input"
+                                                                        />
+                                                                        <span
+                                                                                class="slds-form-element__addon slds-form-element__label"
+                                                                                data-id="fixed-text-addon-post"
+                                                                        ></span
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                </div>
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            ><b>4.6</b> Steam system and Steam tracing system are commissioned;</span
+                                            ><br />
+                                            <span class="slds-form-element__label"
+                                            > manual drain vales are closed</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >Steam system และSteam tracing system สามารถใช้งานได้ปกติ                                  
+                                            </span>
+                                            <div class="slds-grid slds-gutters">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr >
+                                                            <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                Serviced</b></span>
+                                                            </td>
+                                                            <td class="text-center w-50%">
+                                                                <div class="slds-form-element">
+                                                                    <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                        <input
+                                                                                onchange={onIEH}
+                                                                                type="text"
+                                                                                onkeypress={onKeyPress}
+                                                                                data-id="4-6-input-1"
+                                                                                placeholder=""
+                                                                                aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post"
+                                                                                class="slds-input"
+                                                                        />
+                                                                        <span
+                                                                                class="slds-form-element__addon slds-form-element__label"
+                                                                                data-id="fixed-text-addon-post"
+                                                                        ></span
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                </div>
+                                <div class="slds-section" data-answered="false">
+                                    <span class="slds-form-element__label"
+                                            ><b>4.7</b> Pump is lined up with the system, properly primed and vented</span
+                                            ><br />
+                                    <span class="slds-form-element__label"
+                                    >Pump ได้รับการpriming อย่างถูกต้อง vent และ warm up เตรียมพร้อม test run                                  
+                                            </span>
+                                            <div class="slds-grid slds-gutters">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr >
+                                                            <td class="text-center "><span class="slds-form-element__label"><b>
+                                                                Serviced</b></span>
+                                                            </td>
+                                                            <td class="text-center w-50%">
+                                                                <div class="slds-form-element">
+                                                                    <div class="slds-form-element__control slds-input-has-fixed-addon">       
+                                                                        <input
+                                                                                onchange={onIEH}
+                                                                                type="text"
+                                                                                onkeypress={onKeyPress}
+                                                                                data-id="4-7-input-1"
+                                                                                placeholder=""
+                                                                                aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post"
+                                                                                class="slds-input"
+                                                                        />
+                                                                        <span
+                                                                                class="slds-form-element__addon slds-form-element__label"
+                                                                                data-id="fixed-text-addon-post"
+                                                                        ></span
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                </li>
+            </ul>
+        </div>
+        <!-- Button Section for Every Form -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSubmitModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand" onclick={openRejectModal}>
+                    Reject
+                </button>
+            </div>
+        </section>
+    </div>
+</template>

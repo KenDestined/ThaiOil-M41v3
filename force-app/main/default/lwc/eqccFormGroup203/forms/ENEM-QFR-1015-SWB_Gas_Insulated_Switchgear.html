@@ -1,0 +1,589 @@
+<template
+    ><div data-id="formBegin">
+        <c-step-page-header
+            num-steps="1"
+            current-step="1"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+        <!-- Form Question = 13 -->
+        <div class="slds-text-heading_medium text-center">ENEM-QFR-1015-SWB</div>
+        <div class="slds-text-heading_medium text-center">33 kV GAS INSULATED SWITCHGEAR VISUAL INSPECTION</div>
+        <!-- Section for Notification, FL. and Status fields -->
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="notification"
+                            class="slds-input avoidPercentageInput"
+                            value={notification}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Body section. -->
+        
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <!-- ไม่ใช้ Headerzero 
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+                        <div class="slds-accordion__summary" data-id="headingZero">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseZero"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionZero"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    >
+                                    </lightning-icon>
+                                    <span
+                                        style="background-color: var(lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small">
+                                        0</span >
+                                    <span class="slds-accordion__summary-content"> Header Information</span>
+                                </button>
+                            </h2>
+                        </div>
+                        <div data-id="collapseZero" class="slds-accordion__content">
+                            <div class="card-body">
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col">
+                                        <span class="slds-form-element__label"
+                                                >Clearance No:</span
+                                            >
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="clearance-no"
+                                                class="slds-input"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                ไม่ใช้ Headerzero -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionOne">
+                        <div class="slds-accordion__summary" data-id="headingOne">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseOne"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionOne"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        1</span
+                                    ><span class="slds-accordion__summary-content"> Inspection Result</span>
+                                </button>
+                                <div class="slds-col">
+                                    <div class="slds-checkbox obj-right">
+                                        <input
+                                            onchange={disableSection}
+                                            type="checkbox"
+                                            name="options"
+                                            id="checkbox-unique-id-1"
+                                            data-id="checkbox-unique-id-1"
+                                            data-remark="checkbox-unique-id-1"
+                                            value="checkbox-unique-id-1"
+                                            data-parent="sectionOne"
+                                        />
+                                        <label class="slds-checkbox__label" for="checkbox-unique-id-1">
+                                            <span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">N/A</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </h2>
+                        </div>
+                        <div
+                            class="slds-grid slds-gutters hide-remark"
+                            id="sectionOne-remark"
+                            data-id="sectionOne-remark"
+                        >
+                            <div class="slds-col">
+                                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                <div class="slds-form-element__control">
+                                    <textarea
+                                        data-id="sectionOne-inputRemark"
+                                        onchange={onIEH}
+                                        id="sectionOne-inputRemark"
+                                        class="slds-textarea"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                <div data-id="collapseOne" class="slds-accordion__content">
+                    <div class="card-body">
+                        <table class="table slds-section section-tb">
+
+                        <tbody>
+                            <tr>
+                                <td style="width:20%" >
+                                    <span class="slds-form-element__label">Unit.</span>
+                                </td>
+                                <td>                   
+                                    <div class="f-c" data-answered="false">
+                                            <input                                                
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="tag"
+                                                class="slds-input avoidPercentageInput"
+                                            >
+                                        </div>
+                                </td>
+                                <td style="width:20%" >
+                                    <span class="slds-form-element__label">Area</span>
+                                </td>
+
+                                <td>
+                                    <div class="f-c" data-answered="false">
+                                        <input
+                                            onchange={onIEH}
+                                            type="text"
+                                            data-id="unit"
+                                            class="slds-input avoidPercentageInput"
+                                        >
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:20%"> 
+                                    <span class="slds-form-element__label">Inspected by</span>
+                                </td>
+                                
+                                <td>
+                                    <div class="f-c" data-answered="false">
+                                        <input
+                                        type="text"
+                                        onchange={onIEH}
+                                        data-id="inspector"
+                                        class="slds-input"
+                                        >
+                                    </div> 
+                                </td>
+                                <td >
+                                    <span class="slds-form-element__label">Date of inspection.</span>
+                                </td> 
+                                <td>
+                                    <div class="slds-form-element__control" data-answered="false">
+                                        <input
+                                        onchange={onIEH}
+                                        type="date"
+                                        data-id="record-date"
+                                        class="slds-input">
+                                    </div>
+                                </td>
+                                <td>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table slds-section section-tb">
+                <tbody>
+                    <tr>
+                        <td style="width:5px">
+                            <span class="slds-form-element__label">1</span>
+                        </td>
+
+                        <td style="width:270px">
+                            <span class="slds-form-element__label">Record the reading of the operations counter</span>
+                        </td>
+                        <td>
+                            <div class="f-c" data-answered="false">
+                                <input
+                                    onchange={onIEH}
+                                    type="text"
+                                    data-id="1_record"
+                                    class="slds-input"
+                                />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:6px">
+                            <span class="slds-form-element__label">2</span>
+                        </td>
+                        <td>
+                            <span class="slds-form-element__label">Record the SF6 gas pressure</span>
+                        </td>
+                        <td>
+                            <div class="f-c" data-answered="false">
+                                <input
+                                    onchange={onIEH}
+                                    type="text"
+                                    data-id="2_record"
+                                    class="slds-input"
+                                />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:6px">
+                            <span class="slds-form-element__label">3</span>
+                        </td>
+                        <td>
+                            <span class="slds-form-element__label">Enclosure Thermoscan (referr to record no.)</span>
+                        </td>
+                        <td>
+                            <div class="f-c" data-answered="false">
+                                <input
+                                    onchange={onIEH}
+                                    type="text"
+                                    data-id="3_record"
+                                    class="slds-input"
+                                />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td>
+                            <span class="slds-form-element__label">-Maximum temperature of VT box area</span>
+                        </td>
+                        <td>
+                            <div class="f-c" data-answered="false">
+                                <input
+                                    onchange={onIEH}
+                                    type="text"
+                                    data-id="3-1_record"
+                                    class="slds-input"
+                                />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td>
+                            <span class="slds-form-element__label">-Maximum temperature of GIS chamber</span>
+                        </td>
+                        <td>
+                            <div class="f-c" data-answered="false">
+                                <input
+                                    onchange={onIEH}
+                                    type="text"
+                                    data-id="3-2_record"
+                                    class="slds-input"
+                                />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:6x">
+
+                        </td>
+                        <td>
+                            <span class="slds-form-element__label">-Maximum temperature of infront of GIS panel</span>
+                        </td>
+                        <td>
+                            <div class="f-c" data-answered="false">
+                                <input
+                                    onchange={onIEH}
+                                    type="text"
+                                    data-id="3-3_record"
+                                    class="slds-input"
+                                />
+                            </div>
+                        </td>
+                    </tr>
+                        <td>
+
+                        </td>
+
+                        <td>
+                            <span class="slds-form-element__label">Remark</span>
+                        </td>
+                        <td>
+                            <div class="f-c">
+                                <input
+                                    onchange={onIEH}
+                                    type="text"
+                                    data-id="3-4_record"
+                                    class="slds-input"
+                                />
+                            </div>
+                        </td>                  
+                </tbody>
+            </table>
+            <p>(Please attach the scanned image for reference.)</p> <br>
+            <table class="table">
+                <tbody>
+                    <tr data-answered="false">
+                        <td style="width:6px">
+                            <span class="slds-form-element__label">4</span>
+                        </td>
+                        <td style="width:270px">
+                            <span class="slds-form-element__label">External/Ambient condition</span>
+                        </td>
+                        <td> 
+                            <div class="slds-form-element__control">
+                                <input 
+                                onchange={onIEH}
+                                type="radio" 
+                                name="ambient" 
+                                data-id="ambient-1" 
+                                id="ambient-1" 
+                                value="Normal">
+                            </div>   
+                         </td>
+                         <td><span class="slds-form-element__label">Normal</span></td>
+
+                         <td> 
+                            <div class="slds-form-element__control">
+                                <input 
+                                onchange={onIEH}
+                                type="radio" 
+                                name="ambient" 
+                                data-id="ambient-2" 
+                                id="ambient-2" 
+                                value="Abnormal">
+                            </div>   
+                         </td>
+                         <td><span class="slds-form-element__label">Abnormal</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <span class="slds-form-element__label">Remark</span>
+                        </td>
+                        <td colspan="4">
+                            <div class="f-c">
+                                <input
+                                    onchange={onIEH}
+                                    type="text"
+                                    data-id="4_record"
+                                    class="slds-input"
+                                />
+                            </div>
+                        </td>
+                    </tr>   
+                    <tr data-answered="false">
+                        <td style="width:6px">
+                            <span class="slds-form-element__label">5</span>
+                        </td>
+                        <td style="width:270px">
+                            <span class="slds-form-element__label">Annunciator inspection</span>
+                        </td>
+                        <td> 
+                            <div class="slds-form-element__control">
+                                <input 
+                                onchange={onIEH}
+                                type="radio" 
+                                name="annunciator" 
+                                data-id="annunciator-1" 
+                                id="annunciator-1" 
+                                value="Normal">
+                            </div>   
+                         </td>
+                         <td><span class="slds-form-element__label">Normal</span></td>
+                         <td> 
+                            <div class="slds-form-element__control">
+                                <input 
+                                onchange={onIEH}
+                                type="radio" 
+                                name="annunciator" 
+                                data-id="annunciator-2" 
+                                id="annunciator-2" 
+                                value="Abnormal">
+                            </div>   
+                         </td>
+                         <td><span class="slds-form-element__label">Abnormal</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <span class="slds-form-element__label">Remark</span>
+                        </td>
+                        <td colspan="4">
+                            <div class="f-c">
+                                <input
+                                    onchange={onIEH}
+                                    type="text"
+                                    data-id="4_record"
+                                    class="slds-input"
+                                />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-answered="false">
+                        <td style="width:6px">
+                            <span class="slds-form-element__label">6</span>
+                        </td>
+                        <td style="width:270px">
+                            <span class="slds-form-element__label">Overall conclusion</span>
+                        </td>
+                        <td> 
+                            <div class="slds-form-element__control">
+                                <input 
+                                onchange={onIEH}
+                                type="radio" 
+                                name="overall" 
+                                data-id="overall-1" 
+                                id="overall-1" 
+                                value="Normal">
+                            </div>   
+                         </td>
+                         <td><span class="slds-form-element__label">Normal</span></td>
+
+                         <td> 
+                            <div class="slds-form-element__control">
+                                <input 
+                                onchange={onIEH}
+                                type="radio" 
+                                name="overall" 
+                                data-id="overall-2" 
+                                id="overall-2"
+                                value="Abnormal">
+                            </div>   
+                         </td>
+                         <td><span class="slds-form-element__label">Abnormal</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <span class="slds-form-element__label">Remark</span>
+                        </td>
+                        <td colspan="4">
+                            <div class="f-c">
+                                <input
+                                    onchange={onIEH}
+                                    type="text"
+                                    data-id="4_record"
+                                    class="slds-input"
+                                />
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table><bR><br>
+
+<!-- Remark = -->
+
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td style="width:150px">
+                                        <span class="slds-form-element__label">Remark</span>
+                                    </td>
+                                    <td>
+                                        <div class="f-c">
+                                            <textarea
+                                                onchange={onIEH}
+                                                id="remark"
+                                                data-id="6_record"
+                                                class="slds-input"
+                                                >
+                                            </textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>  
+                        
+                        
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </section>
+        </li>
+    </ul>
+</div>
+</div>
+
+        <!-- save submit reject= -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSubmitModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand" onclick={openRejectModal}>
+                    Reject
+                </button>
+            </div>
+        </section>
+    
+</template>

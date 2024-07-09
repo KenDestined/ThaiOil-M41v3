@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <assignments>
+        <name>AssignFunctionPartnerAccount</name>
+        <label>AssignFunctionPartnerAccount</label>
+        <locationX>50</locationX>
+        <locationY>674</locationY>
+        <assignmentItems>
+            <assignToReference>varAccountSoldToName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>getPartnerFunctionRelated.ReverseAccount__r.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varAccountSoldToOwner</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>{!getPartnerFunctionRelated.ReverseAccount__r.Owner.FirstName} {!getPartnerFunctionRelated.ReverseAccount__r.Owner.LastName}</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>createShipToDetailScreen</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>getPartnername</name>
+        <label>getPartnername</label>
+        <locationX>314</locationX>
+        <locationY>674</locationY>
+        <assignmentItems>
+            <assignToReference>varAccountSoldToName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GetRequestItemRecord.Customer__r.CustomerPartner__r.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varAccountSoldToOwner</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>{!GetRequestItemRecord.Customer__r.CustomerPartner__r.Owner.FirstName} {!GetRequestItemRecord.Customer__r.CustomerPartner__r.Owner.LastName}</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>createShipToDetailScreen</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>getPartnername_0</name>
+        <label>getPartnername</label>
+        <locationX>578</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>varAccountSoldToName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GetRequestItemRecord.Customer__r.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varAccountSoldToOwner</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>{!GetRequestItemRecord.Customer__r.Owner.FirstName} {!GetRequestItemRecord.Customer__r.Owner.LastName}</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>createShipToDetailScreen</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>CheckRecordTypeAccount</name>
+        <label>CheckRecordTypeAccount</label>
+        <locationX>380</locationX>
+        <locationY>350</locationY>
+        <defaultConnector>
+            <targetReference>getPartnername_0</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>isShipTo</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>GetRequestItemRecord.Customer__r.RecordType.DeveloperName</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>ShipTo</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>getPartnerFunctionRelated</targetReference>
+            </connector>
+            <label>isShipTo</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Found_Function_Partner</name>
+        <label>Found Function Partner</label>
+        <locationX>182</locationX>
+        <locationY>566</locationY>
+        <defaultConnector>
+            <targetReference>getPartnername</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>found_partner</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>getPartnerFunctionRelated</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AssignFunctionPartnerAccount</targetReference>
+            </connector>
+            <label>found partner</label>
+        </rules>
+    </decisions>
+    <description>Change get value from account to from CTR header
+20/05/2024 | Convert Picklist API Name to Label Name in Screen
+24/05/2024 | Add field Sub district and contact person section
+01/07/2024 | Add Display Text For Ship-to Name Local = Null or Blank</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>AccountAssignmentGroup</name>
+        <dataType>String</dataType>
+        <expression>CASE({!GetRequestItemRecord.AccountAssignmentGroup__c},
+&quot;01&quot;,&quot;01 Domestic Revenues&quot;,
+&quot;02&quot;,&quot;02 Foreign Revenues&quot;,
+&quot;03&quot;,&quot;03 Affiliate Comp Revenues&quot;,
+&quot;04&quot;,&quot;Business Area Revenues&quot;,&quot;-&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>DeliveryPlant</name>
+        <dataType>String</dataType>
+        <expression>CASE({!GetRequestItemRecord.DeliveryPlant__c},
+&quot;A000&quot;,&quot;A000 : Head Off&quot;,
+&quot;A010&quot;,&quot;A010 : Cen.Tmn&quot;,
+&quot;A020&quot;,&quot;A020 : SAKC.&quot;,
+&quot;A0Y0&quot;,&quot;A0Y0 : Custody&quot;,
+&quot;A0Z0&quot;,&quot;A0Z0 : PFR1&quot;,
+&quot;A0Z1&quot;,&quot;A0Z1 : PFR2&quot;,
+&quot;H100&quot;,&quot;H100 : TSV Head Off&quot;,
+&quot;H110&quot;,&quot;H110 : TSV-Go Dau&quot;,
+&quot;H120&quot;,&quot;H120 : TSV-Container Long Thanh&quot;,
+&quot;H130&quot;,&quot;H130 : TSV-Bac Ninh&quot;,
+&quot;H1Z0&quot;,&quot;H1Z0 : TSV-3rd Party (South)&quot;,
+&quot;H210&quot;,&quot;H210 : TSV-Hai phong&quot;,
+&quot;H220&quot;,&quot;H220 : Bac Ninh2&quot;,
+&quot;H2Z0&quot;,&quot;H2Z0 : TSV 3rd party (North)&quot;,&quot;-&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>DeliveryPriority</name>
+        <dataType>String</dataType>
+        <expression>CASE({!GetRequestItemRecord.DeliveryPriority__c},
+&quot;01&quot;,&quot;High&quot;,
+&quot;02&quot;,&quot;Normal Item&quot;,&quot;-&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>DistributionChannel</name>
+        <dataType>String</dataType>
+        <expression>CASE({!GetRequestItemRecord.DistributionChannel__c},
+&quot;10&quot;,&quot;10-Domestic Major Oil&quot;,
+&quot;11&quot;,&quot;11-Domestic Third Party&quot;,
+&quot;12&quot;,&quot;12-Domestic TOP Group&quot;,
+&quot;13&quot;,&quot;13-Domestic Other&quot;,
+&quot;14&quot;,&quot;14-Domestic User/Blnder&quot;,
+&quot;15&quot;,&quot;15-Domestic Trade/Resel&quot;,
+&quot;16&quot;,&quot;16-Domestic&quot;,
+&quot;17&quot;,&quot;17-Free Tax Zone&quot;,
+&quot;20&quot;,&quot;20-Export Direct&quot;,
+&quot;21&quot;,&quot;21-Export Indirect&quot;,
+&quot;22&quot;,&quot;22-Export Free Zone&quot;,
+&quot;23&quot;,&quot;23-Exp Direct Trading&quot;,
+&quot;24&quot;,&quot;24-Exp Indirect Trading&quot;,
+&quot;25&quot;,&quot;25-Export&quot;,
+&quot;26&quot;,&quot;26-Export Direct Broker&quot;,
+&quot;30&quot;,&quot;30-Import (VAT)&quot;,
+&quot;31&quot;,&quot;31-Import Indirect(VAT)&quot;,
+&quot;32&quot;,&quot;32-Import (Non-VAT)&quot;,
+&quot;33&quot;,&quot;33-Import Indirect(Non-VAT)&quot;,
+&quot;IC&quot;,&quot;IC-Intra-comp. Transfer&quot;,&quot;-&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>Division</name>
+        <dataType>String</dataType>
+        <expression>CASE({!GetRequestItemRecord.Division__c},
+&quot;00&quot;,&quot;00-Cross Division&quot;,
+&quot;01&quot;,&quot;01&quot;,
+&quot;10&quot;,&quot;10-Crude / Feedstock&quot;,
+&quot;11&quot;,&quot;11-Ole&quot;,
+&quot;20&quot;,&quot;20-Light Distillate&quot;,
+&quot;21&quot;,&quot;21-Middle Distillate&quot;,
+&quot;22&quot;,&quot;22-Heavy Distillate&quot;,
+&quot;23&quot;,&quot;23-Fuels Additive&quot;,
+&quot;29&quot;,&quot;29-Other (TOP)&quot;,
+&quot;30&quot;,&quot;30-Aromatics&quot;,
+&quot;39&quot;,&quot;39-Other (TPX)&quot;,
+&quot;40&quot;,&quot;40-Lube Base Group I&quot;,
+&quot;41&quot;,&quot;41-Lube Base Group II&quot;,
+&quot;42&quot;,&quot;42-Lube Base Group III&quot;,
+&quot;43&quot;,&quot;43-Bitumen&quot;,
+&quot;44&quot;,&quot;44-Specialty&quot;,
+&quot;49&quot;,&quot;49-Other (TLB)&quot;,
+&quot;50&quot;,&quot;50-Hydrocarbon Solvent&quot;,
+&quot;51&quot;,&quot;51-Other Chemicals&amp;Lube&quot;,
+&quot;52&quot;,&quot;52-Chemical Solvent&quot;,
+&quot;53&quot;,&quot;53-Petroleum&quot;,
+&quot;59&quot;,&quot;59-Olefins &amp; Polymer&quot;,
+&quot;60&quot;,&quot;60-LAB&quot;,
+&quot;69&quot;,&quot;69-Other (LAB)&quot;,
+&quot;70&quot;,&quot;70-Olefin&quot;,
+&quot;80&quot;,&quot;80-Hydrocarbon Services&quot;,
+&quot;90&quot;,&quot;90-Non Hydrocarbon&quot;,&quot;-&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>IsBlankShipToNameLocal</name>
+        <dataType>Boolean</dataType>
+        <expression>IF(ISBLANK({!GetRequestItemRecord.ShipToNameLocl__c}),true,false)</expression>
+    </formulas>
+    <formulas>
+        <name>PartialDeliveriesPerItem</name>
+        <dataType>String</dataType>
+        <expression>CASE({!GetRequestItemRecord.PartialDeliveriesperitem__c},
+&quot;A&quot;,&quot;A: Create a delivery with qty greater than zero&quot;,
+&quot;B&quot;,&quot;B: Create only one delivery (also with quantity = 0)&quot;,
+&quot;C&quot;,&quot;C: Only complete delivery allowed&quot;,
+&quot;D&quot;,&quot;D: No limit to subsequent deliveries&quot;,&quot;-&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>SalesDistrict</name>
+        <dataType>String</dataType>
+        <expression>CASE({!GetRequestItemRecord.SalesDistrict__c},
+&quot;000001&quot;,&quot;Northern region&quot;,
+&quot;000002&quot;,&quot;Southern region&quot;,
+&quot;CENTRE&quot;,&quot;Lower North Island&quot;,
+&quot;NORTH&quot;,&quot;Upper North Island&quot;,
+&quot;SOUTH&quot;,&quot;South Island&quot;,
+&quot;ZTH001&quot;,&quot;TH_Central&quot;,
+&quot;ZTH002&quot;,&quot;TH_Northern&quot;,
+&quot;ZTH003&quot;,&quot;TH_Northeastern&quot;,
+&quot;ZTH004&quot;,&quot;TH_Eastern&quot;,
+&quot;ZTH005&quot;,&quot;TH_Southern&quot;,
+&quot;ZTH006&quot;,&quot;TH_Western&quot;,
+&quot;ZTH0EX&quot;,&quot;TH_Export&quot;,
+&quot;ZTHOTH&quot;,&quot;TH_Other Country&quot;,
+&quot;ZVN001&quot;,&quot;VN_North&quot;,
+&quot;ZVN002&quot;,&quot;VN_South&quot;,
+&quot;ZVN0EX&quot;,&quot;VN_Export&quot;,
+&quot;ZID001&quot;,&quot;ID_JKT&quot;,
+&quot;ZID002&quot;,&quot;ID_Jawa&quot;,
+&quot;ZID003&quot;,&quot;ID_Sumatera&quot;,
+&quot;ZID004&quot;,&quot;ID_Kalimantan&quot;,
+&quot;ZID005&quot;,&quot;ID_Sulawesi&quot;,
+&quot;ZSG001&quot;,&quot;SG_Central&quot;,&quot;-&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>SalesOrgTX</name>
+        <dataType>String</dataType>
+        <expression>CASE({!GetRequestItemRecord.SalesOrganizationTX__c},
+&quot;2000&quot;,&quot;2000-TOP NEXT International Company Limited&quot;,
+&quot;9100&quot;,&quot;9100-TOP SOLVENT VIETNAM&quot;,
+&quot;9200&quot;,&quot;9200-PT.TIRTA SURYA RAYA&quot;,
+&quot;9300&quot;,&quot;9300-JSKem Pte Ltd&quot;,
+&quot;9400&quot;,&quot;9400-TSChem&quot;,&quot;-&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>ShippingCondition</name>
+        <dataType>String</dataType>
+        <expression>CASE({!GetRequestItemRecord.ShippingConditions__c},
+&quot;01&quot;,&quot;01 : As Soon As Possible&quot;,
+&quot;02&quot;,&quot;02 : Standard&quot;,
+&quot;90&quot;,&quot;90 : Company Delivery&quot;,
+&quot;91&quot;,&quot;91 : Own Pickup Pack&quot;,
+&quot;92 &quot;,&quot;92 : Own Pickup Bulk&quot;,
+&quot;93&quot;,&quot;93 : Transport 3rd Pack&quot;,
+&quot;94&quot;,&quot;94 : Transport 3rd Bulk&quot;,
+&quot;95&quot;,&quot;95 : Return&quot;,
+&quot;99&quot;,&quot;99 : Others&quot;,
+&quot;GN&quot;,&quot;GN : Non-Hydrocarbon&quot;,
+&quot;LO&quot;,&quot;LO : Lorry&quot;,
+&quot;PI&quot;,&quot;PI : Pipeline&quot;,
+&quot;SB&quot;,&quot;SB : Ship-Bulk&quot;,
+&quot;SH&quot;,&quot;SH : Ship&quot;,
+&quot;SI&quot;,&quot;SI : Ship-Isotank/Cont.&quot;,
+&quot;SV&quot;,&quot;SV : Service&quot;,
+&quot;SW &quot;,&quot;SW : Swap&quot;,
+&quot;TH&quot;,&quot;TH : Thappline&quot;,
+&quot;TK&quot;,&quot;TK : Tank&quot;,
+&quot;UR&quot;,&quot;UR : Urgent&quot;,&quot;-&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>TaxClassification</name>
+        <dataType>String</dataType>
+        <expression>CASE({!getRequestHeader.TAXClassification__c},
+&quot;0&quot;,&quot;0 : Tax Excempt&quot;,
+&quot;1&quot;,&quot;1 : Liable for Taxes&quot;,
+&quot;2&quot;,&quot;2 : Free Tax Zone&quot;,
+&quot;3&quot;,&quot;3 : Non Tax&quot;,&quot;-&quot;)</expression>
+    </formulas>
+    <interviewLabel>CTR Prescreen ResultV02 {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CTR Ship-to Record Screen Detail</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>getPartnerFunctionRelated</name>
+        <label>getPartnerFunctionRelated</label>
+        <locationX>182</locationX>
+        <locationY>458</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Found_Function_Partner</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>GetRequestItemRecord.Customer__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>RelationshipType__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>WE-RE</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>C360_Relationship__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>getRequestHeader</name>
+        <label>getRequestHeader</label>
+        <locationX>380</locationX>
+        <locationY>242</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>CheckRecordTypeAccount</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>GetRequestItemRecord.CTRRequestFormHeader__r.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CTRRequestFormHeader__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>GetRequestItemRecord</name>
+        <label>GetRequestItem</label>
+        <locationX>380</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>getRequestHeader</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordid</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CTRRequestFormItem__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <runInMode>SystemModeWithoutSharing</runInMode>
+    <screens>
+        <name>createShipToDetailScreen</name>
+        <label>createShipToDetailScreen</label>
+        <locationX>380</locationX>
+        <locationY>950</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>ShipToInformationSection</name>
+            <fieldText>Ship-To Information</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>ShipToInformationSection_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>CompanyNameDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Company Name&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!varAccountSoldToName}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>ShipToNameEnglishDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Ship-To Name (English)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);&quot;&gt;{!getRequestHeader.CompanyNameENF__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>ShipToInformationSection_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>AccountOwnerDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Account Owner&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!varAccountSoldToOwner}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>ShipToNameOtherLanguageDisplayTextIfNull</name>
+                    <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Ship-To Name (Other Language)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);&quot;&gt;{!getRequestHeader.CompanyNameENF__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                    <visibilityRule>
+                        <conditionLogic>or</conditionLogic>
+                        <conditions>
+                            <leftValueReference>GetRequestItemRecord.ShipToNameLocl__c</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>IsBlankShipToNameLocal</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>ShipToNameOtherLanguageDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Ship-To Name (Other Language)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.CompanyNameLocal__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>GetRequestItemRecord.ShipToNameLocl__c</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>false</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithHeader</regionContainerType>
+        </fields>
+        <fields>
+            <name>SelectedSalesAreaSection</name>
+            <fieldText>Selected SalesArea</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>SelectedSalesAreaSection_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>SellerDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Seller&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!SalesOrgTX}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>DivisionDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Division&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!Division}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>SelectedSalesAreaSection_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>DistributionChannelDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Distribution Channel&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!DistributionChannel}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>TAXNumberDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;TAX Number&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.TaxCode1__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithHeader</regionContainerType>
+        </fields>
+        <fields>
+            <name>SearchTermsSection</name>
+            <fieldText>Search Terms</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>SearchTermsSection_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>SearchTerm1DisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Search Term 1&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.CustomerSearchTermLocal__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>SearchTermsSection_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>SearchTerm2English</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Search Term 2 (English)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.CustomerSearchTermEN__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithHeader</regionContainerType>
+        </fields>
+        <fields>
+            <name>RegisteredAddressSection</name>
+            <fieldText>Registered Address</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>RegisteredAddressSection_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>BuildingCodeDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Building Code&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.BuildingCodeLocal__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>FloorDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Floor&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.FloorLocal__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>HouseNumberDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;House No. (Local)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.HousenoLocal__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>SubDistrictDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Sub District&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.SubDistrictLocalText__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>CityStateDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;City/State&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.CityStateLocal__r.Name}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>LocationInGoogleMapsLinkDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Location in Google Maps (Link)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.LocationInGoogleMapsLinks__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>LocationInGoogleMapsLatitudeLongitudeDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Location in Google Maps (Latitude,Longitude)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.LocationInGoogleMapsGeolocation__Latitude__s},&lt;/p&gt;&lt;p&gt;{!getRequestHeader.LocationInGoogleMapsGeolocation__Longitude__s}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>RegisteredAddressSection_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>RoomDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Room&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.RoomLocal__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>CODisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;C/O&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.CoName__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>StreetDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Street&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.StreetLocal__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>DistrictDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;District&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.DistrictLocalText__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>PostalCodeDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Postal Code&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.PostalCodeLocalText__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>CountryDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Country&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.Country__r.Name}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithHeader</regionContainerType>
+        </fields>
+        <fields>
+            <name>ContactPersonInformation</name>
+            <fieldText>Contact Person Information</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>ContactPersonInformation_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>TitleDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Title (Mr/Mrs./Miss/etc.)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.Customer__r.ContactSalutation__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>FirstNameDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;First Name&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.FirstName__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>PositionDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Position&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.Position__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>CountryCodeMobileDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Country Code (Mobile)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.MobileCountryCode__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>PhoneCountryCodeDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Country Code (Phone)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.PhoneCountryCode__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>ContactPersonInformation_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>NicknameDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;b style=&quot;background-color: var(--slds-g-color-neutral-base-100, var(--lwc-colorBackgroundInput,rgb(255, 255, 255))); color: var(--slds-g-color-neutral-base-30, var(--lwc-colorTextWeak,rgb(68, 68, 68))); font-size: var(--lwc-fontSize3,0.8125rem); font-family: var(--lwc-fontFamily,-apple-system, BlinkMacSystemFont, &apos;Segoe UI&apos;, Roboto, Helvetica, Arial, sans-serif, &apos;Apple Color Emoji&apos;, &apos;Segoe UI Emoji&apos;, &apos;Segoe UI Symbol&apos;);&quot;&gt;Nickname&lt;/b&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.Nickname__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>LastNameDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Last Name&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.LastName__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>EmailDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Email&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.Email__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>MobileDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Mobile&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.MobilePhone__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>PhoneDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Phone&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.Phone__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>PhoneExtendtionDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Phone Extension&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.PhoneExtension__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithHeader</regionContainerType>
+        </fields>
+        <fields>
+            <name>createShipToDetailScreen_Section6</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>createShipToDetailScreen_Section6_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>CountryCodeFaxDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(255, 250, 250);&quot;&gt;...&lt;/strong&gt;&lt;strong&gt;Country Code (Fax)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 250, 250);&quot;&gt;...&lt;/strong&gt;{!getRequestHeader.FaxCountryCode__c}&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 250, 250);&quot;&gt;...&lt;/strong&gt;&lt;span style=&quot;color: rgb(153, 153, 153);&quot;&gt;_________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>createShipToDetailScreen_Section6_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>FaxDisplaytext</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Fax&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.Fax__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>FaxExtendDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Fax Extension&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.FaxExtension__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+        </fields>
+        <fields>
+            <name>SalesSection</name>
+            <fieldText>Sales</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>SalesSection_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>SalesDistrictDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Sales District&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!SalesDistrict}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>SalesSection_Column2</name>
+                <fieldType>Region</fieldType>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithHeader</regionContainerType>
+        </fields>
+        <fields>
+            <name>ShippingSection</name>
+            <fieldText>Shipping</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>ShippingSection_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>DeliveryPriorityDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Delivery Priority&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!DeliveryPriority}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>DeliveryPlantDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Delivery Plant&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!DeliveryPlant}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>TransportationZoneDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Transportation Zone&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!getRequestHeader.TransportationZone__r.Name}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>UnderdeliveryToleranceDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Underdelivery Tolerance&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!GetRequestItemRecord.UnderdeliveryTolerance__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>ShippingSection_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>ShippingConditionDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Shipping Condition&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!ShippingCondition}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>MaxPartialDeliveriesDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Max.partial Deliveries&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!GetRequestItemRecord.MaxPartialDeliveries__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>PartialDeliveriesperitemDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Partial Deliveries per item&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!PartialDeliveriesPerItem}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>OverdeliveryToleranceDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Overdelivery Tolerance&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!GetRequestItemRecord.OverdeliveryTolerance__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithHeader</regionContainerType>
+        </fields>
+        <fields>
+            <name>BillingDocumentSection</name>
+            <fieldText>Billing Document</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>BillingDocumentSection_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>AccountAssignmentGroupDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Account Assignment Group&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!AccountAssignmentGroup}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>BillingDocumentSection_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>TaxClassificationDisplayText</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Tax Classification&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!TaxClassification}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(153, 153, 153);&quot;&gt;﻿__________________________________________________________&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithHeader</regionContainerType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>254</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>GetRequestItemRecord</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>recordid</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varAccountSoldToName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>GetRequestItemRecord.Customer__r.CompanyNameENF__c</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <name>varAccountSoldToOwner</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

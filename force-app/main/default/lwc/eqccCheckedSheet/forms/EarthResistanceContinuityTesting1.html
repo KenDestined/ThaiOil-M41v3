@@ -1,0 +1,1731 @@
+<template
+    ><div data-id="formBegin">
+        <c-step-page-header
+            num-steps="1"
+            current-step="1"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+        <div class="slds-text-heading_medium text-center">
+            Earth Resistance Continuity Testing and Earth System Maintenance Test Record
+        </div>
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="notification"
+                            class="slds-input avoidPercentageInput"
+                            value={notification}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="f-c">
+                        <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+                        <div class="card-header" data-id="headingZero">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseZero"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionZero"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        0</span
+                                    >
+                                    <span class="slds-accordion__summary-content">Header Information</span>
+                                </button>
+                            </h2>
+                        </div>
+                        <div data-id="collapseZero" class="slds-accordion__content">
+                            <div class="card-body">
+                                <div class="slds-section">
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col">
+                                            <label class="slds-form-element__label">Date</label>
+                                            <div class="f-c">
+                                                <input
+                                                    type="date"
+                                                    min="0"
+                                                    step="1"
+                                                    onkeypress={onKeyPress}
+                                                    data-id="date"
+                                                    class="slds-input avoidPercentageInput"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div class="slds-col">
+                                            <label class="slds-form-element__label">Unit</label>
+                                            <div class="f-c">
+                                                <input
+                                                    type="number"
+                                                    min="0"
+                                                    step="1"
+                                                    onkeypress={onKeyPress}
+                                                    data-id="unit"
+                                                    class="slds-input avoidPercentageInput"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionOne">
+                        <div class="card-header" data-id="headingOne">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                    type="button"
+                                    aria-controls="collapseOne"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionOne"
+                                    onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    ></lightning-icon>
+                                    <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        1</span
+                                    >
+                                    <span class="slds-accordion__summary-content">Actual Test</span>
+                                </button>
+                                <div class="slds-col">
+                                    <div class="slds-checkbox obj-right">
+                                        <input
+                                            onchange={disableSection}
+                                            name="options"
+                                            type="checkbox"
+                                            id="header-na-1"
+                                            data-id="header-na-1"
+                                            data-remark="1-remark"
+                                            value="header-na-1"
+                                        />
+                                        <label class="slds-checkbox__label" for="header-na-1"
+                                            ><span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">input N/A</span></label
+                                        >
+                                    </div>
+                                </div>
+                            </h2>
+                        </div>
+                        <div
+                            class="slds-grid slds-gutters hide-remark"
+                            id="sectionOne-remark"
+                            data-id="sectionOne-remark"
+                        >
+                            <div class="slds-col">
+                                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                <div class="f-c">
+                                    <textarea
+                                        data-id="sectionOne-inputRemark"
+                                        onchange={onIEH}
+                                        id="sectionOne-inputRemark"
+                                        class="slds-textarea"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-id="collapseOne" class="slds-accordion__content" style="max-height: 19072px;">
+                            <div class="card-body">
+                                <div class="slds-section dynamicRows" data-answered="false">
+                                    <div class="rowsBodySection">
+                                        <section id="1">
+                                            <table class="table slds-section section-tb">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="width:25%;">
+                                                            <span class="slds-form-element__label">1. Equipment</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="1-equipment-1"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point1 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="1-point1"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point2 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="1-point2"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point3 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="1-point3"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point4 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="1-point4"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point5 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="1-point5"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point6 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="1-point6"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point7 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="1-point7"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point8 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="1-point8"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="slds-form-element__label">Remark</span></td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="1-remark-1"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </section>
+                                        <section id="2">
+                                            <table class="table slds-section section-tb">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="width:25%;">
+                                                            <span class="slds-form-element__label">2. Equipment</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="1-equipment-2"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point1 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="2-point1"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point2 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="2-point2"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point3 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="2-point3"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point4 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="2-point4"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point5 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="2-point5"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point6 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="2-point6"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point7 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="2-point7"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point8 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="2-point8"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="slds-form-element__label">Remark</span></td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="1-remark-2"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </section>
+                                        <section id="3">
+                                            <table class="table slds-section section-tb">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="width:25%;">
+                                                            <span class="slds-form-element__label">3. Equipment</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="1-equipment-3"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point1 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="3-point1"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point2 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="3-point2"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point3 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="3-point3"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point4 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="3-point4"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point5 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="3-point5"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point6 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="3-point6"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point7 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="3-point7"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point8 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="3-point8"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="slds-form-element__label">Remark</span></td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="1-remark-3"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </section>
+                                        <section id="4">
+                                            <table class="table slds-section section-tb">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="width:25%;">
+                                                            <span class="slds-form-element__label">4. Equipment</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="1-equipment-4"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point1 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="4-point1"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point2 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="4-point2"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point3 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="4-point3"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point4 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="4-point4"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point5 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="4-point5"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point6 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="4-point6"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point7 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="4-point7"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point8 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="4-point8"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="slds-form-element__label">Remark</span></td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="1-remark-4"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </section>
+                                        <section id="5">
+                                            <table class="table slds-section section-tb">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="width:25%;">
+                                                            <span class="slds-form-element__label">5. Equipment</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="1-equipment-5"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point1 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="5-point1"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point2 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="5-point2"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point3 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="5-point3"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point4 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="5-point4"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point5 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="5-point5"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point6 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="5-point6"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point7 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="5-point7"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point8 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="5-point8"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="slds-form-element__label">Remark</span></td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="1-remark-5"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </section>
+                                        <section id="6">
+                                            <table class="table slds-section section-tb">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="width:25%;">
+                                                            <span class="slds-form-element__label">6. Equipment</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="1-equipment-6"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point1 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="6-point1"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point2 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="6-point2"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point3 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="6-point3"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point4 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="6-point4"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point5 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="6-point5"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point6 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="6-point6"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point7 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="6-point7"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point8 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="6-point8"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="slds-form-element__label">Remark</span></td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="1-remark-6"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </section>
+                                        <section id="7">
+                                            <table class="table slds-section section-tb">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="width:25%;">
+                                                            <span class="slds-form-element__label">7. Equipment</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="1-equipment-7"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point1 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="7-point1"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point2 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="7-point2"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point3 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="7-point3"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point4 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="7-point4"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point5 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="7-point5"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point6 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="7-point6"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point7 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="7-point7"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point8 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="7-point8"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="slds-form-element__label">Remark</span></td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="7-remark-6"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </section>
+                                        <section id="8">
+                                            <table class="table slds-section section-tb">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="width:25%;">
+                                                            <span class="slds-form-element__label">8. Equipment</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="1-equipment-8"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point1 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="8-point1"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point2 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="8-point2"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point3 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="8-point3"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point4 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="8-point4"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point5 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="8-point5"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point6 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="8-point6"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point7 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="8-point7"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="slds-form-element__label">Point8 Ohm</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="number"
+                                                                    min="0"
+                                                                    step="1"
+                                                                    onkeypress={onKeyPress}
+                                                                    data-id="8-point8"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="slds-form-element__label">Remark</span></td>
+                                                        <td>
+                                                            <div class="f-c">
+                                                                <input
+                                                                    onchange={onIEH}
+                                                                    type="text"
+                                                                    data-id="8-remark-6"
+                                                                    class="slds-input"
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </section>
+
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <span class="slds-button slds-button_destructive" onclick={removeRow} data-id="removeRowPart1"
+                                            >-</span
+                                        >
+                                        <span class="slds-button slds-button_brand" onclick={addRow} data-id="addRowPart1" >+</span>
+                                    </div>
+                                </div>
+
+                                <aside class="slds-p-vertical_small slds-form-element__label">
+                                    <strong style="text-decoration: underline;" class="slds-form-element__label"
+                                        >Note:</strong
+                                    >The Earth Resistance Continuity should be less than 10 ohms (Except Transformer
+                                    Neutral Earthing Cable).
+                                </aside>
+
+                                <table class="table">
+                                    <thead>
+                                    <td rowspan="2"><span class="slds-form-element__label">Remark</span></td>
+                                    <td class="text-center"><span class="slds-form-element__label"></span></td>
+                                    <td class="text-center"><span class="slds-form-element__label" ></span></td>
+
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="text-center">
+                                            ( A ) Connector Missing
+                                        </td>
+                                        <td class="text-center">
+                                            ( B ) Wire Missing
+                                        </td>
+                                        <td class="text-center">
+                                            ( C ) Loose Connection
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">
+                                            ( D ) Connector Replaced
+                                        </td>
+                                        <td class="text-center">
+                                            ( E ) Wire Replaced
+                                        </td>
+                                        <td class="text-center">
+                                            ( F ) Relocate Terminal
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">
+                                            ( G ) Normal Condition
+                                        </td>
+                                        <td class="text-center">
+                                            ( H ) Other
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+            </ul>
+        </div>
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openRejectModal}>
+                    Reject
+                </button>
+                <button data-id="recallEQCCStep" class="slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                    Recall
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Submit</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-lookup object-api-name="user" icon-name="standard:user" onrecordselection={onUserSelection}></c-lookup>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submit} title="Submit">Submit</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

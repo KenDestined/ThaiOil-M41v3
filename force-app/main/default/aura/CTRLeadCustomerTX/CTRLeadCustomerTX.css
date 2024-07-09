@@ -1,0 +1,14 @@
+.THIS {
+}
+
+.THIS .custom-help-text .slds-form-element__icon {
+    padding-top: 1px;
+}
+
+.THIS .help-txt-hidden .slds-form-element__icon {
+    display: none !important;
+}
+
+.THIS .custom-hide-label .slds-form-element__label {
+    display: none !important;
+}

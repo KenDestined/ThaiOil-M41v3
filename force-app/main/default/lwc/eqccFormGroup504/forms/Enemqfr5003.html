@@ -1,0 +1,1543 @@
+<template>
+  <div data-id="formBegin">
+      <c-step-page-header
+          num-steps="1"
+          current-step="1"
+          percentage={percentage}
+          is-current={isCurrent}
+          record-id={recordId}
+      ></c-step-page-header>
+
+      <!-- Modal placeholder -->
+      <c-lwc-modal
+          title={modalTitle}
+          is-visible={modalVisible}
+          confirm-text={modalConfirmButton}
+          cancel-text={modalCancelButton}
+          name={modalName}
+          message={modalMessage}
+          onselected={handleModalSelection}
+      ></c-lwc-modal>
+      <!-- END Modal Placeholder -->
+
+      <!-- ENIM-QFR-747 /Form Question = 22 -->
+
+      <!--
+          Heading area for form
+      -->
+      <div class="slds-text-heading_large slds-m-bottom_medium text-center " 
+      style="font-weight: bold; color: var(--lwc-brandAccessible, rgb(0, 112, 210));">
+          Thaioil Group
+      </div>
+      <div class="slds-text-heading_medium text-center">
+          การตรวจสอบ Spare motor รอบ 6 เดือน
+      </div>
+
+      <!-- Section for Notification, FL. and Status fields -->
+      <section class="section slds-accordion__section">
+          
+          <div class="slds-form">
+           
+
+              <div class="slds-form__row">
+                  <div class="slds-form__item">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="date">Notification No</label>
+                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                          <svg
+                              class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                              aria-hidden="true"
+                          >
+                              <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                          </svg>
+                          <input
+                              type="text"
+                              data-id="notification"
+                              class="slds-input avoidPercentageInput"
+                              value={notification}
+                              disabled
+                          />
+                      </div>
+                      </div>
+                    </div>
+                    <div class="slds-form__item">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="stacked-combobox-id-01" >Order</label>
+                        <div class="slds-form-element__control">
+                          <input
+                          type="text"
+                          data-id="order"
+                          class="slds-input avoidPercentageInput"
+                          value={order}
+                          disabled
+                      />
+                        </div>
+                      </div>
+                    </div>
+              </div>
+
+              <div class="slds-form__row">
+                  <div class="slds-form__item">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                          <label class="slds-form-element__label" for="stacked-combobox-id-01">FL.</label>
+                          <div class="slds-form-element__control">
+                            <input
+                            type="text"
+                            data-id="fl"
+                            class="slds-input avoidPercentageInput"
+                            value={functionalLocation}
+                            disabled
+                        />
+                          </div>
+                        </div>
+                    </div>
+                    <div class="slds-form__item">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="stacked-combobox-id-01">Status</label>
+                        <div class="slds-form-element__control">
+                          <input
+                          type="text"
+                          data-id="status"
+                          class="slds-input avoidPercentageInput"
+                          value={formStatus}
+                          disabled
+                      />
+                        </div>
+                      </div>
+                    </div>
+              </div>
+              <div class="slds-form__row">
+                  <div class="slds-form__item" role="listitem">
+                    <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                      <label class="slds-form-element__label" for="place">สถานที่จัดเก็บ</label>
+                      <div class="slds-form-element__control">
+                        <input
+                        type="text"
+                        data-id="place"
+                        class="slds-input avoidPercentageInput"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                 
+                </div>
+
+                <div class="slds-form__row">
+                    <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                          <label class="slds-form-element__label" for="date">วันที่</label>
+                          <div class="slds-form-element__control">
+                            <input type="date" 
+                            data-id ="date"
+                            class="slds-input avoidPercentageInput" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                          <label class="slds-form-element__label" for="stacked-combobox-id-01" id="time">เวลา</label>
+                          <div class="slds-form-element__control">
+                            <input type="text" data-id="time"  class="slds-input avoidPercentageInput" />
+                          </div>
+                        </div>
+                      </div>
+                </div>
+          </div>
+      </section>
+
+      <!-- Body section. -->
+      <div class="bs-example">
+          <ul class="slds-accordion">
+              <!-- 0 -->
+              <li class="slds-accordion__list-item">
+                  <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+                      <div class="slds-accordion__summary" data-id="headingZero">
+                          <h2 class="slds-accordion__summary-heading card-header">
+                              <button
+                                  type="button"
+                                  aria-controls="collapseZero"
+                                  aria-expanded="true"
+                                  class="btn btn-link"
+                                  data-parent="sectionZero"
+                                  onclick={expandSection}
+                              >
+                                  <lightning-icon
+                                      icon-name="utility:switch"
+                                      alternative-text="button icon"
+                                      size="x-small"
+                                      class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                  ></lightning-icon>
+                                  <span
+                                      style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                      class="slds-badge slds-badge_inverse"
+                                  >
+                                      A</span
+                                  ><span class="slds-accordion__summary-content" style="font-weight: bold;"> สถานที่จัดเก็บ </span>
+                                      <span class="slds-accordion__summary-content" style="color: black;">
+                                          ตรวจตามรายการต่อไปนี้
+                                  </span>
+                                  
+                              </button>
+                          </h2>
+
+                      </div>
+
+                      <div data-id="collapseZero" class="slds-accordion__content">
+                          <!-- drop 1st section div -->
+                          <div class="card-body">
+                              <section data-id="1.5" class="pd-b-1" >
+                                  <div class="content">
+                                      <div class="slds-grid slds-gutters slds-scrollable_x" >  
+                                          <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+                                              <thead>
+                                                  <tr>
+                                                      <th class="" 
+                                                      style="background-color:#DBE6F2" scope="col" ></th>
+                                                      <th class="text-center" 
+                                                      style="background-color:#DBE6F2" scope="col">
+                                                          <div class="slds-form-element__label" title="Pass"  >ปกติ</div>
+                                                      </th>
+                                                      <th class="text-center" 
+                                                      style="background-color:#DBE6F2" scope="col">
+                                                          <div class="slds-form-element__label" title="Edit" >ต้องแก้ไข</div>
+                                                      </th>
+                                                      <th class="text-center" 
+                                                      style="background-color:#DBE6F2"  scope="col">
+                                                          <div class="slds-form-element__label" title="Remark" >หมายเหตุ</div>
+                                                      </th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                                 
+                                                  <tr data-answered="false">
+                                                      <th data-label="1-No-1" scope="row">
+                                                          <div class="slds-truncate" title="Cloudhub">
+                                                            1) ความสะอาดของสถานที่จัดเก็บ
+                                                          </div>
+                                                      </th>
+                                                        <td data-label="1-No-1">
+                                                          <div class="slds-truncate text-center" title="Pass">
+                                                              <input onchange={onIEH} type="radio" id="1-radio-1" data-id="1-radio-1"
+                                                                 name="1-No-1" value="Pass" />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="1-No-1">
+                                                          <div class="slds-truncate text-center" title="Edit">
+                                                              <input onchange={onIEH} type="radio" id="1-radio-2" data-id="1-radio-2"
+                                                              class="avoidPercentageInput"
+                                                              name="1-No-1" value="Edit" />
+                                                          </div>
+                                                        </td>
+                                                        <!-- <td data-label="1-No-1 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              class="slds-input avoidPercentageInput"
+                                                              data-id="1-input-3"
+                                                          />
+                                                          </div>
+                                                        </td> -->
+                                                        <td data-label="1-No-1 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                            <textarea id="horizontal-form-element-id-1" 
+                                                            onchange={onIEH}
+                                                            data-id="1-remark-text-1"
+                                                            style="width: 100%;"
+                                                            >
+                                                             </textarea>
+                                                          </div>
+                                                        </td>
+                                                  </tr>
+
+                                                  <tr data-answered="false">
+                                                      <th data-label="1-No-2" scope="row">
+                                                          <div class="slds-truncate" title="Cloudhub">
+                                                              2) หลังคาป้องกันแดดหรือฝนอยู่ในสภาพปกติ
+                                                          </div>
+                                                      </th>
+                                                        <td data-label="1-No-2">
+                                                          <div class="slds-truncate text-center" title="Pass">
+                                                              <input onchange={onIEH} 
+                                                                  type="radio" 
+                                                                  id="1-radio-4" 
+                                                                  data-id="1-radio-4"  
+                                                                  class="avoidPercentageInput"
+                                                                  name="1-No-2" 
+                                                                  value="Pass" 
+                                                              />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="1-No-2">
+                                                          <div class="slds-truncate text-center" title="Edit">
+                                                              <input onchange={onIEH} type="radio" id="1-radio-5"  class="avoidPercentageInput" data-id="1-radio-5"
+                                                              name="1-No-2" value="Edit" />
+                                                          </div>
+                                                        </td>
+                                                        <!-- <td data-label="input-a-2-3 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text" class="slds-input avoidPercentageInput"
+                                                              data-id="1-input-6"
+                                                          />
+                                                          </div>
+                                                        </td> -->
+                                                        <td data-label="input-a-2-3 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                            <textarea id="horizontal-form-element-id-2" 
+                                                            onchange={onIEH}
+                                                            data-id="1-remark-text-2"
+                                                            style="width: 100%;"
+                                                            >
+                                                             </textarea>
+                                                          </div>
+                                                        </td>
+                                                  </tr>
+                                                  <tr data-answered="false">
+                                                      <th data-label="1-No-3" scope="row">
+                                                          <div class="slds-truncate" title="Cloudhub">
+                                                              3) ไม่มีความชื้นหรือไม่มีน้ำขังบริเวณจัดเก็บ
+                                                          </div>
+                                                      </th>
+                                                        <td data-label="1-No-3 ">
+                                                          <div class="slds-truncate text-center" title="Pass">
+                                                              <input onchange={onIEH} type="radio" id="1-radio-6" data-id="1-radio-6"
+                                                              class="avoidPercentageInput"        name="1-No-3" value="Pass" />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="1-No-3">
+                                                          <div class="slds-truncate text-center" title="Edit">
+                                                              <input onchange={onIEH} type="radio" id="radio-a-3-2" data-id="1-radio-7"
+                                                              class="avoidPercentageInput" name="1-No-3" value="Edit" />
+                                                          </div>
+                                                        </td>
+                                                        <!-- <td data-label="1-No-3 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="1-input-8"
+                                                              class="slds-input avoidPercentageInput"
+                                                          />
+                                                          </div>
+                                                        </td> -->
+                                                        <td data-label="1-No-3 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                            <textarea id="horizontal-form-element-id-3" 
+                                                            onchange={onIEH}
+                                                            data-id="1-remark-text-3"
+                                                            style="width: 100%;"
+                                                            >
+                                                             </textarea>
+                                                          </div>
+                                                        </td>
+                                                  </tr>
+                                                  <tr data-answered="false">
+                                                      <th data-label="No-4" scope="row">
+                                                          <div class="slds-truncate" title="Cloudhub">
+                                                              4) ความเป็นระเบียบเรียบร้อยในการจัดเก็บ
+                                                          </div>
+                                                      </th>
+                                                        <td data-label="1-No-4">
+                                                          <div class="slds-truncate text-center" title="Pass">
+                                                              <input onchange={onIEH} type="radio" id="1-radio-9" data-id="1-radio-9"
+                                                              class="avoidPercentageInput"        name="1-No-4" value="Pass" />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="1-No-4">
+                                                          <div class="slds-truncate text-center" title="Edit">
+                                                              <input onchange={onIEH} type="radio" id="1-radio-10" data-id="1-radio-10"
+                                                              class="avoidPercentageInput"
+                                                              name="1-No-4" value="Edit" />
+                                                          </div>
+                                                        </td>
+                                                        <!-- <td data-label="1-No-4 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="1-input-11"
+                                                              class="slds-input avoidPercentageInput"
+                                                          />
+                                                          </div>
+                                                        </td> -->
+                                                        <td data-label="1-No-4 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                            <textarea id="horizontal-form-element-id-4" 
+                                                            onchange={onIEH}
+                                                            data-id="1-remark-text-4"
+                                                            style="width: 100%;"
+                                                            >
+                                                             </textarea>
+                                                          </div>
+                                                        </td>
+                                                  </tr>
+                                              </tbody>
+                                          </table> 
+                                      </div>
+                                  </div>
+                              </section>
+                          </div>
+                      </div>
+                  </section>
+              </li>
+
+              <!-- 1 -->
+              <li class="slds-accordion__list-item">
+                  <section class="slds-accordion__section" data-id="sectionOne">
+                      <div class="slds-accordion__summary" data-id="headingOne">
+                          <h2 class="slds-accordion__summary-heading card-header">
+                              <button
+                                  type="button"
+                                  aria-controls="collapseOne"
+                                  aria-expanded="true"
+                                  class="btn btn-link"
+                                  data-parent="sectionOne"
+                                  onclick={expandSection}
+                              >
+                                  <lightning-icon
+                                      icon-name="utility:switch"
+                                      alternative-text="button icon"
+                                      size="x-small"
+                                      class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left"
+                                  ></lightning-icon>
+                                  <span
+                                      style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                      class="slds-badge slds-badge_inverse"
+                                  >B</span><span class="slds-accordion__summary-content"> Monitor</span>
+                              </button>
+                          </h2>
+                      </div>
+
+                      <div data-id="collapseOne" class="slds-accordion__content">
+                          <!-- drop 1st section div -->
+                          <div class="card-body">
+                              <section data-id="1.5" class="pd-b-1" >
+                                  <div class="content">
+                                      <div class="slds-grid slds-gutters slds-scrollable_x" >  
+                                          <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+                                              <thead>
+                                                  <tr>
+                                                      <th class="" 
+                                                      style="background-color:#DBE6F2" scope="col"></th>
+                                                      <th class="text-center" 
+                                                      style="background-color:#DBE6F2"  scope="col">
+                                                          <div class="slds-form-element__label" title="Pass" >ปกติ</div>
+                                                      </th>
+                                                      <th class="text-center" 
+                                                      style="background-color:#DBE6F2"  scope="col">
+                                                          <div class="slds-form-element__label" title="Edit"  >ต้องแก้ไข</div>
+                                                      </th>
+                                                      <th class="text-center" 
+                                                      style="background-color:#DBE6F2" scope="col">
+                                                          <div class="slds-form-element__label" title="Remark"  >หมายเหตุ</div>
+                                                      </th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                                 
+                                                  <tr data-answered="false">
+                                                      <th data-label="2-No-1" scope="row">
+                                                          <div class="slds-truncate" title="Cloudhub">
+                                                            1) ความสะอาดของพลาสติกหุ้มมอเตอร์ ไม่มีฝุ่นหรือคราบสกปรก
+                                                          </div>
+                                                      </th>
+                                                        <td data-label="2-No-1">
+                                                          <div class="slds-truncate text-center" title="Pass">
+                                                              <input onchange={onIEH} type="radio" id="2-radio-1" data-id="2-radio-1"
+                                                              class=" avoidPercentageInput"        name="2-No-1" value="Pass" />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="2-No-1">
+                                                          <div class="slds-truncate text-center" title="Edit">
+                                                              <input onchange={onIEH} type="radio" id="2-radio-2" data-id="2-radio-2"
+                                                              class="avoidPercentageInput" name="2-No-1" value="Edit" />
+                                                          </div>
+                                                        </td>
+                                                        <!-- <td data-label="input-b-1-3 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="2-input-3"
+                                                              class="slds-input avoidPercentageInput"
+                                                          />
+                                                          </div>
+                                                        </td> -->
+                                                        <td data-label="input-b-1-3 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <textarea id="horizontal-form-element-id-5" 
+                                                              onchange={onIEH}
+                                                              data-id="1-remark-text-5"
+                                                              style="width: 100%;"
+                                                              >
+                                                               </textarea>
+                                                          </div>
+                                                        </td>
+                                                  </tr>
+                                                  <tr data-answered="false">
+                                                      <th data-label="2-No-2" scope="row">
+                                                          <div class="slds-truncate" title="Cloudhub">
+                                                              2) สภาพของพลาสติกหุ้ม ไม่ชำรุด หรือฉีกขาด
+                                                          </div>
+                                                      </th>
+                                                        <td data-label="2-No-2">
+                                                          <div class="slds-truncate text-center" title="Pass">
+                                                              <input onchange={onIEH} type="radio" id="2-radio-3" data-id="2-radio-3"
+                                                              class=" avoidPercentageInput"        name="2-No-2" value="Pass" />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="2-No-2">
+                                                          <div class="slds-truncate text-center" title="Edit">
+                                                              <input onchange={onIEH} type="radio" id="2-radio-4" data-id="2-raio-4"
+                                                              class=" avoidPercentageInput" name="2-No-2" value="Edit" />
+                                                          </div>
+                                                        </td>
+                                                        <!-- <td data-label="2-No-2 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="2-input-5"
+                                                              class="slds-input avoidPercentageInput"
+                                                          />
+                                                          </div>
+                                                        </td> -->
+                                                        <td data-label="2-No-2 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <textarea id="horizontal-form-element-id-6" 
+                                                              onchange={onIEH}
+                                                              data-id="1-remark-text-6"
+                                                              style="width: 100%;"
+                                                              >
+                                                               </textarea>
+                                                          </div>
+                                                        </td>
+                                                  </tr>
+                                                  <tr data-answered="false">
+                                                      <th data-label="2-No-3" scope="row">
+                                                          <div class="slds-truncate" title="Cloudhub">
+                                                              3) สภาพถุงบรรจุซิลิก้าเจล ไม่ชำรุดหรือฉีกขาด
+                                                          </div>
+                                                      </th>
+                                                        <td data-label="2-No-3">
+                                                          <div class="slds-truncate text-center" title="Pass">
+                                                              <input onchange={onIEH} type="radio" id="2-input-6" data-id="2-input-6"
+                                                              class=" avoidPercentageInput"        name="2-No-3" value="Pass" />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="2-No-3">
+                                                          <div class="slds-truncate text-center" title="Edit">
+                                                              <input onchange={onIEH} type="radio" id="2-radio-7" data-id="2-radio-7"
+                                                              class="avoidPercentageInput" name="2-No-3" value="Edit" />
+                                                          </div>
+                                                        </td>
+                                                        <!-- <td data-label="2-No-3 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="2-input-8"
+                                                              class="slds-input avoidPercentageInput"
+                                                          />
+                                                          </div>
+                                                        </td> -->
+                                                        <td data-label="2-No-3 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <textarea id="horizontal-form-element-id-7" 
+                                                              onchange={onIEH}
+                                                              data-id="1-remark-text-7"
+                                                              style="width: 100%;"
+                                                              >
+                                                               </textarea>
+                                                          </div>
+                                                        </td>
+                                                  </tr>
+                                                  <tr data-answered="false">
+                                                      <th data-label="2-No-4" scope="row">
+                                                          <div class="slds-truncate" title="Cloudhub">
+                                                              4) ตรวจสอบสภาพสีของซิลิก้าเจล
+                                                          </div>
+                                                      </th>
+                                                        <td data-label="2-No-4">
+                                                          <div class="slds-truncate text-center" title="Pass">
+                                                              <input onchange={onIEH} type="radio" id="2-radio-9" data-id="radio-b-4-1"
+                                                              class="avoidPercentageInput"        name="2-No-4" value="Pass" />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="2-No-4">
+                                                          <div class="slds-truncate text-center" title="Edit">
+                                                              <input onchange={onIEH} type="radio" id="2-radio-10" data-id="2-radio-10"
+                                                              class="avoidPercentageInput" name="2-No-4" value="Edit" />
+                                                          </div>
+                                                        </td>
+                                                        <!-- <td data-label="2-No-4 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="2-input-11"
+                                                              class="slds-input avoidPercentageInput"
+                                                          />
+                                                          </div>
+                                                        </td> -->
+                                                        <td data-label="2-No-4 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <textarea id="horizontal-form-element-id-8" 
+                                                              onchange={onIEH}
+                                                              data-id="1-remark-text-8"
+                                                              style="width: 100%;"
+                                                              >
+                                                               </textarea>
+                                                          </div>
+                                                        </td>
+
+                                                  </tr>
+
+                                                  <tr data-answered="false">
+                                                      <th data-label="2-No-5" scope="row">
+                                                          <div class="slds-truncate" title="Cloudhub">
+                                                              5) ตรวจสอบค่าความเป็นฉนวน
+                                                          </div>
+                                                      </th>
+                                                        <td data-label="2-No-5">
+                                                          <div class="slds-truncate text-center" title="Pass">
+                                                              <input onchange={onIEH} type="radio" id="2-radio-12" data-id="2-radio-12"
+                                                              class=" avoidPercentageInput"        name="2-No-5" value="Pass" />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="2-No-5">
+                                                          <div class="slds-truncate text-center" title="Edit">
+                                                              <input onchange={onIEH} type="radio" id="2-radio-13" data-id="2-radio-13"
+                                                              class=" avoidPercentageInput" name="2-No-5" value="Edit" />
+                                                          </div>
+                                                        </td>
+                                                        <!-- <td data-label="2-No-5 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="2-input-14"
+                                                              class="slds-input avoidPercentageInput"
+                                                          />
+                                                          </div>
+                                                        </td> -->
+                                                        <td data-label="2-No-5 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <textarea id="horizontal-form-element-id-9" 
+                                                              onchange={onIEH}
+                                                              data-id="1-remark-text-9"
+                                                              style="width: 100%;"
+                                                              >
+                                                               </textarea>
+                                                          </div>
+                                                        </td>
+                                                  </tr>
+                                                  <tr data-answered="false">
+                                                      <th data-label="2-No-6" scope="row">
+                                                          <div class="slds-truncate" title="Cloudhub">
+                                                              6) ตรวจสอบค่า Polarization Index ของ winding
+                                                          </div>
+                                                      </th>
+                                                        <td data-label="2-No-6">
+                                                          <div class="slds-truncate text-center" title="Pass">
+                                                              <input onchange={onIEH} type="radio" id="2-radio-15" data-id="2-radio-15"
+                                                              class=" avoidPercentageInput"        name="2-No-6" value="Pass" />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="2-No-6">
+                                                          <div class="slds-truncate text-center" title="Edit">
+                                                              <input onchange={onIEH} type="radio" id="2-radio-16" data-id="2-radio-16"
+                                                              class="avoidPercentageInput" name="2-No-6" value="Edit" />
+                                                          </div>
+                                                        </td>
+                                                        <!-- <td data-label="2-No-6 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="2-input-17"
+                                                              class="slds-input avoidPercentageInput"
+                                                          />
+                                                          </div>
+                                                        </td> -->
+                                                        <td data-label="2-No-6 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <textarea id="horizontal-form-element-id-10" 
+                                                              onchange={onIEH}
+                                                              data-id="1-remark-text-10"
+                                                              style="width: 100%;"
+                                                              >
+                                                               </textarea>
+                                                          </div>
+                                                        </td>
+                                                  </tr>
+                                                  <tr data-answered="false">
+                                                      <th data-label="2-No-7" scope="row">
+                                                          <div class="slds-truncate" title="Cloudhub">
+                                                              7) ตรวจสอบภายใน Terminal box
+                                                          </div>
+                                                      </th>
+                                                        <td data-label="2-No-7">
+                                                          <div class="slds-truncate text-center" title="Pass">
+                                                              <input onchange={onIEH} type="radio" id="2-radio-18" data-id="2-radio-18"
+                                                              class="avoidPercentageInput"        name="2-No-7" value="Pass" />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="2-No-7">
+                                                          <div class="slds-truncate text-center" title="Edit">
+                                                              <input onchange={onIEH} type="radio" id="2-radio-19" data-id="2-radio-19"
+                                                              class=" avoidPercentageInput" name="2-No-7" value="Edit" />
+                                                          </div>
+                                                        </td>
+                                                        <!-- <td data-label="2-No-7 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="2-input-20"
+                                                              class="slds-input avoidPercentageInput"
+                                                          />
+                                                          </div>
+                                                        </td> -->
+                                                        <td data-label="2-No-7 text-center">
+                                                          <div class="slds-truncate" title="Remark">
+                                                              <textarea id="horizontal-form-element-id-11" 
+                                                              onchange={onIEH}
+                                                              data-id="1-remark-text-11"
+                                                              style="width: 100%;"
+                                                              >
+                                                               </textarea>
+                                                          </div>
+                                                        </td>
+                                                  </tr>
+                                              </tbody>
+                                          </table> 
+                                      </div>
+                                  </div>
+                              </section>
+                              <section data-id="1.10" class="pd-b-1" >
+                                  <div class="slds-form" role="list">
+                                      <div class="slds-form__row">
+                                          <div class="slds-form__item" role="listitem">
+                                            <div class="slds-form-element slds-form-element_horizontal slds-is-editing slds-form-element_1-col">
+                                              <label class="slds-form-element__label" for="horizontal-form-element-id-14">Remark :</label>
+                                              <div class="slds-form-element__control">
+                                                  <textarea id="horizontal-form-element-id-14" 
+                                                          onchange={onIEH}
+                                                          data-id="1-remark-text-14"
+                                                          rows = "5"
+                                                          style="width: 100%;">
+                                                  </textarea>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                  </div>
+                              </section>
+                          </div>
+                      </div>
+                  </section>
+              </li>
+
+              <!-- 2 -->
+              <li class="slds-accordion__list-item">
+                <section class="slds-accordion__section" data-id="sectionTwo">
+                    <div class="slds-accordion__summary" data-id="headingTwo">
+                        <h2 class="slds-accordion__summary-heading card-header">
+                            <button
+                                type="button"
+                                aria-controls="collapseTwo"
+                                aria-expanded="true"
+                                class="btn btn-link"
+                                data-parent="sectionTwo"
+                                onclick={expandSection}
+                            >
+                                <lightning-icon
+                                    icon-name="utility:switch"
+                                    alternative-text="button icon"
+                                    size="x-small"
+                                    class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left"
+                                ></lightning-icon>
+                                <span
+                                    style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                    class="slds-badge slds-badge_inverse"
+                                >C</span><span class="slds-accordion__summary-content"> การวัดค่า Polarization Index (PI)</span>
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div data-id="collapseTwo" class="slds-accordion__content">
+                        <!-- drop 1st section div -->
+                        <div class="card-body">
+                            <section data-id="1.5" class="pd-b-1" >
+                                <div class="content dynamicRows">
+                                    <div class="slds-grid slds-gutters slds-scrollable_x" >  
+                                      <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+                                        <thead>
+                                            <tr>
+                                                <th class="" style="background-color:#DBE6F2" scope="col" rowspan="2">
+                                                  <div class="slds-form-element__label" title="Item" >Item</div>
+                                                </th>
+                                                <th class="text-center" style="background-color:#DBE6F2"  scope="col" rowspan="2">
+                                                    <div class="slds-form-element__label" title="MESC No." >MESC No.</div>
+                                                </th>
+                                                <th class="text-center" style="background-color:#DBE6F2"  scope="col" rowspan="2">
+                                                    <div class="slds-form-element__label" title="Ohm">Ohm</div>
+                                                </th>
+                                                <th class="text-center" style="background-color:#DBE6F2" scope="col" rowspan="2">
+                                                    <div class="slds-form-element__label" title="ค่า PI"  >ค่า PI</div>
+                                                </th>
+                                                <th class="text-center" style="background-color:#DBE6F2" scope="col" rowspan="2">
+                                                    <div class="slds-form-element__label" title="WH"  >WH</div>
+                                                </th>
+                                                <th class="text-center" style="background-color:#DBE6F2" scope="col" colspan="2">
+                                                    <div class="slds-form-element__label" title="ACCEAP">ACCEAP</div>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                              <th class="text-center" style="background-color:#DBE6F2" scope="col">
+                                                <div class="slds-form-element__label" title="YES"  >YES</div>
+                                              </th>
+                                              <th class="text-center" style="background-color:#DBE6F2" scope="col" colspan="2">
+                                                  <div class="slds-form-element__label" title="NO">NO</div>
+                                              </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="rowsBodySection">
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">1</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-1-text-2" data-id="3-1-text-2" class="avoidPercentageInput" name="3-1-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-1-text-3" data-id="3-1-text-3" class="avoidPercentageInput" name="3-1-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-1-text-4" data-id="3-1-text-4" class="avoidPercentageInput" name="3-1-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-1-text-5" data-id="3-1-text-5" class="avoidPercentageInput" name="3-1-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-1-text-6" data-id="3-1-text-6" class="avoidPercentageInput" name="3-1-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-1-text-7" data-id="3-1-text-7" class="avoidPercentageInput" name="3-1-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">2</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-2-text-2" data-id="3-2-text-2" class="avoidPercentageInput" name="3-2-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-2-text-3" data-id="3-2-text-3" class="avoidPercentageInput" name="3-2-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-2-text-4" data-id="3-2-text-4" class="avoidPercentageInput" name="3-2-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-2-text-5" data-id="3-2-text-5" class="avoidPercentageInput" name="3-2-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-2-text-6" data-id="3-2-text-6" class="avoidPercentageInput" name="3-2-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-2-text-7" data-id="3-2-text-7" class="avoidPercentageInput" name="3-2-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">3</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-3-text-2" data-id="3-3-text-2" class="avoidPercentageInput" name="3-3-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-3-text-3" data-id="3-3-text-3" class="avoidPercentageInput" name="3-3-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-3-text-4" data-id="3-3-text-4" class="avoidPercentageInput" name="3-3-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-3-text-5" data-id="3-3-text-5" class="avoidPercentageInput" name="3-3-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-3-text-6" data-id="3-3-text-6" class="avoidPercentageInput" name="3-3-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-3-text-7" data-id="3-3-text-7" class="avoidPercentageInput" name="3-3-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">4</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-4-text-2" data-id="3-4-text-2" class="avoidPercentageInput" name="3-4-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-4-text-3" data-id="3-4-text-3" class="avoidPercentageInput" name="3-4-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-4-text-4" data-id="3-4-text-4" class="avoidPercentageInput" name="3-4-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-4-text-5" data-id="3-4-text-5" class="avoidPercentageInput" name="3-4-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-4-text-6" data-id="3-4-text-6" class="avoidPercentageInput" name="3-4-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-4-text-7" data-id="3-4-text-7" class="avoidPercentageInput" name="3-4-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">5</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-5-text-2" data-id="3-5-text-2" class="avoidPercentageInput" name="3-5-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-5-text-3" data-id="3-5-text-3" class="avoidPercentageInput" name="3-5-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-5-text-4" data-id="3-5-text-4" class="avoidPercentageInput" name="3-5-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-5-text-5" data-id="3-5-text-5" class="avoidPercentageInput" name="3-5-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-5-text-6" data-id="3-5-text-6" class="avoidPercentageInput" name="3-5-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-5-text-7" data-id="3-5-text-7" class="avoidPercentageInput" name="3-5-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">6</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-6-text-2" data-id="3-6-text-2" class="avoidPercentageInput" name="3-6-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-6-text-3" data-id="3-6-text-3" class="avoidPercentageInput" name="3-6-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-6-text-4" data-id="3-6-text-4" class="avoidPercentageInput" name="3-6-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-6-text-5" data-id="3-6-text-5" class="avoidPercentageInput" name="3-6-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-6-text-6" data-id="3-6-text-6" class="avoidPercentageInput" name="3-6-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-6-text-7" data-id="3-6-text-7" class="avoidPercentageInput" name="3-6-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">7</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-7-text-2" data-id="3-7-text-2" class="avoidPercentageInput" name="3-7-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-7-text-3" data-id="3-7-text-3" class="avoidPercentageInput" name="3-7-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-7-text-4" data-id="3-7-text-4" class="avoidPercentageInput" name="3-7-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-7-text-5" data-id="3-7-text-5" class="avoidPercentageInput" name="3-7-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-7-text-6" data-id="3-7-text-6" class="avoidPercentageInput" name="3-7-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-7-text-7" data-id="3-7-text-7" class="avoidPercentageInput" name="3-7-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">8</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-8-text-2" data-id="3-8-text-2" class="avoidPercentageInput" name="3-8-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-8-text-3" data-id="3-8-text-3" class="avoidPercentageInput" name="3-8-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-8-text-4" data-id="3-8-text-4" class="avoidPercentageInput" name="3-8-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-8-text-5" data-id="3-8-text-5" class="avoidPercentageInput" name="3-8-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-8-text-6" data-id="3-8-text-6" class="avoidPercentageInput" name="3-8-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-8-text-7" data-id="3-8-text-7" class="avoidPercentageInput" name="3-8-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">9</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-9-text-2" data-id="3-9-text-2" class="avoidPercentageInput" name="3-9-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-9-text-3" data-id="3-9-text-3" class="avoidPercentageInput" name="3-9-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-9-text-4" data-id="3-9-text-4" class="avoidPercentageInput" name="3-9-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-9-text-5" data-id="3-9-text-5" class="avoidPercentageInput" name="3-9-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-9-text-6" data-id="3-9-text-6" class="avoidPercentageInput" name="3-9-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-9-text-7" data-id="3-9-text-7" class="avoidPercentageInput" name="3-9-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">10</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-10-text-2" data-id="3-10-text-2" class="avoidPercentageInput" name="3-10-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-10-text-3" data-id="3-10-text-3" class="avoidPercentageInput" name="3-10-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-10-text-4" data-id="3-10-text-4" class="avoidPercentageInput" name="3-10-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-10-text-5" data-id="3-10-text-5" class="avoidPercentageInput" name="3-10-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-10-text-6" data-id="3-10-text-6" class="avoidPercentageInput" name="3-10-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-10-text-7" data-id="3-10-text-7" class="avoidPercentageInput" name="3-10-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">11</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-11-text-2" data-id="3-11-text-2" class="avoidPercentageInput" name="3-11-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-11-text-3" data-id="3-11-text-3" class="avoidPercentageInput" name="3-11-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-11-text-4" data-id="3-11-text-4" class="avoidPercentageInput" name="3-11-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-11-text-5" data-id="3-11-text-5" class="avoidPercentageInput" name="3-11-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-11-text-6" data-id="3-11-text-6" class="avoidPercentageInput" name="3-11-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-11-text-7" data-id="3-11-text-7" class="avoidPercentageInput" name="3-11-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">12</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-12-text-2" data-id="3-12-text-2" class="avoidPercentageInput" name="3-12-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-12-text-3" data-id="3-12-text-3" class="avoidPercentageInput" name="3-12-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-12-text-4" data-id="3-12-text-4" class="avoidPercentageInput" name="3-12-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-12-text-5" data-id="3-12-text-5" class="avoidPercentageInput" name="3-12-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-12-text-6" data-id="3-12-text-6" class="avoidPercentageInput" name="3-12-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-12-text-7" data-id="3-12-text-7" class="avoidPercentageInput" name="3-12-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">13</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-13-text-2" data-id="3-13-text-2" class="avoidPercentageInput" name="3-13-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-13-text-3" data-id="3-13-text-3" class="avoidPercentageInput" name="3-13-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-13-text-4" data-id="3-13-text-4" class="avoidPercentageInput" name="3-13-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-13-text-5" data-id="3-13-text-5" class="avoidPercentageInput" name="3-13-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-13-text-6" data-id="3-13-text-6" class="avoidPercentageInput" name="3-13-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-13-text-7" data-id="3-13-text-7" class="avoidPercentageInput" name="3-13-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">14</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-14-text-2" data-id="3-14-text-2" class="avoidPercentageInput" name="3-14-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-14-text-3" data-id="3-14-text-3" class="avoidPercentageInput" name="3-14-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-14-text-4" data-id="3-14-text-4" class="avoidPercentageInput" name="3-14-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-14-text-5" data-id="3-14-text-5" class="avoidPercentageInput" name="3-14-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-14-text-6" data-id="3-14-text-6" class="avoidPercentageInput" name="3-14-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-14-text-7" data-id="3-14-text-7" class="avoidPercentageInput" name="3-14-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">15</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-15-text-2" data-id="3-15-text-2" class="avoidPercentageInput" name="3-15-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-15-text-3" data-id="3-15-text-3" class="avoidPercentageInput" name="3-15-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-15-text-4" data-id="3-15-text-4" class="avoidPercentageInput" name="3-15-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-15-text-5" data-id="3-15-text-5" class="avoidPercentageInput" name="3-15-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-15-text-6" data-id="3-15-text-6" class="avoidPercentageInput" name="3-15-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-15-text-7" data-id="3-15-text-7" class="avoidPercentageInput" name="3-15-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">16</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-16-text-2" data-id="3-16-text-2" class="avoidPercentageInput" name="3-16-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-16-text-3" data-id="3-16-text-3" class="avoidPercentageInput" name="3-16-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-16-text-4" data-id="3-16-text-4" class="avoidPercentageInput" name="3-16-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-16-text-5" data-id="3-16-text-5" class="avoidPercentageInput" name="3-16-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-16-text-6" data-id="3-16-text-6" class="avoidPercentageInput" name="3-16-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-16-text-7" data-id="3-16-text-7" class="avoidPercentageInput" name="3-16-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">17</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-17-text-2" data-id="3-17-text-2" class="avoidPercentageInput" name="3-17-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-17-text-3" data-id="3-17-text-3" class="avoidPercentageInput" name="3-17-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-17-text-4" data-id="3-17-text-4" class="avoidPercentageInput" name="3-17-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-17-text-5" data-id="3-17-text-5" class="avoidPercentageInput" name="3-17-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-17-text-6" data-id="3-17-text-6" class="avoidPercentageInput" name="3-17-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-17-text-7" data-id="3-17-text-7" class="avoidPercentageInput" name="3-17-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">18</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-18-text-2" data-id="3-18-text-2" class="avoidPercentageInput" name="3-18-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-18-text-3" data-id="3-18-text-3" class="avoidPercentageInput" name="3-18-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-18-text-4" data-id="3-18-text-4" class="avoidPercentageInput" name="3-18-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-18-text-5" data-id="3-18-text-5" class="avoidPercentageInput" name="3-18-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-18-text-6" data-id="3-18-text-6" class="avoidPercentageInput" name="3-18-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-18-text-7" data-id="3-18-text-7" class="avoidPercentageInput" name="3-18-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">19</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-19-text-2" data-id="3-19-text-2" class="avoidPercentageInput" name="3-19-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-19-text-3" data-id="3-19-text-3" class="avoidPercentageInput" name="3-19-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-19-text-4" data-id="3-19-text-4" class="avoidPercentageInput" name="3-19-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-19-text-5" data-id="3-19-text-5" class="avoidPercentageInput" name="3-19-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-19-text-6" data-id="3-19-text-6" class="avoidPercentageInput" name="3-19-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-19-text-7" data-id="3-19-text-7" class="avoidPercentageInput" name="3-19-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="Item">20</div>
+                                            </th>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="MESC No.">
+                                                  <input onchange={onIEH} type="text" id="3-20-text-2" data-id="3-20-text-2" class="avoidPercentageInput" name="3-20-text-2" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="Ohm">
+                                                  <input onchange={onIEH} type="text" id="3-20-text-3" data-id="3-20-text-3" class="avoidPercentageInput" name="3-20-text-3" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="ค่า PI">
+                                                  <input onchange={onIEH} type="text" id="3-20-text-4" data-id="3-20-text-4" class="avoidPercentageInput" name="3-20-text-4" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="WH">
+                                                  <input onchange={onIEH} type="text" id="3-20-text-5" data-id="3-20-text-5" class="avoidPercentageInput" name="3-20-text-5" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="YES">
+                                                  <input onchange={onIEH} type="text" id="3-20-text-6" data-id="3-20-text-6" class="avoidPercentageInput" name="3-20-text-6" value="" />
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="slds-truncate text-center" title="NO">
+                                                  <input onchange={onIEH} type="text" id="3-20-text-7" data-id="3-20-text-7" class="avoidPercentageInput" name="3-20-text-7" value="" />
+                                              </div>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                    <div style="text-align: right;">
+                                      <button class="slds-button slds-button_destructive" onclick={removeRow} data-id="removeRowPart1">-</button>
+                                      <button class="slds-button slds-button_brand" onclick={addRow} data-id="addRowPart1">+</button>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+            </li>
+          </ul>
+      </div>
+
+<!-- Button Section for Every Form -->
+<section class="section slds-accordion__section">
+  <div class="slds-button-group obj-right" role="group">
+      <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5 custom-save-button" onclick={openSaveModal}>
+          Save Draft
+      </button>
+      <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5 custom-submit-button" onclick={openSubmitModal}>
+          Submit
+      </button>
+      <button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5 custom-reject-button" onclick={openRejectModal}>
+          Reject
+      </button>
+      <button data-id="recallEQCCStep" class="slds-button slds-button_brand custom-recall-button" disabled onclick={openRecallModal}>
+          Recall
+      </button>
+  </div>
+</section>
+  </div>
+</template>

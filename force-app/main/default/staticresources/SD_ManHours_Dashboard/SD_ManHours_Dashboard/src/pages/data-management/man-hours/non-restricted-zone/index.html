@@ -1,0 +1,56 @@
+<apex:page
+  controller="ICR_DashboardController"
+  standardStylesheets="true"
+  lightningStylesheets="true"
+  sidebar="false"
+  showHeader="false"
+  applyHtmlTag="true"
+  applyBodyTag="false"
+  docType="html-5.0"
+  language="th"
+>
+  <apex:form>
+    <apex:actionFunction
+      name="TestCal"
+      action="{!TestFunction}"
+      reRender="rawDataPanel"
+      oncomplete="window.getData();"
+    />
+  </apex:form>
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="/favicon.ico"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Svelte + TS + Vite App</title>
+    <script type="module" crossorigin src="/assets/ManHoursNonRestrictedZone.js"></script>
+    <link rel="modulepreload" href="/assets/vendor.js">
+    <link rel="modulepreload" href="/assets/BaseDropdown.js">
+    <link rel="modulepreload" href="/assets/dataManagementTabs.js">
+    <link rel="modulepreload" href="/assets/ExportButton.js">
+    <link rel="stylesheet" href="/assets/BaseDropdown.css">
+    <link rel="stylesheet" href="/assets/ExportButton.css">
+    <link rel="stylesheet" href="/assets/ManHoursNonRestrictedZone.css">
+  </head>
+
+  <body>
+    <apex:outputPanel id="rawDataPanel">
+      <div id="rawData" style="display: none">
+        {"staffZones":[{"name":"Non-Project","companies":[{"id":"1","name":"JC Marine","description":"","isDisplayOnDashboard":false,"companyPlants":[{"id":"1","name":"TOP","manHours":[{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":22222,"systemHours":22222},"total":{"hours":3333,"systemHours":33333}},{"male":{"hours":111,"systemHours":1111},"female":{"hours":22,"systemHours":22222},"total":{"hours":33,"systemHours":333333}}]},{"id":"2","name":"TES","manHours":[{"male":{"hours":44,"systemHours":4444},"female":{"hours":5555,"systemHours":555555},"total":{"hours":6666,"systemHours":66666}},{"male":{"hours":444,"systemHours":44444},"female":{"hours":5,"systemHours":55},"total":{"hours":66,"systemHours":666}}]}]},{"id":"2","name":"Lory","description":"","isDisplayOnDashboard":false,"companyPlants":[{"id":"3","name":"TOP","manHours":[{"male":{"hours":77,"systemHours":777},"female":{"hours":88,"systemHours":888},"total":{"hours":99,"systemHours":999}},{"male":{"hours":777,"systemHours":7777},"female":{"hours":888,"systemHours":8888},"total":{"hours":999,"systemHours":9999}}]},{"id":"4","name":"TES","manHours":[{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}},{"male":{"hours":22222.2,"systemHours":22222.2},"female":{"hours":22222.2,"systemHours":22222.2},"total":{"hours":22222.2,"systemHours":22222.2}}]}]}]},{"name":"Project","companies":[{"id":"1","name":"TSB","description":"","isDisplayOnDashboard":false,"companyPlants":[{"id":"1","name":"TOP","manHours":[{"male":{"hours":11,"systemHours":111},"female":{"hours":22,"systemHours":222},"total":{"hours":33,"systemHours":333}},{"male":{"hours":44,"systemHours":444},"female":{"hours":55,"systemHours":555},"total":{"hours":66,"systemHours":666}}]},{"id":"2","name":"TES","manHours":[{"male":{"hours":77,"systemHours":777},"female":{"hours":88,"systemHours":888},"total":{"hours":99,"systemHours":999}},{"male":{"hours":22222.2,"systemHours":22222.2},"female":{"hours":22222.2,"systemHours":22222.2},"total":{"hours":22222.2,"systemHours":22222.2}}]}]}]}],"contractorZones":[{"name":"Non-Project","companies":[{"id":"1","name":"Contractor:AAA","description":"","isDisplayOnDashboard":false,"companyPlants":[{"id":"1","name":"TOP","manHours":[{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":22222,"systemHours":22222},"total":{"hours":3333,"systemHours":33333}},{"male":{"hours":111,"systemHours":1111},"female":{"hours":22,"systemHours":22222},"total":{"hours":33,"systemHours":333333}}]},{"id":"2","name":"TES","manHours":[{"male":{"hours":44,"systemHours":4444},"female":{"hours":5555,"systemHours":555555},"total":{"hours":6666,"systemHours":66666}},{"male":{"hours":444,"systemHours":44444},"female":{"hours":5,"systemHours":55},"total":{"hours":66,"systemHours":666}}]}]},{"id":"2","name":"Contractor:BBB","description":"","isDisplayOnDashboard":false,"companyPlants":[{"id":"3","name":"TOP","manHours":[{"male":{"hours":77,"systemHours":777},"female":{"hours":88,"systemHours":888},"total":{"hours":99,"systemHours":999}},{"male":{"hours":777,"systemHours":7777},"female":{"hours":888,"systemHours":8888},"total":{"hours":999,"systemHours":9999}}]},{"id":"4","name":"TES","manHours":[{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}},{"male":{"hours":22222.2,"systemHours":22222.2},"female":{"hours":22222.2,"systemHours":22222.2},"total":{"hours":22222.2,"systemHours":22222.2}}]}]},{"id":"3","name":"Contractor:CCC","description":"","isDisplayOnDashboard":false,"companyPlants":[{"id":"3","name":"TOP","manHours":[{"male":{"hours":77,"systemHours":777},"female":{"hours":88,"systemHours":888},"total":{"hours":99,"systemHours":999}},{"male":{"hours":777,"systemHours":7777},"female":{"hours":888,"systemHours":8888},"total":{"hours":999,"systemHours":9999}}]},{"id":"4","name":"TES","manHours":[{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}},{"male":{"hours":22222.2,"systemHours":22222.2},"female":{"hours":22222.2,"systemHours":22222.2},"total":{"hours":22222.2,"systemHours":22222.2}}]}]}]},{"name":"Project","companies":[{"id":"1","name":"Contractor:DDD","description":"","isDisplayOnDashboard":false,"companyPlants":[{"id":"1","name":"TOP","manHours":[{"male":{"hours":11,"systemHours":111},"female":{"hours":22,"systemHours":222},"total":{"hours":33,"systemHours":333}},{"male":{"hours":44,"systemHours":444},"female":{"hours":55,"systemHours":555},"total":{"hours":66,"systemHours":666}}]},{"id":"2","name":"TES","manHours":[{"male":{"hours":77,"systemHours":777},"female":{"hours":88,"systemHours":888},"total":{"hours":99,"systemHours":999}},{"male":{"hours":22222.2,"systemHours":22222.2},"female":{"hours":22222.2,"systemHours":22222.2},"total":{"hours":22222.2,"systemHours":22222.2}}]}]}]}],"months":["January","February","March","April","May","June","July","August","September","October","November","December"]}
+      </div>
+    </apex:outputPanel>
+    <div id="app"></div>
+    
+  </body>
+
+  </html>
+</apex:page>

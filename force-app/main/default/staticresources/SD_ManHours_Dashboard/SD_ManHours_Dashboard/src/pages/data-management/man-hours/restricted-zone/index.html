@@ -1,0 +1,60 @@
+<apex:page
+  controller="ICR_DashboardController"
+  standardStylesheets="true"
+  lightningStylesheets="true"
+  sidebar="false"
+  showHeader="false"
+  applyHtmlTag="true"
+  applyBodyTag="false"
+  docType="html-5.0"
+  language="th"
+>
+  <apex:form>
+    <apex:actionFunction
+      name="TestCal"
+      action="{!TestFunction}"
+      reRender="rawDataPanel"
+      oncomplete="window.getData();"
+    />
+  </apex:form>
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="/favicon.ico"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Svelte + TS + Vite App</title>
+    <script type="module" crossorigin src="/assets/ManHoursRestrictedZone.js"></script>
+    <link rel="modulepreload" href="/assets/vendor.js">
+    <link rel="modulepreload" href="/assets/BaseDropdown.js">
+    <link rel="modulepreload" href="/assets/dataManagementTabs.js">
+    <link rel="modulepreload" href="/assets/ExportButton.js">
+    <link rel="stylesheet" href="/assets/BaseDropdown.css">
+    <link rel="stylesheet" href="/assets/ExportButton.css">
+    <link rel="stylesheet" href="/assets/ManHoursRestrictedZone.css">
+  </head>
+
+  <body>
+    <apex:outputPanel id="rawDataPanel">
+      <div
+        id="rawData"
+        style="display: none"
+      >
+        {"staffRestrictedZone":[{"id":"1","company":{"id":"1","name":"TOP"},"companyPlants":[{"id":"1","name":"TOP","manHours":[{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}},{"male":{"hours":22222.2,"systemHours":22222.2},"female":{"hours":22222.2,"systemHours":22222.2},"total":{"hours":22222.2,"systemHours":22222.2}}]},{"id":"2","name":"TES","manHours":[{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":11111.2,"systemHours":11111.2},"total":{"hours":11111.2,"systemHours":11111.2}},{"male":{"hours":22222.2,"systemHours":22222.2},"female":{"hours":22222.2,"systemHours":22222.2},"total":{"hours":22222.2,"systemHours":22222.2}}]}]}],"contractorRestrictedZone":[{"id":"1","company":{"id":"1","name":"TOP"},"manHours":[{"male":{"hours":11111.2,"systemHours":11111.2},"female":{"hours":22222.2,"systemHours":22222.2},"total":{"hours":33333.2,"systemHours":33333.2}},{"male":{"hours":44444.2,"systemHours":44444.2},"female":{"hours":55555.2,"systemHours":55555.2},"total":{"hours":66666.2,"systemHours":66666.2}}]},{"id":"2","company":{"id":"2","name":"TLB"},"manHours":[{"male":{"hours":77777.2,"systemHours":77777.2},"female":{"hours":88888.2,"systemHours":88888.2},"total":{"hours":99999.2,"systemHours":99999.2}},{"male":{"hours":10101.2,"systemHours":10101.2},"female":{"hours":12121.2,"systemHours":12121.2},"total":{"hours":13131.2,"systemHours":13131.2}}]}],"months":["January","February","March","April","May","June","July","August","September","October","November","December"]}
+        <!-- {!jsonTWs} -->
+      </div>
+    </apex:outputPanel>
+    <div id="app"></div>
+    
+  </body>
+
+  </html>
+</apex:page>

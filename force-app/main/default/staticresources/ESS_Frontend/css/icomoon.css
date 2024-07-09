@@ -1,0 +1,270 @@
+@font-face {
+  font-family: 'icomoon';
+  src:
+    url('../fonts/icomoon.woff2?gkdw02') format('woff2'),
+    url('../fonts/icomoon.ttf?gkdw02') format('truetype'),
+    url('../fonts/icomoon.woff?gkdw02') format('woff'),
+    url('../fonts/icomoon.svg?gkdw02#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.ic {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ic-hyperlink:before {
+  content: "\e957";
+}
+
+.ic-website:before {
+  content: "\e911";
+}
+
+.ic-location:before {
+  content: "\e912";
+}
+
+.ic-map:before {
+  content: "\e913";
+}
+
+.ic-sent-mail:before {
+  content: "\e910";
+}
+
+.ic-guest:before {
+  content: "\e92f";
+}
+
+.ic-night:before {
+  content: "\e933";
+}
+
+.ic-room:before {
+  content: "\e956";
+}
+
+.ic-print:before {
+  content: "\e92e";
+}
+
+.ic-photo:before {
+  content: "\e90d";
+}
+
+.ic-add-circle:before {
+  content: "\e90e";
+}
+
+.ic-edit:before {
+  content: "\e90f";
+}
+
+.ic-vdo-file:before {
+  content: "\e954";
+}
+
+.ic-car:before {
+  content: "\e93e";
+}
+
+.ic-draft:before {
+  content: "\e940";
+}
+
+.ic-general-service:before {
+  content: "\e942";
+}
+
+.ic-housing-repair:before {
+  content: "\e944";
+}
+
+.ic-image-file:before {
+  content: "\e945";
+}
+
+.ic-office-building:before {
+  content: "\e946";
+}
+
+.ic-on-behalf:before {
+  content: "\e947";
+}
+
+.ic-on-process:before {
+  content: "\e948";
+}
+
+.ic-reject:before {
+  content: "\e949";
+}
+
+.ic-requester:before {
+  content: "\e94a";
+}
+
+.ic-star-line:before {
+  content: "\e94b";
+}
+
+.ic-star:before {
+  content: "\e94c";
+}
+
+.ic-to-be-approved:before {
+  content: "\e94d";
+}
+
+.ic-verifying:before {
+  content: "\e94e";
+}
+
+.ic-waiting:before {
+  content: "\e94f";
+}
+
+.ic-housing-repair1:before {
+  content: "\e950";
+}
+
+.ic-acceptor:before {
+  content: "\e951";
+}
+
+.ic-download-svgrepo-com:before {
+  content: "\e952";
+}
+
+.ic-bicycle:before {
+  content: "\e953";
+}
+
+.ic-calendar-2:before {
+  content: "\e941";
+}
+
+.ic-transportation-repair:before {
+  content: "\e955";
+}
+
+.ic-document-svgrepo-com-4:before {
+  content: "\e943";
+}
+
+.ic-fix:before {
+  content: "\e930";
+}
+
+.ic-hotel:before {
+  content: "\e931";
+}
+
+.ic-personal-folder:before {
+  content: "\e932";
+}
+
+.ic-stationary:before {
+  content: "\e90c";
+}
+
+.ic-cancel:before {
+  content: "\e934";
+}
+
+.ic-manpower-service:before {
+  content: "\e935";
+}
+
+.ic-new:before {
+  content: "\e936";
+}
+
+.ic-success:before {
+  content: "\e937";
+}
+
+.ic-waiting-task:before {
+  content: "\e938";
+}
+
+.ic-delete:before {
+  content: "\e908";
+}
+
+.ic-days-square:before {
+  content: "\e900";
+}
+
+.ic-days:before {
+  content: "\e901";
+}
+
+.ic-add:before {
+  content: "\e902";
+}
+
+.ic-basic-info-square:before {
+  content: "\e903";
+}
+
+.ic-basic-info:before {
+  content: "\e904";
+}
+
+.ic-calendar:before {
+  content: "\e905";
+}
+
+.ic-excel:before {
+  content: "\e906";
+}
+
+.ic-history:before {
+  content: "\e907";
+}
+
+.ic-pdf:before {
+  content: "\e909";
+}
+
+.ic-recommendation-letter-square:before {
+  content: "\e90a";
+}
+
+.ic-recommendation-letter:before {
+  content: "\e90b";
+}
+
+.ic-report-square:before {
+  content: "\e939";
+}
+
+.ic-report:before {
+  content: "\e93a";
+}
+
+.ic-retirement-square:before {
+  content: "\e93b";
+}
+
+.ic-retirement:before {
+  content: "\e93c";
+}
+
+.ic-search:before {
+  content: "\e93d";
+}

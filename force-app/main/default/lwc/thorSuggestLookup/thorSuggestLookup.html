@@ -1,0 +1,127 @@
+<template>
+
+    <div class="slds-form-element slds-form-element_stacked">
+        <label class="slds-form-element__label" for="combobox-">
+            <template if:true={_required}>
+                <abbr class="slds-required" title="required">*</abbr>
+            </template>
+            <template if:true={labelName}>{labelName}</template>
+            <template if:false={labelName}>{_label}</template>
+        </label>
+        <div class="slds-form-element__control">
+            <template if:true={_isSelected}>
+                <div class="slds-combobox_container slds-has-selection">
+                    <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click">
+                        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                            <lightning-icon
+                                icon-name="standard:search"
+                                size="small"
+                                class="slds-combobox__input-entity-icon slds-var-m-left_x-small"
+                                alternative-text="Search"
+                                title="Search"
+                            ></lightning-icon>
+                            <button
+                                type="button"
+                                class="slds-input_faux slds-combobox__input slds-combobox__input-value"
+                            >
+                                <label class="slds-truncate">
+                                    <template if:true={_value}>{displayValue}</template>
+									<template if:false={_value}>&nbsp;</template>
+                                </label>
+                            </button>
+                            <button
+                                type="button"
+                                class="slds-button slds-button_icon slds-input__icon slds-input__icon_right"
+                                onclick={handleClearValue}
+                            >
+                                <lightning-icon
+                                    icon-name="utility:close"
+                                    size="x-small"
+                                    alternative-text="Remove selected option"
+                                    title="Remove"
+                                ></lightning-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <template if:false={_isSelected}>
+                <div class="slds-combobox_container">
+                    <div class={classDropdownTrigger}>
+                        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right combobox-textbox-search" role="none">
+                            <lightning-input
+                                required={_required}
+                                name="odm_filter_suggest"
+                                id="combobox-"
+                                variant="label-hidden"
+                                aria-activedescendant="option1"
+                                aria-autocomplete="list"
+                                aria-controls="listbox-"
+                                aria-expanded="true"
+                                aria-haspopup="listbox"
+                                autocomplete="off"
+                                role="combobox"
+                                placeholder="Search..."
+                                value={_value}
+                                onchange={handleChangeValue}
+								onfocus={handleFocusIn}
+								onfocusout={handleFocusOut}
+                                data-id="txtSearch"
+                            >
+                            </lightning-input>
+                            <lightning-icon icon-name="utility:search" size="x-small" alternative-text="Search" title=""></lightning-icon>
+                            <template if:true={_showError}>
+                                <div class="slds-has-error">
+                                    <div class="slds-form-element__help">
+                                        Select an option from the picklist or remove the search term.
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                        <div id="listbox-id-3" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
+                            <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                <template if:true={_hasRecordsDisplay}>
+                                    <template for:each={_recordsDisplay} for:item="data">
+                                        <li key={data.Id} data-selected-display-name={data.name} data-selected-record-id={data.Id}
+                                            onclick={handleSelectValue} onmousedown={handleSelectValue} role="presentation"
+                                            class="slds-listbox__item slds-size_1-of-1">
+                                            <div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
+                                                role="option">
+                                                <span class="slds-media__figure slds-listbox__option-icon">
+                                                    <lightning-icon icon-name="standard:search" size="small" alternative-text="Search"
+                                                        title={data.name}></lightning-icon>
+                                                </span>
+                                                <span class="slds-media__body">
+                                                    <span class="slds-listbox__option-text slds-listbox__option-text_entity">
+                                                        {data.name}
+                                                    </span>
+                                                    <span class="slds-listbox__option-meta slds-listbox__option-meta_entity"> {data.description} </span>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </template>
+                                </template>
+                                <template if:false={_hasRecordsDisplay}>
+                                    <li role="presentation" class="slds-listbox__item">
+                                        <div aria-selected="true"
+                                            class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_term slds-has-focus"
+                                            role="option">
+                                            <span class="slds-media__figure slds-listbox__option-icon">
+                                                <lightning-icon icon-name="utility:search" size="x-small" alternative-text="Utility search"
+                                                    title="Search"></lightning-icon>
+                                            </span>
+                                            <span class="slds-media__body">
+                                                <span class="slds-listbox__option-text slds-listbox__option-text_entity"> {_value} Not found </span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+
+</template>

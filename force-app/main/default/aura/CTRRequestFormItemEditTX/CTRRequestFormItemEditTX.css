@@ -1,0 +1,26 @@
+.THIS .formula-style input {
+    padding: 0px 10px;
+}
+.THIS .custom-content {
+    height: 600px;
+    overflow: auto;
+}
+.THIS .helptext-padding-top .slds-form-element__icon {
+    padding-top: 0px !important;
+    display: none;
+}
+.THIS .checkbox-style {
+    display: flex;
+}
+.THIS .custom-help-text .slds-form-element__icon {
+    padding-top: 1px;
+}
+.THIS .custom-help-text1 .slds-form-element__icon {
+    padding-top: 0px;
+}
+.THIS .help-txt-hidden .slds-form-element__icon {
+    display: none !important;
+}
+.THIS .custom-hide-label .slds-form-element__label {
+    display: none !important;
+}

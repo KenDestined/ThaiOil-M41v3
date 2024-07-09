@@ -1,0 +1,1717 @@
+<template>
+    <div data-id="formBegin">
+        <c-step-page-header
+            num-steps="1"
+            current-step="1"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+
+        <!-- Modal placeholder -->
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+        <!-- END Modal Placeholder -->
+
+        <!-- ENIM-QFR-747 /Form Question = 22 -->
+
+        <!--
+            Heading area for form
+        -->
+        <div class="slds-text-heading_large slds-m-bottom_medium text-center " 
+        style="font-weight: bold; color: var(--lwc-brandAccessible, rgb(0, 112, 210));">
+            Thaioil Group
+        </div>
+        <div class="slds-text-heading_medium text-center">
+            LIGHTING PREVENTIVE INSPECTION FORM
+        </div>
+
+        <!-- <div style="text-align: right;">
+            Sheet Code : ENEM-QFR-5106-LTG 
+        </div> -->
+        <!-- Section for Notification, FL. and Status fields -->
+        <section class="section slds-accordion__section">
+            
+            <div class="slds-form">
+                <div class="slds-form__row">
+                  <div class="slds-form__item" role="listitem">
+                    <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                      <label class="slds-form-element__label" for="place">AREA</label>
+                      <div class="slds-form-element__control">
+                        <input
+                        type="text"
+                        data-id="area"
+                        class="slds-input avoidPercentageInput"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slds-form__item" role="listitem">
+                    <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                      <label class="slds-form-element__label" for="place">UNIT</label>
+                      <div class="slds-form-element__control">
+                        <input
+                        type="text"
+                        data-id="unit"
+                        class="slds-input avoidPercentageInput"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slds-form__item" role="listitem">
+                    <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                      <label class="slds-form-element__label" for="place">Clearance No. </label>
+                      <div class="slds-form-element__control">
+                        <input
+                        type="text"
+                        data-id="clearanceNo"
+                        class="slds-input avoidPercentageInput"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="slds-form__row">
+                    <div class="slds-form__item" role="listitem">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="place">วันที่</label>
+                        <div class="slds-form-element__control">
+                          <input
+                          type="date"
+                          data-id="date"
+                          class="slds-input avoidPercentageInput"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-form__item" role="listitem">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                          <label class="slds-form-element__label" for="place">เวลาเริ่มงาน</label>
+                          <div class="slds-form-element__control">
+                            <input
+                            type="text"
+                            data-id="start_time"
+                            class="slds-input avoidPercentageInput"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="slds-form__item" role="listitem">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                          <label class="slds-form-element__label" for="place">เวลาเลิกงาน</label>
+                          <div class="slds-form-element__control">
+                            <input
+                            type="text"
+                            data-id="end_time"
+                            class="slds-input avoidPercentageInput"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                <div class="slds-form__row">
+                    <div class="slds-form__item" role="listitem">
+                      <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                        <label class="slds-form-element__label" for="place">ปัญหาที่ได้รับแจ้ง</label>
+                        <div class="slds-form-element__control">
+                          <input
+                          type="text"
+                          data-id="problem"
+                          class="slds-input avoidPercentageInput"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                <div class="slds-form__row">
+                    <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                          <label class="slds-form-element__label" for="date">Notification No</label>
+                          <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                            <svg
+                                class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                                aria-hidden="true"
+                            >
+                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                            </svg>
+                            <input
+                                type="text"
+                                data-id="notification"
+                                class="slds-input avoidPercentageInput"
+                                value={notification}
+                                disabled
+                            />
+                        </div>
+                        </div>
+                      </div>
+                      <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                          <label class="slds-form-element__label" for="stacked-combobox-id-01" >Order</label>
+                          <div class="slds-form-element__control">
+                            <input
+                            type="text"
+                            data-id="order"
+                            class="slds-input avoidPercentageInput"
+                            value={order}
+                            disabled
+                        />
+                          </div>
+                        </div>
+                      </div>
+                </div>
+
+                <div class="slds-form__row">
+                    <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                            <label class="slds-form-element__label" for="stacked-combobox-id-01">FL.</label>
+                            <div class="slds-form-element__control">
+                              <input
+                              type="text"
+                              data-id="fl"
+                              class="slds-input avoidPercentageInput"
+                              value={functionalLocation}
+                              disabled
+                          />
+                            </div>
+                          </div>
+                      </div>
+                      <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                          <label class="slds-form-element__label" for="stacked-combobox-id-01">Status</label>
+                          <div class="slds-form-element__control">
+                            <input
+                            type="text"
+                            data-id="status"
+                            class="slds-input avoidPercentageInput"
+                            value={formStatus}
+                            disabled
+                        />
+                          </div>
+                        </div>
+                      </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Body section. -->
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <!-- 1 -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionOne">
+                            <div class="card-body">
+                                <section data-id="1.5" class="pd-b-1" >
+                                    <div class="content">
+                                        <div class="slds-form__item">
+                                            <fieldset class="slds-form-element slds-form-element_horizontal">
+                                                <legend class="slds-form-element__label">1) บันทึกรายละเอียดของงานใน Substation Log Book </legend>
+                                                <div class="slds-form-element__control">
+                                                  <div class="slds-checkbox">
+                                                    <input type="checkbox" name="success-1" id="success-1" value="success-1" />
+                                                    <label class="slds-checkbox__label" for="success-1">
+                                                      <span class="slds-checkbox_faux"></span>
+                                                      <span class="slds-form-element__label">ทำเรียบร้อย</span>
+                                                    </label>
+                                                  </div>
+                                                </div>
+                                              </fieldset>
+                                          </div>
+
+                                          <div class="slds-form__item">
+                                              <fieldset class="slds-form-element slds-form-element_horizontal">
+                                                <legend class="slds-form-element__label">2) แขวนป้ายเตือน "อันตรายห้ามใช้งาน" ที่หน้าตู้ Lighting Panel  </legend>
+                                                <div class="slds-form-element__control">
+                                                  <div class="slds-checkbox">
+                                                    <input type="checkbox" name="success-2" id="success-2" value="success-2" onchange={showInputNo}/>
+                                                    <label class="slds-checkbox__label" for="success-2">
+                                                      <span class="slds-checkbox_faux"></span>
+                                                      <span class="slds-form-element__label">ทำเรียบร้อย</span>
+                                                    </label>
+                                                  </div>
+                                                </div>
+                                            </fieldset>
+                                          </div>
+                                        
+                                          <template if:true={showNo}>
+                                            <div class="slds-form__item">
+                                                <fieldset class="slds-form-element slds-form-element_horizontal">
+                                                    <legend class="slds-form-element__label" style="padding-left: 12px;">หมายเลขตู้</legend>
+                                                    <div class="slds-form-element__control">
+                                                    <div class="slds-checkbox">
+                                                        <input type="text" name="no-2" id="no-2" class="slds-input avoidPercentageInput"/>
+                                                    </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                          </template>
+                                     
+
+                                          <div class="slds-form__item">
+                                            <fieldset class="slds-form-element slds-form-element_horizontal">
+                                              <legend class="slds-form-element__label">3) ทำการบิดสวิตช์ Photo cell ให้อยู่ตำแหน่ง Manual  </legend>
+                                              <div class="slds-form-element__control">
+                                                <div class="slds-checkbox">
+                                                  <input type="checkbox" name="success-3" id="success-3" value="success-3" />
+                                                  <label class="slds-checkbox__label" for="success-3">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label">ทำเรียบร้อย</span>
+                                                  </label>
+                                                </div>
+                                              </div>
+                                            </fieldset>
+                                        </div>
+                                        
+                                        <div class="slds-form__item">
+                                            <fieldset class="slds-form-element slds-form-element_horizontal">
+                                              <legend class="slds-form-element__label">4) จำนวนโคมที่ต้องทำการแก้ไขจากปัญหาเบื้องต้น  </legend>
+                                              <div class="slds-form-element__control">
+                                                <div class="slds-checkbox">
+                                                  <input type="text" name="num-4" id="num-4" class="slds-input avoidPercentageInput"/>
+                                                </div>
+                                              </div>
+                                            </fieldset>
+                                        </div>
+
+                                        <div class="slds-form__item">
+                                            <fieldset class="slds-form-element slds-form-element_horizontal">
+                                              <legend class="slds-form-element__label">5) วิธีการแก้ไขปัญหา  </legend>
+                                              <div class="slds-form-element__control">
+                                                <div class="slds-checkbox">
+                                                <textarea id="textarea-05" class="slds-textarea"></textarea>
+                                                </div>
+                                              </div>
+                                            </fieldset>
+                                        </div>
+
+                                        <div class="slds-form__item">
+                                            <fieldset class="slds-form-element slds-form-element_horizontal">
+                                              <legend class="slds-form-element__label">6) สรุปจำนวนงานที่ทำการแก้ไขเสร็จเรียบร้อย </legend>
+                                            </fieldset>
+                                        </div>
+                                        <div class="slds-grid slds-gutters slds-scrollable_x" style="margin-bottom: 12px;">  
+                                            <table class="Customtable slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th rowspan="2" class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2 " scope="col">
+                                                            <div class="slds-form-element__label" title="toDoList" >รายการที่ทำ</div>
+                                                        </th>
+                                        
+                                                        <th rowspan="2" class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2"  scope="col">
+                                                            <div class="slds-form-element__label" title="deviceCondition"  >รายการหลอดไฟ</div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right"  colspan="7"
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="place"  >จำนวนหลอดที่เปลี่ยน</div>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2"  scope="col">
+                                                            <div class="slds-form-element__label" title="deviceCondition"  >18 W</div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="place"  >20 W</div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="install"  >36 W </div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2"  scope="col">
+                                                            <div class="slds-form-element__label" title="deviceCondition"  >40 W</div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="place"  >150 W</div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="install"  >250 W
+                                                            </div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="install"  >400 W
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-answered="false">
+                                                          <td data-label="input-toDoList">
+                                                            <div class="slds-truncate text-center" title="toDoList">
+                                                                <input type="checkbox" name="check-to-do" id="check-1" value="check-1"/>
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-deviceActive text-center">
+                                                            <div class="slds-truncate" title="deviceActive">
+                                                                TLX
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-18-1 text-center">
+                                                            <div class="slds-truncate" title="18W">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-18-1"
+                                                                class="slds-input text-center"
+                                                                placeholder="-"
+                                                                disabled
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-20-1 text-center">
+                                                            <div class="slds-truncate" title="20W">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-20-1"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-36-1 text-center">
+                                                            <div class="slds-truncate" title="36W">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-36-1"
+                                                                class="slds-input text-center"
+                                                                placeholder="-"
+                                                                disabled
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-40-1 text-center">
+                                                            <div class="slds-truncate" title="input-40-1">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-40-1"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-150-1 text-center">
+                                                            <div class="slds-truncate" title="150W">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-150-1"
+                                                                class="slds-input text-center"
+                                                                placeholder="-"
+                                                                disabled
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-250-1 text-center">
+                                                            <div class="slds-truncate" title="250W">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-250-1"
+                                                                class="slds-input text-center"
+                                                                placeholder="-"
+                                                                disabled
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-400-1 text-center">
+                                                            <div class="slds-truncate" title="400W">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-400-1"
+                                                                class="slds-input text-center"
+                                                                placeholder="-"
+                                                                disabled
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td data-label="input-toDoList">
+                                                          <div class="slds-truncate text-center" title="toDoList">
+                                                              <input type="checkbox" name="check-to-do" id="check-2" value="check-2"/>
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-deviceActive text-center">
+                                                          <div class="slds-truncate" title="deviceActive">
+                                                            TLM
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-18-2 text-center">
+                                                          <div class="slds-truncate" title="18W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-18-2"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-20-2 text-center">
+                                                          <div class="slds-truncate" title="20W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-20-2"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-36-2 text-center">
+                                                          <div class="slds-truncate" title="36W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-36-2"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-40-2 text-center">
+                                                          <div class="slds-truncate" title="input-40-2">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-40-2"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-150-2 text-center">
+                                                          <div class="slds-truncate" title="150W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-150-2"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-250-2 text-center">
+                                                          <div class="slds-truncate" title="250W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-250-2"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-400-2 text-center">
+                                                          <div class="slds-truncate" title="400W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-400-2"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td data-label="input-toDoList">
+                                                          <div class="slds-truncate text-center" title="toDoList">
+                                                              <input type="checkbox" name="check-to-do" id="check-3" value="check-3"/>
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="tld-office text-center">
+                                                          <div class="slds-truncate" title="tld-office">
+                                                            TLD (Office)
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-18-2 text-center">
+                                                          <div class="slds-truncate" title="18W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-18-3"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-20-3 text-center">
+                                                          <div class="slds-truncate" title="20W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-20-3"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-36-3 text-center">
+                                                          <div class="slds-truncate" title="36W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-36-3"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-40-3 text-center">
+                                                          <div class="slds-truncate" title="input-40-3">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-40-3"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-150-3 text-center">
+                                                          <div class="slds-truncate" title="150W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-150-3"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-250-3 text-center">
+                                                          <div class="slds-truncate" title="250W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-250-3"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-400-3 text-center">
+                                                          <div class="slds-truncate" title="400W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-400-3"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td data-label="input-toDoList">
+                                                          <div class="slds-truncate text-center" title="toDoList">
+                                                              <input type="checkbox" name="check-to-do" id="check-4" value="check-4"/>
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="tld-process text-center">
+                                                          <div class="slds-truncate" title="tld-process">
+                                                            TLD (Process)
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-18-4 text-center">
+                                                          <div class="slds-truncate" title="18W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-18-4"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-20-4 text-center">
+                                                          <div class="slds-truncate" title="20W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-20-4"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-36-4 text-center">
+                                                          <div class="slds-truncate" title="36W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-36-4"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-40-4 text-center">
+                                                          <div class="slds-truncate" title="input-40-3">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-40-4"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-150-4 text-center">
+                                                          <div class="slds-truncate" title="150W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-150-4"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-250-4 text-center">
+                                                          <div class="slds-truncate" title="250W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-250-4"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-400-4 text-center">
+                                                          <div class="slds-truncate" title="400W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-400-4"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td data-label="input-toDoList">
+                                                          <div class="slds-truncate text-center" title="toDoList">
+                                                              <input type="checkbox" name="check-to-do" id="check-5" value="check-5"/>
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="HPI text-center">
+                                                          <div class="slds-truncate" title="HPI">
+                                                            HPI-T
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-18-5 text-center">
+                                                          <div class="slds-truncate" title="18W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-18-5"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-20-5 text-center">
+                                                          <div class="slds-truncate" title="20W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-20-5"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-36-5 text-center">
+                                                          <div class="slds-truncate" title="36W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-36-5"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-40-5 text-center">
+                                                          <div class="slds-truncate" title="input-40-5">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-40-5"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-150-5 text-center">
+                                                          <div class="slds-truncate" title="150W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-150-5"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-250-5 text-center">
+                                                          <div class="slds-truncate" title="250W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-250-5"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-400-5 text-center">
+                                                          <div class="slds-truncate" title="400W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-400-5"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td data-label="input-toDoList">
+                                                          <div class="slds-truncate text-center" title="toDoList">
+                                                              <input type="checkbox" name="check-to-do" id="check-6" value="check-6"/>
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="HPL text-center">
+                                                          <div class="slds-truncate" title="HPL">
+                                                            HPL-N
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-18-6 text-center">
+                                                          <div class="slds-truncate" title="18W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-18-6"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-20-6 text-center">
+                                                          <div class="slds-truncate" title="20W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-20-6"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-36-6 text-center">
+                                                          <div class="slds-truncate" title="36W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-36-6"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-40-6 text-center">
+                                                          <div class="slds-truncate" title="input-40-5">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-40-6"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-150-6 text-center">
+                                                          <div class="slds-truncate" title="150W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-150-6"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-250-6 text-center">
+                                                          <div class="slds-truncate" title="250W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-250-6"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-400-6 text-center">
+                                                          <div class="slds-truncate" title="400W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-400-6"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td data-label="input-toDoList">
+                                                          <div class="slds-truncate text-center" title="toDoList">
+                                                              <input type="checkbox" name="check-to-do" id="check-7" value="check-7"/>
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="HPL text-center">
+                                                          <div class="slds-truncate" title="HPL">
+                                                            SON-T
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-18-7 text-center">
+                                                          <div class="slds-truncate" title="18W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-18-7"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-20-7 text-center">
+                                                          <div class="slds-truncate" title="20W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-20-7"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-36-7 text-center">
+                                                          <div class="slds-truncate" title="36W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-36-7"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-40-7 text-center">
+                                                          <div class="slds-truncate" title="input-40-5">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-40-7"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-150-7 text-center">
+                                                          <div class="slds-truncate" title="150W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-150-7"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-250-7 text-center">
+                                                          <div class="slds-truncate" title="250W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-250-7"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-400-7 text-center">
+                                                          <div class="slds-truncate" title="400W">
+                                                              <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-400-7"
+                                                                class="slds-input"
+                                                                />
+                                                          </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table> 
+                                        </div>
+                                        <div class="slds-form__item" role="listitem" style="justify-content: right; margin-buttom:12px;">
+                                            <div class="slds-form-element slds-form-element_horizontal">
+                                                <div class="slds-form-element__control slds-input-has-fixed-addon">
+                                                  <span class="slds-form-element__addon" id="fixed-text-addon-pre">รวมจำนวนโคมทั้งหมด</span>
+                                                  <input type="text" id="input-1" class="slds-input avoidPercentageInput" style="width: 80%;"/>
+                                                  <span class="slds-form-element__addon" id="-">โคม</span>
+                                                </div>
+                                              </div>
+                                        </div>
+
+                                        <div class="slds-grid slds-gutters slds-scrollable_x" style="margin-bottom: 12px;">  
+                                            <table class="Customtable slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th rowspan="2" class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2 " scope="col">
+                                                            <div class="slds-form-element__label" title="toDoList" >อื่นๆ</div>
+                                                        </th>
+                                        
+                                                        <th rowspan="2" class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2"  scope="col">
+                                                            <div class="slds-form-element__label" title="deviceCondition"  >รายการ BALLAST</div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right"  colspan="6"
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="place"  >จำนวน Ballast ที่เปลี่ยน</div>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2"  scope="col">
+                                                            <div class="slds-form-element__label" title="deviceCondition"  >1 X 18 W</div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="place"  >1 X 36 W</div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="install"  >2 X 18 W</div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2"  scope="col">
+                                                            <div class="slds-form-element__label" title="deviceCondition"  >2 X 36 W</div>
+                                                        </th>
+                                                     
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="install"  >250 W
+                                                            </div>
+                                                        </th>
+                                                        <th class="text-center border-bottom-right" 
+                                                        style="background-color:#DBE6F2" scope="col">
+                                                            <div class="slds-form-element__label" title="install"  >400 W
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-answered="false">
+                                                          <td data-label="input-toDoList">
+                                                            <div class="slds-truncate text-center" title="toDoList">
+                                                                <input type="checkbox" name="check-other" id="check-8" value="check-8"/>
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-ECONO text-center">
+                                                            <div class="slds-truncate" title="ECONO">
+                                                                ECONO-WATD PERFORM
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-1x18-8 text-center">
+                                                            <div class="slds-truncate" title="1x18W">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-1x18-8"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-1x36-8 text-center">
+                                                            <div class="slds-truncate" title="1x36W">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-1x36-8"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-2x18-8 text-center">
+                                                            <div class="slds-truncate" title="2x18W">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-2x18-8"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-2x36-8 text-center">
+                                                            <div class="slds-truncate" title="2x36W">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-2x36-8"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-250-8 text-center">
+                                                            <div class="slds-truncate" title="250W">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-250-8"
+                                                                class="slds-input text-center"
+                                                                placeholder="-"
+                                                                disabled
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-400-8 text-center">
+                                                            <div class="slds-truncate" title="400W">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-400-8"
+                                                                class="slds-input text-center"
+                                                                placeholder="-"
+                                                                disabled
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td data-label="input-toDoList">
+                                                          <div class="slds-truncate text-center" title="toDoList">
+                                                              <input type="checkbox" name="check-other" id="check-9" value="check-9"/>
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-CEAG text-center">
+                                                          <div class="slds-truncate" title="CEAG">
+                                                            CEAG (Ex-Type)
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-1x18-9 text-center">
+                                                          <div class="slds-truncate" title="1x18W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-1x18-9"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-1x36-9 text-center">
+                                                          <div class="slds-truncate" title="1x36W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-2x18-9 text-center">
+                                                          <div class="slds-truncate" title="2x18W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-2x18-9"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-2x36-9 text-center">
+                                                          <div class="slds-truncate" title="2x36W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-2x36-9"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-250-9 text-center">
+                                                          <div class="slds-truncate" title="250W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-250-9"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-400-9 text-center">
+                                                          <div class="slds-truncate" title="400W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-400-9"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td data-label="input-toDoList">
+                                                          <div class="slds-truncate text-center" title="toDoList">
+                                                              <input type="checkbox" name="check-other" id="check-10" value="check-10"/>
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-CEAG text-center">
+                                                          <div class="slds-truncate" title="CEAG">
+                                                            PHILIPS # BHLE
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-1x18-10 text-center">
+                                                          <div class="slds-truncate" title="1x18W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-1x18-10"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-1x36-10 text-center">
+                                                          <div class="slds-truncate" title="1x36W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-2x18-10 text-center">
+                                                          <div class="slds-truncate" title="2x18W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-2x18-10"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-2x36-10 text-center">
+                                                          <div class="slds-truncate" title="2x36W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-2x36-10"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-250-10 text-center">
+                                                          <div class="slds-truncate" title="250W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-250-10"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-400-10 text-center">
+                                                          <div class="slds-truncate" title="400W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-400-10"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td data-label="input-toDoList">
+                                                          <div class="slds-truncate text-center" title="toDoList">
+                                                              <input type="checkbox" name="check-other" id="check-11" value="check-11"/>
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-CEAG text-center">
+                                                          <div class="slds-truncate" title="CEAG">
+                                                            PHILIPS # BSN
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-1x18-11 text-center">
+                                                          <div class="slds-truncate" title="1x18W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-1x18-11"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-1x36-11 text-center">
+                                                          <div class="slds-truncate" title="1x36W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-2x18-11 text-center">
+                                                          <div class="slds-truncate" title="2x18W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-2x18-11"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-2x36-11 text-center">
+                                                          <div class="slds-truncate" title="2x36W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-2x36-11"
+                                                              class="slds-input text-center"
+                                                              placeholder="-"
+                                                              disabled
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-250-11 text-center">
+                                                          <div class="slds-truncate" title="250W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-250-11"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-400-11 text-center">
+                                                          <div class="slds-truncate" title="400W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              data-id="input-400-11"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table> 
+                                        </div>
+
+                                        <div class="slds-form__item" role="listitem" style="justify-content: right; margin-buttom:12px;">
+                                            <div class="slds-form-element slds-form-element_horizontal">
+                                                <div class="slds-form-element__control slds-input-has-fixed-addon">
+                                                  <span class="slds-form-element__addon" id="fixed-text-ballast-pre">รวมจำนวน BALLAST ทั้งหมด</span>
+                                                  <input type="text" id="input-sumBallast" class="slds-input avoidPercentageInput" style="width: 70%;"/>
+                                                  <span class="slds-form-element__addon">โคม</span>
+                                                </div>
+                                              </div>
+                                        </div>
+
+                                        <div class="slds-grid slds-gutters slds-scrollable_x" style="margin-bottom: 12px;">  
+                                            <table class="Customtable slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered slds-table_header-hidden">
+                                               
+                                                <tbody>
+                                                    <tr data-answered="false">
+                                                          <td data-label="input-toDoList">
+                                                            <div class="slds-truncate text-center" title="toDoList">
+                                                                <input type="checkbox" name="check-other" id="check-12" value="check-12"/>
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-STARTER text-center">
+                                                            <div class="slds-truncate" title="STARTER">
+                                                                STARTER S10
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-1x18-12 text-center">
+                                                            <div class="slds-truncate" title="1x18W">
+                                                           จำนวน
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-1x36-12 text-center">
+                                                            <div class="slds-truncate" title="1x36W">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-1x36-12"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-2x18-12 text-center">
+                                                            <div class="slds-truncate" title="2x18W">
+                                                               อัน
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td data-label="input-1x18-13 text-center" colspan="3">
+                                                          <div class="slds-truncate text-right" title="1x18W">
+                                                              รวมจำนวน
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-1x36-13 text-center">
+                                                          <div class="slds-truncate" title="1x36W">
+                                                              <input
+                                                              onchange={onIEH}
+                                                              type="text"
+                                                              class="slds-input"
+                                                          />
+                                                          </div>
+                                                        </td>
+                                                        <td data-label="input-2x18-13 text-center">
+                                                          <div class="slds-truncate" title="2x18W">
+                                                            อัน
+                                                          </div>
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table> 
+                                        </div>
+
+                                        <div class="button-add-del">
+                                            <button data-id="addRowPart1" class="btn-addRow slds-button slds-button_brand mgr-5" style="width:86px;" onclick={addRow}>
+                                                Add Row
+                                            </button>
+                                            <button data-id="removeRowPart1" class="btn-delRow slds-button slds-button_brand mgr-5" style="width:86px;" onclick={removeRow}>
+                                                Del Row
+                                            </button>
+                                        </div>
+
+                                        <div class="slds-grid slds-gutters slds-scrollable_x" style="margin-bottom: 12px;">  
+                                            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered slds-table_header-hidden">
+                                                <thead>
+                                                    <tr>
+                                                        <td  class="text-center" 
+                                                        style="background-color:white; border:0.5 solid white" scope="col">
+                                                        </td>
+                                        
+                                                        <th  class="text-center" 
+                                                        style="background-color:#DBE6F2; border: solid 0.5px lightgray;"  scope="col">
+                                                            <div class="slds-form-element__label" title="deviceCondition"  >รายการอื่นๆ</div>
+                                                        </th>
+                                                        <th class="text-center" 
+                                                        style="background-color:#DBE6F2; border: solid 0.5px lightgray;" scope="col">
+                                                            <div class="slds-form-element__label" title="place"  >ชนิด</div>
+                                                        </th>
+                                                        <th class="text-center"
+                                                        style="background-color:#DBE6F2; border: solid 0.5px lightgray;"  scope="col">
+                                                            <div class="slds-form-element__label" title="place"  >จำนวน</div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-answered="false">
+                                                          <td data-label="input-toDoList" style="border-left: solid 0.5px lightgray;" >
+                                                            <div class="slds-truncate text-center" title="toDoList">
+                                                                <input type="checkbox" name="check-other" id="check-13" value="check-12"/>
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-STARTER text-center">
+                                                            <div class="slds-truncate" title="input-13-1">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-13-1"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-STARTER text-center">
+                                                            <div class="slds-truncate" title="input-13-2">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-13-2"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                          <td data-label="input-STARTER text-center"
+                                                          style="border-right: solid 0.5px lightgray;">
+                                                            <div class="slds-truncate" title="input-13-3">
+                                                                <input
+                                                                onchange={onIEH}
+                                                                type="text"
+                                                                data-id="input-13-3"
+                                                                class="slds-input"
+                                                            />
+                                                            </div>
+                                                          </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table> 
+                                        </div>
+
+                                        <div class="slds-form__item">
+                                            <fieldset class="slds-form-element slds-form-element_horizontal">
+                                              <legend class="slds-form-element__label">7) จำนวนโคมไฟที่ต้องติดตามซ่อมต่อไป   </legend>
+                                            </fieldset>
+                                        </div>
+                                        <section class="section slds-accordion__section" style="margin-left: 19px;">
+                                          <div class="slds-form">
+                                              <div class="slds-form__row">
+                                                <div class="slds-form__item" role="listitem">
+                                                  <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                                    <label class="slds-form-element__label" for="place">เนื่องจาก Ballast เสีย (โคม)</label>
+                                                    <div class="slds-form-element__control">
+                                                      <input
+                                                      type="text"
+                                                      data-id="Ballast"
+                                                      class="slds-input avoidPercentageInput"
+                                                      />
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                
+                                                <div class="slds-form__item" role="listitem">
+                                                <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                                  <label class="slds-form-element__label" for="place">เนื่องจาก Condenser เสีย (โคม)</label>
+                                                  <div class="slds-form-element__control">
+                                                    <input
+                                                    type="text"
+                                                    data-id="Condenser"
+                                                    class="slds-input avoidPercentageInput"
+                                                    />
+                                                  </div>
+                                                </div>
+                                              </div>
+
+                                              <div class="slds-form__item" role="listitem">
+                                                <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                                  <label class="slds-form-element__label" for="place">เนื่องจากต้องตั้งนั่งร้าน (โคม)</label>
+                                                  <div class="slds-form-element__control">
+                                                    <input
+                                                    type="text"
+                                                    data-id="Sit"
+                                                    class="slds-input avoidPercentageInput"
+                                                    />
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              </div>
+
+                                              <div class="slds-form__row">
+                                                <div class="slds-form__item" role="listitem">
+                                                  <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                                    <label class="slds-form-element__label" for="place">เนื่องจาก โคมชำรุด  (โคม)</label>
+                                                    <div class="slds-form-element__control">
+                                                      <input
+                                                      type="text"
+                                                      data-id="lamp"
+                                                      class="slds-input avoidPercentageInput"
+                                                      />
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                
+                                                <div class="slds-form__item" role="listitem">
+                                                <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                                  <label class="slds-form-element__label" for="place">เนื่องจากขาหลอดเสีย (โคม)</label>
+                                                  <div class="slds-form-element__control">
+                                                    <input
+                                                    type="text"
+                                                    data-id="leg"
+                                                    class="slds-input avoidPercentageInput"
+                                                    />
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              </div>
+
+                                              <div class="slds-form__row">
+                                                <div class="slds-form__item" role="listitem">
+                                                  <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                                    <label class="slds-form-element__label" for="place">เนื่องจากไม่ได้ทำการตรวจสอบ (โคม)</label>
+                                                    <div class="slds-form-element__control">
+                                                      <input
+                                                      type="text"
+                                                      data-id="recheck"
+                                                      class="slds-input avoidPercentageInput"
+                                                      />
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                
+                                                <div class="slds-form__item" role="listitem">
+                                                <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                                  <label class="slds-form-element__label" for="place">สาเหตุ</label>
+                                                  <div class="slds-form-element__control">
+                                                    <input
+                                                    type="text"
+                                                    data-id="problem"
+                                                    class="slds-input avoidPercentageInput"
+                                                    />
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              </div>
+                                          </div>
+                                      </section>
+
+                                      <section data-id="1.10" class="pd-b-1" >
+                                        <div class="slds-form" role="list">
+                                            <div class="slds-form__row">
+                                                <div class="slds-form__item" role="listitem">
+                                                  <div class="slds-form-element slds-form-element_horizontal slds-is-editing slds-form-element_1-col">
+                                                    <label class="slds-form-element__label" for="horizontal-form-element-id-14" style="margin-left: 34px;">NOTE</label>
+                                                    <div class="slds-form-element__control">
+                                                        <textarea id="horizontal-form-element-id-14" 
+                                                                onchange={onIEH}
+                                                                data-id="1-remark-text-1"
+                                                                rows = "5"
+                                                                style="width: 100%;">
+                                                        </textarea>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                        </div>
+                                    </section>
+
+                                      <div class="slds-form__item">
+                                        <fieldset class="slds-form-element slds-form-element_horizontal">
+                                            <legend class="slds-form-element__label">8) ทำการ On Photo cell โดยบิดสวิตช์ให้อยู่ตำแหน่ง AUTO  </legend>
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                <input type="checkbox" name="success-1" id="success-8" value="success-1" />
+                                                <label class="slds-checkbox__label" for="success-8">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                  <span class="slds-form-element__label">ทำเรียบร้อย</span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </fieldset>
+                                      </div>
+                                      <div class="slds-form__item">
+                                        <fieldset class="slds-form-element slds-form-element_horizontal">
+                                            <legend class="slds-form-element__label">9) ปลดป้ายเตือน "อันตรายห้ามใช้งาน" ออก </legend>
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                <input type="checkbox" name="success-1" id="success-9" value="success-1" />
+                                                <label class="slds-checkbox__label" for="success-9">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                  <span class="slds-form-element__label">ทำเรียบร้อย</span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </fieldset>
+                                      </div>
+                                    </div>
+                                </section>
+                          </div>
+                    </section>
+                </li>
+                <!-- 2 -->
+            </ul>
+        </div>
+
+        <!-- For any N/A button sections, use this template
+        <input onchange={onIEH} onchange={disableSection} name="options" type="checkbox" data-id=... />
+        <label...>Label for checkbox</label>
+        -->
+         <!-- Button Section for Every Form -->
+
+         <section class="section slds-accordion__section">
+            <ul class="slds-button-group obj-right" role="group">
+                <li>
+                    <button data-id="saveEQCCStep" class="btn-save slds-button slds-button_brand mgr-5" 
+                            onclick={openSaveModal}>
+                        Save Draft
+                    </button>
+                </li>
+
+                <li>
+                    <button data-id="submitEQCCStep" class="btn-submit slds-button slds-button_brand mgr-5" 
+                    onclick={openSubmitModal}>
+                        Submit
+                    </button>
+
+                </li>
+
+                <li>
+                    <button data-id="rejectEQCCStep" class="btn-reject slds-button slds-button_brand mgr-5 "
+                    onclick={openRejectModal}>
+                        Reject
+                    </button>
+                </li>
+                <li>
+                    <button data-id="recallEQCCStep" class="btn-recall slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                        Recall
+                    </button>
+                </li>
+            </ul>
+        </section>
+    </div>
+</template>

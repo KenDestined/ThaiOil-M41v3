@@ -1,0 +1,17 @@
+.slds-path__action {
+	margin-left: auto;
+	position: relative;
+}
+
+.percentage_fix {
+	/* margin: auto;
+    font-size: xx-small;
+    margin-top: -26px; */
+	position: absolute;
+	top: 0.625rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	font-size: x-small;
+	text-align: center;
+}

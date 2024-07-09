@@ -1,0 +1,62 @@
+.btn-save {
+    background-color: #4fc0fd;
+    border-color: inherit;
+}
+
+.btn-save:hover {
+    background-color: #0070D2 !important;
+}
+
+.btn-submit {
+    background-color: #42C9AC;
+    border-color: inherit;
+}
+
+.btn-submit:hover {
+    background-color: #1bddb3 !important;
+}
+
+.btn-reject {
+    background-color: #E33053;
+    border-color: inherit;
+}
+
+.btn-reject:hover {
+    background-color: #ef224b !important;
+}
+
+.fontweight
+{
+    font-weight: bold;
+}
+.Customtable {
+    border: solid 0.5px lightgray;
+}
+.btn-recall{
+
+    background-color: #FDC82D;
+
+    border-color: inherit;
+
+}
+.btn-recall:hover{
+
+    background-color: #f7be12 !important;
+
+}
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+button::disabled:hover,
+button::disabled:focus,
+button:disabled:hover,
+button:disabled:focus {
+  color:#fff;
+  border-color: #a0a0a0;
+  background-color: #a0a0a0;
+}

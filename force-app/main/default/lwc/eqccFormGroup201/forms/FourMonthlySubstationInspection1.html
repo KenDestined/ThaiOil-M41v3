@@ -1,0 +1,2078 @@
+<template>
+	<div data-id="formBegin">
+		<c-step-page-header num-steps="1" current-step="1" percentage={percentage} is-current={isCurrent} record-id={recordId}></c-step-page-header>
+		<c-lwc-modal title={modalTitle} is-visible={modalVisible} confirm-text={modalConfirmButton} cancel-text={modalCancelButton} name={modalName} message={modalMessage} onselected={handleModalSelection}></c-lwc-modal>
+		<div class="slds-text-heading_medium text-center">Four Monthly Substation Inspection</div>
+		<section class="section slds-accordion__section">
+			<div class="slds-grid slds-gutters">
+				<div class="slds-col">
+					<label class="e-label" for="tank-no">Notification</label>
+					<div class="f-c">
+						<input type="text" data-id="notification" class="slds-input avoidPercentageInput" value={notification} disabled />
+					</div>
+					<label class="e-label" for="tank-no">Order</label>
+					<div class="f-c">
+						<input type="text" data-id="order" class="slds-input avoidPercentageInput" value={order} disabled />
+					</div>
+				</div>
+				<div class="slds-col">
+					<label class="e-label" for="tank-no">FL.</label>
+					<div class="f-c">
+						<input type="text" data-id="fl" class="slds-input avoidPercentageInput" value={functionalLocation} disabled />
+					</div>
+					<label class="e-label" for="tank-no">Status</label>
+					<div class="f-c">
+						<input type="text" data-id="status" class="slds-input avoidPercentageInput" value={formStatus} disabled />
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="bs-example">
+			<ul class="slds-accordion">
+				<li class="slds-accordion__list-item">
+					<section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+						<div class="card-header" data-id="headingZero">
+							<h2 class="slds-accordion__summary-heading card-header"> <button type="button" aria-controls="collapseZero" aria-expanded="true" class="btn btn-link" data-parent="sectionZero" onclick={expandSection} > <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" ></lightning-icon> <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" > 0</span ><span class="slds-accordion__summary-content"> Header Information</span> </button></h2>
+						</div>
+						<div data-id="collapseZero" class="slds-accordion__content">
+							<div class="card-body">
+								<div class="slds-section">
+									<div class="slds-grid slds-gutters">
+										<div class="slds-col">
+											<label class="e-label">Substation:</label>
+											<div class="f-c">
+												<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="substation" class="slds-input avoidPercentageInput" />
+											</div>
+										</div>
+										<div class="slds-col">
+											<label class="e-label">วันที่:</label>
+											<div class="f-c">
+												<input onchange={onIEH} type="date" data-id="date" class="slds-input avoidPercentageInput" />
+											</div>
+											<label class="e-label">เวลา:</label>
+											<div class="f-c">
+												<input onchange={onIEH} type="time" data-id="time" class="slds-input avoidPercentageInput" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</li>
+				<li class="slds-accordion__list-item">
+					<section class="slds-accordion__section" data-id="sectionOne">
+						<div class="card-header" data-id="headingOne">
+							<h2 class="slds-accordion__summary-heading card-header"> <button type="button" aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-parent="sectionOne" onclick={expandSection} > <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" ></lightning-icon> <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" > A</span ><span class="slds-accordion__summary-content"> SUBSTATION ตรวจตามรายการต่อไปนี้</span > </button></h2>
+							<div class="slds-col">
+								<div class="slds-checkbox obj-right">
+									<input onchange={disableSection} name="options" type="checkbox" id="header-na-1" data-id="header-na-1" data-remark="1-remark" value="header-na-1" />
+									<label class="slds-checkbox__label" for="header-na-1"><span class="slds-checkbox_faux"></span>  <span class="e-label">input N/A</span> 
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="slds-grid slds-gutters hide-remark" id="sectionOne-remark" data-id="sectionOne-remark">
+							<div class="slds-col">
+								<label class="e-label" for="tank-no">Remark</label>
+								<div class="f-c">
+									<textarea data-id="sectionOne-inputRemark" id="sectionOne-inputRemark" class="slds-textarea"></textarea>
+								</div>
+							</div>
+						</div>
+						<div data-id="collapseOne" class="slds-accordion__content">
+							<div class="card-body">
+								<div class="slds-m-around_small" style="margin: 0rem;">
+									<div class="slds-section">
+										<table class="table">
+											<thead>
+												<tr>
+													<td class="text-center"> <span class="e-label">รายการที่ต้องการตรวจสอบ</span>
+													</td>
+													<td class="text-center"><span class="e-label">ปกติ</span>
+													</td>
+													<td class="text-center"><span class="e-label">ต้องแก้ไข</span>
+													</td>
+													<td class="text-center"><span class="e-label">ถ้ามีแก้ไข</span>
+													</td>
+												</tr>
+											</thead>
+											<tbody>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">1. สภาพทั่วไปของ Substation number มองเห็นชัด สีไม่ซีด</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-1-radio-1" id="a-1-radio-1" name="a-1-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-1-radio-2" id="a-1-radio-2" name="a-1-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-1-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">2. Danger sign มีสภาพสมบูรณ์ ไม่หลุดร่วง</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-2-radio-1" id="a-2-radio-1" name="a-2-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-2-radio-2" id="a-2-radio-2" name="a-2-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-2-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">3. Single line diagram ชัดเจน ไม่ฉีกขาด และ Lastest updated revision</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-3-radio-1" id="a-3-radio-1" name="a-3-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-3-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-3-radio-2" id="a-3-radio-2" name="a-3-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-3-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-3-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">4. เครื่องดับเพลิงและป้ายบอกวิธีการใช้ มีสภาพดีวางในที่กำหนด</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-4-radio-1" id="a-4-radio-1" name="a-4-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-4-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-4-radio-2" id="a-4-radio-2" name="a-4-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-4-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-4-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">5. ประตู sub กุญแจ และ panic bar สภาพสมบูรณ์ ยึดติดแน่น</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-5-radio-1" id="a-5-radio-1" name="a-5-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-5-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-5-radio-2" id="a-5-radio-2" name="a-5-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-5-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-5-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">6. ป้าย first aid มีสภาพสมบูรณ์ สีไม่ซีด หรือ หลุดร่วง</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-6-radio-1" id="a-6-radio-1" name="a-6-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-6-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-6-radio-2" id="a-6-radio-2" name="a-6-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-6-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-6-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">7. Log book มีอยู่ประจำที่</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-7-radio-1" id="a-7-radio-1" name="a-7-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-7-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-7-radio-2" id="a-7-radio-2" name="a-7-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-7-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-7-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">8. โทรศัพท์ใช้งานได้มีเสียงชัดเจนและมีรายการโทรศัพท์อยู่คู่กัน </span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-8-radio-1" id="a-8-radio-1" name="a-8-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-8-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-8-radio-2" id="a-8-radio-2" name="a-8-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-8-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-8-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">9. ความเรียบร้อยภายในตู้เก็บแบบ </span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-9-radio-1" id="a-9-radio-1" name="a-9-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-9-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-9-radio-2" id="a-9-radio-2" name="a-9-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-9-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-9-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">10. Fuse ในตู้เก็บแบบมีจำนวนเพียงพอกับการใช้งานปกติ </span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-10-radio-1" id="a-10-radio-1" name="a-10-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-10-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-10-radio-2" id="a-10-radio-2" name="a-10-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-10-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-10-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">11. ความเรียบร้อยภายในตู้เก็บกุญแจ ตู้ต้องล็อคกุญแจ </span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-11-radio-1" id="a-11-radio-1" name="a-11-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-11-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-11-radio-2" id="a-11-radio-2" name="a-11-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-11-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-11-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">12. ความสะอาดและความเรียบร้อยใน substation </span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-12-radio-1" id="a-12-radio-1" name="a-12-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-12-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-12-radio-2" id="a-12-radio-2" name="a-12-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-12-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-12-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">13. แผ่นยางรองพื้นอยู่ในสภาพสมบูรณ์ </span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-13-radio-1" id="a-13-radio-1" name="a-13-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-13-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-13-radio-2" id="a-13-radio-2" name="a-13-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-13-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-13-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">14. ความเรียบร้อยของ special tool และ earthing equipment</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-14-radio-1" id="a-14-radio-1" name="a-14-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-14-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-14-radio-2" id="a-14-radio-2" name="a-14-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-14-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-14-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">15. Normal และ essential lighting ไม่ขาด ไม่กระพริบ</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-15-radio-1" id="a-15-radio-1" name="a-15-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-15-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-15-radio-2" id="a-15-radio-2" name="a-15-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-15-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-15-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">16. ตรวจสอบระบบ lighting และ ไฟทางออก ไม่ขาด ไม่กระพริบ</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-16-radio-1" id="a-16-radio-1" name="a-16-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-16-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-16-radio-2" id="a-16-radio-2" name="a-16-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-16-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-16-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">17. ทดสอบระบบ Exit Lighting และเช็คสภาพแบตเตอรี่</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-17-radio-1" id="a-17-radio-1" name="a-17-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-17-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-17-radio-2" id="a-17-radio-2" name="a-17-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-17-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-17-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr>
+													<td class="w-40"> <span class="e-label">18. ตรวจสอบ indicating lamp และ alarm signal ต่อไปนี้</span ></td></tr><tr data-answered="false"><td class="w-40"> <span class="e-label">18.1 Annunciator และ control panel </span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-18-radio-1" id="a-18-radio-1" name="a-18-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-18-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-18-radio-2" id="a-18-radio-2" name="a-18-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-18-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-18-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">18.2 HV./LV. switchgear panel</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-18-radio-4" id="a-18-radio-4" name="a-18-radio-3" value="ปกติ" /> <label class="slds-radio__label" for="a-18-radio-4"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-18-radio-5" id="a-18-radio-5" name="a-18-radio-3" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-18-radio-5"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-18-input-2" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">18.3 UPS/Charger/Heater panel</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-18-radio-7" id="a-18-radio-7" name="a-18-radio-6" value="ปกติ" /> <label class="slds-radio__label" for="a-18-radio-7"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-18-radio-8" id="a-18-radio-8" name="a-18-radio-6" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-18-radio-8"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-18-input-3" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">18.4 OLTC/distribution board</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-18-radio-10" id="a-18-radio-10" name="a-18-radio-9" value="ปกติ" /> <label class="slds-radio__label" for="a-18-radio-10"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-18-radio-11" id="a-18-radio-11" name="a-18-radio-9" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-18-radio-11"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-18-input-4" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">19. HV / LV switchboard ไม่มีเสียงหรือร่องรอยผิดปกติ</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-19-radio-1" id="a-19-radio-1" name="a-19-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-19-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-19-radio-2" id="a-19-radio-2" name="a-19-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-19-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-19-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">20. UPS, Charger, Battery ไม่มีเสียงหรือร่องรอยผิดปกติ</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-20-radio-1" id="a-20-radio-1" name="a-20-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-20-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-20-radio-2" id="a-20-radio-2" name="a-20-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-20-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-20-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">21. ตู้ I/EE, I/E ไม่มีเสียงหรือร่องรอยผิดปกติ</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-21-radio-1" id="a-21-radio-1" name="a-21-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-21-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-21-radio-2" id="a-21-radio-2" name="a-21-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-21-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-21-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">22. Air-conditioner ไม่มีเสียงหรือร่องรอยผิดปกติ</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-22-radio-1" id="a-22-radio-1" name="a-22-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-22-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-22-radio-2" id="a-22-radio-2" name="a-22-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-22-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-22-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">23. อุณหภูมิใน sub อยู่ในระดับปกติ</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-23-radio-1" id="a-23-radio-1" name="a-23-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-23-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-23-radio-2" id="a-23-radio-2" name="a-23-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-23-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-23-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">24. ที่ล้างตาในห้อง battery อยู่ในสภาพสมบูรณ์พร้อมใช้งาน </span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-24-radio-1" id="a-24-radio-1" name="a-24-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-24-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-24-radio-2" id="a-24-radio-2" name="a-24-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-24-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-24-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">25. พัดลมระบายอากาศในห้อง battery ทำงานปกติ</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-25-radio-1" id="a-25-radio-1" name="a-25-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-25-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-25-radio-2" id="a-25-radio-2" name="a-25-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-25-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-25-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">26. ประตูลูกกรงใต้ sub ต้องล็อคกุญแจ</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-26-radio-1" id="a-26-radio-1" name="a-26-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-26-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-26-radio-2" id="a-26-radio-2" name="a-26-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-26-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-26-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">27. Earth connection (ที่มองเห็น) ไม่หลุดหลวม</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-27-radio-1" id="a-27-radio-1" name="a-27-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-27-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-27-radio-2" id="a-27-radio-2" name="a-27-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-27-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-27-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">28. Socket outlet อยู่ในสภาพปกติ</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-28-radio-1" id="a-28-radio-1" name="a-28-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-28-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-28-radio-2" id="a-28-radio-2" name="a-28-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-28-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-28-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">29. ตรวจสอบความชื้นภายในตู้ Electrical Panel (กรุณาระบุ Tag ของตู้ถ้าพบว่าไม่ปกติ) </span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-29-radio-1" id="a-29-radio-1" name="a-29-radio" value="ปกติ" /> <label class="slds-radio__label" for="a-29-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="a-29-radio-2" id="a-29-radio-2" name="a-29-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="a-29-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="a-29-input-1" class="slds-input" />
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</li>
+				<li class="slds-accordion__list-item">
+					<section class="slds-accordion__section" data-id="sectionTwo">
+						<div class="card-header" data-id="headingTwo">
+							<h2 class="slds-accordion__summary-heading card-header"> <button type="button" aria-controls="collapseTwo" aria-expanded="true" class="btn btn-link" data-parent="sectionTwo" onclick={expandSection} > <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" ></lightning-icon> <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" > B</span ><span class="slds-accordion__summary-content"> ลานหม้อแปลง</span> </button></h2>
+							<div class="slds-col">
+								<div class="slds-checkbox obj-right">
+									<input onchange={disableSection} name="options" type="checkbox" id="header-na-2" data-id="header-na-2" data-remark="2-remark" value="header-na-2" />
+									<label class="slds-checkbox__label" for="header-na-2"><span class="slds-checkbox_faux"></span>  <span class="e-label">input N/A</span> 
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="slds-grid slds-gutters hide-remark" id="sectionTwo-remark" data-id="sectionTwo-remark">
+							<div class="slds-col">
+								<label class="e-label" for="tank-no">Remark</label>
+								<div class="f-c">
+									<textarea data-id="sectionTwo-inputRemark" id="sectionTwo-inputRemark" class="slds-textarea"></textarea>
+								</div>
+							</div>
+						</div>
+						<div data-id="collapseTwo" class="slds-accordion__content">
+							<div class="card-body">
+								<div class="slds-m-around_small" style="margin: 0rem;">
+									<div class="slds-section">
+										<table class="table">
+											<thead>
+												<tr>
+													<td class="text-center"> <span class="e-label">รายการที่ต้องการตรวจสอบ</span>
+													</td>
+													<td class="text-center"><span class="e-label">ปกติ</span>
+													</td>
+													<td class="text-center"><span class="e-label">ต้องแก้ไข</span>
+													</td>
+													<td class="text-center"><span class="e-label">ถ้ามีแก้ไข</span>
+													</td>
+												</tr>
+											</thead>
+											<tbody>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">1. รั้วตาข่ายไม่ชำรุด ประตูเปิด-ปิด สะดวก และล็อคกุญแจ</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="b-1-radio-1" id="b-1-radio-1" name="b-1-radio" value="ปกติ" /> <label class="slds-radio__label" for="b-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="b-1-radio-2" id="b-1-radio-2" name="b-1-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="b-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="b-1-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">2. สาย Earth ของรั้วแน่นไม่หลุดหลวม</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="b-2-radio-1" id="b-2-radio-1" name="b-2-radio" value="ปกติ" /> <label class="slds-radio__label" for="b-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="b-2-radio-2" id="b-2-radio-2" name="b-2-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="b-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="b-2-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">3. สาย Earth ของหม้อแปลงแน่นไม่หลุดหลวม</span ></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="b-3-radio-1" id="b-3-radio-1" name="b-3-radio" value="ปกติ" /> <label class="slds-radio__label" for="b-3-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="b-3-radio-2" id="b-3-radio-2" name="b-3-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="b-3-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="b-3-input-1" class="slds-input" />
+													</td>
+												</tr>
+												<tr data-answered="false">
+													<td class="w-40"> <span class="e-label">4. ความสะอาดเรียบร้อยของลานหม้อแปลง</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="b-4-radio-1" id="b-4-radio-1" name="b-4-radio" value="ปกติ" /> <label class="slds-radio__label" for="b-4-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="b-4-radio-2" id="b-4-radio-2" name="b-4-radio" value="ต้องแก้ไข" /> <label class="slds-radio__label" for="b-4-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="b-4-input-1" class="slds-input" />
+													</td>
+												</tr>
+											</tbody>
+										</table> <span class="e-label" style="margin-left: 5px;">5. Transformer condition</span>
+										<div class="dynamicRows">
+											<div class="rowsBodySectionTR">
+												<div>
+													<div class="slds-form-element__control"> <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" class="slds-badge slds-badge_inverse slds-var-p-right_x-small">1</span> 
+														<input type="text" id="tr-1" data-id="tr-1" name="tr-1" class="slds-input short" onchange={onIEH} data-trinput="true" />
+													</div>
+													<section class="slds-section tableFixHead" style="padding-left: 15px;">
+														<table class="table">
+															<thead>
+																<th><span class="e-label"></span>
+																</th>
+																<th class="text-center"> <span class="e-label" style="padding: 10px 0;">R</span ></th><th class="text-center"> <span class="e-label" style="padding: 10px 0;" >L</span ></th></thead><tbody data-id="tbody"><tr><td><span class="e-label">5.1 No abnormal sound</span></td><td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="5-1-r-1" id="5-1-r-1" name="5-1-radio" value="5.1-r-1" /> <label class="slds-radio__label" for="5-1-r-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+																	</label>
+																	</span>
+																	</td>
+																	<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="5-1-l-1" id="5-1-l-1" name="5-1-radio" value="5.1-l-1" /> <label class="slds-radio__label" for="5-1-l-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+																		</label>
+																		</span>
+																	</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.2 Color painting are in good condition</span></td>
+																		<td class="text-center"><span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="5-2-r-1" id="5-2-r-1" name="5-2-radio" value="5.2-r-1" /> <label class="slds-radio__label" for="5-2-r-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+																			</label>
+																			</span>
+																		</td>
+																		<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="5-2-l-1" id="5-2-l-1" name="5-2-radio" value="5.2-l-1" /> <label class="slds-radio__label" for="5-2-l-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+																			</label>
+																			</span>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.3 Load of Tr (MW)</span></td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-3-r-1" class="slds-input" />
+																		</td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-3-l-1" class="slds-input" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.4 Test run cooling fans</span></td>
+																		<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="5-4-r-1" id="5-4-r-1" name="5-4-radio" value="5.4-r-1" /> <label class="slds-radio__label" for="5-4-r-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+																			</label>
+																			</span>
+																		</td>
+																		<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="5-4-l-1" id="5-4-l-1" name="5-4-radio" value="5.4-l-1" /> <label class="slds-radio__label" for="5-4-l-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+																			</label>
+																			</span>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.5 Oil temperature (degree C.)</span></td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-5-r-1" class="slds-input" />
+																		</td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-5-l-1" class="slds-input" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.6 Winding temperature (degree C.)</span></td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-6-r-1" class="slds-input" />
+																		</td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-6-l-1" class="slds-input" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.7.1 Oil temperature setting DegreeC. Alarm</span></td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-7-1-r-1" class="slds-input" />
+																		</td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-7-1-l-1" class="slds-input" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.7.2 Oil temperature setting DegreeC. Trip</span></td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-7-2-r-1" class="slds-input" />
+																		</td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-7-2-l-1" class="slds-input" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.8.1 Winding temperature setting DegreeC. Alarm</span></td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-8-1-r-1" class="slds-input" />
+																		</td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-8-1-l-1" class="slds-input" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.8.2 Winding temperature setting DegreeC. Trip</span></td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-8-2-r-1" class="slds-input" />
+																		</td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-8-2-l-1" class="slds-input" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.9 Tap switch locked and Tap No. (in off load tap changer)</span></td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-9-r-1" class="slds-input" />
+																		</td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-9-l-1" class="slds-input" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.10.1 Check oil level in Main tank ( % )</span></td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-10-1-r-1" class="slds-input" />
+																		</td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-10-1-l-1" class="slds-input" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.10.2 Check oil level in OLTC tank ( % )</span></td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-10-2-r-1" class="slds-input" />
+																		</td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-10-2-l-1" class="slds-input" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.10.3 Check oil level in Conservator tank ( % )</span></td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-10-3-r-1" class="slds-input" />
+																		</td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-10-3-l-1" class="slds-input" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.11 No oil leak</span></td>
+																		<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="5-11-r-1" id="5-11-r-1" name="5-11-radio" value="5.11-r-1" /> <label class="slds-radio__label" for="5-11-r-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+																			</label>
+																			</span>
+																		</td>
+																		<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="5-11-l-1" id="5-11-l-1" name="5-11-radio" value="5.11-l-1" /> <label class="slds-radio__label" for="5-11-l-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+																			</label>
+																			</span>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.12.1 Color of silica gel Main tank (Normal / Pale / Replace)</span></td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="text" data-id="5-12-1-r-1" class="slds-input" />
+																		</td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="text" data-id="5-12-1-l-1" class="slds-input" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.12.2 Color of silica gel OLTC tank (Normal / Pale / Replace)</span></td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="text" data-id="5-12-2-r-1" class="slds-input" />
+																		</td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="text" data-id="5-12-2-l-1" class="slds-input" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><span class="e-label">5.13 OLTC counter (in on load tap changer)</span></td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-13-r-1" class="slds-input" />
+																		</td>
+																		<td class="text-center">
+																			<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="5-13-l-1" class="slds-input" />
+																		</td>
+																	</tr>
+																	</tbody>
+														</table>
+													</section>
+												</div>
+											</div>
+											<div style="text-align: right;"> <span class="slds-button slds-button_destructive" onclick={removeRow} data-id="removeRowPart1">-</span > <span class="slds-button slds-button_brand" onclick={addRow} data-id="addRowPart1">+</span>
+											</div>
+										</div>
+										<section class="slds-section section-tb">
+											<div class="slds-grid slds-gutters">
+												<div class="slds-col pd-l-1-8">
+													<label class="e-label">ถ้าต้องมีการแก้ไขให้สร้าง Notification ในระบบ SAP และลงรายละเอียดและหมายเลข Notification ด้านล่างนี้</label>
+													<div class="f-c">
+														<textarea data-id="2-6-input-1" class="slds-textarea"></textarea>
+													</div>
+												</div>
+											</div>
+										</section>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</li>
+				<li class="slds-accordion__list-item">
+					<section class="slds-accordion__section" data-id="sectionThree">
+						<div class="card-header" data-id="headingThree">
+							<h2 class="slds-accordion__summary-heading card-header"> <button type="button" aria-controls="collapseThree" aria-expanded="true" class="btn btn-link" data-parent="sectionThree" onclick={expandSection} > <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" ></lightning-icon> <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" > C</span ><span class="slds-accordion__summary-content"> ตรวจสอบการทำงานของ EARTH FAULT RELAY สำหรับ OUTLET FEEDERS</span > </button></h2>
+							<div class="slds-col">
+								<div class="slds-checkbox obj-right">
+									<input onchange={disableSection} name="options" type="checkbox" id="header-na-3" data-id="header-na-3" data-remark="3-remark" value="header-na-3" />
+									<label class="slds-checkbox__label" for="header-na-3"><span class="slds-checkbox_faux"></span>  <span class="e-label">input N/A</span> 
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="slds-grid slds-gutters hide-remark" id="sectionThree-remark" data-id="sectionThree-remark">
+							<div class="slds-col">
+								<label class="e-label" for="tank-no">Remark</label>
+								<div class="f-c">
+									<textarea data-id="sectionThree-inputRemark" id="sectionThree-inputRemark" class="slds-textarea"></textarea>
+								</div>
+							</div>
+						</div>
+						<div data-id="collapseThree" class="slds-accordion__content">
+							<div class="card-body">
+								<div class="slds-m-around_small" style="margin: 0rem;">
+									<div class="slds-section dynamicRows">
+										<table class="table" data-answered="false">
+											<thead>
+												<tr>
+													<td class="text-center"><span class="e-label">ลำดับที่</span>
+													</td>
+													<td class="text-center"><span class="e-label">หมายเลขตู้</span>
+													</td>
+													<td class="text-center"> <span class="e-label">Circuit No.</span>
+													</td>
+													<td class="text-center"><span class="e-label">Setting mA</span>
+													</td>
+													<td class="text-center"><span class="e-label">ทำงาน</span>
+													</td>
+													<td class="text-center"><span class="e-label">ไม่ทำงาน</span>
+													</td>
+												</tr>
+											</thead>
+											<tbody data-id="tbody" class="rowsBodySectionC">
+												<tr>
+													<td class="text-center"><span class="e-label">1</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="c-1-input-1" class="slds-input" />
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="c-1-input-2" class="slds-input" />
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="c-1-input-3" class="slds-input" />
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="c-1-radio-1" data-id="c-1-radio-1" name="c-1-radio" value="ทำงาน" /> <label class="slds-radio__label" for="c-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="c-1-radio-2" data-id="c-1-radio-2" name="c-1-radio" value="ไม่ทำงาน" /> <label class="slds-radio__label" for="c-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+												</tr>
+												<tr>
+													<td class="text-center"><span class="e-label">2</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="c-2-input-1" class="slds-input" />
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="c-2-input-2" class="slds-input" />
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="c-2-input-3" class="slds-input" />
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="c-2-radio-1" data-id="c-2-radio-1" name="c-2-radio" value="ทำงาน" /> <label class="slds-radio__label" for="c-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="c-2-radio-2" data-id="c-2-radio-2" name="c-2-radio" value="ไม่ทำงาน" /> <label class="slds-radio__label" for="c-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+												</tr>
+												<tr>
+													<td class="text-center"><span class="e-label">3</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="c-3-input-1" class="slds-input" />
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="c-3-input-2" class="slds-input" />
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="c-3-input-3" class="slds-input" />
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="c-3-radio-1" data-id="c-3-radio-1" name="c-3-radio" value="ทำงาน" /> <label class="slds-radio__label" for="c-3-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="c-3-radio-2" data-id="c-3-radio-2" name="c-3-radio" value="ไม่ทำงาน" /> <label class="slds-radio__label" for="c-3-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+												</tr>
+												<tr>
+													<td class="text-center"><span class="e-label">4</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="c-4-input-1" class="slds-input" />
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="c-4-input-2" class="slds-input" />
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="c-4-input-3" class="slds-input" />
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="c-4-radio-1" data-id="c-4-radio-1" name="c-4-radio" value="ทำงาน" /> <label class="slds-radio__label" for="c-4-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="c-4-radio-2" data-id="c-4-radio-2" name="c-4-radio" value="ไม่ทำงาน" /> <label class="slds-radio__label" for="c-4-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+												</tr>
+												<tr>
+													<td class="text-center"><span class="e-label">5</span>
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="c-5-input-1" class="slds-input" />
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="text" data-id="c-5-input-2" class="slds-input" />
+													</td>
+													<td class="text-center">
+														<input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="c-5-input-3" class="slds-input" />
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="c-5-radio-1" data-id="c-5-radio-1" name="c-5-radio" value="ทำงาน" /> <label class="slds-radio__label" for="c-5-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+													<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="c-5-radio-2" data-id="c-5-radio-2" name="c-5-radio" value="ไม่ทำงาน" /> <label class="slds-radio__label" for="c-5-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+														</label>
+														</span>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<div style="text-align: right;"> <span class="slds-button slds-button_destructive" onclick={removeRow} data-id="removeRowPart2">-</span > <span class="slds-button slds-button_brand" onclick={addRow} data-id="addRowPart2">+</span>
+										</div>
+										<br />
+									</div>
+									<section data-id="3.2" class="section-tb">
+										<ul class="slds-list_horizontal slds-has-block-links_space">
+											<li>
+												<label class="e-label">Notification No # ถ้ามีแก้ไข</label>
+											</li>
+											<li>
+												<div class="f-c">
+													<input onchange={onIEH} type="text" data-id="c-6-input--1" id="c-6-input--1" name="c-6-input--1" class="slds-input" />
+												</div>
+											</li>
+										</ul>
+									</section>
+									<section data-id="3.3" class="section-tb">
+										<label class="e-label">หมายเหตุ</label>
+										<div class="f-c">
+											<input onchange={onIEH} type="text" data-id="c-6-input--2" id="c-6-input--2" name="c-6-input--2" class="slds-input" />
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</section>
+				</li>
+				<li class="slds-accordion__list-item">
+					<section class="slds-accordion__section" data-id="sectionFour">
+						<div class="card-header" data-id="headingFour">
+							<h2 class="slds-accordion__summary-heading card-header"> <button type="button" aria-controls="collapseFour" aria-expanded="true" class="btn btn-link" data-parent="sectionFour" onclick={expandSection} > <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" ></lightning-icon> <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" > D</span ><span class="slds-accordion__summary-content"> ตรวจสอบการทำงานของ EARTH FAULT RELAY สำหรับตู้ DC POWER SUPPLY (โดยการกดปุ่ม TEST BUTTON)</span > </button></h2>
+							<div class="slds-col">
+								<div class="slds-checkbox obj-right">
+									<input onchange={disableSection} name="options" type="checkbox" id="header-na-4" data-id="header-na-4" data-remark="4-remark" value="header-na-4" />
+									<label class="slds-checkbox__label" for="header-na-4"><span class="slds-checkbox_faux"></span>  <span class="e-label">input N/A</span> 
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="slds-grid slds-gutters hide-remark" id="sectionFour-remark" data-id="sectionFour-remark">
+							<div class="slds-col">
+								<label class="e-label" for="tank-no">Remark</label>
+								<div class="f-c">
+									<textarea data-id="sectionFour-inputRemark" id="sectionFour-inputRemark" class="slds-textarea"></textarea>
+								</div>
+							</div>
+						</div>
+						<div data-id="collapseFour" class="slds-accordion__content">
+							<div class="card-body">
+								<div class="slds-m-around_small" style="margin: 0rem;">
+									<div class="slds-section">
+										<ul class="slds-list_horizontal slds-has-block-links_space" data-answered="false">
+											<li>
+												<label class="e-label">หมายเลขตู้ (Switchboard Tag)</label>
+											</li>
+											<li>
+												<div class="f-c">
+													<input onchange={onIEH} type="text" data-id="switchboard-tag" class="slds-input" />
+												</div>
+											</li>
+										</ul>
+										<section data-id="4.1" class="section-tb">
+											<label class="e-label">D1) สำหรับ MAIN E/F INDICATION RELAY</label>
+											<table class="table" data-answered="false">
+												<thead>
+													<td colspan="2" class="text-center"> <span class="e-label">POSITIVE E/F</span>
+													</td>
+													<td colspan="2" class="text-center"> <span class="e-label">NEGATIVE E/F</span>
+													</td>
+													<td colspan="2" class="text-center"> <span class="e-label">Alarm Function</span>
+													</td>
+													<tr>
+														<td class="text-center"><span class="e-label">ทำงาน</span>
+														</td>
+														<td class="text-center"> <span class="e-label">ไม่ทำงาน</span>
+														</td>
+														<td class="text-center"><span class="e-label">ทำงาน</span>
+														</td>
+														<td class="text-center"> <span class="e-label">ไม่ทำงาน</span>
+														</td>
+														<td class="text-center"> <span class="e-label">Annunciator</span>
+														</td>
+														<td class="text-center"><span class="e-label">ELICS</span>
+														</td>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="d-1-radio-1" id="d-1-radio-1" name="d-1-radio-0" value="ทำงาน" /> <label class="slds-radio__label" for="d-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+															</label>
+															</span>
+														</td>
+														<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="d-1-radio-2" id="d-1-radio-2" name="d-1-radio-0" value="ไม่ทำงาน" /> <label class="slds-radio__label" for="d-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+															</label>
+															</span>
+														</td>
+														<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="d-1-radio-4" id="d-1-radio-4" name="d-1-radio-3" value="ทำงาน" /> <label class="slds-radio__label" for="d-1-radio-4"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+															</label>
+															</span>
+														</td>
+														<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="d-1-radio-5" id="d-1-radio-5" name="d-1-radio-3" value="ไม่ทำงาน" /> <label class="slds-radio__label" for="d-1-radio-5"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+															</label>
+															</span>
+														</td>
+														<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="d-1-radio-7" id="d-1-radio-7" name="d-1-radio-6" value="Annunciator" /> <label class="slds-radio__label" for="d-1-radio-7"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+															</label>
+															</span>
+														</td>
+														<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" data-id="d-1-radio-8" id="d-1-radio-8" name="d-1-radio-6" value="ELICS" /> <label class="slds-radio__label" for="d-1-radio-8"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+															</label>
+															</span>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</section>
+										<section data-id="4.2" class="section-tb dynamicRows">
+											<label class="e-label">D2) สำหรับ OUTGOING FEEDERS</label>
+											<table class="table" data-answered="false">
+												<thead>
+													<tr>
+														<td class="text-center"><span class="e-label">ITEM</span>
+														</td>
+														<td class="text-center"> <span class="e-label">CIRCUIT NO.</span>
+														</td>
+														<td class="text-center"><span class="e-label">ทำงาน</span>
+														</td>
+														<td class="text-center"> <span class="e-label">ไม่ทำงาน</span>
+														</td>
+													</tr>
+												</thead>
+												<tbody class="rowsBodySectionD">
+													<tr>
+														<td class="text-center"><span class="e-label">1</span>
+														</td>
+														<td class="text-center">
+															<input onchange={onIEH} type="text" data-id="d-2-1-input-1" class="slds-input" />
+														</td>
+														<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="d-2-1-radio-1" data-id="d-2-1-radio-1" name="d-2-1-radio" value="ทำงาน" /> <label class="slds-radio__label" for="d-2-1-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+															</label>
+															</span>
+														</td>
+														<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="d-2-1-radio-2" data-id="d-2-1-radio-2" name="d-2-1-radio" value="ไม่ทำงาน" /> <label class="slds-radio__label" for="d-2-1-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+															</label>
+															</span>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center"><span class="e-label">2</span>
+														</td>
+														<td class="text-center">
+															<input onchange={onIEH} type="text" data-id="d-2-2-input-1" class="slds-input" />
+														</td>
+														<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="d-2-2-radio-1" data-id="d-2-2-radio-1" name="d-2-2-radio" value="ทำงาน" /> <label class="slds-radio__label" for="d-2-2-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+															</label>
+															</span>
+														</td>
+														<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="d-2-2-radio-2" data-id="d-2-2-radio-2" name="d-2-2-radio" value="ไม่ทำงาน" /> <label class="slds-radio__label" for="d-2-2-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+															</label>
+															</span>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center"><span class="e-label">3</span>
+														</td>
+														<td class="text-center">
+															<input onchange={onIEH} type="text" data-id="d-2-3-input-1" class="slds-input" />
+														</td>
+														<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="d-2-3-radio-1" data-id="d-2-3-radio-1" name="d-2-3-radio" value="ทำงาน" /> <label class="slds-radio__label" for="d-2-3-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+															</label>
+															</span>
+														</td>
+														<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="d-2-3-radio-2" data-id="d-2-3-radio-2" name="d-2-3-radio" value="ไม่ทำงาน" /> <label class="slds-radio__label" for="d-2-3-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+															</label>
+															</span>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center"><span class="e-label">4</span>
+														</td>
+														<td class="text-center">
+															<input onchange={onIEH} type="text" data-id="d-2-4-input-1" class="slds-input" />
+														</td>
+														<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="d-2-4-radio-1" data-id="d-2-4-radio-1" name="d-2-4-radio" value="ทำงาน" /> <label class="slds-radio__label" for="d-2-4-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+															</label>
+															</span>
+														</td>
+														<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="d-2-4-radio-2" data-id="d-2-4-radio-2" name="d-2-4-radio" value="ไม่ทำงาน" /> <label class="slds-radio__label" for="d-2-4-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+															</label>
+															</span>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center"><span class="e-label">5</span>
+														</td>
+														<td class="text-center">
+															<input onchange={onIEH} type="text" data-id="d-2-5-input-1" class="slds-input" />
+														</td>
+														<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="d-2-5-radio-1" data-id="d-2-5-radio-1" name="d-2-5-radio" value="ทำงาน" /> <label class="slds-radio__label" for="d-2-5-radio-1"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+															</label>
+															</span>
+														</td>
+														<td class="text-center"> <span class="slds-radio"> <input onchange={onIEH} type="radio" id="d-2-5-radio-2" data-id="d-2-5-radio-2" name="d-2-5-radio" value="ไม่ทำงาน" /> <label class="slds-radio__label" for="d-2-5-radio-2"> <span class="slds-radio_faux"></span>  <span class="e-label"></span> 
+															</label>
+															</span>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<div style="text-align: right;"> <span class="slds-button slds-button_destructive" onclick={removeRow} data-id="removeRowPart3">-</span > <span class="slds-button slds-button_brand" onclick={addRow} data-id="addRowPart3">+</span>
+											</div>
+											<br />
+										</section>
+										<section data-id="4.3" class="section-tb">
+											<ul class="slds-list_horizontal slds-has-block-links_space">
+												<li>
+													<label class="e-label">D3) Notification No # ถ้ามีแก้ไข</label>
+												</li>
+												<li>
+													<div class="f-c">
+														<input onchange={onIEH} type="text" data-id="d-3-input-1" id="d-3-input-1" name="d-3-input-1" class="slds-input" />
+													</div>
+												</li>
+											</ul>
+										</section>
+										<section data-id="4.3" class="section-tb">
+											<label class="e-label">D4) หมายเหตุ</label>
+											<div class="f-c">
+												<input onchange={onIEH} type="text" data-id="d-4-input-1" id="d-4-input-1" name="d-4-input-1" class="slds-input" />
+											</div>
+										</section>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</li>
+				<li class="slds-accordion__list-item">
+					<section class="slds-accordion__section" data-id="sectionFive">
+						<div class="card-header" data-id="headingFive">
+							<h2 class="slds-accordion__summary-heading card-header"> <button type="button" aria-controls="collapseFive" aria-expanded="true" class="btn btn-link" data-parent="sectionFive" onclick={expandSection} > <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small" ></lightning-icon> <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));" class="slds-badge slds-badge_inverse slds-var-p-right_x-small" > E</span ><span class="slds-accordion__summary-content"> ตรวจสอบระดับ DC Bus Voltage ในตู้ Charger หรือ Distribution</span > </button></h2>
+							<div class="slds-col">
+								<div class="slds-checkbox obj-right">
+									<input onchange={disableSection} name="options" type="checkbox" id="header-na-5" data-id="header-na-5" data-remark="5-remark" value="header-na-5" />
+									<label class="slds-checkbox__label" for="header-na-5"><span class="slds-checkbox_faux"></span>  <span class="e-label">input N/A</span> 
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="slds-grid slds-gutters hide-remark" id="sectionFive-remark" data-id="sectionFive-remark">
+							<div class="slds-col">
+								<label class="e-label" for="tank-no">Remark</label>
+								<div class="f-c">
+									<textarea data-id="sectionFive-inputRemark" id="sectionFive-inputRemark" class="slds-textarea"></textarea>
+								</div>
+							</div>
+						</div>
+						<div data-id="collapseFive" class="slds-accordion__content">
+							<div class="card-body">
+								<div class="slds-m-around_small" style="margin: 0rem;">
+									<div class="slds-section">
+										<section data-id="5.1" class="section-tb dynamicRows">
+											<label class="e-label">E1) สำหรับระดับแรงดัน 24 VDC</label>
+											<div class="table" data-answered="false">
+												<table data-id="example" class="stripe row-border order-column" style="width: 100%;">
+													<thead>
+														<td class="text-center" rowspan="2"> <span class="e-label">Tag No.</span>
+														</td>
+														<td class="text-center" rowspan="2"> <span class="e-label">Distribution Board No.</span>
+														</td>
+														<td rowspan="2" class="text-center"> <span class="e-label">System Voltage</span>
+														</td>
+														<td colspan="4" class="text-center"> <span class="e-label">Bus Voltage เทียบกับ GND</span>
+														</td>
+														<td class="text-center" rowspan="2"> <span class="e-label">Error Range</span>
+														</td>
+														<td class="text-center" rowspan="2"> <span class="e-label">Remark</span>
+														</td>
+														<tr>
+															<td class="text-center"> <span class="e-label">ขั้วบวก</span>
+															</td>
+															<td class="text-center"> <span class="e-label">% E</span>
+															</td>
+															<td class="text-center"> <span class="e-label">ขั้วลบ</span>
+															</td>
+															<td class="text-center"> <span class="e-label">% E</span>
+															</td>
+														</tr>
+													</thead>
+													<tbody class="rowsBodySectionE1">
+														<tr data-dynamicrow="true">
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-1-1-input-1" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-1-1-input-2" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center"><span class="e-label">24</span>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input data-cell="B" data-affects="C" onchange={handleAffectedCells} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-1-1-input-4" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input data-affects="F" onchange={onIEH} data-cell="C" data-disabled="true" disabled type="text" data-id="e-1-1-input-5" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affects="E" data-cell="D" type="number" step="1" onkeypress={onKeyPress} data-id="e-1-1-input-6" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-affects="F" data-cell="E" data-disabled="true" type="text" disabled data-id="e-1-1-input-7" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-cell="F" data-disabled="true" type="text" disabled data-id="e-1-1-input-8" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-1-1-input-9" class="slds-input" />
+																</div>
+															</td>
+														</tr>
+														<tr data-dynamicrow="true">
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-1-2-input-1" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-1-2-input-2" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center"><span class="e-label">24</span>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input data-cell="B" data-affects="C" onchange={handleAffectedCells} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-1-2-input-4" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input data-affects="F" onchange={onIEH} data-cell="C" data-disabled="true" disabled type="text" data-id="e-1-2-input-5" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affects="E" data-cell="D" type="number" step="1" onkeypress={onKeyPress} data-id="e-1-2-input-6" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-affects="F" data-cell="E" data-disabled="true" type="text" disabled data-id="e-1-2-input-7" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-cell="F" data-disabled="true" type="text" disabled data-id="e-1-2-input-8" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-1-2-input-9" class="slds-input" />
+																</div>
+															</td>
+														</tr>
+														<tr data-dynamicrow="true">
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-1-3-input-1" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-1-3-input-2" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center"><span class="e-label">24</span>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input data-cell="B" data-affects="C" onchange={handleAffectedCells} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-1-3-input-4" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input data-affects="F" onchange={onIEH} data-cell="C" data-disabled="true" disabled type="text" data-id="e-1-3-input-5" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affects="E" data-cell="D" type="number" step="1" onkeypress={onKeyPress} data-id="e-1-3-input-6" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-affects="F" data-cell="E" data-disabled="true" type="text" disabled data-id="e-1-3-input-7" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-cell="F" data-disabled="true" type="text" disabled data-id="e-1-3-input-8" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-1-3-input-9" class="slds-input" />
+																</div>
+															</td>
+														</tr>
+														<tr data-dynamicrow="true">
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-1-4-input-1" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-1-4-input-2" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center"><span class="e-label">24</span>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input data-cell="B" data-affects="C" onchange={handleAffectedCells} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-1-4-input-4" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input data-affects="F" onchange={onIEH} data-cell="C" data-disabled="true" disabled type="text" data-id="e-1-4-input-5" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affects="E" data-cell="D" type="number" step="1" onkeypress={onKeyPress} data-id="e-1-4-input-6" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-affects="F" data-cell="E" data-disabled="true" type="text" disabled data-id="e-1-4-input-7" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-cell="F" data-disabled="true" type="text" disabled data-id="e-1-4-input-8" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-1-4-input-9" class="slds-input" />
+																</div>
+															</td>
+														</tr>
+														<tr data-dynamicrow="true">
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-1-5-input-1" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-1-5-input-2" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center"><span class="e-label">24</span>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input data-cell="B" data-affects="C" onchange={handleAffectedCells} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-1-5-input-4" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input data-affects="F" onchange={onIEH} data-cell="C" data-disabled="true" disabled type="text" data-id="e-1-5-input-5" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affects="E" data-cell="D" type="number" step="1" onkeypress={onKeyPress} data-id="e-1-5-input-6" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-affects="F" data-cell="E" data-disabled="true" type="text" disabled data-id="e-1-5-input-7" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-cell="F" data-disabled="true" type="text" disabled data-id="e-1-5-input-8" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-1-5-input-9" class="slds-input" />
+																</div>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+												<div style="text-align: right;"> <span class="slds-button slds-button_destructive" onclick={removeRow} data-id="removeRowPart4">-</span > <span class="slds-button slds-button_brand" onclick={addRow} data-id="addRowPart4">+</span ></div> <br /></div> </section> <section data-id="5.2" class="section-tb dynamicRows"> <label class="e-label">E2) สำหรับระดับแรงดัน 30-48 VDC</label><div class="table" data-answered="false"><table data-id="example1" class="stripe row-border order-column" style="width: 100%;" ><thead><td class="text-center" rowspan="2"> <span class="e-label">Tag No.</span>
+													</td>
+													<td class="text-center" rowspan="2"> <span class="e-label">Distribution Board No.</span>
+													</td>
+													<td rowspan="2" class="text-center"> <span class="e-label">System Voltage</span>
+													</td>
+													<td colspan="4" class="text-center"> <span class="e-label">Bus Voltage เทียบกับ GND</span>
+													</td>
+													<td class="text-center" rowspan="2"> <span class="e-label">Error Range</span>
+													</td>
+													<td class="text-center" rowspan="2"> <span class="e-label">Remark</span>
+													</td>
+													<tr>
+														<td class="text-center"> <span class="e-label">ขั้วบวก</span>
+														</td>
+														<td class="text-center"> <span class="e-label">% E</span>
+														</td>
+														<td class="text-center"> <span class="e-label">ขั้วลบ</span>
+														</td>
+														<td class="text-center"> <span class="e-label">% E</span>
+														</td>
+													</tr>
+													</thead>
+													<tbody class="rowsBodySectionE2">
+														<tr data-dynamicrow="true">
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-2-1-input-1" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-2-1-input-2" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affects="A" data-cell="A" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-2-1-input-3" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affectcells="true" data-affects="C" data-cell="B" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-2-1-input-4" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input data-affects="F" onchange={onIEH} data-cell="C" data-disabled="true" disabled type="text" data-id="e-2-1-input-5" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affects="E" data-cell="D" type="number" step="1" onkeypress={onKeyPress} data-id="e-2-1-input-6" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-affects="F" data-cell="E" data-disabled="true" type="text" disabled data-id="e-2-1-input-7" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-cell="F" data-disabled="true" type="text" disabled data-id="e-2-1-input-8" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-2-1-input-9" class="slds-input" />
+																</div>
+															</td>
+														</tr>
+														<tr data-dynamicrow="true">
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-2-2-input-1" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-2-2-input-2" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affects="A" data-cell="A" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-2-2-input-3" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affectcells="true" data-affects="C" data-cell="B" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-2-2-input-4" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input data-affects="F" onchange={onIEH} data-cell="C" data-disabled="true" disabled type="text" data-id="e-2-2-input-5" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affects="E" data-cell="D" type="number" step="1" onkeypress={onKeyPress} data-id="e-2-2-input-6" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-affects="F" data-cell="E" data-disabled="true" type="text" disabled data-id="e-2-2-input-7" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-cell="F" data-disabled="true" type="text" disabled data-id="e-2-2-input-8" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-2-2-input-9" class="slds-input" />
+																</div>
+															</td>
+														</tr>
+														<tr data-dynamicrow="true">
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-2-3-input-1" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-2-3-input-2" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affects="A" data-cell="A" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-2-3-input-3" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affectcells="true" data-affects="C" data-cell="B" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-2-3-input-4" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input data-affects="F" onchange={onIEH} data-cell="C" data-disabled="true" disabled type="text" data-id="e-2-3-input-5" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affects="E" data-cell="D" type="number" step="1" onkeypress={onKeyPress} data-id="e-2-3-input-6" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-affects="F" data-cell="E" data-disabled="true" type="text" disabled data-id="e-2-3-input-7" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-cell="F" data-disabled="true" type="text" disabled data-id="e-2-3-input-8" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-2-3-input-9" class="slds-input" />
+																</div>
+															</td>
+														</tr>
+														<tr data-dynamicrow="true">
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-2-4-input-1" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-2-4-input-2" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affects="A" data-cell="A" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-2-4-input-3" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affectcells="true" data-affects="C" data-cell="B" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-2-4-input-4" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input data-affects="F" onchange={onIEH} data-cell="C" data-disabled="true" disabled type="text" data-id="e-2-4-input-5" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affects="E" data-cell="D" type="number" step="1" onkeypress={onKeyPress} data-id="e-2-4-input-6" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-affects="F" data-cell="E" data-disabled="true" type="text" disabled data-id="e-2-4-input-7" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-cell="F" data-disabled="true" type="text" disabled data-id="e-2-4-input-8" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-2-4-input-9" class="slds-input" />
+																</div>
+															</td>
+														</tr>
+														<tr data-dynamicrow="true">
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-2-5-input-1" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-2-5-input-2" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affects="A" data-cell="A" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-2-5-input-3" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affectcells="true" data-affects="C" data-cell="B" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-2-5-input-4" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input data-affects="F" onchange={onIEH} data-cell="C" data-disabled="true" disabled type="text" data-id="e-2-5-input-5" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={handleAffectedCells} data-affects="E" data-cell="D" type="number" step="1" onkeypress={onKeyPress} data-id="e-2-5-input-6" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-affects="F" data-cell="E" data-disabled="true" type="text" disabled data-id="e-2-5-input-7" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} data-cell="F" data-disabled="true" type="text" disabled data-id="e-2-5-input-8" class="slds-input" />
+																</div>
+															</td>
+															<td class="text-center">
+																<div class="f-c">
+																	<input onchange={onIEH} type="text" data-id="e-2-5-input-9" class="slds-input" />
+																</div>
+															</td>
+														</tr>
+													</tbody>
+													</table>
+													<div style="text-align: right;"> <span class="slds-button slds-button_destructive" onclick={removeRow} data-id="removeRowPart5">-</span > <span class="slds-button slds-button_brand" onclick={addRow} data-id="addRowPart5">+</span ></div> <br /></div> </section> <section data-id="5.3" class="section-tb dynamicRows"> <label class="e-label">E3) สำหรับระดับแรงดัน 110-125 VDC</label><div class="table" data-answered="false"><table data-id="example2" class="stripe row-border order-column" style="width: 100%;" ><thead><td class="text-center" rowspan="2"> <span class="e-label">Tag No.</span>
+														</td>
+														<td class="text-center" rowspan="2"> <span class="e-label">Distribution Board No.</span>
+														</td>
+														<td rowspan="2" class="text-center"> <span class="e-label">System Voltage</span>
+														</td>
+														<td colspan="4" class="text-center"> <span class="e-label">Bus Voltage เทียบกับ GND</span>
+														</td>
+														<td class="text-center" rowspan="2"> <span class="e-label">Error Range</span>
+														</td>
+														<td class="text-center" rowspan="2"> <span class="e-label">Remark</span>
+														</td>
+														<tr>
+															<td class="text-center"> <span class="e-label">ขั้วบวก</span>
+															</td>
+															<td class="text-center"> <span class="e-label">% E</span>
+															</td>
+															<td class="text-center"> <span class="e-label">ขั้วลบ</span>
+															</td>
+															<td class="text-center"> <span class="e-label">% E</span>
+															</td>
+														</tr>
+														</thead>
+														<tbody class="rowsBodySectionE3">
+															<tr data-dynamicrow="true">
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} type="text" data-id="e-3-1-input-1" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} type="text" data-id="e-3-1-input-2" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={handleAffectedCells} data-affects="A" data-cell="A" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-3-1-input-3" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={handleAffectedCells} data-affects="C" data-cell="B" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-3-1-input-4" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} data-affects="F" data-cell="C" data-disabled="true" disabled type="text" data-id="e-3-1-input-5" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={handleAffectedCells} data-affects="E" data-cell="D" type="number" step="1" onkeypress={onKeyPress} data-id="e-3-1-input-6" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} data-affects="F" data-cell="E" data-disabled="true" type="text" disabled data-id="e-3-1-input-7" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} data-cell="F" data-disabled="true" type="text" disabled data-id="e-3-1-input-8" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} type="text" data-id="e-3-1-input-9" class="slds-input" />
+																	</div>
+																</td>
+															</tr>
+															<tr data-dynamicrow="true">
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} type="text" data-id="e-3-2-input-1" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} type="text" data-id="e-3-2-input-2" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={handleAffectedCells} data-affects="A" data-cell="A" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-3-2-input-3" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={handleAffectedCells} data-affects="C" data-cell="B" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-3-2-input-4" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} data-affects="F" data-cell="C" data-disabled="true" disabled type="text" data-id="e-3-2-input-5" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={handleAffectedCells} data-affects="E" data-cell="D" type="number" step="1" onkeypress={onKeyPress} data-id="e-3-2-input-6" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} data-affects="F" data-cell="E" data-disabled="true" type="text" disabled data-id="e-3-2-input-7" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} data-cell="F" data-disabled="true" type="text" disabled data-id="e-3-2-input-8" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} type="text" data-id="e-3-2-input-9" class="slds-input" />
+																	</div>
+																</td>
+															</tr>
+															<tr data-dynamicrow="true">
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} type="text" data-id="e-3-3-input-1" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} type="text" data-id="e-3-3-input-2" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={handleAffectedCells} data-affects="A" data-cell="A" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-3-3-input-3" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={handleAffectedCells} data-affects="C" data-cell="B" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-3-3-input-4" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} data-affects="F" data-cell="C" data-disabled="true" disabled type="text" data-id="e-3-3-input-5" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={handleAffectedCells} data-affects="E" data-cell="D" type="number" step="1" onkeypress={onKeyPress} data-id="e-3-3-input-6" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} data-affects="F" data-cell="E" data-disabled="true" type="text" disabled data-id="e-3-3-input-7" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} data-cell="F" data-disabled="true" type="text" disabled data-id="e-3-3-input-8" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} type="text" data-id="e-3-3-input-9" class="slds-input" />
+																	</div>
+																</td>
+															</tr>
+															<tr data-dynamicrow="true">
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} type="text" data-id="e-3-4-input-1" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} type="text" data-id="e-3-4-input-2" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={handleAffectedCells} data-affects="A" data-cell="A" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-3-4-input-3" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={handleAffectedCells} data-affects="C" data-cell="B" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-3-4-input-4" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} data-affects="F" data-cell="C" data-disabled="true" disabled type="text" data-id="e-3-4-input-5" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={handleAffectedCells} data-affects="E" data-cell="D" type="number" step="1" onkeypress={onKeyPress} data-id="e-3-4-input-6" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} data-affects="F" data-cell="E" data-disabled="true" type="text" disabled data-id="e-3-4-input-7" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} data-cell="F" data-disabled="true" type="text" disabled data-id="e-3-4-input-8" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} type="text" data-id="e-3-4-input-9" class="slds-input" />
+																	</div>
+																</td>
+															</tr>
+															<tr data-dynamicrow="true">
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} type="text" data-id="e-3-5-input-1" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} type="text" data-id="e-3-5-input-2" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={handleAffectedCells} data-affects="A" data-cell="A" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-3-5-input-3" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={handleAffectedCells} data-affects="C" data-cell="B" type="number" min="0" step="1" onkeypress={onKeyPress} data-id="e-3-5-input-4" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} data-affects="F" data-cell="C" data-disabled="true" disabled type="text" data-id="e-3-5-input-5" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={handleAffectedCells} data-affects="E" data-cell="D" type="number" step="1" onkeypress={onKeyPress} data-id="e-3-5-input-6" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} data-affects="F" data-cell="E" data-disabled="true" type="text" disabled data-id="e-3-5-input-7" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} data-cell="F" data-disabled="true" type="text" disabled data-id="e-3-5-input-8" class="slds-input" />
+																	</div>
+																</td>
+																<td class="text-center">
+																	<div class="f-c">
+																		<input onchange={onIEH} type="text" data-id="e-3-5-input-9" class="slds-input" />
+																	</div>
+																</td>
+															</tr>
+														</tbody>
+														</table>
+														<div style="text-align: right;"> <span class="slds-button slds-button_destructive" onclick={removeRow} data-id="removeRowPart6">-</span > <span class="slds-button slds-button_brand" onclick={addRow} data-id="addRowPart6">+</span ></div> <br /></div> </section></div></div></div></div> </section></li></ul></div> <section class="section slds-accordion__section">
+															<div class="slds-button-group obj-right" role="group">
+																<button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+																	Save Draft
+																</button>
+																<button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openModal}>
+																	Submit
+																</button>
+																<button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openRejectModal}>
+																	Reject
+																</button>
+																<button data-id="recallEQCCStep" class="slds-button slds-button_brand" disabled onclick={openRecallModal}>
+																	Recall
+																</button>
+															</div>
+														</section>
+													</div>
+												
+													<template if:true={isModalOpen}>
+														<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+															<div class="slds-modal__container">
+																<header class="slds-modal__header">
+																	<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+																		<lightning-icon icon-name="utility:close"
+																			alternative-text="close"
+																			variant="inverse"
+																			size="small" ></lightning-icon>
+																		<span class="slds-assistive-text">Close</span>
+																	</button>
+																	<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Submit</h2>
+																</header>
+																<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+																	<c-lookup object-api-name="user" icon-name="standard:user" onrecordselection={onUserSelection}></c-lookup>
+																</div>
+																<footer class="slds-modal__footer">
+																	<button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+																	<button class="slds-button slds-button_brand" onclick={submit} title="Submit">Submit</button>
+																</footer>
+															</div>
+														</section>
+														<div class="slds-backdrop slds-backdrop_open"></div>
+													</template></template>

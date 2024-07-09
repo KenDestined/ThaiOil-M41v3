@@ -1,0 +1,1461 @@
+<template>
+    <div data-id="formBegin">
+        <c-step-page-header
+                num-steps="1"
+                current-step="1"
+                percentage={percentage}
+                is-current={isCurrent}
+                record-id={recordId}
+        ></c-step-page-header>
+        <c-lwc-modal
+                title={modalTitle}
+                is-visible={modalVisible}
+                confirm-text={modalConfirmButton}
+                cancel-text={modalCancelButton}
+                name={modalName}
+                message={modalMessage}
+                onselected={handleModalSelection}
+        >
+        </c-lwc-modal>
+        <!-- END Modal Placeholder -->
+
+        <!-- EQCC-ENMM-001 /Form Question = 26 -->
+
+        <!--
+            Heading area for form
+        -->
+        <div class="slds-text-heading_medium text-center">EQCC-ENMM-001</div>
+        <div class="slds-text-heading_medium text-center">Mechanical Workshop Report</div>
+        <div class="slds-text-heading_medium text-center">ROTOR BALANCING REPORT</div>
+
+        <section class="section slds-accordion__section">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">Notification</label>
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                        <svg
+                                class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                                aria-hidden="true"
+                        >
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                        </svg>
+                        <input
+                                type="text"
+                                data-id="notification"
+                                class="slds-input avoidPercentageInput"
+                                value={notification}
+                                disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Order</label>
+                    <div class="slds-form-element__control">
+                        <input
+                                type="text"
+                                data-id="Order"
+                                class="slds-input avoidPercentageInput"
+                                value={order}
+                                disabled
+                        />
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <label class="slds-form-element__label" for="tank-no">FL.</label>
+                    <div class="slds-form-element__control">
+                        <input
+                                type="text"
+                                data-id="fl"
+                                class="slds-input avoidPercentageInput"
+                                value={functionalLocation}
+                                disabled
+                        />
+                    </div>
+                    <label class="slds-form-element__label" for="tank-no">Status</label>
+                    <div class="slds-form-element__control">
+                        <input
+                                type="text"
+                                data-id="status"
+                                class="slds-input avoidPercentageInput"
+                                value={formStatus}
+                                disabled
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Body section.  -->
+        <div class="bs-example">
+            <ul class="slds-accordion">
+        <!-- Li-0 -->                  
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section slds-is-open" data-id="sectionZero">
+                        <div class="slds-accordion__summary" data-id="headingZero">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                        type="button"
+                                        aria-controls="collapseZero"
+                                        aria-expanded="true"
+                                        class="btn btn-link"
+                                        data-parent="sectionZero"
+                                        onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                            icon-name="utility:switch"
+                                            alternative-text="button icon"
+                                            size="x-small"
+                                            class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    >
+                                    </lightning-icon>
+                                    <span
+                                            style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                            class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        0</span
+                                    ><span class="slds-accordion__summary-content"> General Information
+                                    </span>
+                                </button>
+                            </h2>
+                        </div>
+                    <div data-id="collapseZero" class="slds-accordion__content">
+                        <div class="card-body">
+                            <div>                                    
+                                <table class="table">
+                                    <tbody>
+                                        <tr >
+                                            <td style="width: 45%;"><span class="slds-form-element__label" >Job Order</span>
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="text"
+                                                    data-id="Job-Order"
+                                                    class="slds-input"
+                                                />
+                                            </td>
+                                            <td style="width: 10%;"></td>
+                                            <td style="width: 45%;"><span class="slds-form-element__label"  >Feed</span>             
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="text"
+                                                    data-id="Feed"
+                                                    class="slds-input"
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr >
+                                            <td ><span class="slds-form-element__label" >Serial No</span>
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="text"
+                                                    data-id="Serial-No"
+                                                    class="slds-input"
+                                                />
+                                            </td>
+                                            <td></td>
+                                            <td><span class="slds-form-element__label" >Temperature ( °C )</span>             
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="text"
+                                                    data-id="Temperature"
+                                                    class="slds-input"
+                                                />
+                                            </td>
+                                        </tr>  
+                                        <tr >
+                                            <td ><span class="slds-form-element__label" >Problem</span>
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="text"
+                                                    data-id="Problem"
+                                                    class="slds-input"
+                                                />
+                                            </td>
+                                            <td></td>
+                                            <td><span class="slds-form-element__label" >Operating pressure ( BarG )</span>             
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="text"
+                                                    data-id="Oper-pressure"
+                                                    class="slds-input"
+                                                />
+                                            </td>
+                                        </tr>                                   
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    </section>
+                </li> 
+         <!-- Li-1 -->                    
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionOne">
+                        <div class="slds-accordion__summary" data-id="headingOne">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button
+                                        type="button"
+                                        aria-controls="collapseOne"
+                                        aria-expanded="true"
+                                        class="btn btn-link"
+                                        data-parent="sectionOne"
+                                        onclick={expandSection}
+                                >
+                                    <lightning-icon
+                                            icon-name="utility:switch"
+                                            alternative-text="button icon"
+                                            size="x-small"
+                                            class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                    >
+                                    </lightning-icon>
+                                    <span
+                                            style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                            class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                    >
+                                        1</span>
+                                    <span class="slds-accordion__summary-content"> Balance Information</span>
+                                </button>
+                                <div class="slds-col">
+                                    <div class="slds-checkbox obj-right">
+                                        <input
+                                                onchange={disableSection}
+                                                type="checkbox"
+                                                name="options"
+                                                id="checkbox-unique-id-1"
+                                                data-id="checkbox-unique-id-1"
+                                                value="checkbox-unique-id-1"
+                                                data-remark="1-remark"
+                                                data-parent="sectionOne"
+                                        />
+                                        <label class="slds-checkbox__label" for="checkbox-unique-id-1">
+                                            <span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">N/A</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </h2>
+                        </div>
+                        <div
+                            class="slds-grid slds-gutters hide-remark"
+                            id="sectionOne-remark"
+                            data-id="sectionOne-remark"
+                        >
+                            <div class="slds-col">
+                                <label class="slds-form-element__label" for="tank-no">Remark</label>
+                                <div class="slds-form-element__control">
+                                    <textarea
+                                            data-id="sectionOne-inputRemark"
+                                            onchange={onIEH}
+                                            id="sectionOne-inputRemark"
+                                            class="slds-textarea"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-id="collapseOne" class="slds-accordion__content">
+                            <div class="card-body">
+                                <div>                                    
+                                    <div class="slds-col slds-size_11-of-12">
+                                        <span class="slds-form-element__label"
+                                        >1.1 Balance ration </span>
+                                    </div>
+                                    <table>
+                                        <tbody>
+                                        <tr data-answered="false">
+                                            <th  style="width: 40%;" rowspan="3" class="text-center">
+                                                <img alt="image1" src="https://thaioil--uat--c.documentforce.com/servlet/servlet.ImageServer?id=0159D000000GxHy&oid=00D9D0000008h13&lastMod=1629783589000" 
+                                                width="450" height="450" /><br />
+                                            </th>   
+                                            <td style="width: 10%;" class="text-right">
+                                                <span  class="slds-form-element__label">D = &nbsp;&nbsp;</span>
+                                            </td>                                                                             
+                                            <td style="width: 15%;" class="text-center">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                                onchange={onIEH}
+                                                                type="number"
+                                                                min="0"
+                                                                step="1"
+                                                                onkeypress={onKeyPress}
+                                                                data-id="1-1-bal-D"
+                                                                placeholder=""
+                                                                class="slds-input"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td style="width: 10%;" class="text-left">
+                                                <span  class="slds-form-element__label">&nbsp;&nbsp;mm</span>
+                                            </td>
+                                        </tr>
+                                        <tr data-answered="false">  
+                                            <td style="width: 10%;" class="text-right">
+                                                <span  class="slds-form-element__label">b = &nbsp;&nbsp;</span>
+                                            </td>                                                                           
+                                            <td class="text-center">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control">
+                                                        <input
+                                                                onchange={onIEH}
+                                                                type="number"
+                                                                min="0"
+                                                                step="1"
+                                                                onkeypress={onKeyPress}
+                                                                data-id="1-1-bal-b"
+                                                                placeholder=""
+                                                                class="slds-input"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td style="width: 10%;" class="text-left">
+                                                <span  class="slds-form-element__label">&nbsp;&nbsp;mm</span>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr data-answered="false">  
+                                            <td></td>
+                                            <td colspan="3">
+                                            <div class="slds-radio">
+                                                <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="1-1-radio"
+                                                        data-id="1-1-radio-1"
+                                                        id="1-1-radio-1"
+                                                        value="Checked"
+                                                />
+                                                <label class="slds-radio__label" for="1-1-radio-1">
+                                                    <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label mgr-10"
+                                                        > Static balance ( If 𝑅𝑎𝑡𝑖𝑜 > 6 )</span>
+                                                </label>
+                                            </div></Br>
+                                            <div class="slds-radio">
+                                                <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="1-1-radio"
+                                                        data-id="1-1-radio-2"
+                                                        id="1-1-radio-2"
+                                                        value="Checked"
+                                                />
+                                                <label class="slds-radio__label" for="1-1-radio-2">
+                                                    <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label mgr-10"
+                                                        > Dynamic balance ( If 𝑅𝑎𝑡𝑖𝑜 &lt; 6 )</span>
+                                                </label>
+                                            </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div style="margin-top:10px;">                                    
+                                    <div class="slds-col slds-size_11-of-12">
+                                        <span class="slds-form-element__label"
+                                        >1.2 Condition </span>
+                                    </div>
+                                    <table>
+                                        <tbody>
+                                        <tr  data-answered="false">
+                                            <td  height="40px" style="width: 20%;" class="text-center">
+                                                <span class="slds-form-element__label">Grade</span>
+                                            </td>                                                                              
+                                            <td colspan="2" class="text-left">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-radio">
+                                                        <input
+                                                                onchange={onIEH}
+                                                                type="radio"
+                                                                name="1-2-radio"
+                                                                data-id="1-2-radio-1"
+                                                                id="1-2-radio-1"
+                                                                value="Checked"
+                                                        />
+                                                        <label class="slds-radio__label" for="1-2-radio-1">
+                                                            <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label mgr-10"
+                                                                > 1</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="slds-radio">
+                                                        <input
+                                                                onchange={onIEH}
+                                                                type="radio"
+                                                                name="1-2-radio"
+                                                                data-id="1-2-radio-2"
+                                                                id="1-2-radio-2"
+                                                                value="Checked"
+                                                        />
+                                                        <label class="slds-radio__label" for="1-2-radio-2">
+                                                            <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label mgr-10"
+                                                                > 2.5</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="slds-radio">
+                                                        <input
+                                                                onchange={onIEH}
+                                                                type="radio"
+                                                                name="1-2-radio"
+                                                                data-id="1-2-radio-3"
+                                                                id="1-2-radio-3"
+                                                                value="Checked"
+                                                        />
+                                                        <label class="slds-radio__label" for="1-2-radio-3">
+                                                            <span class="slds-radio_faux"></span>
+                                                                <span class="slds-form-element__label mgr-10"
+                                                                > 6.3</span>
+                                                        </label>
+                                                    </div></Br>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr  data-answered="false">
+                                            <td height="40px" style="width: 20%;" class="text-center">
+                                                <span class="slds-form-element__label">Speed, N</span>
+                                            </td>                                                                              
+                                            <td style="width: 30%;" class="text-left">
+
+                                                        <input
+                                                        onchange={onIEH}
+                                                        type="text"
+                                                        data-id="1-2-Speed"
+                                                        class="slds-input"
+                                                    />
+
+
+                                            </td>
+                                            <td class="text-left">
+                                                <label class="slds-radio__label" for="1-2-Speed">
+                                                        <span class="slds-form-element__label mgr-10"
+                                                        > &nbsp;&nbsp;rpm</span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr></tr>
+                                        <tr  data-answered="false">
+                                            <td height="40px" style="width: 20%;" class="text-center">
+                                                <span class="slds-form-element__label">Rotor Mass, M</span>
+                                            </td>                                                                              
+                                            <td style="width: 30%;" class="text-left">
+
+                                                        <input
+                                                        onchange={onIEH}
+                                                        type="text"
+                                                        data-id="1-2-Rotor"
+                                                        class="slds-input"
+                                                    />
+
+
+                                            </td>
+                                            <td class="text-left">
+                                                <label class="slds-radio__label" for="1-2-Rotor">
+                                                        <span class="slds-form-element__label mgr-10"
+                                                        >&nbsp;&nbsp; kg</span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div style="margin-top:10px;">                                    
+                                    <div class="slds-col slds-size_11-of-12">
+                                        <span class="slds-form-element__label"
+                                        >1.3 Tolorance </span>
+                                    </div>
+                                    <table >
+                                        <tbody>
+                                        <tr >
+                                            <td height="40px" colspan ="3" class="text-center">
+                                                <span class="slds-form-element__label">Permissible unbalance</span></br>
+                                                <span class="slds-form-element__label">𝑈𝑝𝑒𝑟 = 𝑀𝑒 = 9549 * (MG/N) </span></br>
+                                            </td>                                                                              
+                                        </tr>                                        
+                                        <tr  data-answered="false">
+                                            <td height="40px"  style="width: 20%;" class="text-right">
+                                                <span class="slds-form-element__label">𝑈𝑝𝑒𝑟 =  &nbsp;&nbsp;</span>
+                                            </td>                                                                              
+                                            <td style="width: 30%;" class="text-left">
+                                                <input
+                                                onchange={onIEH}
+                                                type="text"
+                                                data-id="1-3-Uper"
+                                                class="slds-input"
+                                                />
+                                            </td>
+                                            <td style="width: 20%;" class="text-left">
+                                                <label class="slds-radio__label" for="1-3-Uper">
+                                                        <span class="slds-form-element__label mgr-10"
+                                                        > &nbsp;&nbsp;𝑔 ∙ 𝑚𝑚</span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>         
+        <!-- Li-2 -->                    
+                <li class="slds-accordion__list-item">
+                <section class="slds-accordion__section" data-id="sectionTwo">
+                    <div class="slds-accordion__summary" data-id="headingTwo">
+                        <h2 class="slds-accordion__summary-heading card-header">
+                            <button
+                                    type="button"
+                                    aria-controls="collapseTwo"
+                                    aria-expanded="true"
+                                    class="btn btn-link"
+                                    data-parent="sectionTwo"
+                                    onclick={expandSection}
+                            >
+                                <lightning-icon
+                                        icon-name="utility:switch"
+                                        alternative-text="button icon"
+                                        size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                >
+                                </lightning-icon>
+                                <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                                >
+                                    2</span>
+                                <span class="slds-accordion__summary-content"> Position of Correction plan</span>
+                            </button>
+                            <div class="slds-col" >
+                                <div class="slds-checkbox obj-right">
+                                    <input
+                                            onchange={disableSection}
+                                            type="checkbox"
+                                            name="options"
+                                            id="checkbox-unique-id-2"
+                                            data-id="checkbox-unique-id-2"
+                                            value="checkbox-unique-id-2"
+                                            data-remark="2-remark"
+                                            data-parent="sectionTwo"
+                                    />
+                                    <label class="slds-checkbox__label" for="checkbox-unique-id-2">
+                                        <span class="slds-checkbox_faux"></span>
+                                        <span class="slds-form-element__label">N/A</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </h2>
+                    </div>
+                    <div
+                            class="slds-grid slds-gutters hide-remark"
+                            id="sectionTwo-remark"
+                            data-id="sectionTwo-remark"
+                    >
+                        <div class="slds-col">
+                            <label class="slds-form-element__label" for="tank-no">Remark</label>
+                            <div class="slds-form-element__control">
+                                <textarea
+                                        data-id="sectionTwo-inputRemark"
+                                        onchange={onIEH}
+                                        id="sectionTwo-inputRemark"
+                                        class="slds-textarea"
+                                ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-id="collapseTwo" class="slds-accordion__content">
+                        <div class="card-body">
+                            <div style="margin-top:10px;">                                    
+                                <div class="slds-col slds-size_11-of-12">
+                                    <span class="slds-form-element__label"
+                                    >2.1 Static balance position </span>
+                                </div>
+                                <table>
+                                    <tbody>
+                                    <tr >
+                                        <td  style="width: 40%;" rowspan="3" >
+                                            <img alt="image2" src="https://thaioil--uat--c.documentforce.com/servlet/servlet.ImageServer?id=0159D000000GxI3&oid=00D9D0000008h13&lastMod=1629783671000" 
+                                            width="450" height="450" />
+                                        </td>   
+                                    </tr>
+                                    <tr data-answered="false">  
+                                        <td style="width: 10%;" class="text-right"><span >r =&nbsp;&nbsp;</span>
+                                        </td>                                                                            
+                                        <td style="width: 15%;" class="text-center">
+                                                <div >
+                                                    <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="2-1-Bal-r"
+                                                            placeholder=""
+                                                            class="slds-input"
+                                                    />
+                                                </div>
+                                        </td>
+                                        <td style="width: 10%;" class="text-left">
+                                            <span  class="slds-form-element__label">&nbsp;&nbsp; mm</span>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-id="collapseTwo" class="slds-accordion__content">
+                        <div class="card-body">
+                            <div style="margin-top:10px;">                                    
+                                
+                                <div class="slds-col slds-size_11-of-12">
+                                    <span class="slds-form-element__label"
+                                    >2.2 Dynamic balance position </span>
+                                </div>
+
+                                <table data-answered="false">
+                                    <tbody>
+                                    <tr >
+                                        <td>
+                                            <div class="slds-radio">
+                                                <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="2-2-radio"
+                                                        data-id="2-2-radio-1"
+                                                        id="2-2-radio-1"
+                                                        value="Checked"
+                                                />
+                                                <label class="slds-radio__label" for="2-2-radio-1">
+                                                    <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label mgr-10"
+                                                        > <img alt="image3" src="https://thaioil--uat--c.documentforce.com/servlet/servlet.ImageServer?id=0159D000000GxI8&oid=00D9D0000008h13&lastMod=1629783837000" 
+                                                        width="120" height="40" /></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="slds-radio">
+                                                <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="2-2-radio"
+                                                        data-id="2-2-radio-2"
+                                                        id="2-2-radio-2"
+                                                        value="Checked"
+                                                />
+                                                <label class="slds-radio__label" for="2-2-radio-2">
+                                                    <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label mgr-10"
+                                                        > <img alt="image4" src="https://thaioil--uat--c.documentforce.com/servlet/servlet.ImageServer?id=0159D000000GxID&oid=00D9D0000008h13&lastMod=1629783879000" 
+                                                        width="120" height="40" /></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="slds-radio">
+                                                <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="2-2-radio"
+                                                        data-id="2-2-radio-3"
+                                                        id="2-2-radio-3"
+                                                        value="Checked"
+                                                />
+                                                <label class="slds-radio__label" for="2-2-radio-3">
+                                                    <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label mgr-10"
+                                                        > <img alt="image5" src="https://thaioil--uat--c.documentforce.com/servlet/servlet.ImageServer?id=0159D000000GxII&oid=00D9D0000008h13&lastMod=1629783908000" 
+                                                        width="120" height="40" /></span>
+                                                </label>
+                                            </div>
+                                        </td>  
+                                    </tr>
+                                    <tr >
+                                        <td>
+                                            <div class="slds-radio">
+                                                <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="2-2-radio"
+                                                        data-id="2-2-radio-4"
+                                                        id="2-2-radio-4"
+                                                        value="Checked"
+                                                />
+                                                <label class="slds-radio__label" for="2-2-radio-4">
+                                                    <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label mgr-10"
+                                                        > <img alt="image6" src="https://thaioil--uat--c.documentforce.com/servlet/servlet.ImageServer?id=0159D000000GxIN&oid=00D9D0000008h13&lastMod=1629783939000" 
+                                                        width="120" height="40" /></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="slds-radio">
+                                                <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="2-2-radio"
+                                                        data-id="2-2-radio-5"
+                                                        id="2-2-radio-5"
+                                                        value="Checked"
+                                                />
+                                                <label class="slds-radio__label" for="2-2-radio-5">
+                                                    <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label mgr-10"
+                                                        > <img alt="image7" src="https://thaioil--uat--c.documentforce.com/servlet/servlet.ImageServer?id=0159D000000GxIS&oid=00D9D0000008h13&lastMod=1629783969000" 
+                                                        width="120" height="40" /></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="slds-radio">
+                                                <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="2-2-radio"
+                                                        data-id="2-2-radio-6"
+                                                        id="2-2-radio-6"
+                                                        value="Checked"
+                                                />
+                                                <label class="slds-radio__label" for="2-2-radio-6">
+                                                    <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label mgr-10"
+                                                        > <img alt="image8" src="https://thaioil--uat--c.documentforce.com/servlet/servlet.ImageServer?id=0159D000000GxMf&oid=00D9D0000008h13&lastMod=1629784004000" 
+                                                        width="120" height="40" /></span>
+                                                </label>
+                                            </div>
+                                        </td>  
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>                                    
+                                <div class="slds-col slds-size_11-of-12">
+                                    <span class="slds-form-element__label"
+                                    >2.3 Dimension
+                                </span>
+                                </div>
+                                <table>
+                                    <tbody>
+                                    <tr data-answered="false">
+                                        <th  style="width: 40%;" rowspan="5" class="text-center">
+                                            <img alt="image9" src="https://thaioil--uat--c.documentforce.com/servlet/servlet.ImageServer?id=0159D000000GxMk&oid=00D9D0000008h13&lastMod=1629784034000" 
+                                            width="250" height="350" /><br />
+                                        </th>   
+                                        <th  class="text-center w-10"><span class="slds-form-element__label">a คือ ระยะห่างจาก support 1 ถึง plane 1 =</span>
+                                        </th>                                                                            
+                                        <td style="width: 15%;" class="text-center">
+                                            <div class="slds-form-element">
+                                                <div class="slds-form-element__control">
+                                                    <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="2-3-Dia-a"
+                                                            placeholder=""
+                                                            class="slds-input"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td style="width: 10%;" class="text-left">
+                                            <span  class="slds-form-element__label">&nbsp;&nbsp;mm</span>
+                                        </td>
+                                    </tr>
+                                    <tr data-answered="false">  
+                                        <th  class="text-center w-10"><span class="slds-form-element__label">b คือ ระยะห่างจาก plane 1 ถึง plane 2 =</span>
+                                        </th>                                                                            
+                                        <td class="text-center">
+                                            <div class="slds-form-element">
+                                                <div class="slds-form-element__control">
+                                                    <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="2-3-Dia-b"
+                                                            placeholder=""
+                                                            class="slds-input"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td style="width: 10%;" class="text-left">
+                                            <span  class="slds-form-element__label">&nbsp;&nbsp;mm</span>
+                                        </td></br>
+                                    </tr>
+                                    <tr data-answered="false">  
+                                        <th  class="text-center w-10"><span class="slds-form-element__label">c คือ ระยะห่างจาก support 2 ถึง plane 2 =</span>
+                                        </th>                                                                            
+                                        <td class="text-center">
+                                            <div class="slds-form-element">
+                                                <div class="slds-form-element__control">
+                                                    <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="2-3-Dia-c"
+                                                            placeholder=""
+                                                            class="slds-input"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td style="width: 10%;" class="text-left">
+                                            <span  class="slds-form-element__label">&nbsp;&nbsp;mm</span>
+                                        </td></br>
+                                    </tr>
+                                    <tr data-answered="false">  
+                                        <th  class="text-center w-10"><span class="slds-form-element__label">𝑟1 คือ ระยะที่จะทำ correction บน plane 1</span>
+                                        </th>                                                                            
+                                        <td class="text-center">
+                                            <div class="slds-form-element">
+                                                <div class="slds-form-element__control">
+                                                    <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="2-3-Dia-r1"
+                                                            placeholder=""
+                                                            class="slds-input"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td style="width: 10%;" class="text-left">
+                                            <span  class="slds-form-element__label">&nbsp;&nbsp;mm</span>
+                                        </td></br>
+                                    </tr>
+                                    <tr data-answered="false">  
+                                        <th  class="text-center w-10"><span class="slds-form-element__label">𝑟2 คือ ระยะที่จะทำ correction บน plane 2</span>
+                                        </th>                                                                            
+                                        <td class="text-center">
+                                            <div class="slds-form-element">
+                                                <div class="slds-form-element__control">
+                                                    <input
+                                                            onchange={onIEH}
+                                                            type="number"
+                                                            min="0"
+                                                            step="1"
+                                                            onkeypress={onKeyPress}
+                                                            data-id="2-3-Dia-r2"
+                                                            placeholder=""
+                                                            class="slds-input"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td style="width: 10%;" class="text-left">
+                                            <span  class="slds-form-element__label">&nbsp;&nbsp;mm</span>
+                                        </td></br>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </br>
+                    </div>
+                </section>
+                </li>  
+         <!-- Li-3 -->                    
+         <li class="slds-accordion__list-item">
+            <section class="slds-accordion__section" data-id="sectionThree">
+                <div class="slds-accordion__summary" data-id="headingThree">
+                    <h2 class="slds-accordion__summary-heading card-header">
+                        <button
+                                type="button"
+                                aria-controls="collapseThree"
+                                aria-expanded="true"
+                                class="btn btn-link"
+                                data-parent="sectionThree"
+                                onclick={expandSection}
+                        >
+                            <lightning-icon
+                                    icon-name="utility:switch"
+                                    alternative-text="button icon"
+                                    size="x-small"
+                                    class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                            >
+                            </lightning-icon>
+                            <span
+                                    style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                    class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                            >
+                                3</span>
+                            <span class="slds-accordion__summary-content"> Static balance</span>
+                        </button>
+                        <div class="slds-col">
+                            <div class="slds-checkbox obj-right">
+                                <input
+                                        onchange={disableSection}
+                                        type="checkbox"
+                                        name="options"
+                                        id="checkbox-unique-id-3"
+                                        data-id="checkbox-unique-id-3"
+                                        value="checkbox-unique-id-3"
+                                        data-remark="3-remark"
+                                        data-parent="sectionThree"
+                                />
+                                <label class="slds-checkbox__label" for="checkbox-unique-id-3">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">N/A</span>
+                                </label>
+                            </div>
+                        </div>
+                    </h2>
+                </div>
+                <div
+                        class="slds-grid slds-gutters hide-remark"
+                        id="sectionThree-remark"
+                        data-id="sectionThree-remark"
+                >
+                    <div class="slds-col">
+                        <label class="slds-form-element__label" for="tank-no">Remark</label>
+                        <div class="slds-form-element__control">
+                            <textarea
+                                    data-id="sectionThree-inputRemark"
+                                    onchange={onIEH}
+                                    id="sectionThree-inputRemark"
+                                    class="slds-textarea"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div data-id="collapseThree" class="slds-accordion__content">
+                    <div class="card-body">
+                        <div style="margin-top:10px;">                                    
+                            <div class="slds-col slds-size_11-of-12">
+                                <span class="slds-form-element__label"
+                                >3.1 Accepted weight </span>
+                            </div>
+                            <table >
+                                <tbody>
+                                <tr >
+                                    <td height="40px" colspan ="3" class="text-center">
+                                        <span class="slds-form-element__label">𝐴𝑐𝑐𝑒𝑝𝑡𝑒𝑑 𝑤𝑒𝑖𝑔ℎ𝑡, 𝑚 = 𝑈𝑝𝑒𝑟/𝑟</span></br>
+                                    </td>                                                                              
+                                </tr>                                        
+                                <tr  data-answered="false">
+                                    <td height="40px" style="width: 20%;" class="text-right">
+                                        <span class="slds-form-element__label">𝐴𝑐𝑐𝑒𝑝𝑡𝑒𝑑 𝑤𝑒𝑖𝑔ℎ𝑡 =  &nbsp;&nbsp;</span>
+                                    </td>                                                                              
+                                    <td style="width: 30%;" class="text-left">
+                                        <input
+                                        onchange={onIEH}
+                                        type="text"
+                                        data-id="3-1-weight"
+                                        class="slds-input"
+                                        />
+                                    </td>
+                                    <td style="width: 10%;" class="text-left">
+                                        <label class="slds-radio__label" for="3-1-weight">
+                                                <span class="slds-form-element__label mgr-10"
+                                                > &nbsp;&nbsp;𝑔</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr  data-answered="false">
+                                    <td height="40px" style="width: 20%;" class="text-right">
+                                        <span class="slds-form-element__label">Balance speed =  &nbsp;&nbsp;</span>
+                                    </td>                                                                              
+                                    <td style="width: 30%;" class="text-left">
+                                        <input
+                                        onchange={onIEH}
+                                        type="text"
+                                        data-id="3-1-speed"
+                                        class="slds-input"
+                                        />
+                                    </td>
+                                    <td style="width: 10%;" class="text-left">
+                                        <label class="slds-radio__label" for="3-1-speed">
+                                                <span class="slds-form-element__label mgr-10"
+                                                > &nbsp;&nbsp;rpm</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="margin-top:10px;">                                    
+                            <div class="slds-col slds-size_11-of-12">
+                                <span class="slds-form-element__label"
+                                >3.2 Initial Balance Result </span>
+                            </div>
+                            <table >
+                                <tbody>                                      
+                                <tr  data-answered="false">
+                                    <td height="40px" style="width: 20%;" class="text-right">
+                                        <span class="slds-form-element__label">Balance vector &nbsp;&nbsp;</span>
+                                    </td>                                                                              
+                                    <td style="width: 30%;" class="text-left">
+                                        <input
+                                        onchange={onIEH}
+                                        type="text"
+                                        data-id="3-2-Bvector-1"
+                                        class="slds-input"
+                                        />
+                                    </td>
+                                    <td style="width: 10%;" class="text-left">
+                                        <label class="slds-radio__label" for="3-2-Bvector-1">
+                                                <span class="slds-form-element__label mgr-10"
+                                                > &nbsp;&nbsp;𝑔</span>
+                                        </label>
+                                    </td>
+                                    <td style="width: 30%;" class="text-left">
+                                        <input
+                                        onchange={onIEH}
+                                        type="text"
+                                        data-id="3-2-Bvector-2"
+                                        class="slds-input"
+                                        />
+                                    </td>
+                                    <td style="width: 10%;" class="text-left">
+                                        <label class="slds-radio__label" for="3-2-Bvector-2">
+                                                <span class="slds-form-element__label mgr-10"
+                                                > &nbsp;&nbsp;°</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="margin-top:10px;">                                    
+                            <div class="slds-col slds-size_11-of-12">
+                                <span class="slds-form-element__label"
+                                >3.3 Final Balance Result </span>
+                            </div>
+                            <table >
+                                <tbody>                                      
+                                <tr  data-answered="false">
+                                    <td height="40px" style="width: 20%;" class="text-right">
+                                        <span class="slds-form-element__label">Balance vector &nbsp;&nbsp;</span>
+                                    </td>                                                                              
+                                    <td style="width: 30%;" class="text-left">
+                                        <input
+                                        onchange={onIEH}
+                                        type="text"
+                                        data-id="3-3-Bvector-1"
+                                        class="slds-input"
+                                        />
+                                    </td>
+                                    <td style="width: 10%;" class="text-left">
+                                        <label class="slds-radio__label" for="3-3-Bvector-1">
+                                                <span class="slds-form-element__label mgr-10"
+                                                > &nbsp;&nbsp;𝑔</span>
+                                        </label>
+                                    </td>
+                                    <td style="width: 30%;" class="text-left">
+                                        <input
+                                        onchange={onIEH}
+                                        type="text"
+                                        data-id="3-3-Bvector-2"
+                                        class="slds-input"
+                                        />
+                                    </td>
+                                    <td style="width: 10%;" class="text-left">
+                                        <label class="slds-radio__label" for="3-3-Bvector-2">
+                                                <span class="slds-form-element__label mgr-10"
+                                                > &nbsp;&nbsp;°</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </li>  
+         <!-- Li-4 -->                    
+         <li class="slds-accordion__list-item">
+            <section class="slds-accordion__section" data-id="sectionFour">
+                <div class="slds-accordion__summary" data-id="headingFour">
+                    <h2 class="slds-accordion__summary-heading card-header">
+                        <button
+                                type="button"
+                                aria-controls="collapseFour"
+                                aria-expanded="true"
+                                class="btn btn-link"
+                                data-parent="sectionFour"
+                                onclick={expandSection}
+                        >
+                            <lightning-icon
+                                    icon-name="utility:switch"
+                                    alternative-text="button icon"
+                                    size="x-small"
+                                    class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                            >
+                            </lightning-icon>
+                            <span
+                                    style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                    class="slds-badge slds-badge_inverse slds-var-p-right_x-small"
+                            >
+                                4</span>
+                            <span class="slds-accordion__summary-content"> Dynamic balance</span>
+                        </button>
+                        <div class="slds-col">
+                            <div class="slds-checkbox obj-right">
+                                <input
+                                        onchange={disableSection}
+                                        type="checkbox"
+                                        name="options"
+                                        id="checkbox-unique-id-4"
+                                        data-id="checkbox-unique-id-4"
+                                        value="checkbox-unique-id-4"
+                                        data-remark="4-remark"
+                                        data-parent="sectionFour"
+                                />
+                                <label class="slds-checkbox__label" for="checkbox-unique-id-4">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">N/A</span>
+                                </label>
+                            </div>
+                        </div>
+                    </h2>
+                </div>
+                <div
+                        class="slds-grid slds-gutters hide-remark"
+                        id="sectionFour-remark"
+                        data-id="sectionFour-remark"
+                >
+                    <div class="slds-col">
+                        <label class="slds-form-element__label" for="tank-no">Remark</label>
+                        <div class="slds-form-element__control">
+                            <textarea
+                                    data-id="sectionFour-inputRemark"
+                                    onchange={onIEH}
+                                    id="sectionFour-inputRemark"
+                                    class="slds-textarea"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div data-id="collapseFour" class="slds-accordion__content">
+                    <div class="card-body">
+                        <div style="margin-top:10px;">                                    
+                            <div class="slds-col slds-size_11-of-12">
+                                <span class="slds-form-element__label"
+                                >4.1 Balance type </span>
+                            </div>
+                            <table data-answered="false">
+                                <tbody>
+                                    <tr   >  
+                                        <td style="width: 5%;"></td>
+                                        <td style="width: 25%;" class="text-Left" >
+                                            <div class="slds-radio">
+                                                <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="4-1-radio"
+                                                        data-id="4-1-radio-1"
+                                                        id="4-1-radio-1"
+                                                        value="Checked"
+                                                />
+                                                <label class="slds-radio__label" for="4-1-radio-1">
+                                                    <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label mgr-10"
+                                                        > Individual balance  &nbsp;&nbsp;</span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td height="30px" style="width: 25%;" class="text-Left" >
+                                            <div class="slds-radio">
+                                                <input
+                                                        onchange={onIEH}
+                                                        type="radio"
+                                                        name="4-1-radio"
+                                                        data-id="4-1-radio-2"
+                                                        id="4-1-radio-2"
+                                                        value="Checked"
+                                                />
+                                                <label class="slds-radio__label" for="4-1-radio-2">
+                                                    <span class="slds-radio_faux"></span>
+                                                        <span class="slds-form-element__label mgr-10"
+                                                        > Stack balance</span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td></td>
+                                    </tr> 
+                                    <tr >  
+
+                                        <td style="width: 15%;" class="text-right">
+                                            <span class="slds-form-element__label">Stage  &nbsp;&nbsp;</span>
+                                        </td>                                                                              
+                                        <td style="width: 15%;" class="text-left">
+                                            <input
+                                            onchange={onIEH}
+                                            type="text"
+                                            data-id="4-1-Stage"
+                                            class="slds-input"
+                                            />
+                                        </td>
+                                    </tr> 
+                                </tbody>
+                            </table>
+                            <table >
+                                <tbody>      
+                                <tr  data-answered="false">
+                                    <td   height="40px" style="width: 30%;" class="text-right">
+                                        <span class="slds-form-element__label">Plane 1 : 𝐴𝑐𝑐𝑒𝑝𝑡𝑒𝑑 𝑤𝑒𝑖𝑔ℎ𝑡 =  &nbsp;&nbsp;</span>
+                                    </td>                                                                              
+                                    <td style="width: 15%;" class="text-left">
+                                        <input
+                                        onchange={onIEH}
+                                        type="text"
+                                        data-id="4-1-P1-weight"
+                                        class="slds-input"
+                                        />
+                                    </td>
+                                    <td style="width: 3%;" class="text-left">
+                                        <label class="slds-radio__label" for="4-1-P1-weight">
+                                                <span class="slds-form-element__label mgr-10"
+                                                > &nbsp;&nbsp;𝑔</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>                                     
+                                <tr  data-answered="false">
+                                    <td height="40px" style="width: 30%;" class="text-right">
+                                        <span class="slds-form-element__label">Plane 2 : 𝐴𝑐𝑐𝑒𝑝𝑡𝑒𝑑 𝑤𝑒𝑖𝑔ℎ𝑡 =  &nbsp;&nbsp;</span>
+                                    </td>                                                                              
+                                    <td style="width: 15%;" class="text-left">
+                                        <input
+                                        onchange={onIEH}
+                                        type="text"
+                                        data-id="4-1-P2-weight"
+                                        class="slds-input"
+                                        />
+                                    </td>
+                                    <td style="width: 3%;" class="text-left">
+                                        <label class="slds-radio__label" for="4-1-P2-weight">
+                                                <span class="slds-form-element__label mgr-10"
+                                                > &nbsp;&nbsp;𝑔</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr  data-answered="false">
+                                    <td height="40px" style="width: 30%;" class="text-right">
+                                        <span class="slds-form-element__label">Balance speed =  &nbsp;&nbsp;</span>
+                                    </td>                                                                              
+                                    <td style="width: 15%;" class="text-left">
+                                        <input
+                                        onchange={onIEH}
+                                        type="text"
+                                        data-id="4-1-Bspeed"
+                                        class="slds-input"
+                                        />
+                                    </td>
+                                    <td style="width: 3%;" class="text-left">
+                                        <label class="slds-radio__label" for="4-1-Bspeed">
+                                                <span class="slds-form-element__label mgr-10"
+                                                > &nbsp;&nbsp;rpm</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="margin-top:10px;">                                    
+                            <div class="slds-col slds-size_11-of-12">
+                                <span class="slds-form-element__label"
+                                >4.2 Initial Balance Result </span>
+                            </div>
+                            <table >
+                                <tbody>                                      
+                                <tr  data-answered="false">
+                                    <td height="40px" style="width: 30%;" class="text-right">
+                                        <span class="slds-form-element__label">Plane 1 : Balance vector &nbsp;&nbsp;</span>
+                                    </td>                                                                              
+                                    <td style="width: 15%;" class="text-left">
+                                        <input
+                                        onchange={onIEH}
+                                        type="text"
+                                        data-id="4-2-P1-Bvector"
+                                        class="slds-input"
+                                        />
+                                    </td>
+                                    <td style="width: 3%;" class="text-left">
+                                        <label class="slds-radio__label" for="4-2-P1-Bvector">
+                                                <span class="slds-form-element__label mgr-10"
+                                                > &nbsp;&nbsp;𝑔</span>
+                                        </label>
+                                    </td>
+                                    <td style="width: 15%;" class="text-left">
+                                        <input
+                                        onchange={onIEH}
+                                        type="text"
+                                        data-id="4-2-P1-BvectorC"
+                                        class="slds-input"
+                                        />
+                                    </td>
+                                    <td style="width: 3%;" class="text-left">
+                                        <label class="slds-radio__label" for="4-2-P1-BvectorC">
+                                                <span class="slds-form-element__label mgr-10"
+                                                > &nbsp;&nbsp;°</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>                                   
+                            <tr  data-answered="false">
+                                <td height="40px" style="width: 30%;" class="text-right">
+                                    <span class="slds-form-element__label">Plane 2 : Balance vector &nbsp;&nbsp;</span>
+                                </td>                                                                              
+                                <td style="width: 15%;" class="text-left">
+                                    <input
+                                    onchange={onIEH}
+                                    type="text"
+                                    data-id="4-2-P2-Bvector"
+                                    class="slds-input"
+                                    />
+                                </td>
+                                <td style="width: 3%;" class="text-left">
+                                    <label class="slds-radio__label" for="4-2-P2-Bvector">
+                                            <span class="slds-form-element__label mgr-10"
+                                            > &nbsp;&nbsp;𝑔</span>
+                                    </label>
+                                </td>
+                                <td style="width: 15%;" class="text-left">
+                                    <input
+                                    onchange={onIEH}
+                                    type="text"
+                                    data-id="4-2-P2-BvectorC"
+                                    class="slds-input"
+                                    />
+                                </td>
+                                <td style="width: 3%;" class="text-left">
+                                    <label class="slds-radio__label" for="4-2-P2-BvectorC">
+                                            <span class="slds-form-element__label mgr-10"
+                                            > &nbsp;&nbsp;°</span>
+                                    </label>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="margin-top:10px;">                                    
+                            <div class="slds-col slds-size_11-of-12">
+                                <span class="slds-form-element__label"
+                                >4.3 Final Balance Result </span>
+                            </div>
+                            <table >
+                                <tbody>                                     
+                                <tr  data-answered="false">
+                                    <td height="40px" style="width: 30%;" class="text-right">
+                                        <span class="slds-form-element__label">Plane 1 : Balance vector &nbsp;&nbsp;</span>
+                                    </td>                                                                              
+                                    <td style="width: 15%;" class="text-left">
+                                        <input
+                                        onchange={onIEH}
+                                        type="text"
+                                        data-id="4-3-P1-Bvector"
+                                        class="slds-input"
+                                        />
+                                    </td>
+                                    <td style="width: 3%;" class="text-left">
+                                        <label class="slds-radio__label" for="4-3-P1-Bvector">
+                                                <span class="slds-form-element__label mgr-10"
+                                                > &nbsp;&nbsp;𝑔</span>
+                                        </label>
+                                    </td>
+                                    <td style="width: 15%;" class="text-left">
+                                        <input
+                                        onchange={onIEH}
+                                        type="text"
+                                        data-id="4-3-P1-BvectorC"
+                                        class="slds-input"
+                                        />
+                                    </td>
+                                    <td style="width: 3%;" class="text-left">
+                                        <label class="slds-radio__label" for="4-3-P1-BvectorC">
+                                                <span class="slds-form-element__label mgr-10"
+                                                > &nbsp;&nbsp;°</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>                                  
+                            <tr  data-answered="false">
+                                <td height="40px" style="width: 30%;" class="text-right">
+                                    <span class="slds-form-element__label">Plane 2 : Balance vector &nbsp;&nbsp;</span>
+                                </td>                                                                              
+                                <td style="width: 15%;" class="text-left">
+                                    <input
+                                    onchange={onIEH}
+                                    type="text"
+                                    data-id="4-3-P2-Bvector"
+                                    class="slds-input"
+                                    />
+                                </td>
+                                <td style="width: 3%;" class="text-left">
+                                    <label class="slds-radio__label" for="4-3-P2-Bvector">
+                                            <span class="slds-form-element__label mgr-10"
+                                            > &nbsp;&nbsp;𝑔</span>
+                                    </label>
+                                </td>
+                                <td style="width: 15%;" class="text-left">
+                                    <input
+                                    onchange={onIEH}
+                                    type="text"
+                                    data-id="4-3-P2-BvectorC"
+                                    class="slds-input"
+                                    />
+                                </td>
+                                <td style="width: 3%;" class="text-left">
+                                    <label class="slds-radio__label" for="4-3-P2-BvectorC">
+                                            <span class="slds-form-element__label mgr-10"
+                                            > &nbsp;&nbsp;°</span>
+                                    </label>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </li>  
+            </ul>
+        </div>
+        <!-- Button Section for Every Form -->
+        <section class="section slds-accordion__section">
+            <div class="slds-button-group obj-right" role="group">
+                <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                    Save Draft
+                </button>
+                <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSubmitModal}>
+                    Submit
+                </button>
+                <button data-id="rejectEQCCStep" class="slds-button slds-button_brand" onclick={openRejectModal}>
+                    Reject
+                </button>
+            </div>
+        </section>
+    </div>
+</template>

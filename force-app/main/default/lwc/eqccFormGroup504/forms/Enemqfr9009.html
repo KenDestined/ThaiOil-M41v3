@@ -1,0 +1,403 @@
+<template>
+    <div data-id="formBegin">
+        <c-step-page-header
+            num-steps="1"
+            current-step="1"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+
+        <!-- Modal placeholder -->
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+        <!-- END Modal Placeholder -->
+
+        <!-- ENIM-QFR-747 /Form Question = 22 -->
+
+        <!--
+            Heading area for form
+        -->
+        <div style="text-align: right;">
+            ENEM-QFR-9009-GNR
+        </div>
+        <div class="slds-text-heading_large text-center "
+            style="font-weight: bold; 
+            color: var(--lwc-brandAccessible, rgb(0, 112, 210));">
+            Thaioil Group
+        </div>
+        <div class="slds-text-heading_medium text-center">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <span>
+                        <h2>ใบส่งมอบงานทำความสะอาดสถานีไฟฟ้าย่อย</h2>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- Section for Notification, FL. and Status fields -->
+        <section class="section slds-accordion__section">
+            <div class="slds-form">
+                <div class="slds-form__row">
+                    <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                            <label class="slds-form-element__label" for="date">Notification No</label>
+                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                                <svg class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                                    aria-hidden="true">
+                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                                </svg>
+                                <input type="text" data-id="notification" class="slds-input avoidPercentageInput"
+                                    value={notification} disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                            <label class="slds-form-element__label" for="stacked-combobox-id-01">Order</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" data-id="order" class="slds-input avoidPercentageInput" value={order}
+                                    disabled />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-form__row">
+                    <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                            <label class="slds-form-element__label" for="stacked-combobox-id-01">FL.</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" data-id="fl" class="slds-input avoidPercentageInput"
+                                    value={functionalLocation} disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                            <label class="slds-form-element__label" for="stacked-combobox-id-01">Status</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" data-id="status" class="slds-input avoidPercentageInput" value={formStatus}
+                                    disabled />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-form__row">
+                    <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                            <label class="slds-form-element__label" for="stacked-combobox-id-01" id="company">บริษัทผู้รับเหมา</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" data-id="company" class="slds-input avoidPercentageInput" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-form__row">
+                    <div class="slds-form__item" role="listitem">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                            <label class="slds-form-element__label" for="num">เลขที่</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" data-id="num" class="slds-input avoidPercentageInput" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-form__item">
+                        <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                            <label class="slds-form-element__label" for="date">วันที่</label>
+                            <div class="slds-form-element__control">
+                                <input type="date" data-id="date" class="slds-input avoidPercentageInput" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Body section. -->
+        <div class="bs-example">
+            <ul class="slds-accordion">
+                <!-- 1 -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section slds-is-open" data-id="section1">
+                        <div class="slds-accordion__summary" data-id="heading1">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button type="button" aria-controls="collapse1" aria-expanded="true" class="btn btn-link"
+                                    data-parent="section1" onclick={expandSection}>
+                                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small">
+                                    </lightning-icon>
+                                    <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse ">1</span>
+                                    การทำความสะอาดอาคาร สถานีไฟฟ้า ให้ครอบคลุมพื้นที่ ทั้งภายในและภายนอก (ซึ่งหมายรวมถึง ผนัง พื้น
+                                    เพดานของห้องต่างๆ
+                                    ใต้ถุนอาคาร) โดยบริเวณที่ต้องทำความสะอาดมีดังนี้
+                                </button>
+                            </h2>
+                        </div>
+                        <div data-id="collapse1" class="slds-accordion__content">
+                            <!-- drop 1st section div -->
+                            <div class="card-body">
+                                <section data-id="section1" class="pd-b-1">
+                                    <div class="content">
+                                        <div class="slds-grid slds-gutters">
+                                            <table class="slds-table slds-table_cell-buffer slds-table_bordered"
+                                                aria-labelledby="element-with-table-label other-element-with-table-label">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="" scope="col" style="background-color:#DBE6F2;"></th>
+                                                        <th class="text-center" scope="col" style="background-color:#DBE6F2;">
+                                                            <div class="slds-form-element__label">ทำแล้ว</div>
+                                                        </th>
+                                                        <th class="text-center" scope="col" style="background-color:#DBE6F2;">
+                                                            <div class="slds-form-element__label">ไม่ได้ทำเพราะ</div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-answered="false">
+                                                        <td class="text-left">
+                                                            <span class="slds-form-element__label">ก) บริเวณห้องอุปกรณ์แรงสูง</span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span class="slds-form-element__label">
+                                                                <input onchange={onIEH} type="checkbox" data-id="t1-1-checkbox" id="t1-1-checkbox" value="Done" />
+                                                            </span>
+                                                        </td>
+                                                        <td class="text-left">
+                                                            <div class="slds-form-element__control">
+                                                                <input onchange={onIEH} type="text" data-id="t1-1-input" id="t1-1-input" class="slds-input" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td class="text-left">
+                                                            <span class="slds-form-element__label">ข) บริเวณห้องอุปกรณ์แรงต่ำ</span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span class="slds-form-element__label">
+                                                                <input onchange={onIEH} type="checkbox" data-id="t1-2-checkbox" id="t1-2-checkbox" value="Done" />
+                                                            </span>
+                                                        </td>
+                                                        <td class="text-left">
+                                                            <div class="slds-form-element__control">
+                                                                <input onchange={onIEH} type="text" data-id="t1-2-input" id="t1-2-input" class="slds-input" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td class="text-left">
+                                                            <span class="slds-form-element__label">ค) บริเวณห้องแบตเตอรี่</span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span class="slds-form-element__label">
+                                                                <input onchange={onIEH} type="checkbox" data-id="t1-3-checkbox" id="t1-3-checkbox" value="Done" />
+                                                            </span>
+                                                        </td>
+                                                        <td class="text-left">
+                                                            <div class="slds-form-element__control">
+                                                                <input onchange={onIEH} type="text" data-id="t1-3-input" id="t1-3-input" class="slds-input" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td class="text-left">
+                                                            <span class="slds-form-element__label">ง)
+                                                                อุปกรณ์ที่เป็นส่วนประกอบอื่นของอาคาร เช่น โต๊ะ เก้าอี้ โทรศัพท์
+                                                                ตู้เก็บเอกสาร ผ้ายางปูพื้น</span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span class="slds-form-element__label">
+                                                                <input onchange={onIEH} type="checkbox" data-id="t1-4-checkbox" id="t1-4-checkbox" value="Done" />
+                                                            </span>
+                                                        </td>
+                                                        <td class="text-left">
+                                                            <div class="slds-form-element__control">
+                                                                <input onchange={onIEH} type="text" data-id="t1-4-input" id="t1-4-input" class="slds-input" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td class="text-left">
+                                                            <span class="slds-form-element__label">จ) บริเวณใต้ถุนอาคารสถานีไฟฟ้า</span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span class="slds-form-element__label">
+                                                                <input onchange={onIEH} type="checkbox" data-id="t1-5-checkbox" id="t1-5-checkbox" value="Done" />
+                                                            </span>
+                                                        </td>
+                                                        <td class="text-left">
+                                                            <div class="slds-form-element__control">
+                                                                <input onchange={onIEH} type="text" data-id="t1-5-input" id="t1-5-input" class="slds-input" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td class="text-left">
+                                                            <span class="slds-form-element__label">ช) บริเวณรอบอาคารสถานีไฟฟ้า
+                                                                ครอบคลุมรัศมี 1.5 เมตร รอบอาคาร</span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span class="slds-form-element__label">
+                                                                <input onchange={onIEH} type="checkbox" data-id="t1-6-checkbox" id="t1-6-checkbox" value="Done" />
+                                                            </span>
+                                                        </td>
+                                                        <td class="text-left">
+                                                            <div class="slds-form-element__control">
+                                                                <input onchange={onIEH} type="text" data-id="t1-6-input" id="t1-6-input" class="slds-input" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td class="text-left">
+                                                            <span class="slds-form-element__label">ซ) บริเวณลานหม้อแปลงครอบคลุมรัศมี 1.5
+                                                                เมตรจากรั้วลานหม้อแปลง</span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span class="slds-form-element__label">
+                                                                <input onchange={onIEH} type="checkbox" data-id="t1-7-checkbox" id="t1-7-checkbox" value="Done" />
+                                                            </span>
+                                                        </td>
+                                                        <td class="text-left">
+                                                            <div class="slds-form-element__control">
+                                                                <input onchange={onIEH} type="text" data-id="t1-7-input" id="t1-7-input" class="slds-input" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <!-- 0 -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="sectionZero">
+                        <div class="slds-accordion__summary" data-id="headingZero">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button type="button" aria-controls="collapseZero" aria-expanded="true" class="btn btn-link"
+                                    data-parent="sectionZero" onclick={expandSection}>
+                                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"></lightning-icon>
+                                    <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse">
+                                        2</span>
+                                        กำจัดหญ้าและรากหญ้า หากต้องใช้สารเคมีโดยวิธีการฉีด หรือราด ผู้รับเหมาต้องได้รับความเห็นชอบจากผู้ควบคุมงานไทยออยล์ก่อน
+                                        โดยบริเวณที่ต้องกำจัดหญ้ามีดังนี้
+                                </button>
+                            </h2>
+                        </div>
+                        <div data-id="collapseZero" class="slds-accordion__content">
+                            <!-- drop 1st section div -->
+                            <div class="card-body">
+                                <section data-id="1.5" class="pd-b-1">
+                                    <div class="content">
+                                        <div class="slds-grid slds-gutters slds-scrollable_x">
+                                            <table class="slds-table slds-table_cell-buffer slds-table_bordered" data-id="t2"
+                                                aria-labelledby="element-with-table-label other-element-with-table-label">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="" scope="col" style="background-color:#DBE6F2;"></th>
+                                                        <th class="text-center" scope="col" style="background-color:#DBE6F2;">
+                                                            <div class="slds-form-element__label">ทำแล้ว</div>
+                                                        </th>
+                                                        <th class="text-center" scope="col" style="background-color:#DBE6F2;">
+                                                            <div class="slds-form-element__label">ไม่ได้ทำเพราะ</div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-answered="false">
+                                                        <td class="text-left">
+                                                            <span class="slds-form-element__label">ก) บริเวณรอบอาคาร สถานีไฟฟ้า ครอบคลุมรัศมี 1.5 เมตร
+                                                                รอบอาคาร</span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span class="slds-form-element__label">
+                                                                <input onchange={onIEH} type="checkbox" data-id="t2-1-checkbox" id="t2-1-checkbox" value="Done" />
+                                                            </span>
+                                                        </td>
+                                                        <td class="text-left">
+                                                            <div class="slds-form-element__control">
+                                                                <input onchange={onIEH} type="text" data-id="t2-1-input" id="t2-1-input" class="slds-input" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-answered="false">
+                                                        <td class="text-left">
+                                                            <span class="slds-form-element__label">ข) บริเวณลานหม้อแปลงครอบคลุมรัศมี 1.5
+                                                                เมตรจากรั้วลานหม้อแปลง</span>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span class="slds-form-element__label">
+                                                                <input onchange={onIEH} type="checkbox" data-id="t2-2-checkbox" id="t2-2-checkbox" value="Done" />
+                                                            </span>
+                                                        </td>
+                                                        <td class="text-left">
+                                                            <div class="slds-form-element__control">
+                                                                <input onchange={onIEH} type="text" data-id="t2-2-input" id="t2-2-input" class="slds-input" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <!-- 3 -->
+                <li class="slds-accordion__list-item">
+                    <section class="slds-accordion__section" data-id="section3">
+                        <div class="slds-accordion__summary" data-id="heading3">
+                            <h2 class="slds-accordion__summary-heading card-header">
+                                <button type="button" aria-controls="collapse3" aria-expanded="true" class="btn btn-link"
+                                    data-parent="section3" onclick={expandSection}>
+                                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small"
+                                        class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small">
+                                    </lightning-icon>
+                                    <span style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210));"
+                                        class="slds-badge slds-badge_inverse ">
+                                        3</span><span class="slds-accordion__summary-content">รายงานเพิ่มเติม</span>
+                                </button>
+                            </h2>
+                        </div>
+                        <div data-id="collapse3" class="slds-accordion__content">
+                            <div class="card-body">
+                                <textarea data-id="section3-inputRemark" onchange={onIEH} id="section3-inputRemark" rows="5" style="width: 100%;" ></textarea>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+            </ul>
+        </div>
+ <!-- Button Section for Every Form -->
+ <section class="section slds-accordion__section">
+    <div class="slds-button-group obj-right" role="group">
+        <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5 custom-save-button" onclick={openSaveModal}>
+            Save Draft
+        </button>
+        <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5 custom-submit-button" onclick={openSubmitModal}>
+            Submit
+        </button>
+        <button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5 custom-reject-button" onclick={openRejectModal}>
+            Reject
+        </button>
+        <button data-id="recallEQCCStep" class="slds-button slds-button_brand custom-recall-button" disabled onclick={openRecallModal}>
+            Recall
+        </button>
+    </div>
+</section>
+    </div>
+</template>

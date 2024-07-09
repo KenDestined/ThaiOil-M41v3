@@ -1,0 +1,959 @@
+<template>
+    <div data-id="formBegin">
+      <c-step-page-header num-steps="2" current-step="1" percentage={percentage} is-current={isCurrent} record-id={recordId}></c-step-page-header>
+      <c-lwc-modal title={modalTitle} is-visible={modalVisible} confirm-text={modalConfirmButton} cancel-text={modalCancelButton} name={modalName} message={modalMessage} onselected={handleModalSelection}></c-lwc-modal>
+      <div class="slds-text-heading_medium text-center">EQCC-ENRM-008</div>
+      <div class="slds-text-heading_medium text-center">GEAR DRIVEN FIN FANS PREVENTIVE MAINTENANCE</div>
+      <section class="section slds-accordion__section">
+        <div class="slds-grid slds-gutters">
+          <div class="slds-col">
+            <label class="slds-form-element__label" for="tank-no">Notification</label>
+            <div class="slds-form-element__control">
+              <input type="text" data-id="notification" class="slds-input avoidPercentageInput" value={notification} disabled />
+            </div>
+            <label class="slds-form-element__label" for="tank-no">Order</label>
+            <div class="slds-form-element__control">
+              <input type="text" data-id="order" class="slds-input avoidPercentageInput" value={order} disabled />
+            </div>
+          </div>
+          <div class="slds-col">
+            <label class="slds-form-element__label" for="tank-no">FL.</label>
+            <div class="slds-form-element__control">
+              <input data-id="fl" class="slds-input avoidPercentageInput" value={functionalLocation} disabled>
+            </div>
+            <label class="slds-form-element__label" for="tank-no">Status</label>
+            <div class="slds-form-element__control">
+              <input data-id="status" class="slds-input avoidPercentageInput" value={formStatus} disabled>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="bs-example">
+        <ul class="slds-accordion">
+          <li class="slds-accordion__list-item">
+            <section class="slds-accordion__section slds-is-open" data-id="sectionOne">
+              <div class="slds-accordion__summary" data-id="headingOne">
+                <h2 class="slds-accordion__summary-heading card-header">
+                  <button type="button" aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-parent="sectionOne" onclick={expandSection}>
+                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"></lightning-icon>
+                    <span style="background-color:var(--lwc-brandAccessible,#0070d2)" class="slds-badge slds-badge_inverse slds-var-p-right_x-small">0</span>
+                    <span class="slds-accordion__summary-content">Header Information</span>
+                  </button>
+                </h2>
+              </div>
+              <div data-id="collapseOne" class="slds-accordion__content">
+                <div class="card-body">
+                  <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                      <ul class="slds-list_horizontal slds-has-block-links_space">
+                        <li>
+                          <span class="slds-radio">
+                            <input onchange={onIEH} type="radio" data-id="m6" id="m6" name="m3-m6-y1" class="avoidPercentageInput" value="M6">
+                            <label class="slds-radio__label" for="m6">
+                              <span class="slds-radio_faux"></span>
+                              <span class="slds-form-element__label mgr-10">M6</span>
+                            </label>
+                          </span>
+                        </li>
+                        <li>
+                          <span class="slds-radio">
+                            <input onchange={onIEH} type="radio" data-id="y1" id="y1" name="m3-m6-y1" class="avoidPercentageInput" value="Y1">
+                            <label class="slds-radio__label" for="y1">
+                              <span class="slds-radio_faux"></span>
+                              <span class="slds-form-element__label mgr-10">Y1</span>
+                            </label>
+                          </span>
+                        </li>
+                      </ul>
+                      <span class="slds-form-element__label">Clearance No:</span>
+                      <div class="slds-form-element__control">
+                        <input onchange={onIEH} data-id="clearance-no" class="slds-input">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </li>
+          <li class="slds-accordion__list-item">
+            <section class="slds-accordion__section" data-id="sectionTwo">
+              <div class="slds-accordion__summary" data-id="headingTwo">
+                <h2 class="slds-accordion__summary-heading card-header">
+                  <button type="button" aria-controls="collapseTwo" aria-expanded="true" class="btn btn-link" data-parent="sectionTwo" onclick={expandSection}>
+                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"></lightning-icon>
+                    <span style="background-color:var(--lwc-brandAccessible,#0070d2)" class="slds-badge slds-badge_inverse slds-var-p-right_x-small">1</span>
+                    <span class="slds-accordion__summary-content">Structure</span>
+                  </button>
+                  <div class="slds-col">
+                    <div class="slds-checkbox obj-right">
+                      <input onchange={disableSection} type="checkbox" name="options" id="checkbox-unique-id-2" data-id="checkbox-unique-id-2" value="checkbox-unique-id-2" data-remark="2-remark" data-parent="sectionTwo">
+                      <label class="slds-checkbox__label" for="checkbox-unique-id-2">
+                        <span class="slds-checkbox_faux"></span>
+                        <span class="slds-form-element__label">N/A</span>
+                      </label>
+                    </div>
+                  </div>
+                </h2>
+              </div>
+              <div class="slds-grid slds-gutters hide-remark" id="sectionTwo-remark" data-id="sectionTwo-remark">
+                <div class="slds-col">
+                  <label class="slds-form-element__label" for="tank-no">Remark</label>
+                  <div class="slds-form-element__control">
+                    <textarea data-id="sectionTwo-inputRemark" onchange={onIEH} id="sectionTwo-inputRemark" class="slds-textarea"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div data-id="collapseTwo" class="slds-accordion__content">
+                <div class="card-body">
+                  <div class="slds-col slds-size_11-of-12">
+                    <span class="slds-form-element__label">1. Inspect structure, tight loosen fastening</span>
+                    <br>
+                    <span class="slds-form-element__label">ตรวจสอบสภาพของโครงสร้างต่างๆว่ามีการหลวมคลอนหรือไม่</span>
+                  </div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="text-center w-20">
+                          <span class="slds-form-element__label">Interval</span>
+                        </th>
+                        <th class="text-center">
+                          <span class="slds-form-element__label">Checked</span>
+                        </th>
+                        <th class="text-center">
+                          <span class="slds-form-element__label">Report Abnormality</span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr data-answered="false">
+                        <td class="text-center">
+                          <span class="slds-form-element__label">M6, Y1</span>
+                        </td>
+                        <td>
+                          <div class="slds-radio">
+                            <input onchange={onIEH} type="radio" name="1-radio" data-id="1-radio-1" id="1-radio-1" value="Checked">
+                            <label class="slds-radio__label" for="1-radio-1">
+                              <span class="slds-radio_faux"></span>
+                              <span class="slds-form-element__label mgr-10">ปกติ</span>
+                            </label>
+                          </div>
+                          <div class="slds-radio">
+                            <input onchange={onIEH} type="radio" name="1-radio" data-id="1-radio-2" id="1-radio-2" value="Checked">
+                            <label class="slds-radio__label" for="1-radio-2">
+                              <span class="slds-radio_faux"></span>
+                              <span class="slds-form-element__label mgr-10">ไม่ปกติ</span>
+                            </label>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="slds-form-element__control">
+                            <input onchange={onIEH} data-id="1-input-1" class="slds-input">
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+          </li>
+          <li class="slds-accordion__list-item">
+            <section class="slds-accordion__section" data-id="sectionThree">
+              <div class="slds-accordion__summary" data-id="headingThree">
+                <h2 class="slds-accordion__summary-heading card-header">
+                  <button type="button" aria-controls="collapseThree" aria-expanded="true" class="btn btn-link" data-parent="sectionThree" onclick={expandSection}>
+                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"></lightning-icon>
+                    <span style="background-color:var(--lwc-brandAccessible,#0070d2)" class="slds-badge slds-badge_inverse slds-var-p-right_x-small">2</span>
+                    <span class="slds-accordion__summary-content">Coupling</span>
+                  </button>
+                  <div class="slds-col">
+                    <div class="slds-checkbox obj-right">
+                      <input onchange={disableSection} type="checkbox" name="options" id="checkbox-unique-id-3" data-id="checkbox-unique-id-3" value="checkbox-unique-id-3" data-remark="3-remark" data-parent="sectionThree">
+                      <label class="slds-checkbox__label" for="checkbox-unique-id-3">
+                        <span class="slds-checkbox_faux"></span>
+                        <span class="slds-form-element__label">N/A</span>
+                      </label>
+                    </div>
+                  </div>
+                </h2>
+              </div>
+              <div class="slds-grid slds-gutters hide-remark" id="sectionThree-remark" data-id="sectionThree-remark">
+                <div class="slds-col">
+                  <label class="slds-form-element__label" for="tank-no">Remark</label>
+                  <div class="slds-form-element__control">
+                    <textarea data-id="sectionThree-inputRemark" onchange={onIEH} id="sectionThree-inputRemark" class="slds-textarea"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div data-id="collapseThree" class="slds-accordion__content">
+                <div class="card-body">
+                  <div class="card-body">
+                    <div class="slds-col slds-size_11-of-12">
+                      <span class="slds-form-element__label">2.1 Disconnect coupling for inspection.</span>
+                      <br>
+                      <span class="slds-form-element__label">ถอด coupling เพื่อทำการตรวจสอบ</span>
+                    </div>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="text-center w-20">
+                            <span class="slds-form-element__label">Interval</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label">As Found</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label">As Returned</span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-answered="false">
+                          <td class="text-center">
+                            <span class="slds-form-element__label">M6, Y1</span>
+                          </td>
+                          <td class="w-40">
+                            <div class="slds-checkbox">
+                              <input onchange={onIEH} type="checkbox" name="2-1-checkbox-1" data-id="2-1-checkbox-1" id="2-1-checkbox-1" data-children="0" data-controlledby="2-1-checkbox-22-1-checkbox-32-1-checkbox-4" value="ปกติ">
+                              <label class="slds-checkbox__label" for="2-1-checkbox-1">
+                                <span class="slds-checkbox_faux"></span>
+                                <span class="slds-form-element__label mgr-10">ปกติ</span>
+                              </label>
+                            </div>
+                            <div class="slds-checkbox">
+                              <input onchange={onIEH} type="checkbox" name="2-1-checkbox-2" data-id="2-1-checkbox-2" id="2-1-checkbox-2" data-children="0" data-controlledby="2-1-checkbox-1" value="แตกหัก">
+                              <label class="slds-checkbox__label" for="2-1-checkbox-2">
+                                <span class="slds-checkbox_faux"></span>
+                                <span class="slds-form-element__label mgr-10">แตกหัก</span>
+                              </label>
+                            </div>
+                            <div class="slds-checkbox">
+                              <input onchange={onIEH} type="checkbox" name="2-1-checkbox-3" data-id="2-1-checkbox-3" id="2-1-checkbox-3" data-children="0" data-controlledby="2-1-checkbox-1" value="ยืดตัว">
+                              <label class="slds-checkbox__label" for="2-1-checkbox-3">
+                                <span class="slds-checkbox_faux"></span>
+                                <span class="slds-form-element__label mgr-10">ยืดตัว</span>
+                              </label>
+                            </div>
+                            <ul class="slds-list_horizontal slds-has-block-links_space">
+                              <li>
+                                <div class="slds-checkbox">
+                                  <input onchange={onIEH} type="checkbox" name="2-1-checkbox-4" data-id="2-1-checkbox-4" id="2-1-checkbox-4" data-children="0" data-controlledby="2-1-checkbox-1" value="อื่นๆ">
+                                  <label class="slds-checkbox__label" for="2-1-checkbox-4">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">อื่นๆ</span>
+                                  </label>
+                                </div>
+                              </li>
+                              <li class="w-80">
+                                <div class="slds-form-element__control">
+                                  <input onchange={onIEH} data-disabled="true" data-children="-1" data-controlledby="2-1-checkbox-4" data-id="2-2-input-1" disabled class="slds-input">
+                                </div>
+                              </li>
+                            </ul>
+                          </td>
+                          <td>
+                            <span class="slds-radio">
+                              <input onchange={onIEH} type="radio" data-id="2-2-radio-1" id="2-2-radio-1" name="2-2-radio" value="Replace / Torque">
+                              <label class="slds-radio__label" for="2-2-radio-1">
+                                <span class="slds-radio_faux"></span>
+                                <span class="slds-form-element__label">ใช้ซ้ำ</span>
+                              </label>
+                            </span>
+                            <span class="slds-radio">
+                              <input onchange={onIEH} type="radio" data-id="2-2-radio-2" id="2-2-radio-2" name="2-2-radio" value="Reuse">
+                              <label class="slds-radio__label" for="2-2-radio-2">
+                                <span class="slds-radio_faux"></span>
+                                <span class="slds-form-element__label">เปลี่ยนใหม่</span>
+                              </label>
+                            </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="slds-col slds-size_11-of-12">
+                      <span class="slds-form-element__label">2.2 Measure DBSE (mm)</span>
+                      <br>
+                      <span class="slds-form-element__label">วัดค่า DBSE ระหว่างมอเตอร์กับเกียร์ (มม.)</span>
+                    </div>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="text-center w-20">
+                            <span class="slds-form-element__label">Interval</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label">As Found</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label">As Returned</span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-answered="false">
+                          <td class="text-center">
+                            <span class="slds-form-element__label">Y1</span>
+                          </td>
+                          <td class="text-center w-40">
+                            <div class="slds-form-element">
+                              <div class="slds-form-element__control slds-input-has-fixed-addon">
+                                <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="2-3-input-1" placeholder="" aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post" class="slds-input">
+                                <span class="slds-form-element__addon slds-form-element__label" data-id="fixed-text-addon-post">mm</span>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="slds-form-element">
+                              <div class="slds-form-element__control slds-input-has-fixed-addon">
+                                <input onchange={onIEH} type="number" min="0" step="1" onkeypress={onKeyPress} data-id="2-3-input-2" placeholder="" aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post" class="slds-input">
+                                <span class="slds-form-element__addon slds-form-element__label" data-id="fixed-text-addon-post">mm</span>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </li>
+          <li class="slds-accordion__list-item">
+            <section class="slds-accordion__section" data-id="sectionFour">
+              <div class="slds-accordion__summary" data-id="headingFour">
+                <h2 class="slds-accordion__summary-heading card-header">
+                  <button type="button" aria-controls="collapseFour" aria-expanded="true" class="btn btn-link" data-parent="sectionFour" onclick={expandSection}>
+                    <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"></lightning-icon>
+                    <span style="background-color:var(--lwc-brandAccessible,#0070d2)" class="slds-badge slds-badge_inverse slds-var-p-right_x-small">3</span>
+                    <span class="slds-accordion__summary-content">Fan and Gear Rotor Inspection</span>
+                  </button>
+                  <div class="slds-col">
+                    <div class="slds-checkbox obj-right">
+                      <input onchange={disableSection} type="checkbox" name="options" id="checkbox-unique-id-4" data-id="checkbox-unique-id-4" value="checkbox-unique-id-4" data-remark="4-remark" data-parent="sectionFour">
+                      <label class="slds-checkbox__label" for="checkbox-unique-id-4">
+                        <span class="slds-checkbox_faux"></span>
+                        <span class="slds-form-element__label">N/A</span>
+                      </label>
+                    </div>
+                  </div>
+                </h2>
+              </div>
+              <div class="slds-grid slds-gutters hide-remark" id="sectionFour-remark" data-id="sectionFour-remark">
+                <div class="slds-col">
+                  <label class="slds-form-element__label" for="tank-no">Remark</label>
+                  <div class="slds-form-element__control">
+                    <textarea data-id="sectionFour-inputRemark" onchange={onIEH} id="sectionFour-inputRemark" class="slds-textarea"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div data-id="collapseFour" class="slds-accordion__content">
+                <div class="card-body">
+                  <div class="card-body">
+                    <div class="slds-col slds-size_11-of-12">
+                      <span class="slds-form-element__label">3.1 Inspect fan blades bush, Measure blades pitch angle.</span>
+                      <br>
+                      <span class="slds-form-element__label">ตรวจสอบการหลวมของ Bush ใบพัด วัดมุมองศาของใบพัดลม (± 3 องศา)</span>
+                    </div>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="text-center w-20">
+                            <span class="slds-form-element__label">Interval</span>
+                          </th>
+                          <th colspan="2" class="text-center">
+                            <span class="slds-form-element__label">As Found</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label">As Returned</span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-answered="false">
+                          <th rowspan="2" class="text-center">
+                            <span class="slds-form-element__label">Y1</span>
+                          </th>
+                          <th class="text-center w-10">
+                            <span class="slds-form-element__label">Min (degree)</span>
+                          </th>
+                          <td class="text-center">
+                            <div class="slds-form-element">
+                              <div class="slds-form-element__control">
+                                <input onchange={onIEH} data-id="3-1-text-1-1" id="3-1-text-1-1" name="3-1-text" class="slds-input">
+                              </div>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="slds-form-element">
+                              <div class="slds-form-element__control">
+                                <input onchange={onIEH} data-id="3-1-text-1-2" id="3-1-text-1-2" name="3-1-text" class="slds-input">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr data-answered="false">
+                          <th class="text-center w-10">
+                            <span class="slds-form-element__label">Max (degree)</span>
+                          </th>
+                          <td class="text-center">
+                            <div class="slds-form-element">
+                              <div class="slds-form-element__control">
+                                <input onchange={onIEH} data-id="3-1-text-2-1" id="3-1-text-2-1" name="3-1-text" class="slds-input">
+                              </div>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="slds-form-element">
+                              <div class="slds-form-element__control">
+                                <input onchange={onIEH} data-id="3-1-text-2-2" id="3-1-text-2-2" name="3-1-text" class="slds-input">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="slds-col slds-size_11-of-12">
+                      <span class="slds-form-element__label">3.2 Measure and report blade tip clearance</span>
+                      <br>
+                      <span class="slds-form-element__label">วัดค่า blade tip clearance</span>
+                    </div>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="text-center w-20">
+                            <span class="slds-form-element__label">Interval</span>
+                          </th>
+                          <th colspan="2" class="text-center">
+                            <span class="slds-form-element__label">As Found</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label">As Returned</span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-answered="false">
+                          <th rowspan="2" class="text-center">
+                            <span class="slds-form-element__label">Y1</span>
+                          </th>
+                          <th class="text-center w-5">
+                            <span class="slds-form-element__label">Min (mm)</span>
+                          </th>
+                          <td class="text-center">
+                            <div class="slds-form-element">
+                              <div class="slds-form-element__control">
+                                <input onchange={onIEH} data-id="3-2-text-1-1" id="3-2-text-1-1" name="3-2-text" class="slds-input">
+                              </div>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="slds-form-element">
+                              <div class="slds-form-element__control">
+                                <input onchange={onIEH} data-id="3-2-text-1-2" id="3-2-text-1-2" name="3-2-text" class="slds-input">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr data-answered="false">
+                          <th class="text-center w-5">
+                            <span class="slds-form-element__label">Max (mm)</span>
+                          </th>
+                          <td class="text-center">
+                            <div class="slds-form-element">
+                              <div class="slds-form-element__control">
+                                <input onchange={onIEH} data-id="3-2-text-2-1" id="3-2-text-2-1" name="3-2-text" class="slds-input">
+                              </div>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="slds-form-element">
+                              <div class="slds-form-element__control">
+                                <input onchange={onIEH} data-id="3-2-text-2-2" id="3-2-text-2-2" name="3-2-text" class="slds-input">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="slds-col slds-size_11-of-12">
+                      <span class="slds-form-element__label">3.3 Fan shaft</span>
+                      <br>
+                      <img alt="image3" src="https://thaioil--uat--c.documentforce.com/servlet/servlet.ImageServer?id=0159D000000QEnA&oid=00D9D0000008h13&lastMod=1649730481000" width="450" height="450">
+                      <br>
+                    </div>
+                    <div class="slds-col slds-size_11-of-12">
+                      <span class="slds-form-element__label">&nbsp;&nbsp; 3.3.1 Shaft runout (B)</span>
+                    </div>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="text-center w-20">
+                            <span class="slds-form-element__label">Interval</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label">As Found</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label"></span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-answered="false">
+                          <td class="text-center">
+                            <span class="slds-form-element__label">M6, Y1</span>
+                          </td>
+                          <td class="w-40">
+                            <div class="slds-form-element">
+                              <div class="slds-form-element__control slds-input-has-fixed-addon">
+                                <input onchange={onIEH} data-id="3-3-text-1" id="3-3-text-1" name="3-3-text" class="slds-input">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="slds-col slds-size_11-of-12">
+                      <span class="slds-form-element__label">&nbsp;&nbsp;3.3.2 Radial movement (C)</span>
+                    </div>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="text-center w-20">
+                            <span class="slds-form-element__label">Interval</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label">As Found</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label"></span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-answered="false">
+                          <td class="text-center">
+                            <span class="slds-form-element__label">M6, Y1</span>
+                          </td>
+                          <td class="w-40">
+                            <div class="slds-form-element">
+                              <div class="slds-form-element__control slds-input-has-fixed-addon">
+                                <input onchange={onIEH} data-id="3-3-text-2" id="3-3-text-2" name="3-3-text" class="slds-input">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="slds-col slds-size_11-of-12">
+                      <span class="slds-form-element__label">3.4 Pinion shaft</span>
+                    </div>
+                    <div class="slds-col slds-size_11-of-12">
+                      <span class="slds-form-element__label">&nbsp;&nbsp;3.4.1 Shaft runout (D)</span>
+                    </div>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="text-center w-20">
+                            <span class="slds-form-element__label">Interval</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label">As Found</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label"></span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-answered="false">
+                          <td class="text-center">
+                            <span class="slds-form-element__label">M6, Y1</span>
+                          </td>
+                          <td class="w-40">
+                            <div class="slds-form-element">
+                              <div class="slds-form-element__control slds-input-has-fixed-addon">
+                                <input onchange={onIEH} data-id="3-4-text-1" id="3-4-text-1" name="3-4-text" class="slds-input">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="slds-col slds-size_11-of-12">
+                      <span class="slds-form-element__label">&nbsp;&nbsp;3.4.2 Radial movement (E)</span>
+                    </div>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="text-center w-20">
+                            <span class="slds-form-element__label">Interval</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label">As Found</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label"></span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-answered="false">
+                          <td class="text-center">
+                            <span class="slds-form-element__label">M6, Y1</span>
+                          </td>
+                          <td class="w-40">
+                            <div class="slds-form-element">
+                              <div class="slds-form-element__control slds-input-has-fixed-addon">
+                                <input onchange={onIEH} data-id="3-4-text-2" id="3-4-text-2" name="3-4-text" class="slds-input">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="slds-col slds-size_11-of-12">
+                      <span class="slds-form-element__label">&nbsp;&nbsp;3.4.3 Axial float (F)</span>
+                    </div>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="text-center w-20">
+                            <span class="slds-form-element__label">Interval</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label">As Found</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label"></span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-answered="false">
+                          <td class="text-center">
+                            <span class="slds-form-element__label">M6, Y1</span>
+                          </td>
+                          <td class="w-40">
+                            <div class="slds-form-element">
+                              <div class="slds-form-element__control slds-input-has-fixed-addon">
+                                <input onchange={onIEH} data-id="3-4-text-3" id="3-4-text-3" name="3-4-text" class="slds-input">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="slds-col slds-size_11-of-12">
+                      <span class="slds-form-element__label">3.5 Gear backlash check (G)</span>
+                      <br>
+                      <span class="slds-form-element__label">วัดค่า backlash ของเกียร์</span>
+                    </div>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="text-center w-20">
+                            <span class="slds-form-element__label">Interval</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label">As Found</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label"></span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-answered="false">
+                          <td class="text-center">
+                            <span class="slds-form-element__label">Y1</span>
+                          </td>
+                          <td class="text-center w-40">
+                            <div class="slds-form-element">
+                              <div class="slds-form-element__control slds-input-has-fixed-addon">
+                                <input onchange={onIEH} data-id="3-5-text-1" id="3-5-text-1" name="3-5-text" class="slds-input">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="slds-col slds-size_11-of-12">
+                      <span class="slds-form-element__label">3.6 Drain, inspect used oil / flush and charge with new oil.</span>
+                      <br>
+                      <span class="slds-form-element__label">ถ่ายน้ำมันเก่า สังเกตความผิดปกติ ทำความสะอาดและเติมน้้ำมันใหม่</span>
+                    </div>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="text-center w-20">
+                            <span class="slds-form-element__label">Interval</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label">As Found</span>
+                          </th>
+                          <th class="text-center">
+                            <span class="slds-form-element__label">As Returned</span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-answered="false">
+                          <td class="text-center">
+                            <span class="slds-form-element__label">M6, Y1</span>
+                          </td>
+                          <td class="w-40">
+                            <div class="slds-checkbox">
+                              <input onchange={onIEH} type="checkbox" name="3-6-checkbox-1" data-id="3-6-checkbox-1" id="3-6-checkbox-1" value="สีคล้ำ">
+                              <label class="slds-checkbox__label" for="3-6-checkbox-1">
+                                <span class="slds-checkbox_faux"></span>
+                                <span class="slds-form-element__label mgr-10">สีคล้ำ</span>
+                              </label>
+                            </div>
+                            <div class="slds-checkbox">
+                              <input onchange={onIEH} type="checkbox" name="3-6-checkbox-2" data-id="3-6-checkbox-2" id="3-6-checkbox-2" value="มีน้ำปน">
+                              <label class="slds-checkbox__label" for="3-6-checkbox-2">
+                                <span class="slds-checkbox_faux"></span>
+                                <span class="slds-form-element__label mgr-10">มีน้ำปน</span>
+                              </label>
+                            </div>
+                            <div class="slds-checkbox">
+                              <input onchange={onIEH} type="checkbox" name="3-6-checkbox-3" data-id="3-6-checkbox-3" id="3-6-checkbox-3" value="เศษโลหะ">
+                              <label class="slds-checkbox__label" for="3-6-checkbox-3">
+                                <span class="slds-checkbox_faux"></span>
+                                <span class="slds-form-element__label mgr-10">เศษโลหะ</span>
+                              </label>
+                            </div>
+                            <div class="slds-checkbox">
+                              <input onchange={onIEH} type="checkbox" name="3-6-checkbox-4" data-id="3-6-checkbox-4" id="3-6-checkbox-4" value="ฝุ่นเข้า">
+                              <label class="slds-checkbox__label" for="3-6-checkbox-4">
+                                <span class="slds-checkbox_faux"></span>
+                                <span class="slds-form-element__label mgr-10">ฝุ่นเข้า</span>
+                              </label>
+                            </div>
+                            <ul class="slds-list_horizontal slds-has-block-links_space">
+                              <li>
+                                <div class="slds-checkbox">
+                                  <input onchange={onIEH} type="checkbox" name="3-6-checkbox-5" data-id="3-6-checkbox-5" id="3-6-checkbox-5" value="อื่นๆ">
+                                  <label class="slds-checkbox__label" for="3-6-checkbox-5">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">อื่นๆ</span>
+                                  </label>
+                                </div>
+                              </li>
+                              <li class="w-80">
+                                <div class="slds-form-element__control">
+                                  <input onchange={onIEH} data-disabled="true" data-children="-1" data-controlledby="3-6-checkbox-5" data-id="3-6-input-1" disabled class="slds-input">
+                                </div>
+                              </li>
+                            </ul>
+                          </td>
+                          <td>
+          <li>
+            <span class="slds-checkbox">
+              <input onchange={onIEH} type="checkbox" data-id="3-6-checkbox-6" id="3-6-checkbox-6" name="3-6-checkbox" value="Done">
+              <label class="slds-checkbox__label" for="3-6-checkbox-6">
+                <span class="slds-checkbox_faux"></span>
+                <span class="slds-form-element__label">เสร็จเรียบร้อย</span>
+              </label>
+            </span>
+            <br>
+          </li>
+          <li>
+            <label>
+              <span class="slds-form-element__label">เบอร์น้ำมัน</span>
+            </label>
+            <div class="slds-form-element__control">
+              <input onchange={onIEH} data-id="3-6-text-2" id="3-6-text-2" name="3-6-text" class="slds-input">
+            </div>
+          </li>
+          </td>
+          </tr>
+          </tbody>
+          </table>
+      </div>
+    </div>
+    </div>
+    </section>
+    </li>
+    <li class="slds-accordion__list-item">
+      <section class="slds-accordion__section" data-id="sectionFive">
+        <div class="slds-accordion__summary" data-id="headingFive">
+          <h2 class="slds-accordion__summary-heading card-header">
+            <button type="button" aria-controls="collapseFive" aria-expanded="true" class="btn btn-link" data-parent="sectionFive" onclick={expandSection}>
+              <lightning-icon icon-name="utility:switch" alternative-text="button icon" size="x-small" class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"></lightning-icon>
+              <span style="background-color:var(--lwc-brandAccessible,#0070d2)" class="slds-badge slds-badge_inverse slds-var-p-right_x-small">4</span>
+              <span class="slds-accordion__summary-content">Machine Shaft Alignment</span>
+            </button>
+            <div class="slds-col">
+              <div class="slds-checkbox obj-right">
+                <input onchange={disableSection} type="checkbox" name="options" id="checkbox-unique-id-5" data-id="checkbox-unique-id-5" value="checkbox-unique-id-5" data-remark="5-remark" data-parent="sectionFive">
+                <label class="slds-checkbox__label" for="checkbox-unique-id-5">
+                  <span class="slds-checkbox_faux"></span>
+                  <span class="slds-form-element__label">N/A</span>
+                </label>
+              </div>
+            </div>
+          </h2>
+        </div>
+        <div class="slds-grid slds-gutters hide-remark" id="sectionFive-remark" data-id="sectionFive-remark">
+          <div class="slds-col">
+            <label class="slds-form-element__label" for="tank-no">Remark</label>
+            <div class="slds-form-element__control">
+              <textarea data-id="sectionFive-inputRemark" onchange={onIEH} id="sectionFive-inputRemark" class="slds-textarea"></textarea>
+            </div>
+          </div>
+        </div>
+        <div data-id="collapseFive" class="slds-accordion__content">
+          <div class="card-body">
+            <div class="card-body">
+              <div class="slds-col slds-size_11-of-12">
+                <span class="slds-form-element__label">4.1 ตรวจสอบค่า alignment ของมอเตอร์ กับ เกียร์</span>
+              </div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center w-20">
+                      <span class="slds-form-element__label">Interval</span>
+                    </th>
+                    <th colspan="2" class="text-center">
+                      <span class="slds-form-element__label">Piont check</span>
+                    </th>
+                    <th class="text-center">
+                      <span class="slds-form-element__label">As Found</span>
+                    </th>
+                    <th class="text-center">
+                      <span class="slds-form-element__label">As Returned</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th rowspan="4" class="text-center">
+                      <span class="slds-form-element__label">Y1</span>
+                    </th>
+                    <th rowspan="2" class="text-center">
+                      <span class="slds-form-element__label">Hor</span>
+                    </th>
+                    <td class="text-center">
+                      <span class="slds-form-element__label">Gap</span>
+                    </td>
+                    <td class="text-center">
+                      <div class="slds-form-element">
+                        <div class="slds-form-element__control slds-input-has-fixed-addon">
+                          <input onchange={onIEH} data-id="4-1-text-1" id="4-1-text-1" name="4-1-text" class="slds-input">
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="slds-form-element">
+                        <div class="slds-form-element__control slds-input-has-fixed-addon">
+                          <input onchange={onIEH} data-id="4-1-text-2" id="4-1-text-2" name="4-1-text" class="slds-input">
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <span class="slds-form-element__label">Offset</span>
+                    </td>
+                    <td class="text-center">
+                      <div class="slds-form-element">
+                        <div class="slds-form-element__control slds-input-has-fixed-addon">
+                          <input onchange={onIEH} data-id="4-2-text-1" id="4-2-text-1" name="4-1-text" class="slds-input">
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="slds-form-element">
+                        <div class="slds-form-element__control slds-input-has-fixed-addon">
+                          <input onchange={onIEH} data-id="4-2-text-2" id="4-2-text-2" name="4-1-text" class="slds-input">
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th rowspan="2" class="text-center">
+                      <span class="slds-form-element__label">Ver</span>
+                    </th>
+                    <td class="text-center">
+                      <span class="slds-form-element__label">Gap</span>
+                    </td>
+                    <td class="text-center">
+                      <div class="slds-form-element">
+                        <div class="slds-form-element__control slds-input-has-fixed-addon">
+                          <input onchange={onIEH} data-id="4-3-text-1" id="4-3-text-1" name="4-1-text" class="slds-input">
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="slds-form-element">
+                        <div class="slds-form-element__control slds-input-has-fixed-addon">
+                          <input onchange={onIEH} data-id="4-3-text-2" id="4-3-text-2" name="4-1-text" class="slds-input">
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <span class="slds-form-element__label">Offset</span>
+                    </td>
+                    <td class="text-center">
+                      <div class="slds-form-element">
+                        <div class="slds-form-element__control slds-input-has-fixed-addon">
+                          <input onchange={onIEH} data-id="4-4-text-1" id="4-4-text-1" name="4-1-text" class="slds-input">
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="slds-form-element">
+                        <div class="slds-form-element__control slds-input-has-fixed-addon">
+                          <input onchange={onIEH} data-id="4-4-text-2" id="4-4-text-2" name="4-1-text" class="slds-input">
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </li>
+    </ul>
+    </div>
+    <section class="section slds-accordion__section">
+      <div class="slds-button-group obj-right" role="group">
+        <button data-id="saveEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openSaveModal}>Save Draft</button>
+        <button data-id="submitEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openModal}>Submit</button>
+        <button data-id="rejectEQCCStep" class="slds-button slds-button_brand mgr-5" onclick={openRejectModal}>Reject</button>
+        <button data-id="recallEQCCStep" class="slds-button slds-button_brand" disabled onclick={openRecallModal}>Recall</button>
+      </div>
+    </section>
+    </div>
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Submit</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-lookup object-api-name="user" icon-name="standard:user" onrecordselection={onUserSelection}></c-lookup>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submit} title="Submit">Submit</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+  </template>

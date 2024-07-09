@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>AI-CPEM</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <section class="section text-size-normal">
+
+    <div class="dashboard-name text-center push-bottom-3">
+      <div class="text-size-xlarge text-weight-bold">
+        SSHE Performance Dashboard
+        <span id="dashboard-period" class="text-secondary">August-2020</span>
+      </div>
+      <div id="current-date">5 August 2020</div>
+    </div>
+
+    <div class="text-center push-bottom-3">
+      <div style="display: inline-block;">
+        <span class="label">Year</span>
+        <select id="year" class="select" style="width: 12rem;">
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+        </select>
+      </div>
+
+      <div style="display: inline-block;">
+        <span class="label">Period</span>
+        <select id="period" class="select" style="width: 18rem;">
+          <option value="1">January</option>
+          <option value="2">February</option>
+        </select>
+      </div>
+
+      <div style="display: inline-block;">
+        <span class="label">Company</span>
+        <select id="company" class="select" style="width: 19rem;">
+          <option value="top-group">TOP Group</option>
+          <option value="thai-paraxylene">Thai PARAXYLENE</option>
+          <option value="thai-lube-base">Thai LUBE BASE</option>
+          <option value="labix">LABIX</option>
+          <option value="thaioil-power">Thaioil POWER</option>
+          <option value="top-spp">TOP SPP</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="is-flex push-bottom-2">
+      <div class="is-flex is-direction-column" style="width: 64%; margin-right: 6px;">
+        <div id="personal-safety-performance" class="box text-weight-bold push-bottom-2">
+          <div class="box-name text-primary">Personal Safety Performance</div>
+          <div class="table">
+            <div class="is-flex">
+              <div style="width: 269px; margin-right: 6px;">
+                <div class="kpi cell-bordered t-head-left" style="height: 66px;">KPIs/Indicator</div>
+
+                <div class="is-flex cell-bordered t-head-left">
+                  <div class="is-flex-1 text-size-small text-secondary is-double-line">Total Reportable Case Frequency (TRCF)</div>
+                  <div class="is-flex text-unit" style="align-items: flex-end;">(Case/mil. hr)</div>
+                </div>
+
+                <div class="is-flex cell-bordered t-head-left">
+                  <div class="is-flex-1 text-size-small text-secondary is-double-line">Total Reportable Case<br>(TRC)</div>
+                  <div class="is-flex text-unit" style="align-items: flex-end;">(Case)</div>
+                </div>
+
+                <div class="is-flex cell-bordered t-head-left">
+                  <div class="is-flex-1 text-size-small text-secondary is-double-line" style="line-height: 38px;">Man-Hours</div>
+                  <div class="is-flex text-unit" style="align-items: flex-end;">(mil. hr)</div>
+                </div>
+              </div>
+
+              <div style="width: 554px; overflow: auto">
+                <div class="is-flex row t-head text-size-small text-center">
+
+                  <div class="is-flex is-direction-column">
+                    <div class="cell-bordered push-bottom-1 top-group">
+                      TOP Group
+                    </div>
+                    <div class="cell-group">
+                      <div class="cell bg-target text-primary">Target</div>
+                      <div class="cell bg-month short-month">Aug</div>
+                      <div class="cell bg-ytd">YTD</div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="cell-bordered push-bottom-1">
+                      <img src="image/top.png">
+                    </div>
+                    <div class="cell bg-ytd">YTD</div>
+                  </div>
+
+                  <div>
+                    <div class="cell-bordered push-bottom-1">
+                      <img src="image/thai-paraxylene.png">
+                    </div>
+                    <div class="cell bg-ytd">YTD</div>
+                  </div>
+
+                  <div>
+                    <div class="cell-bordered push-bottom-1">
+                      <img src="image/thai-lube-base.png">
+                    </div>
+                    <div class="cell bg-ytd">YTD</div>
+                  </div>
+
+                  <div>
+                    <div class="cell-bordered push-bottom-1">
+                      <img src="image/labix.png">
+                    </div>
+                    <div class="cell bg-ytd">YTD</div>
+                  </div>
+
+                  <div>
+                    <div class="cell-bordered push-bottom-1">
+                      <img src="image/thaioil-power.png">
+                    </div>
+                    <div class="cell bg-ytd">YTD</div>
+                  </div>
+
+                  <div>
+                    <div class="cell-bordered push-bottom-1">
+                      <img src="image/top-spp.png">
+                    </div>
+                    <div class="cell bg-ytd">YTD</div>
+                  </div>
+                </div>
+
+                <div class="is-flex row t-body">
+                  <div class="cell-group">
+                    <div class="cell bg-target text-primary">&lt;0.40</div>
+                    <div class="cell bg-month"></div>
+                    <div class="cell bg-ytd">0.37</div>
+                  </div>
+
+                  <div class="cell bg-ytd">0.20</div>
+
+                  <div class="cell bg-ytd text-danger">15.4</div>
+
+                  <div class="cell bg-ytd"></div>
+
+                  <div class="cell bg-ytd"></div>
+
+                  <div class="cell bg-ytd"></div>
+
+                  <div class="cell bg-ytd"></div>
+                </div>
+
+                <div class="is-flex row t-body">
+                  <div class="cell-group">
+                    <div class="cell bg-target text-primary"></div>
+                    <div class="cell bg-month">
+                      <div class="case-circle">0</div>
+                    </div>
+                    <div class="cell bg-ytd">
+                      <div class="case-circle warning">4</div>
+                    </div>
+                  </div>
+
+                  <div class="cell bg-ytd">
+                    <div class="case-circle warning">2</div>
+                  </div>
+
+                  <div class="cell bg-ytd text-danger">
+                    <div class="case-circle warning">2</div>
+                  </div>
+
+                  <div class="cell bg-ytd">
+                    <div class="case-circle">0</div>
+                  </div>
+
+                  <div class="cell bg-ytd">
+                    <div class="case-circle">0</div>
+                  </div>
+
+                  <div class="cell bg-ytd">
+                    <div class="case-circle">0</div>
+                  </div>
+
+                  <div class="cell bg-ytd">
+                    <div class="case-circle">0</div>
+                  </div>
+                </div>
+
+                <div class="is-flex row t-body text-man-hour">
+                  <div class="cell-group">
+                    <div class="cell bg-target text-primary">-</div>
+                    <div class="cell bg-month">0.10</div>
+                    <div class="cell bg-ytd">10.74</div>
+                  </div>
+
+                  <div class="cell bg-ytd">9.87</div>
+
+                  <div class="cell bg-ytd">0.13</div>
+
+                  <div class="cell bg-ytd">0.60</div>
+
+                  <div class="cell bg-ytd">0.14</div>
+
+                  <div class="cell bg-ytd">-</div>
+
+                  <div class="cell bg-ytd">-</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="is-flex is-flex-1">
+          <div id="process-event-leading-indicators" class="box text-weight-bold"
+            style="width: 75%; margin-right: 6px;">
+            <div class="box-name text-primary">Process Event Leading Indicators</div>
+            <div class="table">
+              <div class="is-flex row t-head text-size-small text-center">
+                <div class="kpi cell-bordered" style="height: auto;">KPIs/Indicator</div>
+
+                <div class="is-flex is-flex-1 is-direction-column">
+                  <div class="cell-bordered push-bottom-1 top-group" data-toggle-logo="">
+                    <span data-top-group="">TOP Group</span>
+                    <img src="" data-logo="">
+                  </div>
+                  <div class="cell-group">
+                    <div class="cell bg-month short-month">Aug</div>
+                    <div class="cell bg-ytd">YTD</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="is-flex row">
+                <div class="is-flex is-between cell-bordered t-head-left">
+                  <div class="text-size-small text-secondary is-single-line" style="min-width: 77px; line-height: 17px;">PSE (Tier 3) (Small Leakage)</div>
+                  <div class="text-unit">(Case)</div>
+                </div>
+
+                <div class="t-body is-flex is-flex-1">
+                  <div class="cell-group">
+                    <div class="cell bg-month">
+                      <div class="case-circle">0</div>
+                    </div>
+                    <div class="cell bg-ytd">
+                      <div class="case-circle warning">27</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="is-flex row">
+                <div class="is-flex is-between cell-bordered t-head-left">
+                  <div class="text-size-small text-secondary is-single-line" style="line-height: 17px;">Small Fire</div>
+                  <div class="text-unit">(Case)</div>
+                </div>
+
+                <div class="t-body is-flex is-flex-1">
+                  <div class="cell-group">
+                    <div class="cell bg-month">
+                      <div class="case-circle">0</div>
+                    </div>
+                    <div class="cell bg-ytd">
+                      <div class="case-circle warning">5</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="is-flex row">
+                <div class="is-flex is-between cell-bordered t-head-left">
+                  <div class="text-size-small text-secondary is-single-line" style="line-height: 17px;">PIR</div>
+                  <div class="text-unit">(Case)</div>
+                </div>
+
+                <div class="t-body is-flex is-flex-1 text-man-hour">
+                  <div class="cell-group">
+                    <div class="cell bg-month">30</div>
+                    <div class="cell bg-ytd">2,184</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="security-level" class="box text-center is-flex is-direction-column"
+            style="width: 25%; margin-left: 6px;">
+            <div class="box-name text-primary">Security Level</div>
+            <div id="level-wrapper" class="is-flex is-flex-1 is-centered" style="max-height: 220px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="96" height="106" viewBox="0 0 96 106">
+                <path fill="#58b450"
+                  d="M92.447 17.612L50.147.418a5.714 5.714 0 0 0-4.293 0L3.553 17.612A5.71 5.71 0 0 0 0 22.884v35.754c0 .751.148 1.503.444 2.197 2.414 5.808 15.121 32.953 45.49 44.647a5.749 5.749 0 0 0 4.133 0c30.379-11.694 43.075-38.84 45.489-44.647A5.782 5.782 0 0 0 96 58.638V22.884c0-2.311-1.4-4.406-3.553-5.272z" />
+              </svg>
+              <div id="plus">+</div>
+              <div id="security-level-number">1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="process-safety-performance" class="box text-weight-bold" style="width: 36%; margin-left: 6px;">
+        <div class="box-name text-primary">Process Safety Performance</div>
+        <div class="table">
+          <div class="is-flex row t-head text-size-small text-center">
+            <div class="kpi cell-bordered" style="height: auto;">KPIs/Indicator</div>
+
+            <div class="is-flex is-direction-column">
+              <div class="cell-bordered push-bottom-1 top-group" data-toggle-logo="">
+                <span data-top-group="">TOP Group</span>
+                <img src="" data-logo="">
+              </div>
+              <div class="cell-group">
+                <div class="cell bg-target text-primary">Target</div>
+                <div class="cell bg-month short-month">Aug</div>
+                <div class="cell bg-ytd">YTD</div>
+                <div class="cell bg-ptd">PTD</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="is-flex row">
+            <div class="is-flex cell-bordered t-head-left">
+              <div class="is-flex-1 is-flex is-centered text-center text-size-small text-secondary"
+                style="line-height: 17px;">PSE<br>(Tier 2)</div>
+              <div class="is-flex is-direction-column">
+                <div class="rate">
+                  <div clas="is-single-line">PSE Rate</div>
+                  <div class="text-unit">(Case/mil. hr)</div>
+                </div>
+                <div class="case">
+                  <div clas="is-single-line">PSE</div>
+                  <div class="text-unit">(Case)</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="t-body is-flex is-direction-column">
+              <div class="cell-group">
+                <div class="cell bg-target text-primary">&lt;0.40</div>
+                <div class="cell bg-month"></div>
+                <div class="cell bg-ytd text-danger">1.25</div>
+                <div class="cell bg-ptd">0.50</div>
+              </div>
+              <div class="cell-group">
+                <div class="cell bg-target text-primary">2</div>
+                <div class="cell bg-month">
+                  <div class="case-circle">0</div>
+                </div>
+                <div class="cell bg-ytd">
+                  <div class="case-circle warning">1</div>
+                </div>
+                <div class="cell bg-ptd">
+                  <div class="case-circle warning">1</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="is-flex row">
+            <div class="is-flex cell-bordered t-head-left">
+              <div class="is-flex-1 is-flex is-centered text-center text-size-small text-secondary"
+                style="line-height: 17px;">PSE<br>(Tier 2)</div>
+              <div class="is-flex is-direction-column">
+                <div class="rate">
+                  <div clas="is-single-line">PSE Rate</div>
+                  <div class="text-unit">(Case/mil. hr)</div>
+                </div>
+                <div class="case">
+                  <div clas="is-single-line">PSE</div>
+                  <div class="text-unit">(Case)</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="t-body is-flex is-direction-column">
+              <div class="cell-group">
+                <div class="cell bg-target text-primary">&lt;0.40</div>
+                <div class="cell bg-month"></div>
+                <div class="cell bg-ytd">1.25</div>
+                <div class="cell bg-ptd">0.50</div>
+              </div>
+              <div class="cell-group">
+                <div class="cell bg-target text-primary">2</div>
+                <div class="cell bg-month">
+                  <div class="case-circle">0</div>
+                </div>
+                <div class="cell bg-ytd">
+                  <div class="case-circle warning">1</div>
+                </div>
+                <div class="cell bg-ptd">
+                  <div class="case-circle warning">1</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="is-flex row">
+            <div class="is-flex cell-bordered t-head-left">
+              <div class="is-flex-1 is-flex is-centered text-center text-size-small text-secondary"
+                style="line-height: 17px;">PSE<br>(Tier 1+2)</div>
+              <div class="is-flex is-direction-column">
+                <div class="rate">
+                  <div clas="is-single-line">PSE Rate</div>
+                  <div class="text-unit">(Case/mil. hr)</div>
+                </div>
+                <div class="case">
+                  <div clas="is-single-line">PSE</div>
+                  <div class="text-unit">(Case)</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="t-body is-flex is-direction-column">
+              <div class="cell-group">
+                <div class="cell bg-target text-primary">&lt;0.40</div>
+                <div class="cell bg-month"></div>
+                <div class="cell bg-ytd"></div>
+                <div class="cell bg-ptd text-danger">1.25</div>
+              </div>
+              <div class="cell-group">
+                <div class="cell bg-target text-primary">2</div>
+                <div class="cell bg-month">
+                  <div class="case-circle">0</div>
+                </div>
+                <div class="cell bg-ytd">
+                  <div class="case-circle">0</div>
+                </div>
+                <div class="cell bg-ptd">
+                  <div class="case-circle warning">1</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="is-flex row">
+            <div class="is-flex cell-bordered t-head-left">
+              <div class="is-flex-1 is-flex text-size-small text-secondary is-double-line"
+                style="line-height: 18px;">High Potential Incident (HPI)</div>
+              <div class="is-flex text-unit" style="align-items: flex-end;">(Case)</div>
+            </div>
+
+            <div class="t-body">
+              <div class="cell-group">
+                <div class="cell bg-target text-primary">-</div>
+                <div class="cell bg-month">
+                  <div class="case-circle">0</div>
+                </div>
+                <div class="cell bg-ytd">
+                  <div class="case-circle">0</div>
+                </div>
+                <div class="cell bg-ptd">
+                  <div class="case-circle warning">14</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="project-safety-performance" class="box text-weight-bold push-bottom-1">
+      <div class="box-name text-primary">Project Safety Performance</div>
+
+      <div class="table">
+        <div class="is-flex">
+          <div style="flex: 0 0 376px; max-width: 376px; margin-right: 6px;">
+            <div class="kpi cell-bordered t-head-left" style="height: 96px;">KPIs/Indicator</div>
+
+            <div class="is-flex is-between cell-bordered t-head-left">
+              <div class="text-size-small text-secondary is-single-line" style="line-height: 17px;">Total Reportable Case Frequency (TRCF)</div>
+              <div class="text-unit" style="min-width: 77px; text-align: right;">(Case/mil. hr)</div>
+            </div>
+
+            <div class="is-flex is-between cell-bordered t-head-left">
+              <div class="text-size-small text-secondary is-single-line" style="line-height: 17px;">Total Reportable Case (TRC)</div>
+              <div class="text-unit" style="min-width: 77px; text-align: right;">(Case)</div>
+            </div>
+
+            <div class="is-flex is-between cell-bordered t-head-left">
+              <div class="text-size-small text-secondary is-single-line" style="line-height: 17px;">Man-Hours</div>
+              <div class="text-unit" style="min-width: 77px; text-align: right;">(mil. hr)</div>
+            </div>
+          </div>
+
+          <div class="is-flex" style="flex: 0 0 895px; overflow: auto;">
+            <div class="is-flex is-direction-column">
+              <div class="row t-head text-center">
+                <div class="cell-bordered push-bottom-1 top-group" data-toggle-logo="">
+                  <span data-top-group="">TOP Group</span>
+                  <img src="" data-logo="">
+                </div>
+                <div class="is-flex">
+                  <div class="cell bg-target text-primary is-flex is-centered push-right-1"
+                    style="align-items: flex-end;">Target</div>
+
+                  <div class="is-flex is-direction-column">
+                    <div class="cell-bordered">
+                      C-COT
+                    </div>
+                    <div class="cell-group">
+                      <div class="cell bg-month short-month">Aug</div>
+                      <div class="cell bg-ytd">YTD</div>
+                      <div class="cell bg-ptd">PTD</div>
+                    </div>
+                  </div>
+
+                  <div class="is-flex is-direction-column">
+                    <div class="cell-bordered">
+                      TSB*
+                    </div>
+                    <div class="cell-group">
+                      <div class="cell bg-month short-month">Aug</div>
+                      <div class="cell bg-ytd">YTD</div>
+                      <div class="cell bg-ptd">PTD</div>
+                    </div>
+                  </div>
+
+                  <div class="is-flex is-direction-column">
+                    <div class="cell-bordered">
+                      Jetty 7/8
+                    </div>
+                    <div class="cell-group">
+                      <div class="cell bg-month short-month">Aug</div>
+                      <div class="cell bg-ytd">YTD</div>
+                      <div class="cell bg-ptd">PTD</div>
+                    </div>
+                  </div>
+
+                  <div class="is-flex is-direction-column">
+                    <div class="cell-bordered">
+                      IDEA + Plot X
+                    </div>
+                    <div class="cell-group">
+                      <div class="cell bg-month short-month">Aug</div>
+                      <div class="cell bg-ytd">YTD</div>
+                      <div class="cell bg-ptd">PTD</div>
+                    </div>
+                  </div>
+
+                  <div class="is-flex is-direction-column">
+                    <div class="cell-bordered">
+                      Project 5
+                    </div>
+                    <div class="cell-group">
+                      <div class="cell bg-month short-month">Aug</div>
+                      <div class="cell bg-ytd">YTD</div>
+                      <div class="cell bg-ptd">PTD</div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="empty">
+                    <div class="cell-bordered"></div>
+                    <div></div>
+                  </div> -->
+                </div>
+              </div>
+
+              <div class="row t-body is-flex">
+                <div class="cell bg-target text-primary" style="flex: 0 0 54px;">&lt;0.40</div>
+
+                <div class="cell-group">
+                  <div class="cell bg-month"></div>
+                  <div class="cell bg-ytd"></div>
+                  <div class="cell bg-ptd"></div>
+                </div>
+
+                <div class="cell-group">
+                  <div class="cell bg-month"></div>
+                  <div class="cell bg-ytd"></div>
+                  <div class="cell bg-ptd"></div>
+                </div>
+
+                <div class="cell-group">
+                  <div class="cell bg-month"></div>
+                  <div class="cell bg-ytd"></div>
+                  <div class="cell bg-ptd">0.38</div>
+                </div>
+
+                <div class="cell-group">
+                  <div class="cell bg-month">0.38</div>
+                  <div class="cell bg-ytd">0.38</div>
+                  <div class="cell bg-ptd"></div>
+                </div>
+
+                <div class="cell-group">
+                  <div class="cell bg-month"></div>
+                  <div class="cell bg-ytd"></div>
+                  <div class="cell bg-ptd"></div>
+                </div>
+
+                <!-- <div class="empty"></div> -->
+              </div>
+
+              <div class="row t-body is-flex">
+                <div class="cell bg-target text-primary" style="flex: 0 0 54px;"></div>
+
+                <div class="cell-group">
+                  <div class="cell bg-month">
+                    <div class="case-circle">0</div>
+                  </div>
+                  <div class="cell bg-ytd">
+                    <div class="case-circle">0</div>
+                  </div>
+                  <div class="cell bg-ptd">
+                    <div class="case-circle">0</div>
+                  </div>
+                </div>
+
+                <div class="cell-group">
+                  <div class="cell bg-month">
+                    <div class="case-circle">0</div>
+                  </div>
+                  <div class="cell bg-ytd">
+                    <div class="case-circle">0</div>
+                  </div>
+                  <div class="cell bg-ptd">
+                    <div class="case-circle">0</div>
+                  </div>
+                </div>
+
+                <div class="cell-group">
+                  <div class="cell bg-month">
+                    <div class="case-circle">0</div>
+                  </div>
+                  <div class="cell bg-ytd">
+                    <div class="case-circle">0</div>
+                  </div>
+                  <div class="cell bg-ptd">
+                    <div class="case-circle warning">1</div>
+                  </div>
+                </div>
+
+                <div class="cell-group">
+                  <div class="cell bg-month">
+                    <div class="case-circle warning">1</div>
+                  </div>
+                  <div class="cell bg-ytd">
+                    <div class="case-circle warning">1</div>
+                  </div>
+                  <div class="cell bg-ptd">
+                    <div class="case-circle">0</div>
+                  </div>
+                </div>
+
+                <div class="cell-group">
+                  <div class="cell bg-month">
+                    <div class="case-circle">0</div>
+                  </div>
+                  <div class="cell bg-ytd">
+                    <div class="case-circle">0</div>
+                  </div>
+                  <div class="cell bg-ptd">
+                    <div class="case-circle">0</div>
+                  </div>
+                </div>
+
+                <!-- <div class="empty"></div> -->
+              </div>
+
+              <div class="row t-body is-flex text-man-hour">
+                <div class="cell bg-target text-primary" style="flex: 0 0 54px;">-</div>
+
+                <div class="cell-group">
+                  <div class="cell bg-month">0.05</div>
+                  <div class="cell bg-ytd text-man-hour-ytd">3.70</div>
+                  <div class="cell bg-ptd">6.78</div>
+                </div>
+
+                <div class="cell-group">
+                  <div class="cell bg-month">0.05</div>
+                  <div class="cell bg-ytd text-man-hour-ytd">0.73</div>
+                  <div class="cell bg-ptd">2.37</div>
+                </div>
+
+                <div class="cell-group">
+                  <div class="cell bg-month">0.00</div>
+                  <div class="cell bg-ytd text-man-hour-ytd">0.43</div>
+                  <div class="cell bg-ptd">2.61</div>
+                </div>
+
+                <div class="cell-group">
+                  <div class="cell bg-month">-</div>
+                  <div class="cell bg-ytd text-man-hour-ytd">-</div>
+                  <div class="cell bg-ptd">-</div>
+                </div>
+
+                <div class="cell-group">
+                  <div class="cell bg-month">0.05</div>
+                  <div class="cell bg-ytd text-man-hour-ytd">0.73</div>
+                  <div class="cell bg-ptd">2.37</div>
+                </div>
+
+                <!-- <div class="empty"></div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="remark-wrapper">
+        <div style="color: #566d80; font-weight: 400; margin-bottom: 8px;">Remark</div>
+        <div class="is-flex is-between">
+          <span>1) Man-Hours including Green/Brown Field project works</span>
+          <span>2) TOP’s Man Hours included Projects Green Field</span>
+          <span>3) PSE = Process Safety Event</span>
+          <span>4) PIR = Potential Incident Report</span>
+          <span>5) TP&TOP SPP’s Man-hours included in TOP</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background-color: red;">
+      <div style="background-color: green;"></div>
+    </div>
+
+  </section>
+
+
+  <script>
+    const today = new Date();
+    const currentDateText = new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }).format(today);
+    document.getElementById('current-date').innerText = currentDateText;
+
+    function setDashboardPeriod(date) {
+      const dashboardPeriod = new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long' }).format(date);
+      document.getElementById('dashboard-period').innerText = dashboardPeriod.split(' ').join('-');
+    }
+    setDashboardPeriod(today);
+
+    function setShortMonth(date) {
+      const shortMonth = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date);
+      const elements = document.getElementsByClassName('short-month');
+      for (let element of elements) {
+        element.innerText = shortMonth;
+      }
+    }
+    setShortMonth(today);
+
+    document.querySelector('#year').addEventListener('change', function () {
+      console.log('year change value:', this.value);
+    });
+    document.querySelector('#period').addEventListener('change', function () {
+      const d = new Date();
+      d.setMonth(this.value - 1);
+      setShortMonth(d);
+
+      console.log('period change value:', this.value);
+    });
+    document.querySelector('#company').addEventListener('change', function () {
+      console.log('company change value:', this.value);
+
+      const toggleLogoElements = document.querySelectorAll('[data-toggle-logo]');
+
+      for (let toggleLogoElement of toggleLogoElements) {
+        if (this.value === 'top-group') {
+          toggleLogoElement.classList.add('top-group');
+          toggleLogoElement.classList.remove('logo');
+        }
+        else {
+          toggleLogoElement.classList.add('logo');
+          toggleLogoElement.classList.remove('top-group');
+
+          toggleLogoElement.children[1].src = 'image/' + this.value + '.png';
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

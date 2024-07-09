@@ -1,0 +1,1 @@
+import{K as r}from"./MainLayout.js";const e=Object.keys(r.StationaryServiceFor).filter(t=>t!==r.StationaryServiceFor.Other);e.push(r.StationaryServiceFor.Other);const a=Object.keys(r.StationarySupplier).filter(t=>t!==r.StationarySupplier.Other);a.push(r.StationarySupplier.Other);export{e as a,a as s};

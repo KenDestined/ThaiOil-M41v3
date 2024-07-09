@@ -1,0 +1,58 @@
+.btn-save{
+    background-color: #4fc0fd; 
+    border-color: inherit;
+}
+.btn-save:hover{
+    background-color: #0070D2 !important;
+}
+.btn-submit{
+    background-color: #42C9AC; 
+    border-color: inherit;
+}
+
+.btn-submit:hover{
+    background-color: #1bddb3 !important;
+}
+.btn-addRow{
+    background-color: #738CF1;
+    border-color: inherit;
+}
+.btn-addRow:hover{
+    background-color: #5a79f5 !important;
+}
+.btn-delRow{
+    background-color: #EB6868;
+    border-color: inherit; 
+}
+.btn-delRow:hover{
+    background-color: #f85c5c !important;
+}
+.btn-reject{
+    background-color: #E33053; 
+    border-color: inherit;
+}
+.btn-reject:hover{
+    background-color: #ef224b !important;
+}
+.btn-recall{
+    background-color: #FDC82D; 
+    border-color: inherit;
+}
+.btn-recall:hover{
+    background-color: #f7be12 !important;
+}
+.fontweight{
+    font-weight: bold;
+}
+.Customtable {
+    border: solid 0.5px lightgray;
+}
+.border-bottom-right{
+    border-bottom: solid 0.5px lightgray;
+    border-right: solid 0.5px lightgray;
+}
+.button-add-del{
+    text-align: right; 
+    margin-bottom: 12px;
+    padding-right: 7px;
+}

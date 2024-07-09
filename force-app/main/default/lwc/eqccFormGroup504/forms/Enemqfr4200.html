@@ -1,0 +1,1365 @@
+<template>
+    <div data-id="formBegin">
+        <c-step-page-header
+            num-steps="1"
+            current-step="1"
+            percentage={percentage}
+            is-current={isCurrent}
+            record-id={recordId}
+        ></c-step-page-header>
+
+        <!-- Modal placeholder -->
+        <c-lwc-modal
+            title={modalTitle}
+            is-visible={modalVisible}
+            confirm-text={modalConfirmButton}
+            cancel-text={modalCancelButton}
+            name={modalName}
+            message={modalMessage}
+            onselected={handleModalSelection}
+        ></c-lwc-modal>
+        <div style="text-align: right;">
+
+            ENEM-QFR-4200-CCTV
+ 
+         </div>
+        <div class="slds-text-heading_medium text-center" style="text-decoration: underline; font-weight: bold;">
+            CCTV SYSTEM MAJOR INSPECTION FORM 
+        </div>
+
+                <!-- Section for Notification, FL. and Status fields -->
+                <section class="section slds-accordion__section">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col">
+                            <label class="slds-form-element__label" for="tank-no">Notification</label>
+                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                                <svg
+                                    class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                                    aria-hidden="true"
+                                >
+                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                                </svg>
+                                <input
+                                    type="text"
+                                    data-id="notification"
+                                    class="slds-input avoidPercentageInput"
+                                    value={notification}
+                                    disabled
+                                />
+                            </div>
+                            <label class="slds-form-element__label" for="tank-no">Order</label>
+                            <div class="slds-form-element__control">
+                                <input
+                                    type="text"
+                                    data-id="order"
+                                    class="slds-input avoidPercentageInput"
+                                    value={order}
+                                    disabled
+                                />
+                            </div>
+                        </div>
+                        <div class="slds-col">
+                            <label class="slds-form-element__label" for="tank-no">FL.</label>
+                            <div class="slds-form-element__control">
+                                <input
+                                    type="text"
+                                    data-id="fl"
+                                    class="slds-input avoidPercentageInput"
+                                    value={functionalLocation}
+                                    disabled
+                                />
+                            </div>
+                            <label class="slds-form-element__label" for="tank-no">Status</label>
+                            <div class="slds-form-element__control">
+                                <input
+                                    type="text"
+                                    data-id="status"
+                                    class="slds-input avoidPercentageInput"
+                                    value={formStatus}
+                                    disabled
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ********************************************************** -->
+                <section class="section slds-accordion__section">
+
+                    <div class="slds-form">
+                        <div class="slds-form__row">
+                            <div class="slds-form__item">
+                                <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                    <label class="slds-form-element__label" for="">Camera Tag no.:</label>
+                                    <div class="slds-form-element__control">
+                                        <input
+                                            onchange={onIEH}
+                                            type="text"
+                                            data-id="1-5-input-1"
+                                            class="slds-input"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-form__item">
+                                <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                    <label class="slds-form-element__label" for="">MAKER:</label>
+                                            <div class="slds-form-element__control">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-5-input-2"
+                                                    class="slds-input"
+                                                />
+                                            </div>
+                                </div>
+                            </div>
+                            <div class="slds-form__item">
+                                <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                    <label class="slds-form-element__label" for="">Model:</label>
+                                            <div class="slds-form-element__control">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-5-input-3"
+                                                    class="slds-input"
+                                                />
+                                            </div>
+                                </div>
+                            </div>
+                            <div class="slds-form__item">
+                                <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                    <label class="slds-form-element__label" for="">S/N:</label>
+                                            <div class="slds-form-element__control">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-5-input-4"
+                                                    class="slds-input"
+                                                />
+                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-form__row">
+                            <div class="slds-form__item">
+                                <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                    <label class="slds-form-element__label" for="">LEN Maker:</label>
+                                            <div class="slds-form-element__control">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-5-input-5"
+                                                    class="slds-input"
+                                                />
+                                            </div>
+                                </div>
+                            </div>
+                            <div class="slds-form__item">
+                                <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                    <label class="slds-form-element__label" for="">Model:</label>
+                                            <div class="slds-form-element__control">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-5-input-6"
+                                                    class="slds-input"
+                                                />
+                                            </div>
+                                </div>
+                            </div>
+                            <div class="slds-form__item">
+                                <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                    <label class="slds-form-element__label" for="">Type:</label>
+                                            <div class="slds-form-element__control">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-5-input-7"
+                                                    class="slds-input"
+                                                />
+                                            </div>
+                                </div>
+                            </div>
+                            <div class="slds-form__item">
+                                <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                                    <label class="slds-form-element__label" for="">Camera Matrix no.:</label>
+                                            <div class="slds-form-element__control">
+                                                <input
+                                                    onchange={onIEH}
+                                                    type="text"
+                                                    data-id="1-5-input-8"
+                                                    class="slds-input"
+                                                />
+                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                 
+                    </div>
+                </section>
+                <!-- ********************************************************** -->
+
+        <!-- Body section. -->
+        <div class="slds-card">
+            <div class="bs-example">
+                <!-- <ul class="slds-accordion"> -->
+                    <!-- 1 -->
+                    <!-- <li class="slds-accordion__list-item"> -->
+                        <!-- <section class="slds-accordion__section slds-is-open" data-id="sectionZero"> -->
+                            <div class="slds-accordion__summary" data-id="headingZero">
+                                <h2 class="slds-accordion__summary-heading card-header">
+                                    <!-- <button
+                                        type="button"
+                                        aria-controls="collapseZero"
+                                        aria-expanded="true"
+                                        class="btn btn-link"
+                                        data-parent="sectionZero"
+                                        onclick={expandSection}
+                                    >
+                                        <lightning-icon
+                                            icon-name="utility:switch"
+                                            alternative-text="button icon"
+                                            size="x-small"
+                                            class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                        ></lightning-icon> -->
+                                        <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210)); margin-right: 10px;"
+                                        class="slds-badge slds-badge_inverse"
+                                    >
+                                        A</span>
+                                        <span style="text-decoration: underline;" class="slds-accordion__summary-content">CAMERA AND LENS IN EXPLOSION PROOF HOUSINGS</span>
+                                    <!-- </button> -->
+                                </h2>
+                            </div>
+                            <br>
+                            <!-- <div data-id="collapseZero" class="slds-accordion__content"> -->
+                                <!-- drop 1 section div -->
+                                <div class="card-body">
+                                    <section data-id="1.5" class="pd-b-1" >
+
+                                        <div class="content">
+                                            <div class="slds-grid slds-gutters slds-scrollable_x" >  
+                                                <table class="Customtable slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered" aria-label="Example table of Opportunities with vertical borders">
+                                                    <thead >
+                                                        <tr>
+                                                            <th rowspan="2" style="vertical-align: middle; background-color:#c2d7ee;" class="text-left">
+                                                                <span class="slds-form-element__label"></span>
+                                                            </th>
+                                                            <th colspan="2" style="background-color:#c2d7ee;" class="text-center" >
+                                                                <span class="slds-form-element__label"> TESTING CONDITION</span>
+                                                            </th>
+                                                            <th rowspan="2" style="background-color:#c2d7ee;" class="text-center">
+                                                                <span class="slds-form-element__label"> REMARKS</span>
+                                                            </th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th style="background-color:#c2d7ee;border-left: solid 0.5px lightgray;" class="text-center">
+                                                                <span class="slds-form-element__label"> GOOD</span>
+                                                            </th>
+                                                            <th style="background-color:#c2d7ee;" class="text-center">
+                                                                <span class="slds-form-element__label"> BAD</span>
+                                                            </th>
+                                                           
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr data-answered="false" >
+                                                            <td class="text-left" style="background-color: #e4ecf3;">
+                                                                <span class="slds-form-element__label" style="margin-left: -6px;font-weight: 500;">1.VIDEO SIGNAL</span>
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                            <td style="background-color: rgb(228, 236, 243);border-left: rgb(228, 236, 243);">
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Luminance signal level</span>
+                                                            </td>
+                                                            <!-- data-id checkbok = เลข-checkbok-ลำดับ -->
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-1" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-2" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-9"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                       
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Chrominance signal level</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-3" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-4" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-10"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">White balance</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-5" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-6" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-11"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Back light compensation and AGC</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-7" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-8" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-12"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Pedestal level</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-9" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-10" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-13"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Power supply</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-11" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-12" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-14"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Sync system.</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-13" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-14" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-15"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left" style="background-color: #e4ecf3;">
+                                                                <span class="slds-form-element__label" style="margin-left: -6px;font-weight: 500;">2.LENS </span>
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Mechanical focus adjusment(focus near & focus far)</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-15" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-16" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-16"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                       
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Motorized zoom re-alignment, Cleaning and lubricating.</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-17" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-18" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-17"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Iris Motor re-alignment, Cleaning and lubricating.</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-19" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-20" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-18"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Zoom & Focus functions testing via remote control keypad in control room.</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-21" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-22" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-19"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left" style="background-color: #e4ecf3;">
+                                                                <span class="slds-form-element__label" style="margin-left: -6px;font-weight: 500;">3.CABLES/CONNECTORS AND TERMINALS</span>
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">BNC male & female at camera end and Telemetry receiver end</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-23" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-24" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-20"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                       
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">BNC male & female between Telemetry receiver end and F/O Video end.</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-25" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-26" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-21"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Physical check all video coaxial cable between cameras and F/O equipment.</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-27" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-28" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-22"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left" style="background-color: #e4ecf3; ">
+                                                                <span class="slds-form-element__label" style="margin-left: -6px;font-weight: 500;">4.EXPLOSION PROOF HOUSINGS</span>
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Front glass cleaning</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-29" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-30" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-23"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                       
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Sealing gasget checking </span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-31" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-32" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-24"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Cable glands and sealing fitting checking</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-33" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-34" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-25"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Wiper blade checking</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-35" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-36" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-26"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table> 
+                                            </div>
+                                        </div>
+                                    </section>
+                                   
+                                </div>
+                                <div class="slds-accordion__summary" data-id="headingZero">
+                                    <h2 class="slds-accordion__summary-heading card-header">
+                                        <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210)); margin-right: 10px;"
+                                        class="slds-badge slds-badge_inverse"
+                                    >
+                                        B</span>
+                                        <span style="text-decoration: underline;" class="slds-accordion__summary-content">EXPLOSION PROOF PAN & TILT DRIVE</span>
+                                    </h2>
+                                </div>
+                                <br>
+                                <div class="card-body">
+                                    <section data-id="1.5" class="pd-b-1" >
+                                        <div class="content">
+                                            <div class="slds-grid slds-gutters slds-scrollable_x" >  
+                                                <table class="Customtable slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered" aria-label="Example table of Opportunities with vertical borders">
+                                                    <thead >
+                                                        <tr>
+                                                            <th rowspan="2" style="vertical-align: middle; background-color:#c2d7ee;" class="text-left">
+                                                                <span class="slds-form-element__label"></span>
+                                                            </th>
+                                                            <th colspan="2" style="background-color:#c2d7ee;" class="text-center" >
+                                                                <span class="slds-form-element__label"> TESTING CONDITION</span>
+                                                            </th>
+                                                            <th rowspan="2" style="background-color:#c2d7ee;" class="text-center">
+                                                                <span class="slds-form-element__label"> REMARKS</span>
+                                                            </th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th style="background-color:#c2d7ee;border-left: solid 0.5px lightgray;" class="text-center">
+                                                                <span class="slds-form-element__label"> GOOD</span>
+                                                            </th>
+                                                            <th style="background-color:#c2d7ee;" class="text-center">
+                                                                <span class="slds-form-element__label"> BAD</span>
+                                                            </th>
+                                                           
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left" style="background-color: #e4ecf3;">
+                                                                <span class="slds-form-element__label" style="margin-left: -6px;font-weight: 500;">1.PAN FUNCTION</span>
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;"> 
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Physical checking and lubicating pan gear ass'y</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-37" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-38" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-27"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Pan motor speed testing </span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-39" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-40" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-28"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Pan limit stop testing</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-41" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-42" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-29"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left" style="background-color: #e4ecf3;">
+                                                                <span class="slds-form-element__label" style="margin-left: -6px;font-weight: 500;">2.TILT FUNCTION</span>
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;"> 
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Physical checking and lubricating tilt gear ass'y</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-43" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-44" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-30"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Tilt motor speed testing </span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-45" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-46" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-31"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label">Tilt limit stop testing</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-47" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-48" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-32"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>    
+                                                </table>        
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>     
+                                <!-- *************** Column C *************** -->
+                                <div class="slds-accordion__summary" data-id="headingZero">
+                                    <h2 class="slds-accordion__summary-heading card-header">
+                                        <span
+                                        style="background-color: var(--lwc-brandAccessible, rgb(0, 112, 210)); margin-right: 10px;"
+                                        class="slds-badge slds-badge_inverse"
+                                    >
+                                        C</span>
+                                        <span style="text-decoration: underline;" class="slds-accordion__summary-content">DIGITAL CONTROL RECEIVER DRIVERS IN EXPLOSION BOX</span>
+                                    </h2>
+                                </div>
+                                <br>
+                                <div class="card-body">
+                                    <section data-id="1.5" class="pd-b-1" >
+                                        <div class="content">
+                                            <div class="slds-grid slds-gutters slds-scrollable_x" >  
+                                                <table class="Customtable slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered" aria-label="Example table of Opportunities with vertical borders">
+                                                    <thead >
+                                                        <tr>
+                                                            <th rowspan="2" style="vertical-align: middle; background-color:#c2d7ee;" class="text-left">
+                                                                <span class="slds-form-element__label"></span>
+                                                            </th>
+                                                            <th colspan="2" style="background-color:#c2d7ee;" class="text-center" >
+                                                                <span class="slds-form-element__label"> TESTING CONDITION</span>
+                                                            </th>
+                                                            <th rowspan="2" style="background-color:#c2d7ee;" class="text-center">
+                                                                <span class="slds-form-element__label"> REMARKS</span>
+                                                            </th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th style="background-color:#c2d7ee;border-left: solid 0.5px lightgray;" class="text-center">
+                                                                <span class="slds-form-element__label"> GOOD</span>
+                                                            </th>
+                                                            <th style="background-color:#c2d7ee;" class="text-center">
+                                                                <span class="slds-form-element__label"> BAD</span>
+                                                            </th>
+                                                           
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left" style="background-color: #e4ecf3;">
+                                                                <span class="slds-form-element__label" style="margin-left: -6px;font-weight: 500;">1.ON SITE SELF DIAGNOSTIC TESTING</span>
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;"> 
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label"> - Pan left/right</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-49" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-50" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-33"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label"> - Tilt up/down</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-51" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-52" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-34"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label"> - Zoom in/out</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-53" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-54" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-35"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label"> - Focus near/far</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-55" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-56" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-36"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label"> - Auxiliary </span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-57" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-58" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-37"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false" style="background-color: #e4ecf3;">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label" style="margin-left: -6px;font-weight: 500;">2.PHYSICAL CHECKING</span>
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;">
+
+                                                            </td>
+                                                            <td style="background-color: #e4ecf3; border-left: #e4ecf3; border-right: #e4ecf3;"> 
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label"> - Cables termination</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-59" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-60" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-38"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label"> - Cable glands and sealing fittings</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-61" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-62" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-39"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-answered="false">
+                                                            <td class="text-left">
+                                                                <span class="slds-form-element__label"> - Others</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                      <input type="checkbox" data-id="1-checkbox-63" name="label" value="option" />
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="slds-form-element__control">
+                                                                    <input type="checkbox" data-id="1-checkbox-64" name="label" value="option" />
+                                                              </div>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div  class="slds-form-element__control">
+                                                                    <input
+                                                                        onchange={onIEH}
+                                                                        type="text"
+                                                                        data-id="1-5-input-40"
+                                                                        class="slds-input"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>    
+                                                </table>        
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>     
+                            <!-- </div> -->
+
+                        <!-- </section> -->
+                    <!-- </li> -->
+                    <!-- 2 -->
+                    <!-- <li class="slds-accordion__list-item"> -->
+                        <!-- <section class="slds-accordion__section" data-id="sectionOne"> -->
+                            <!-- <div class="slds-accordion__summary" data-id="headingOne">
+                                <h2 class="slds-accordion__summary-heading card-header"> -->
+                                    <!-- sldsValidatorIgnoreNextLine -->
+                                    <!-- sldsValidatorIgnoreNextLine -->
+                                    <!-- <button
+                                        type="button"
+                                        aria-controls="collapseOne"
+                                        aria-expanded="true"
+                                        class="btn btn-link"
+                                        data-parent="sectionOne"
+                                        onclick={expandSection}
+                                    >
+                                        <lightning-icon
+                                            icon-name="utility:switch"
+                                            alternative-text="button icon"
+                                            size="x-small"
+                                            class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left slds-var-p-right_x-small"
+                                        ></lightning-icon> -->
+                                       <!-- <span style="text-decoration: underline; margin:0px 0px 5px 10px;" class="slds-accordion__summary-content">Random check circuit for PA-16LC, PA-16COT, PA-16ELC, PA-8TLT</span> -->
+                                    <!-- </button> -->
+                                <!-- </h2>
+                            </div> -->
+ 
+                            <!-- <div data-id="collapseOne" class="slds-accordion__content"> -->
+                                <!-- drop 1st section div -->
+                                <!-- <div class="card-body">
+                                    <section data-id="1.5" class="pd-b-1" >
+                                        <div class="content">
+                                            <div class="slds-grid slds-gutters slds-scrollable_x">
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div> -->
+                            <!-- </div> -->
+                        <!-- </section> -->
+                    <!-- </li> -->
+             
+            </div>
+        </div>
+
+
+        <!-- For any N/A button sections, use this template
+        <input onchange={onIEH} onchange={disableSection} name="options" type="checkbox" data-id=... />
+        <label...>Label for checkbox</label>
+        -->
+
+         <!-- Button Section for Every Form -->
+         <section class="section slds-accordion__section">
+            <ul class="slds-button-group obj-right" role="group">
+                <li>
+                    <button data-id="saveEQCCStep" class="btn-save slds-button slds-button_brand mgr-5" onclick={openSaveModal}>
+                        Save Draft
+                    </button>
+                </li>
+                <li>
+                    <button data-id="submitEQCCStep" class="btn-submit slds-button slds-button_brand mgr-5"
+                        onclick={openSubmitModal}>
+                        Submit
+                    </button>
+                </li>
+                <li>
+                    <button data-id="rejectEQCCStep" class="btn-reject slds-button slds-button_brand mgr-5 "
+                         onclick={openRejectModal}>
+                        Reject
+                    </button>
+                </li>
+                <li>
+                    <button data-id="recallEQCCStep" class="btn-recall slds-button slds-button_brand" disabled onclick={openRecallModal}>
+                        Recall
+                    </button>
+                </li>
+            </ul>
+        </section>
+    </div>
+</template>
